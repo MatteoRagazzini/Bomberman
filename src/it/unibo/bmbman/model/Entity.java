@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model;
 
-import java.awt.Point;
+import java.awt.geom.Point2D.Double;
 import java.awt.Rectangle;
 
 /**
@@ -13,7 +13,7 @@ public interface Entity {
      *
      * @return entity's position in the world
      */
-    Point getPosition();
+    Double getPosition();
      /**
       * 
       */
