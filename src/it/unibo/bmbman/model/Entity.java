@@ -34,4 +34,3 @@ public interface Entity {
       */
      EntityType getType();
 }
-
