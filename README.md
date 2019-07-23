@@ -4,7 +4,7 @@
 
 ## Built With
 
-* Java FX - Graphical User Interface
+* Swing - Graphical User Interface
 * JUnit - Testing
 
 ## Authors
