@@ -29,7 +29,7 @@ public interface LivingEntity {
      * Used to set entity's position.
      * @param position where the entity have to be moved
      */
-    void move(Point2D.Double position);
+    void move(Point2D position);
     /**
      * Used to increase entity's speed.
      * @param s how much velocity have to be increment

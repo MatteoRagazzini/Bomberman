@@ -1,5 +1,7 @@
 package it.unibo.bmbman.model;
 
+import java.awt.geom.Dimension2D;
+import java.awt.geom.Point2D;
 import java.awt.geom.Point2D.Double;
 import java.awt.Rectangle;
 
@@ -13,24 +15,24 @@ public interface Entity {
      *
      * @return entity's position in the world
      */
-    Double getPosition();
-     /**
-      * 
-      */
-     void remove();
-     /**
-      * 
-      * @return entity's dimension
-      */
-     Rectangle getDimension();
-     /**
-      * 
-      * @return if entity is solid
-      */
-     boolean isSolid();
-     /**
-      * 
-      * @return entity's type
-      */
-     EntityType getType();
+    Point2D getPosition();
+    /**
+     * 
+     */
+    void remove();
+    /**
+     * 
+     * @return entity's dimension
+     */
+    Dimension2D getDimension();
+    /**
+     * 
+     * @return if entity is solid
+     */
+    boolean isSolid();
+    /**
+     * 
+     * @return entity's type
+     */
+    EntityType getType();
 }
