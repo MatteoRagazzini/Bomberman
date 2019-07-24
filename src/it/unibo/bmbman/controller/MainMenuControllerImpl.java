@@ -1,6 +1,7 @@
 package it.unibo.bmbman.controller;
 import it.unibo.bmbman.engine.GameEngine;
 import it.unibo.bmbman.engine.GameEngineImp;
+import it.unibo.bmbman.view.SinglePlayerView;
 
 /**
  *the implementation of MainMenuController interface.
@@ -13,9 +14,11 @@ public class MainMenuControllerImpl implements MainMenuController {
 @Override
     public void setOptionSelected(final MainMenuOption optionSelected) {
     switch (optionSelected) {
-        case SINGLE_PLAYER: 
-        GameEngine ge = new GameEngineImp();
-        ge.startEngine();
+        case SINGLE_PLAYER:
+            SinglePlayerView spv = new SinglePlayerView();
+            spv.setVisible(true);
+            GameEngine ge = new GameEngineImp();
+            ge.startEngine();
             break;
     /* da implementare i prossimi casi*/
         case MULTIPLAYER:
