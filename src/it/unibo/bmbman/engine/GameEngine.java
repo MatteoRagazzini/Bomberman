@@ -7,11 +7,11 @@ package it.unibo.bmbman.engine;
 public interface GameEngine {
     /**
      * Starts the Game Loop.
-    */
+     */
     void startEngine();
     /**
-    * Stops the Game.
-    */
+     * Stops the Game.
+     */
     void stopEngine();
 }
 
