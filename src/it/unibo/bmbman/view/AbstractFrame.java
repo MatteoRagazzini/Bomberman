@@ -7,14 +7,16 @@ import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * basic jframe of this application to extend for other.
+ *
+ */
 public abstract class AbstractFrame extends JFrame {
     private static final long serialVersionUID = 1L;
     private static double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private static double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static double WINDOW_SCALE_WIDTH = 0.5;
     private static double WINDOW_SCALE_HEIGHT = 0.66;
-    
     /**
      * 
      */

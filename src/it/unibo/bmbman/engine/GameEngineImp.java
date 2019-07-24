@@ -82,8 +82,8 @@ public class GameEngineImp extends Thread implements GameEngine {
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
             System.out.println("sveglio");
-            //this.stopEngine();
         }
+           this.stopEngine();
     }
     private void sleepToNextFrame(final long deltaTime) {
         long sleepTime;
