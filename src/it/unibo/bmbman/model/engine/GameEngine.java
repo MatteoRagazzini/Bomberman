@@ -1,4 +1,4 @@
-package it.unibo.bmbman.engine;
+package it.unibo.bmbman.model.engine;
 
 /**
  * 

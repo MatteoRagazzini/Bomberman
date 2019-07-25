@@ -31,6 +31,9 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.entityType = entityType;
         this.dimension = dimension;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Point2D getPosition() {
         return position;
@@ -38,27 +41,37 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     @Override
     public void remove() {
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Dimension2D getDimension() {
         return this.dimension;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSolid() {
         return this.solidity;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityType getType() {
         return this.entityType;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isAlive() {
         return this.lives > 0;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addLife() {
         this.lives = this.lives + 1;

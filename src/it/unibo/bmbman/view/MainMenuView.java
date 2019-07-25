@@ -12,13 +12,16 @@ import javax.swing.JPanel;
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
-    /**
-     * define the start menu of the game.
-     *
-     */
+/**
+ * define the start menu of the game.
+ *
+ */
 public class MainMenuView extends AbstractFrame {
+    private static final long serialVersionUID = -1620326564341277553L;
     private Map<JButton, MainMenuOption> jbMap = new HashMap<>();
-    private MainMenuController mainMenuController;
+    //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
+    //ma non capendo il perchè per ora non l'ho messo
+    private MainMenuController mainMenuController = new MainMenuControllerImpl();
     /*DA SISTEMARE DA QUI IN POI MA NON CAMBIARE LA STRUTTURA!!*/
     private JPanel p = new JPanel();
     /**
@@ -27,7 +30,6 @@ public class MainMenuView extends AbstractFrame {
     public MainMenuView() {
         super();
         super.getContentPane().add(p);
-        mainMenuController = new MainMenuControllerImpl();
     }
     /**
      * .
@@ -35,14 +37,14 @@ public class MainMenuView extends AbstractFrame {
     public void loadMainMenuView() {
         p.setLayout(new FlowLayout());
         for (int i = 0; i < 4; i++) {
-        JButton b = new JButton(MainMenuOption.values()[i].toString());
-        b.addActionListener(e -> {
-        JButton jb = (JButton) e.getSource();
-        mainMenuController.setOptionSelected(jbMap.get(jb));
-        this.setVisible(false);
-        });
-        p.add(b);
-        jbMap.put(b, MainMenuOption.values()[i]);
+            JButton b = new JButton(MainMenuOption.values()[i].toString());
+            b.addActionListener(e -> {
+                JButton jb = (JButton) e.getSource();
+                mainMenuController.setOptionSelected(jbMap.get(jb));
+                this.setVisible(false);
+            });
+            p.add(b);
+            jbMap.put(b, MainMenuOption.values()[i]);
         }
 
         this.getContentPane().add(p);

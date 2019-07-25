@@ -34,6 +34,8 @@ public interface LivingEntity {
      * Used to increase entity's speed.
      * @param s how much velocity have to be increment
      */
+    /*per la velocità è sicuramente meglio scomporre le due coordinate
+    ma come gestire l'incremento e il decremento?*/
     void incrementSpeed(int s);
     /**
      * Used to decrease entity's speed.

@@ -12,7 +12,8 @@ import javax.swing.JPanel;
  *
  */
 public abstract class AbstractFrame extends JFrame {
-    private static final long serialVersionUID = 1L;
+
+    private static final long serialVersionUID = 708774847422470683L;
     private static double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private static double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static double WINDOW_SCALE_WIDTH = 0.5;

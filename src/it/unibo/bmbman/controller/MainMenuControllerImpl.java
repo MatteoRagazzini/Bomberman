@@ -1,6 +1,6 @@
 package it.unibo.bmbman.controller;
-import it.unibo.bmbman.engine.GameEngine;
-import it.unibo.bmbman.engine.GameEngineImp;
+import it.unibo.bmbman.model.engine.GameEngine;
+import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.view.SinglePlayerView;
 
 /**
