@@ -3,6 +3,8 @@ package it.unibo.bmbman.model;
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
 
+import it.unibo.bmbman.model.utilities.Velocity;
+
 /**
  * Models the general aspects of a living entity.
  *
@@ -13,7 +15,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     private boolean solidity;
     private EntityType entityType;
     private Dimension2D dimension;
-    private int speed;
+    private Velocity velocity;
     private Direction direction;
     //la velocità all'inizio quanto vale?
     /**
@@ -30,6 +32,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.solidity = solidity;
         this.entityType = entityType;
         this.dimension = dimension;
+        this.velocity = new Velocity(0, 0);
     }
     /**
      * {@inheritDoc}
@@ -89,17 +92,17 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
 
     @Override
     public abstract void move(Point2D position);
-
-    @Override
-    public void incrementSpeed(final int s) {
-        this.speed = this.speed + s;
+    
+    public Velocity getVelocity() {
+        return this.velocity;
     }
-
-    @Override
-    public void decrementSpeed(final int s) {
-        this.speed = this.speed - s;
+    /**
+     * Used to set entity's velocity.
+     * @param velocity the value of velocity
+     */
+    public void setVelocity(Velocity velocity) {
+        this.velocity = velocity;
     }
-
     @Override
     public void setDirection(final Direction direction) {
         this.direction = direction;
