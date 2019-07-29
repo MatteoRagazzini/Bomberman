@@ -79,12 +79,16 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     public void addLife() {
         this.lives = this.lives + 1;
     }
-
+    /**
+     * 
+     */
     @Override
     public void removeLife() {
         this.lives = this.lives - 1 > 0 ? this.lives - 1 : 0; 
     }
-
+    /**
+     * 
+     */
     @Override
     public int getLives() {
         return this.lives;
@@ -92,7 +96,10 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
 
     @Override
     public abstract void move(Point2D position);
-    
+    /**
+     * return the velocity.
+     * @return this velocity
+     */
     public Velocity getVelocity() {
         return this.velocity;
     }
@@ -100,14 +107,19 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * Used to set entity's velocity.
      * @param velocity the value of velocity
      */
-    public void setVelocity(Velocity velocity) {
+    public void setVelocity(final Velocity velocity) {
         this.velocity = velocity;
     }
+    /**
+     * 
+     */
     @Override
     public void setDirection(final Direction direction) {
         this.direction = direction;
     }
-
+    /**
+     * 
+     */
     @Override
     public Direction getDirection() {
         return this.direction;
