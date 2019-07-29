@@ -2,6 +2,7 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
@@ -59,7 +60,6 @@ public class MainMenuView {
         this.f.getContentPane().add(eastP, BorderLayout.CENTER);
         this.f.getContentPane().add(westP, BorderLayout.WEST);
         JLabel label = new JLabel(new ImageIcon(image));
-        label.setSize((int) f.getSize().getWidth() / 2, (int) f.getSize().getHeight());
         eastP.add(label);
     }
     /**
@@ -81,7 +81,7 @@ public class MainMenuView {
     }
     private BufferedImage loadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/bmbManImage.jpeg"));
+            image = ImageIO.read(getClass().getResource("/Screenshot_1.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
