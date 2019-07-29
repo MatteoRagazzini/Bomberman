@@ -1,6 +1,7 @@
 package it.unibo.bmbman.controller;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
+import it.unibo.bmbman.view.HelpView;
 import it.unibo.bmbman.view.SinglePlayerView;
 
 /**
@@ -28,6 +29,8 @@ public class MainMenuControllerImpl implements MainMenuController {
         case SETTINGS:
             break;
         case HELP:
+            HelpView hv = new HelpView();
+            //hv.getFrame().setVisible(true);
             break;
         default:
             break;
