@@ -32,4 +32,8 @@ public interface Entity {
      * @return entity's type
      */
     EntityType getType();
+   /**
+    * Used to modify entity behavior.
+    */
+    void onCollision(Entity receiver); 
 }
