@@ -1,52 +1,90 @@
 package it.unibo.bmbman.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
 /**
  * define the start menu of the game.
- *
  */
 public class MainMenuView {
-    private final GUIFactory gui = new MyGUIFactory();
-    private final JFrame frame = gui.createFrame();
-    private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
+    private static final long serialVersionUID = -1620326564341277553L;
+    private Map<JButton, MainMenuOption> jbMap = new HashMap<>();
     //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
     //ma non capendo il perchè per ora non l'ho messo
-    private final MainMenuController mainMenuController = new MainMenuControllerImpl();
-    /*DA SISTEMARE DA QUI IN POI MA NON CAMBIARE LA STRUTTURA!!*/
-    private final JPanel p = new JPanel();
+    private MainMenuController mainMenuController = new MainMenuControllerImpl();
+    private JPanel eastP;
+    private JPanel westP;
+    private JFrame f;
+    private GUIFactory gui;
+    private BufferedImage image = loadImage();
     /**
-     * paolo devi scrivere la javadoc.
+     * Create the main menu view.
      */
     public MainMenuView() {
-        frame.getContentPane().add(p);
+        this.gui = new MyGUIFactory();
     }
     /**
-     * .
+     * Load all the menù components.
      */
     public void loadMainMenuView() {
-        p.setLayout(new FlowLayout());
+        this.f = this.gui.createFrame();
+        loadPanels();
+        loadButtons();
+        f.setTitle("Bomberman");
+        f.setIconImage(image);
+        f.setVisible(true);
+    }
+    /**
+     * Create two panels and add them to the frame.
+     */
+    private void loadPanels() {
+        westP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
+        eastP = new JPanel(new FlowLayout());
+        eastP.setBackground(Color.WHITE);
+        eastP.setSize((int) f.getSize().getWidth() / 2, (int) f.getSize().getHeight());
+        this.f.getContentPane().add(eastP, BorderLayout.CENTER);
+        this.f.getContentPane().add(westP, BorderLayout.WEST);
+        JLabel label = new JLabel(new ImageIcon(image));
+        eastP.add(label);
+    }
+    /**
+     * Create a buttons for each menù option and add them to the panel.
+     */
+    private void loadButtons() {
         for (int i = 0; i < MainMenuOption.values().length; i++) {
             JButton b = gui.createButton(MainMenuOption.values()[i].toString());
             b.addActionListener(e -> {
                 JButton jb = (JButton) e.getSource();
                 mainMenuController.setOptionSelected(jbMap.get(jb));
-                frame.setVisible(false);
+                this.f.setVisible(false);
             });
-            p.add(b);
+            b.setBackground(Color.WHITE);
+            b.setBorderPainted(false);
+            westP.add(b);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
-
-        frame.getContentPane().add(p);
-        frame.setVisible(true);
+    }
+    private BufferedImage loadImage() {
+        try {
+            image = ImageIO.read(getClass().getResource("/bmbManImage.jpeg"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 }
