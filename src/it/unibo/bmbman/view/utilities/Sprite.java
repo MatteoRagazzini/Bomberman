@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
  * Class to manage a Sprite in the application.
  */
 public class Sprite {
-    private BufferedImage image;
+    private final BufferedImage image;
     /**
      * Create a {@code Sprite}.
      * @param sheet the selected spriteSheet
