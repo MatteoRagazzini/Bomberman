@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model;
 
-import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
+import java.awt.geom.Rectangle2D;
 
 import it.unibo.bmbman.model.utilities.Velocity;
 
@@ -14,7 +14,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     private int lives;
     private boolean solidity;
     private EntityType entityType;
-    private Dimension2D dimension;
+    private Rectangle2D dimension;
     private Velocity velocity;
     private Direction direction;
     //la velocità all'inizio quanto vale?
@@ -26,7 +26,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractLivingEntity(final Point2D position, final int lives, final boolean solidity, final EntityType entityType, final Dimension2D dimension) {
+    public AbstractLivingEntity(final Point2D position, final int lives, final boolean solidity, final EntityType entityType, final Rectangle2D dimension) {
         this.position = position;
         this.lives = lives;
         this.solidity = solidity;
@@ -34,6 +34,11 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.dimension = dimension;
         this.velocity = new Velocity(0, 0);
     }
+    @Override
+    public void setPosition(Point2D position) {
+        this.position=position;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -48,7 +53,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * {@inheritDoc}
      */
     @Override
-    public Dimension2D getDimension() {
+    public Rectangle2D getDimension() {
         return this.dimension;
     }
     /**
@@ -93,9 +98,33 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     public int getLives() {
         return this.lives;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public abstract void move(Point2D position);
+    public void move() {
+        switch (getDirection()) {
+        case IDLE:
+            setVelocity(Velocity.ZERO);
+            break;
+        case UP:
+            setVelocity(new Velocity(0, Velocity.SPEED));
+            break;
+        case DOWN:
+            setVelocity(new Velocity(0, -Velocity.SPEED));
+            break;
+        case LEFT:
+            setVelocity(new Velocity(-Velocity.SPEED, 0));
+            break;
+        case RIGHT:
+            setVelocity(new Velocity(Velocity.SPEED, 0));
+            break;
+        default:
+            break;
+        }
+       setPosition(new Point2D.Double(this.getPosition().getX() + this.getVelocity().getXcomponent(),
+               this.getPosition().getY() + this.getVelocity().getYcomponent()));
+    }
     /**
      * return the velocity.
      * @return this velocity
@@ -123,5 +152,9 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     @Override
     public Direction getDirection() {
         return this.direction;
+    }
+    @Override
+    public void onCollision(final Entity receiver) {
+        // TODO Auto-generated method stub
     }
 }

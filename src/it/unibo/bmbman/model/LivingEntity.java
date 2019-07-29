@@ -29,9 +29,8 @@ public interface LivingEntity {
     int getLives();
     /**
      * Used to set entity's position.
-     * @param position where the entity have to be moved
      */
-    void move(Point2D position);
+    void move();
 //    /**
 //     * Used to increase entity's speed.
 //     * @param s how much velocity have to be increment
