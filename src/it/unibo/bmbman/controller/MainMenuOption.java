@@ -8,21 +8,29 @@ public enum MainMenuOption {
     /**
      * Classic game mode with one player VS CPU.
     */
-    SINGLE_PLAYER,
+    SINGLE_PLAYER("Single player"),
     /**
      * Score board based on time to complete each level.
      */
-    LEADERBOARD,
+    LEADERBOARD("Leaderboard"),
     /**
      * Settings option menu.
      */
-    SETTINGS,
+    SETTINGS("Settings"),
     /**
      * tips and more.
      */
-    HELP,
+    HELP("Helps");
 //    /**
 //     * Game mode: player VS player.
 //     */
 //    MULTIPLAYER;
+    private final String name;
+    /**
+     * Construct a {@code MainMenuOption}.
+     * @param name of main menu option
+     */
+    MainMenuOption(final String name) {
+        this.name = name;
+    }
 }

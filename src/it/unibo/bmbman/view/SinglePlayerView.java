@@ -12,7 +12,6 @@ public class SinglePlayerView {
     /**
      * 
      */
-    private static final long serialVersionUID = 6903663897799242487L;
     private final Canvas canvas = new Canvas();
     private final GUIFactory gui = new MyGUIFactory();
     private final JFrame frame = gui.createFrame();
