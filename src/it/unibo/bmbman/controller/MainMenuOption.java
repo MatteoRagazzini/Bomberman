@@ -33,4 +33,11 @@ public enum MainMenuOption {
     MainMenuOption(final String name) {
         this.name = name;
     }
+    /**
+     * To string method.
+     * @return name associate to each MainMenuOption
+     */
+    public String toString() {
+        return name;
+    }
 }
