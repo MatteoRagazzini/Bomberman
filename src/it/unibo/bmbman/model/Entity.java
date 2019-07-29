@@ -2,9 +2,6 @@ package it.unibo.bmbman.model;
 
 import java.awt.geom.Dimension2D;
 import java.awt.geom.Point2D;
-import java.awt.geom.Point2D.Double;
-import java.awt.Rectangle;
-
 /**
  * 
  * models general aspects of entities.

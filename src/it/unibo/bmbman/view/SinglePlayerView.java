@@ -13,9 +13,9 @@ public class SinglePlayerView {
      * 
      */
     private static final long serialVersionUID = 6903663897799242487L;
-    private Canvas canvas = new Canvas();
-    private GUIFactory gui = new MyGUIFactory();
-    JFrame frame = gui.createFrame();
+    private final Canvas canvas = new Canvas();
+    private final GUIFactory gui = new MyGUIFactory();
+    private final JFrame frame = gui.createFrame();
 /**
  * construct the frame.
  */
@@ -24,7 +24,10 @@ public class SinglePlayerView {
         canvas.setBackground(Color.BLACK);
         frame.setVisible(true);
     }
-    
+    /**
+     * get the frame.
+     * @return the current frame
+     */
     public JFrame getFrame() {
         return this.frame;
     }

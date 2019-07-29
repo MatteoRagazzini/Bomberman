@@ -4,5 +4,24 @@ package it.unibo.bmbman.model;
  *
  */
 public enum Direction {
-    RIGHT, LEFT, UP, DOWN, IDLE;
+    /**
+     * right direction.
+     */
+    RIGHT,
+    /**
+     * left direction.
+     */
+    LEFT,
+    /**
+     * up direction.
+     */
+    UP,
+    /**
+     * down direction.
+     */
+    DOWN,
+    /**
+     * no direction, the player is idle.
+     */
+    IDLE;
 }

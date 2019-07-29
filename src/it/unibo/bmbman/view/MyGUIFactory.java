@@ -5,22 +5,28 @@ import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
+/**
+ * paolo scrivi la javadoc.
+ *
+ */
 public class MyGUIFactory implements GUIFactory {
-    
     private static double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private static double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static double WINDOW_SCALE_WIDTH = 0.5;
     private static double WINDOW_SCALE_HEIGHT = 0.66;
     private static final Font MY_FONT = new Font("Prova", Font.BOLD, 12);
-
+    /**
+     * 
+     */
     @Override
-    public JButton createButton(String text) {
+    public JButton createButton(final String text) {
         final JButton button = new JButton(text);
         button.setFont(MY_FONT);
         return button;
     }
-
+    /**
+     * 
+     */
     @Override
     public JFrame createFrame() {
         final JFrame frame = new JFrame();

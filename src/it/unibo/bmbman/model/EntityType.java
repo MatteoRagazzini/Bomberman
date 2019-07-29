@@ -38,7 +38,7 @@ public enum EntityType {
      * @param isWalkable specify if the entity can be crossed or not
      * @param isBreakable specify if the entity can be broken or not
      */
-    private EntityType(final EntityFeature isWalkable, final EntityFeature isBreakable) {
+    EntityType(final EntityFeature isWalkable, final EntityFeature isBreakable) {
        checkWalkable(isWalkable);
        this.isWalkable = isWalkable;
        checkBreakable(isBreakable);

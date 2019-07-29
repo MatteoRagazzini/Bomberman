@@ -1,7 +1,6 @@
 package it.unibo.bmbman.view;
 
 import java.awt.FlowLayout;
-import java.awt.Toolkit;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,15 +16,14 @@ import it.unibo.bmbman.controller.MainMenuOption;
  *
  */
 public class MainMenuView {
-    GUIFactory gui = new MyGUIFactory();
-    JFrame frame = gui.createFrame();
-    private static final long serialVersionUID = -1620326564341277553L;
-    private Map<JButton, MainMenuOption> jbMap = new HashMap<>();
+    private final GUIFactory gui = new MyGUIFactory();
+    private final JFrame frame = gui.createFrame();
+    private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
     //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
     //ma non capendo il perchè per ora non l'ho messo
-    private MainMenuController mainMenuController = new MainMenuControllerImpl();
+    private final MainMenuController mainMenuController = new MainMenuControllerImpl();
     /*DA SISTEMARE DA QUI IN POI MA NON CAMBIARE LA STRUTTURA!!*/
-    private JPanel p = new JPanel();
+    private final JPanel p = new JPanel();
     /**
      * paolo devi scrivere la javadoc.
      */
