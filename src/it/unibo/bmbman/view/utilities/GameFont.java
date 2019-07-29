@@ -27,6 +27,7 @@ public class GameFont {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        
     }
 
     /**

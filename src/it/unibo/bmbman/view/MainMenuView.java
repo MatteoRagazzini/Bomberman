@@ -56,7 +56,7 @@ public class MainMenuView {
     private void loadPanels() {
         westP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
         eastP = new JPanel(new GridBagLayout());
-        eastP.setBackground(Color.WHITE);
+        eastP.setBackground(Color.BLACK);
         this.f.getContentPane().add(eastP, BorderLayout.CENTER);
         this.f.getContentPane().add(westP, BorderLayout.WEST);
         JLabel label = new JLabel(new ImageIcon(image));
@@ -73,15 +73,16 @@ public class MainMenuView {
                 mainMenuController.setOptionSelected(jbMap.get(jb));
                 this.f.setVisible(false);
             });
-            b.setBackground(Color.WHITE);
+            b.setBackground(Color.BLACK);
             b.setBorderPainted(false);
+            b.setForeground(Color.WHITE);
             westP.add(b);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
     }
     private BufferedImage loadImage() {
         try {
-            image = ImageIO.read(getClass().getResource("/Screenshot_1.png"));
+            image = ImageIO.read(getClass().getResource("/2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }
