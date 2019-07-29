@@ -16,13 +16,13 @@ public class MainMenuControllerImpl implements MainMenuController {
     switch (optionSelected) {
         case SINGLE_PLAYER:
             SinglePlayerView spv = new SinglePlayerView();
-            spv.setVisible(true);
+            spv.getFrame().setVisible(true);
             GameEngine ge = new GameEngineImp();
             ge.startEngine();
             break;
     /* da implementare i prossimi casi*/
-        case MULTIPLAYER:
-            break;
+//        case MULTIPLAYER:
+//            break;
         case LEADERBOARD:
             break;
         case SETTINGS:

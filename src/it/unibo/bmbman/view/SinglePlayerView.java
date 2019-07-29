@@ -8,20 +8,25 @@ import javax.swing.JFrame;
  * Frame for single player game mode.
  *
  */
-public class SinglePlayerView extends AbstractFrame {
+public class SinglePlayerView {
     /**
      * 
      */
     private static final long serialVersionUID = 6903663897799242487L;
     private Canvas canvas = new Canvas();
+    private GUIFactory gui = new MyGUIFactory();
+    JFrame frame = gui.createFrame();
 /**
  * construct the frame.
  */
     public SinglePlayerView() {
-        super();
-        super.getContentPane().add(canvas);
+        frame.getContentPane().add(canvas);
         canvas.setBackground(Color.BLACK);
-        super.setVisible(true);
+        frame.setVisible(true);
+    }
+    
+    public JFrame getFrame() {
+        return this.frame;
     }
 
 }

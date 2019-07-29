@@ -16,7 +16,9 @@ import it.unibo.bmbman.controller.MainMenuOption;
  * define the start menu of the game.
  *
  */
-public class MainMenuView extends AbstractFrame {
+public class MainMenuView {
+    GUIFactory gui = new MyGUIFactory();
+    JFrame frame = gui.createFrame();
     private static final long serialVersionUID = -1620326564341277553L;
     private Map<JButton, MainMenuOption> jbMap = new HashMap<>();
     //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
@@ -28,26 +30,25 @@ public class MainMenuView extends AbstractFrame {
      * paolo devi scrivere la javadoc.
      */
     public MainMenuView() {
-        super();
-        super.getContentPane().add(p);
+        frame.getContentPane().add(p);
     }
     /**
      * .
      */
     public void loadMainMenuView() {
         p.setLayout(new FlowLayout());
-        for (int i = 0; i < 4; i++) {
-            JButton b = new JButton(MainMenuOption.values()[i].toString());
+        for (int i = 0; i < MainMenuOption.values().length; i++) {
+            JButton b = gui.createButton(MainMenuOption.values()[i].toString());
             b.addActionListener(e -> {
                 JButton jb = (JButton) e.getSource();
                 mainMenuController.setOptionSelected(jbMap.get(jb));
-                this.setVisible(false);
+                frame.setVisible(false);
             });
             p.add(b);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
 
-        this.getContentPane().add(p);
-        this.setVisible(true);
+        frame.getContentPane().add(p);
+        frame.setVisible(true);
     }
 }

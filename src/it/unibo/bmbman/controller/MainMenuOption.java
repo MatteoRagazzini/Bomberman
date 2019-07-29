@@ -21,8 +21,8 @@ public enum MainMenuOption {
      * tips and more.
      */
     HELP,
-    /**
-     * Game mode: player VS player.
-     */
-    MULTIPLAYER;
+//    /**
+//     * Game mode: player VS player.
+//     */
+//    MULTIPLAYER;
 }
