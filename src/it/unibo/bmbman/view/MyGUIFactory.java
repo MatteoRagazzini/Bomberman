@@ -1,15 +1,9 @@
 package it.unibo.bmbman.view;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.GridLayout;
-import java.awt.LayoutManager;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import it.unibo.bmbman.view.utilities.GameFont;
 
 /**
@@ -20,6 +14,7 @@ public class MyGUIFactory implements GUIFactory {
     private static double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static double WINDOW_SCALE_WIDTH = 0.5;
     private static double WINDOW_SCALE_HEIGHT = 0.66;
+    private static int INITIAL_POSITION = 100;
     private GameFont font = new GameFont();
 
     @Override
@@ -41,7 +36,7 @@ public class MyGUIFactory implements GUIFactory {
         frame.setSize((int) (SCREEN_WIDTH * WINDOW_SCALE_WIDTH), (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT));
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocation(INITIAL_POSITION, INITIAL_POSITION);
         return frame;
     }
-    
 }

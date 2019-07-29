@@ -2,7 +2,7 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -54,12 +54,12 @@ public class MainMenuView {
      */
     private void loadPanels() {
         westP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
-        eastP = new JPanel(new FlowLayout());
+        eastP = new JPanel(new GridBagLayout());
         eastP.setBackground(Color.WHITE);
-        eastP.setSize((int) f.getSize().getWidth() / 2, (int) f.getSize().getHeight());
         this.f.getContentPane().add(eastP, BorderLayout.CENTER);
         this.f.getContentPane().add(westP, BorderLayout.WEST);
         JLabel label = new JLabel(new ImageIcon(image));
+        label.setSize((int) f.getSize().getWidth() / 2, (int) f.getSize().getHeight());
         eastP.add(label);
     }
     /**
