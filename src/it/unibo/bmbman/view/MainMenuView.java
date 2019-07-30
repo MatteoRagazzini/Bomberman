@@ -22,7 +22,6 @@ import it.unibo.bmbman.controller.MainMenuOption;
  * define the start menu of the game.
  */
 public class MainMenuView {
-    private static final long serialVersionUID = -1620326564341277553L;
     private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
     //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
     //ma non capendo il perchè per ora non l'ho messo
@@ -31,8 +30,8 @@ public class MainMenuView {
     private JFrame f;
     private final GUIFactory gui;
     private BufferedImage image;
-    private BufferedImage titleImage = loadImage("/title.jpg");
-    private BufferedImage mainImage = loadImage("/2.png");
+    private final BufferedImage titleImage = loadImage("/title.jpg");
+    private final BufferedImage mainImage = loadImage("/2.png");
     /**
      * Create the main menu view.
      */
@@ -72,9 +71,9 @@ public class MainMenuView {
      */
     private void loadButtons() {
         for (int i = 0; i < MainMenuOption.values().length; i++) {
-            JButton b = gui.createButton(MainMenuOption.values()[i].toString());
+            final JButton b = gui.createButton(MainMenuOption.values()[i].toString());
             b.addActionListener(e -> {
-                JButton jb = (JButton) e.getSource();
+                final JButton jb = (JButton) e.getSource();
                 mainMenuController.setOptionSelected(jbMap.get(jb));
                 this.f.setVisible(false);
             });
@@ -82,6 +81,11 @@ public class MainMenuView {
             jbMap.put(b, MainMenuOption.values()[i]);
         }
     }
+    /**
+     * Method to load an image.
+     * @param text the image path
+     * @return a buffered image
+     */
     private BufferedImage loadImage(final String text) {
         try {
             this.image = ImageIO.read(getClass().getResource(text));

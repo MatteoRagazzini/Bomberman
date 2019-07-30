@@ -1,6 +1,6 @@
 package it.unibo.bmbman.controller;
 /**
- * implementation of OptionMenuController interface.s
+ * implementation of OptionMenuController interface.
  */
 public class OptionMenuControllerImpl implements OptionsMenuController {
     /**
