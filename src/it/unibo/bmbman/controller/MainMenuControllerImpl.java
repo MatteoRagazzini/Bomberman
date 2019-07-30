@@ -29,7 +29,7 @@ public class MainMenuControllerImpl implements MainMenuController {
         case SETTINGS:
             break;
         case HELP:
-            HelpView hv = new HelpView();
+            final HelpView hv = new HelpView();
             //hv.getFrame().setVisible(true);
             break;
         default:

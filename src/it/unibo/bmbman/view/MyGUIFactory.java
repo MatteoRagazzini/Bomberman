@@ -10,12 +10,12 @@ import it.unibo.bmbman.view.utilities.GameFont;
  * Class used to generate components.
  */
 public class MyGUIFactory implements GUIFactory {
-    private static double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
-    private static double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-    private static double WINDOW_SCALE_WIDTH = 0.5;
-    private static double WINDOW_SCALE_HEIGHT = 0.66;
-    private static int INITIAL_POSITION = 100;
-    private GameFont font = new GameFont();
+    private static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
+    private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
+    private static final double WINDOW_SCALE_WIDTH = 0.5;
+    private static final double WINDOW_SCALE_HEIGHT = 0.66;
+    private static final int INITIAL_POSITION = 100;
+    private final GameFont font = new GameFont();
 
     @Override
     /**

@@ -6,13 +6,14 @@ package it.unibo.bmbman.model.utilities;
  */
 public class Velocity {
     /**
-     * 
+     * Velocity is zero, the entity is not moving.
      */
     public static final Velocity ZERO = new Velocity(0, 0);
     /**
-     * 
+     * Constant value for velocity.
      */
     public static final int SPEED = 5;
+
     private Pair<Integer, Integer> vel;
     /**
      * Construct the vector of velocity.
