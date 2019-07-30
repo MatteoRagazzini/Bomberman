@@ -18,8 +18,9 @@ public class MainMenuControllerImpl implements MainMenuController {
     public void setOptionSelected(final MainMenuOption optionSelected) {
     switch (optionSelected) {
         case SINGLE_PLAYER:
-            final SinglePlayerView spv = new SinglePlayerView();
-            spv.getFrame().setVisible(true);
+            //commentate per testare il collider
+//            final SinglePlayerView spv = new SinglePlayerView();
+//            spv.getFrame().setVisible(true);
             final GameEngine ge = new GameEngineImp();
             ge.startEngine();
             break;

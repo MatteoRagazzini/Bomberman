@@ -1,4 +1,7 @@
 package it.unibo.bmbman.model.engine;
+
+import it.unibo.bmbman.view.SinglePlayerView;
+
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.
@@ -13,6 +16,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
     private boolean isRunning;
+    SinglePlayerView spv = new SinglePlayerView();
     /*private final Handler handler;cambiare nome e tipo poi*/
     /*private final int modality; intero che indica multiplayer o single player*/
     /**
@@ -35,6 +39,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             /*
              * qui creo un nuovo campo da gioco e avvio un timer
              */
+            spv.getFrame().setVisible(true);
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -76,6 +81,7 @@ public class GameEngineImp extends Thread implements GameEngine {
                 /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
                  * chiamerà lui per questo qua non metto render*/
                 /*togliere anche questa stampa*/
+                spv.render();
                 System.out.println("update" + now);
                 /*togliere*/
             }

@@ -32,8 +32,9 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.solidity = solidity;
         this.entityType = entityType;
         this.dimension = dimension;
-        this.velocity = new Velocity(0, 0);
+        this.velocity = Velocity.ZERO;
     }
+
     @Override
     public void setPosition(Point2D position) {
         this.position=position;
@@ -108,10 +109,10 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
             setVelocity(Velocity.ZERO);
             break;
         case UP:
-            setVelocity(new Velocity(0, Velocity.SPEED));
+            setVelocity(new Velocity(0, -Velocity.SPEED));
             break;
         case DOWN:
-            setVelocity(new Velocity(0, -Velocity.SPEED));
+            setVelocity(new Velocity(0, Velocity.SPEED));
             break;
         case LEFT:
             setVelocity(new Velocity(-Velocity.SPEED, 0));
@@ -122,8 +123,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         default:
             break;
         }
-       setPosition(new Point2D.Double(this.getPosition().getX() + this.getVelocity().getXcomponent(),
-               this.getPosition().getY() + this.getVelocity().getYcomponent()));
+       update();
     }
     /**
      * return the velocity.
@@ -153,8 +153,16 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
     public Direction getDirection() {
         return this.direction;
     }
+    /**
+     * Used to notify the entity of a collision.
+     */
     @Override
     public void onCollision(final Entity receiver) {
         // TODO Auto-generated method stub
+    }
+    @Override
+    public void update() {
+        setPosition(new Point2D.Double(this.getPosition().getX() + this.getVelocity().getXcomponent(),
+                this.getPosition().getY() + this.getVelocity().getYcomponent()));
     }
 }

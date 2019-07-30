@@ -41,5 +41,7 @@ public interface Entity {
    /**
     * Used to modify entity behavior.
     */
-    void onCollision(Entity receiver); 
+    void onCollision(Entity receiver);
+    
+    void update();
 }
