@@ -34,9 +34,12 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.dimension = dimension;
         this.velocity = new Velocity(0, 0);
     }
+    /**
+     * 
+     */
     @Override
-    public void setPosition(Point2D position) {
-        this.position=position;
+    public void setPosition(final Point2D position) {
+        this.position = position;
     }
 
     /**

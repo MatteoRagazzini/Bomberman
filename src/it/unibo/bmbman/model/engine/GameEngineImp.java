@@ -1,4 +1,9 @@
 package it.unibo.bmbman.model.engine;
+
+
+import it.unibo.bmbman.model.AbstractLivingEntity;
+import it.unibo.bmbman.model.Entity;
+
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.

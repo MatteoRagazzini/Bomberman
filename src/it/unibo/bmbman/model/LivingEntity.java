@@ -1,7 +1,4 @@
 package it.unibo.bmbman.model;
-
-import java.awt.geom.Point2D;
-
 import it.unibo.bmbman.model.utilities.Velocity;
 
 /**

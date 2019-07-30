@@ -40,6 +40,7 @@ public interface Entity {
     EntityType getType();
    /**
     * Used to modify entity behavior.
+    * @param receiver the entity that collide with me.
     */
     void onCollision(Entity receiver); 
 }
