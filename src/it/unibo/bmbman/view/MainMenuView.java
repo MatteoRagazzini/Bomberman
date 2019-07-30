@@ -17,6 +17,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
@@ -34,9 +36,9 @@ public class MainMenuView {
     private BufferedImage image;
     private final BufferedImage titleImage = loadImage("/title.jpg");
     private final BufferedImage mainImage = loadImage("/2.png");
-    private static final double PANEL_SCALE_HEIGHT = 0.8;
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
+    private static final double PANEL_SCALE_HEIGHT = 0.8;
     private static final double NORTH_SCALE_HEIGHT = 0.2;
     /**
      * Create the main menu view.
@@ -68,14 +70,14 @@ public class MainMenuView {
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         eastP = new JPanel(new GridBagLayout());
         eastP.setPreferredSize(new Dimension((int) (f.getWidth() * EAST_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
-        northP = new JPanel();
+        northP = new JPanel(new BorderLayout());
         northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
         eastP.setBackground(Color.BLACK);
         final JLabel label = new JLabel(new ImageIcon(mainImage));
         eastP.add(label);
         final JLabel title = new JLabel(new ImageIcon(titleImage));
         northP.setBackground(Color.BLACK);
-        northP.add(title);
+        northP.add(title, BorderLayout.SOUTH);
         f.add(centerP, BorderLayout.CENTER);
         f.add(northP, BorderLayout.NORTH);
         f.add(eastP, BorderLayout.EAST);
