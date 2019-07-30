@@ -1,7 +1,9 @@
 package it.unibo.bmbman.controller;
+
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.view.HelpView;
+import it.unibo.bmbman.view.OptionsView;
 import it.unibo.bmbman.view.SinglePlayerView;
 
 /**
@@ -16,9 +18,9 @@ public class MainMenuControllerImpl implements MainMenuController {
     public void setOptionSelected(final MainMenuOption optionSelected) {
     switch (optionSelected) {
         case SINGLE_PLAYER:
-            SinglePlayerView spv = new SinglePlayerView();
+            final SinglePlayerView spv = new SinglePlayerView();
             spv.getFrame().setVisible(true);
-            GameEngine ge = new GameEngineImp();
+            final GameEngine ge = new GameEngineImp();
             ge.startEngine();
             break;
     /* da implementare i prossimi casi*/
@@ -27,10 +29,12 @@ public class MainMenuControllerImpl implements MainMenuController {
         case LEADERBOARD:
             break;
         case SETTINGS:
+            final OptionsView ov = new OptionsView();
+            ov.getFrame().setVisible(true);
             break;
         case HELP:
             final HelpView hv = new HelpView();
-            //hv.getFrame().setVisible(true);
+            hv.getFrame().setVisible(true);
             break;
         default:
             break;

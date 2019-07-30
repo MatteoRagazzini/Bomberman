@@ -1,9 +1,13 @@
 package it.unibo.bmbman.view;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
+
 import it.unibo.bmbman.view.utilities.GameFont;
 
 /**
@@ -24,6 +28,10 @@ public class MyGUIFactory implements GUIFactory {
     public JButton createButton(final String text) {
         final JButton button = new JButton(text);
         button.setFont(font.getFont());
+        button.setBackground(Color.BLACK);
+        button.setBorderPainted(false);
+        button.setFocusPainted(false);
+        button.setForeground(Color.WHITE);
         return button;
     }
 
@@ -38,5 +46,18 @@ public class MyGUIFactory implements GUIFactory {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(INITIAL_POSITION, INITIAL_POSITION);
         return frame;
+    }
+    /**
+     * Create the "return to main menu button" that can be used in different view.
+     * @return the button created
+     */
+    @Override
+    public JButton createReturnButton(final JFrame frame) {
+        final JPanel southPanel = new JPanel();
+        frame.add(southPanel, BorderLayout.SOUTH);
+        southPanel.setBackground(Color.BLACK);
+        final JButton back = createButton("RETURN TO MAIN MENU");
+        southPanel.add(back);
+        return back;
     }
 }

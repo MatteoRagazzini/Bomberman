@@ -2,6 +2,7 @@ package it.unibo.bmbman.view;
 
 import java.awt.Color;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 /**
@@ -27,5 +28,17 @@ public class HelpView {
         this.frame.getContentPane().add(panel);
         this.panel.setBackground(Color.BLACK);
         this.frame.setVisible(true);
+        final JButton b = gui.createReturnButton(this.frame);
+        b.addActionListener(e -> {
+            this.frame.setVisible(false);
+            new MainMenuView().loadMainMenuView();
+        });
+    }
+    /**
+     * Getter Method.
+     * @return the help view frame
+     */
+    public JFrame getFrame() {
+        return this.frame;
     }
 }

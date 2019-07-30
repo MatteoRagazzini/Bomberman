@@ -20,4 +20,10 @@ public interface GUIFactory {
      * @return a JFrame.
      */
     JFrame createFrame();
+    /**
+     * Generate a panel and a "return to main menu" button.
+     * @param frame the frame used
+     * @return the button created
+     */
+    JButton createReturnButton(JFrame frame);
 }
