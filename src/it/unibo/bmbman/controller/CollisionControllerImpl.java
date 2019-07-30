@@ -4,10 +4,10 @@ import java.util.Set;
 
 import it.unibo.bmbman.model.Entity;
 
-public class AbstractCollisionController implements CollisionController {
+public class CollisionControllerImpl implements CollisionController {
     private final Entity followedEntity;
     
-    public AbstractCollisionController(Entity followedEntity) {
+    public CollisionControllerImpl(Entity followedEntity) {
         this.followedEntity = followedEntity;
     }
 
