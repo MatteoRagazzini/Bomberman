@@ -28,12 +28,10 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void addEntity(final Entity entity) {
-        // TODO Auto-generated method stub
         this.worldEntity.add(entity);
         if (entity.getType() == EntityType.HERO || entity.getType() == EntityType.MONSTER) {
             this.setCollider.add(new CollisionControllerImpl(entity));
         }
-
     }
     /**
      * 
@@ -75,7 +73,6 @@ public class GameControllerImpl implements GameController {
     @Override
     public void collisionDetect() {
         this.setCollider.stream().forEach(c -> c.collision(getUnwalkableEntity()));
-
     }
 
 }

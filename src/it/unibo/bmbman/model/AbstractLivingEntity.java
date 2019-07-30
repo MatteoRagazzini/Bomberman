@@ -55,7 +55,7 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      */
     @Override
     public Rectangle2D getDimension() {
-        return this.dimension;
+        return new Rectangle2D.Double(getPosition().getX(), getPosition().getY(), this.dimension.getWidth(), this.dimension.getHeight());
     }
     /**
      * {@inheritDoc}

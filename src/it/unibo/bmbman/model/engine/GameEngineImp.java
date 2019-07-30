@@ -82,12 +82,12 @@ public class GameEngineImp extends Thread implements GameEngine {
                  * chiamerà lui per questo qua non metto render*/
                 /*togliere anche questa stampa*/
                 spv.render();
-                System.out.println("update" + now);
+//                System.out.println("update" + now);
                 /*togliere*/
             }
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
-            System.out.println("sveglio");
+//            System.out.println("sveglio");
         }
            this.stopEngine();
     }
@@ -100,7 +100,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             sleepTime = remainingToSleepTime;
         }
         try {
-            System.out.println("dormirò" + sleepTime);
+//            System.out.println("dormirò" + sleepTime);
             /*manda in sleep il thread*/
             GameEngineImp.sleep(sleepTime);
         } catch (InterruptedException e) {

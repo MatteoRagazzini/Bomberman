@@ -8,7 +8,8 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-
+import it.unibo.bmbman.controller.GameController;
+import it.unibo.bmbman.controller.GameControllerImpl;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Wall;
@@ -23,6 +24,7 @@ public class SinglePlayerView {
     private final Canvas canvas = new Canvas();
     private final GUIFactory gui = new MyGUIFactory();
     private final JFrame frame = gui.createFrame();
+    private final GameController game = new GameControllerImpl();
     private final Wall w = new Wall(new java.awt.geom.Point2D.Double(150, 150),true, EntityType.WALL ,new Rectangle(50, 50));
     private final Monster m = new Monster(new java.awt.geom.Point2D.Double(150, 300), 1, true, EntityType.MONSTER, new Rectangle(50, 50));
 /**
@@ -32,6 +34,8 @@ public class SinglePlayerView {
         frame.getContentPane().add(canvas);
         canvas.setBackground(Color.BLACK);
         frame.setVisible(true);
+        game.addEntity(w);
+        game.addEntity(m);
     }
     /**
      * get the frame.
@@ -42,6 +46,7 @@ public class SinglePlayerView {
     }
     
     public void render() {
+        game.collisionDetect();
         m.update();
         BufferStrategy bs = canvas.getBufferStrategy();
         if (bs == null) {
@@ -55,8 +60,6 @@ public class SinglePlayerView {
         g.setColor(Color.RED);
         g.fillRect((int)w.getPosition().getX(),(int)w.getPosition().getY(), (int)w.getDimension().getWidth(), (int)w.getDimension().getHeight());
         g.dispose();
-        System.out.println(m.getPosition());
-        System.out.println(m.getDimension());
         Graphics gm = bs.getDrawGraphics();
         gm.setColor(Color.GREEN);
         gm.fillRect((int)m.getPosition().getX(),(int)m.getPosition().getY(), (int)m.getDimension().getWidth(), (int)m.getDimension().getHeight());

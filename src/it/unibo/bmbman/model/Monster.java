@@ -32,25 +32,33 @@ public class Monster extends AbstractLivingEntity {
     // posso mettere un metodo ovverridabale dentro il costruttore
     private Direction randomDirection() {
         final int dir = rand.nextInt(4);
+        Direction d = this.getDirection();
         switch (dir) {
-            case 0 : setDirection(Direction.DOWN);
+            case 0 : d = Direction.DOWN;
             break;
-            case 1 : setDirection(Direction.UP);
+            case 1 : d = Direction.UP;
             break;
-            case 2 : setDirection(Direction.LEFT);
+            case 2 : d = Direction.LEFT;
             break;
-            case 3 : setDirection(Direction.RIGHT);
+            case 3 : d = Direction.RIGHT;
             break;
             default :
                 break;
         }
-        return this.getDirection();
+        return d;
     } 
     /**
      * {@inheritDoc}
      */
     @Override
     public void onCollision(final Entity receiver) {
-        setDirection(randomDirection()); 
+        System.out.println("modifico direzione");
+        Direction d = randomDirection();
+//        while(d == this.getDirection()) {
+//            d = randomDirection();
+//        }
+        System.out.println(d);
+        setDirection(d); 
+        move();
     }
 }
