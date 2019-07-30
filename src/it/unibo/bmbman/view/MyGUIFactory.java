@@ -7,7 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+import javax.swing.SwingConstants;
 import it.unibo.bmbman.view.utilities.GameFont;
 
 /**
@@ -57,6 +57,7 @@ public class MyGUIFactory implements GUIFactory {
         frame.add(southPanel, BorderLayout.SOUTH);
         southPanel.setBackground(Color.BLACK);
         final JButton back = createButton("RETURN TO MAIN MENU");
+        back.setHorizontalTextPosition(SwingConstants.RIGHT);
         southPanel.add(back);
         return back;
     }

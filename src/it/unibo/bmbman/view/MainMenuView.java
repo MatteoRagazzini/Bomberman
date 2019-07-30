@@ -2,8 +2,10 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.HashMap;
@@ -23,15 +25,19 @@ import it.unibo.bmbman.controller.MainMenuOption;
  */
 public class MainMenuView {
     private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
-    //per risolvere il bug dovrei aggiungere transiente nella dichiarazione
-    //ma non capendo il perchè per ora non l'ho messo
     private final MainMenuController mainMenuController = new MainMenuControllerImpl();
-    private JPanel westP;
+    private JPanel northP;
+    private JPanel eastP;
+    private JPanel centerP;
     private JFrame f;
     private final GUIFactory gui;
     private BufferedImage image;
     private final BufferedImage titleImage = loadImage("/title.jpg");
     private final BufferedImage mainImage = loadImage("/2.png");
+    private static final double PANEL_SCALE_HEIGHT = 0.8;
+    private static final double CENTER_SCALE_WIDTH = 0.4;
+    private static final double EAST_SCALE_WIDTH = 0.6;
+    private static final double NORTH_SCALE_HEIGHT = 0.2;
     /**
      * Create the main menu view.
      */
@@ -39,7 +45,7 @@ public class MainMenuView {
         this.gui = new MyGUIFactory();
     }
     /**
-     * Load all the menù components.
+     * Load all the menu components.
      */
     public void loadMainMenuView() {
         this.f = this.gui.createFrame();
@@ -48,26 +54,34 @@ public class MainMenuView {
         f.setTitle("Bomberman");
         f.setIconImage(mainImage);
         f.setVisible(true);
+        f.pack();
+        System.out.println("FRAME" + f.getSize());
+        System.out.println("CENTER " + this.centerP.getSize());
+        System.out.println("EAST " + this.eastP.getSize());
+        System.out.println("NORTH " + this.northP.getSize());
     }
     /**
      * Create two panels and add them to the frame.
      */
     private void loadPanels() {
-        this.westP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
-        final JPanel eastP = new JPanel(new GridBagLayout());
-        final JPanel northP = new JPanel();
+        centerP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
+        centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
+        eastP = new JPanel(new GridBagLayout());
+        eastP.setPreferredSize(new Dimension((int) (f.getWidth() * EAST_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
+        northP = new JPanel();
+        northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
         eastP.setBackground(Color.BLACK);
         final JLabel label = new JLabel(new ImageIcon(mainImage));
         eastP.add(label);
         final JLabel title = new JLabel(new ImageIcon(titleImage));
         northP.setBackground(Color.BLACK);
         northP.add(title);
-        this.f.getContentPane().add(westP, BorderLayout.WEST);
-        this.f.getContentPane().add(northP, BorderLayout.NORTH);
-        this.f.getContentPane().add(eastP, BorderLayout.CENTER);
+        f.add(centerP, BorderLayout.CENTER);
+        f.add(northP, BorderLayout.NORTH);
+        f.add(eastP, BorderLayout.EAST);
     }
     /**
-     * Create a buttons for each menù option and add them to the panel.
+     * Create a buttons for each menu option and add them to the panel.
      */
     private void loadButtons() {
         for (int i = 0; i < MainMenuOption.values().length; i++) {
@@ -77,7 +91,7 @@ public class MainMenuView {
                 mainMenuController.setOptionSelected(jbMap.get(jb));
                 this.f.setVisible(false);
             });
-            westP.add(b);
+            centerP.add(b);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
     }
