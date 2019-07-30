@@ -53,7 +53,7 @@ public class MainMenuView {
         this.f = this.gui.createFrame();
         loadPanels();
         loadButtons();
-        f.setTitle("Bomberman");
+        f.setTitle("BOMBERMAN - Main Menu");
         f.setIconImage(mainImage);
         f.setVisible(true);
         f.pack();
