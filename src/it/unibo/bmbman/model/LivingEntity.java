@@ -1,9 +1,6 @@
 package it.unibo.bmbman.model;
 
-import java.awt.geom.Point2D;
-
 import it.unibo.bmbman.model.utilities.Velocity;
-
 /**
  * Interface to model a living entity that is an entity with one or more lives and capable of moving.
  *
@@ -31,18 +28,6 @@ public interface LivingEntity {
      * Used to set entity's position.
      */
     void move();
-//    /**
-//     * Used to increase entity's speed.
-//     * @param s how much velocity have to be increment
-//     */
-//    /*per la velocità è sicuramente meglio scomporre le due coordinate
-//    ma come gestire l'incremento e il decremento?*/
-//    void incrementSpeed(int s);
-//    /**
-//     * Used to decrease entity's speed.
-//     * @param s how much velocity have to be decrement
-//     */
-//    void decrementSpeed(int s);
     /**
      * Used to know the velocity of the entity.
      * @return the velocity

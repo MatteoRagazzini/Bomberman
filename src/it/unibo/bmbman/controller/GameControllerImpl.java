@@ -9,8 +9,6 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 /**
- * 
- * @author marta
  *
  */
 public class GameControllerImpl implements GameController {
@@ -20,7 +18,7 @@ public class GameControllerImpl implements GameController {
      */
     public GameControllerImpl() {
         // TODO Auto-generated constructor stub
-        this.worldEntity=new ArrayList<>();
+        this.worldEntity = new ArrayList<>();
     }
 /**
  * 
@@ -37,7 +35,8 @@ public class GameControllerImpl implements GameController {
     @Override
     public Set<Entity> getUnwalkableEntity() {
         // TODO Auto-generated method stub
-        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNWALKABLE).collect(Collectors.toSet());
+        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNWALKABLE)
+                .collect(Collectors.toSet());
     }
 /**
  * 
@@ -45,7 +44,8 @@ public class GameControllerImpl implements GameController {
     @Override
     public Set<Entity> getWalkableEntity() {
         // TODO Auto-generated method stub
-        return null;
+        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.WALKABLE)
+                .collect(Collectors.toSet());
     }
 /**
  * 
@@ -53,7 +53,8 @@ public class GameControllerImpl implements GameController {
     @Override
     public Set<Entity> getBreakableEntity() {
         // TODO Auto-generated method stub
-        return null;
+        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.BREAKABLE)
+                .collect(Collectors.toSet());
     }
 /**
  * 
@@ -61,7 +62,8 @@ public class GameControllerImpl implements GameController {
     @Override
     public Set<Entity> getUnbreakableEntity() {
         // TODO Auto-generated method stub
-        return null;
+        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNBREAKABLE)
+                .collect(Collectors.toSet());
     }
 
     @Override

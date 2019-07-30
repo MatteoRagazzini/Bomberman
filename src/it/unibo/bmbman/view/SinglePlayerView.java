@@ -8,12 +8,10 @@ import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
 
-import com.sun.javafx.geom.Point2D;
 
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Wall;
-import sun.java2d.pipe.DrawImage;
 /**
  * Frame for single player game mode.
  *
