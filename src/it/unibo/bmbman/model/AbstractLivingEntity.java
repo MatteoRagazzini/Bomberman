@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.Dimension;
+import java.awt.Point;
 
 import it.unibo.bmbman.model.utilities.Velocity;
 
@@ -10,14 +10,13 @@ import it.unibo.bmbman.model.utilities.Velocity;
  *
  */
 public abstract class AbstractLivingEntity implements LivingEntity, Entity {
-    private Point2D position;
+    private Point position;
     private int lives;
     private boolean solidity;
     private EntityType entityType;
-    private Rectangle2D dimension;
+    private Dimension dimension;
     private Velocity velocity;
     private Direction direction;
-    //la velocità all'inizio quanto vale?
     /**
      * Create a living entity.
      * @param position the point in the game world
@@ -26,7 +25,8 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractLivingEntity(final Point2D position, final int lives, final boolean solidity, final EntityType entityType, final Rectangle2D dimension) {
+    public AbstractLivingEntity(final Point position, final int lives, final boolean solidity, 
+            final EntityType entityType, final Dimension dimension) {
         this.position = position;
         this.lives = lives;
         this.solidity = solidity;
@@ -34,19 +34,23 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.dimension = dimension;
         this.velocity = Velocity.ZERO;
     }
-
-    @Override
-    public void setPosition(Point2D position) {
-        this.position=position;
-    }
-
     /**
      * {@inheritDoc}
      */
     @Override
-    public Point2D getPosition() {
+    public void setPosition(final Point position) {
+        this.position = position;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Point getPosition() {
         return position;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove() {
     }
@@ -54,8 +58,8 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * {@inheritDoc}
      */
     @Override
-    public Rectangle2D getDimension() {
-        return new Rectangle2D.Double(getPosition().getX(), getPosition().getY(), this.dimension.getWidth(), this.dimension.getHeight());
+    public Dimension getDimension() {
+        return this.dimension;
     }
     /**
      * {@inheritDoc}
@@ -86,14 +90,14 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         this.lives = this.lives + 1;
     }
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void removeLife() {
         this.lives = this.lives - 1 > 0 ? this.lives - 1 : 0; 
     }
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public int getLives() {
@@ -123,46 +127,46 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
         default:
             break;
         }
-       update();
+        update();
     }
     /**
-     * return the velocity.
-     * @return this velocity
+     * {@inheritDoc}
      */
     public Velocity getVelocity() {
         return this.velocity;
     }
     /**
-     * Used to set entity's velocity.
-     * @param velocity the value of velocity
+     * {@inheritDoc}
      */
     public void setVelocity(final Velocity velocity) {
         this.velocity = velocity;
     }
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public void setDirection(final Direction direction) {
         this.direction = direction;
     }
     /**
-     * 
+     * {@inheritDoc}
      */
     @Override
     public Direction getDirection() {
         return this.direction;
     }
     /**
-     * Used to notify the entity of a collision.
+     * {@inheritDoc}
      */
     @Override
     public void onCollision(final Entity receiver) {
         // TODO Auto-generated method stub
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update() {
-        setPosition(new Point2D.Double(this.getPosition().getX() + this.getVelocity().getXcomponent(),
-                this.getPosition().getY() + this.getVelocity().getYcomponent()));
+        this.position.translate(this.getVelocity().getXcomponent(), this.getVelocity().getYcomponent());
     }
 }

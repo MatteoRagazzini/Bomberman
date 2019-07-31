@@ -18,9 +18,9 @@ public class CollisionControllerImpl implements CollisionController {
 //        .peek(e -> notifyCollision(e));
         
         for(Entity t : entities) {
-            if(!t.equals(followedEntity) && followedEntity.getDimension().intersects(t.getDimension())) {
-                notifyCollision(t);
-            }
+//            if(!t.equals(followedEntity) && followedEntity.getDimension().intersects(t.getDimension())) {
+//                notifyCollision(t);
+//            }
         }
         return null;
     }

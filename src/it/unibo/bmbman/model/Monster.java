@@ -1,8 +1,8 @@
 package it.unibo.bmbman.model;
 
 import java.util.Random;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.Dimension;
+import java.awt.Point;
 /**
  * Model the creation and the beaviour of the monster.
  * 
@@ -19,7 +19,7 @@ public class Monster extends AbstractLivingEntity {
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Monster(final Point2D position, final int lives, final boolean solidity, final EntityType entityType, final Rectangle2D dimension) {
+    public Monster(final Point position, final int lives, final boolean solidity, final EntityType entityType, final Dimension dimension) {
         super(position, lives, solidity, entityType, dimension);
         this.setDirection(Direction.UP);
         move();
@@ -30,6 +30,7 @@ public class Monster extends AbstractLivingEntity {
      */
     // metto final perchè pmd si lamentava del fatto che non posso mettere un metodo ovverridabale dentro il 
     // posso mettere un metodo ovverridabale dentro il costruttore
+    // risolto mettendo il metodo private
     private Direction randomDirection() {
         final int dir = rand.nextInt(4);
         Direction d = this.getDirection();

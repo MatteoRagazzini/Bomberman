@@ -1,18 +1,16 @@
 package it.unibo.bmbman.model;
 
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
-
-import it.unibo.bmbman.model.utilities.Velocity;
+import java.awt.Dimension;
+import java.awt.Point;
 /**
- * Models the general aspects of a non living entity.
+ * Models the general aspects of a lifeless entity.
  *
  */
 public abstract class AbstractStaticEntity implements Entity {
-    private Point2D position;
+    private Point position;
     private boolean solidity;
     private EntityType entityType;
-    private Rectangle2D dimension;
+    private Dimension dimension;
     /**
      * Create a static entity.
      * @param position the point in the game world
@@ -20,39 +18,61 @@ public abstract class AbstractStaticEntity implements Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractStaticEntity(final Point2D position, final boolean solidity, final EntityType entityType, final Rectangle2D dimension) {
+    public AbstractStaticEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
         this.position = position;
         this.solidity = solidity;
         this.entityType = entityType;
         this.dimension = dimension;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Point2D getPosition() {
+    public Point getPosition() {
         return position;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setPosition(Point2D position) {
+    public void setPosition(final Point position) {
         this.position = position;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove() {
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public Rectangle2D getDimension() {
-        return new Rectangle2D.Double(getPosition().getX(), getPosition().getY(), this.dimension.getWidth(), this.dimension.getHeight());
+    public Dimension getDimension() {
+        return this.dimension;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean isSolid() {
         return this.solidity;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityType getType() {
         return this.entityType;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract void onCollision(Entity receiver);
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public abstract void update();
 }

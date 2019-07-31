@@ -2,7 +2,9 @@ package it.unibo.bmbman.view;
 
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.image.BufferStrategy;
 
@@ -25,8 +27,8 @@ public class SinglePlayerView {
     private final GUIFactory gui = new MyGUIFactory();
     private final JFrame frame = gui.createFrame();
     private final GameController game = new GameControllerImpl();
-    private final Wall w = new Wall(new java.awt.geom.Point2D.Double(150, 150),true, EntityType.WALL ,new Rectangle(50, 50));
-    private final Monster m = new Monster(new java.awt.geom.Point2D.Double(150, 300), 1, true, EntityType.MONSTER, new Rectangle(50, 50));
+    private final Wall w = new Wall(new Point(150, 150),true, EntityType.WALL ,new Dimension(50, 50));
+    private final Monster m = new Monster(new Point(150, 300), 1, true, EntityType.MONSTER, new Dimension(50, 50));
 /**
  * construct the frame.
  */

@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model;
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.Dimension;
+import java.awt.Point;
 /**
  * Class used to model the beaviour of a wall.
  */
@@ -12,17 +12,15 @@ public class Wall extends AbstractStaticEntity {
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Wall(final Point2D position, final boolean solidity, final EntityType entityType, final Rectangle2D dimension) {
+    public Wall(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
         super(position, solidity, entityType, dimension);
     }
 
     @Override
-    public void onCollision(Entity receiver) {
+    public void onCollision(final Entity receiver) {
     }
 
     @Override
     public void update() {
-        // TODO Auto-generated method stub
-        
     }
 }
