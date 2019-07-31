@@ -30,6 +30,7 @@ import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
 import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
  * define the start menu of the game.
  */
@@ -44,6 +45,7 @@ public class MainMenuView {
     private JFrame f;
     private final GUIFactory gui;
     private final ImageLoader il;
+    private final ScreenTool st;
     private final String titleImagePath = "/title.jpg";
     private final String mainImagePath = "/2.png";
     private final String buttonImagePath = "/redBricks.jpg";
@@ -57,6 +59,7 @@ public class MainMenuView {
     public MainMenuView() {
         this.gui = new MyGUIFactory();
         il = new ImageLoader();
+        st = new ScreenTool();
     }
     /**
      * Load all the menu components.
@@ -64,6 +67,7 @@ public class MainMenuView {
     public void loadMainMenuView() {
         f = this.gui.createFrame();
         f.setTitle("BOMBERMAN - Main Menu");
+        st.checkFontSize();
         loadPanels();
         loadButtons();
         f.setVisible(true);
