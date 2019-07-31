@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import it.unibo.bmbman.view.utilities.GameFont;
+import it.unibo.bmbman.view.utilities.ScreenTool;
 
 /**
  * Class used to generate components.
@@ -19,7 +20,12 @@ public class MyGUIFactory implements GUIFactory {
     private static final double WINDOW_SCALE_WIDTH = 0.5;
     private static final double WINDOW_SCALE_HEIGHT = 0.66;
     private static final int INITIAL_POSITION = 100;
-    private final GameFont font = new GameFont();
+    private static final Float WQHD_SIZE = 64f;
+    private static final Float QHD_SIZE = 36f;
+    private static final Float FHD_SIZE = 32f;
+    private static final Float HD_SIZE = 24f;
+    private GameFont font;
+    private ScreenTool st = new ScreenTool();
 
     @Override
     /**
@@ -27,6 +33,8 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JButton createButton(final String text) {
         final JButton button = new JButton(text);
+        checkFontSize();
+        font = new GameFont();
         button.setFont(font.getFont());
         button.setBackground(Color.BLACK);
         button.setBorderPainted(false);
@@ -61,4 +69,25 @@ public class MyGUIFactory implements GUIFactory {
         southPanel.add(back);
         return back;
     }
+/**
+ * Used to change font size according to resolution the of the screen.
+ */
+public void checkFontSize() {
+    switch (st.getRis()) {
+        case "WQHD":
+            GameFont.setFontSize(WQHD_SIZE);
+            break;
+        case "QHD":
+            GameFont.setFontSize(QHD_SIZE);
+            break;
+        case "FHD":
+            GameFont.setFontSize(FHD_SIZE);
+            break;
+        case "HD":
+            GameFont.setFontSize(HD_SIZE);
+            break;
+        default:
+            break;
+    }
+}
 }
