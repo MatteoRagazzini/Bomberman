@@ -13,7 +13,7 @@ import java.io.InputStream;
 public class GameFont {
 
     private static final String FONT_URL = "/SecretAgent.ttf";
-    private static final Float FONT_SIZE = 34f;
+    private Float fontSize = 34f;
     private Font font;
     /**
      * Create a new font from a resource file.
@@ -21,7 +21,7 @@ public class GameFont {
     public GameFont() {
         final InputStream is = this.getClass().getResourceAsStream(FONT_URL);
         try {
-            this.font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(FONT_SIZE);
+            this.font = Font.createFont(Font.TRUETYPE_FONT, is).deriveFont(fontSize);
         } catch (FontFormatException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -36,4 +36,15 @@ public class GameFont {
     public Font getFont() {
         return this.font;
     }
+<<<<<<< HEAD
 }
+=======
+    /**
+     * Set the font's size.
+     * @param size the new size
+     */
+    protected void setFontSize(final Float size) {
+        this.fontSize = size;
+    }
+}
+>>>>>>> b8c670d3bbc37e307071db734122b10a2cd63118
