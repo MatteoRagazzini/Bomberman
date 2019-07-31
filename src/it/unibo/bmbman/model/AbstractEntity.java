@@ -79,7 +79,7 @@ public abstract class AbstractEntity implements Entity {
      * {@inheritDoc}
      */
     @Override
-    public abstract void onCollision(Entity receiver);
+    public abstract void onCollision(Entity receiver, Point newPosition);
     /**
      * {@inheritDoc}
      */

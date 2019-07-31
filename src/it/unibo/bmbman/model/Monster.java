@@ -53,7 +53,8 @@ public class Monster extends AbstractLivingEntity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver) {
+    public void onCollision(final Entity receiver, final Point newPosition) {
+        this.setPosition(newPosition);
         System.out.println("modifico direzione");
         Direction d = randomDirection();
         //        while(d == this.getDirection()) {

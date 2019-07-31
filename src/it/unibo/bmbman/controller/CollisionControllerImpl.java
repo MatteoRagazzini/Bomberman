@@ -25,33 +25,26 @@ public class CollisionControllerImpl implements CollisionController {
         entities.stream().filter(e -> !e.equals(followedEntity))
         .forEach(e -> {
             if (checkCollision(e, followedEntity.getCollisionComponent().getTopHitbox())) {
-               setFollowedEntityNewPosition(this.followedEntity.getPosition().x, e.getPosition().y + this.followedEntity.getDimension().height);
-               notifyCollision(e);
+                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y + this.followedEntity.getDimension().height));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getBottomHitbox())) {
-                setFollowedEntityNewPosition(this.followedEntity.getPosition().x, e.getPosition().y - this.followedEntity.getDimension().height);
-                notifyCollision(e);
+                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y - this.followedEntity.getDimension().height));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getLeftHitbox())) {
-                setFollowedEntityNewPosition(e.getPosition().x + this.followedEntity.getDimension().width, this.followedEntity.getPosition().y);
-                notifyCollision(e);
+                notifyCollision(e, new Point(e.getPosition().x + this.followedEntity.getDimension().width, this.followedEntity.getPosition().y));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getRightHitbox())) {
-                setFollowedEntityNewPosition(e.getPosition().x - this.followedEntity.getDimension().width, this.followedEntity.getPosition().y);
-                notifyCollision(e);
+                notifyCollision(e, new Point(e.getPosition().x - this.followedEntity.getDimension().width, this.followedEntity.getPosition().y));
             }
         });
     }
     private boolean checkCollision(final Entity receiver, final Rectangle collider) {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);
     }
-    private void setFollowedEntityNewPosition(final int x, final int y) {
-        this.followedEntity.setPosition(new Point(x, y));
-    }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void notifyCollision(final Entity receiver) {
+    public void notifyCollision(final Entity receiver, final Point newPosition) {
         System.out.println("notifico collisione con " + receiver.getType());
-        this.followedEntity.onCollision(receiver);
+        this.followedEntity.onCollision(receiver, newPosition);
 
     }
 

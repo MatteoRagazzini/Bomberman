@@ -17,7 +17,7 @@ public class Wall extends AbstractEntity {
     }
 
     @Override
-    public void onCollision(final Entity receiver) {
+    public void onCollision(final Entity receiver, final Point newPosition) {
     }
 
     @Override
