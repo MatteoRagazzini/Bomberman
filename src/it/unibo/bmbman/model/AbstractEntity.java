@@ -2,6 +2,8 @@ package it.unibo.bmbman.model;
 
 import java.awt.Dimension;
 import java.awt.Point;
+
+import it.unibo.bmbman.view.MyGUIFactory;
 /**
  * Models the general aspects of a lifeless entity.
  *
@@ -39,7 +41,13 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setPosition(final Point position) {
-        this.position = position;
+        this.position.x = position.x <= 0 ? 0 
+                : position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.x;
+        this.position.y = position.y <= 0 ? 0 
+                : position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT - this.dimension.height : position.y;
+        if (position.x <= 0 || position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.y <= 0 || position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
+            reachedBorder();
+        }
     }
     /**
      * {@inheritDoc}
@@ -75,6 +83,10 @@ public abstract class AbstractEntity implements Entity {
     public CollisionComponent getCollisionComponent() {
         return this.collisionComponent;
     }
+    /**
+     * Used to notify entity that reach the border.
+     */
+    protected abstract void reachedBorder();
     /**
      * {@inheritDoc}
      */
