@@ -46,8 +46,9 @@ public class MainMenuView {
     private JFrame f;
     private final GUIFactory gui;
     private final ImageLoader il;
-    private final String titleImagePath = "/title.jpg";
-    private final String mainImagePath = "/2.png";
+    private final ScreenTool st = new ScreenTool();
+    private String titleImagePath;
+    private String mainImagePath;
     private final String buttonImagePath = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
@@ -59,6 +60,8 @@ public class MainMenuView {
     public MainMenuView() {
         this.gui = new MyGUIFactory();
         il = new ImageLoader();
+        mainImagePath();
+        titleImagePath();
     }
     /**
      * Load all the menu components.
@@ -127,5 +130,17 @@ public class MainMenuView {
             centerP.add(b, c);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
+    }
+    /**
+     * 
+     */
+    private void mainImagePath() {
+        mainImagePath = "/image/" + st.getRis() + "_MainImage.png";
+    }
+    /**
+     * 
+     */
+    private void titleImagePath() {
+        titleImagePath = "/image/" + st.getRis() + "_TitleImage.jpg";
     }
 }

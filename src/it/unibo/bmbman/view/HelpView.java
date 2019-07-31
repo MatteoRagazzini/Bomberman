@@ -13,6 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
  * Frame for help section of the main menu.
  */
@@ -21,7 +22,8 @@ public class HelpView {
     private final JFrame frame;
     private final ImageLoader il;
     private JPanel panel;
-    private final String helpImagePath = "/help1.0.png";
+    private String helpImagePath;
+    private final ScreenTool st = new ScreenTool();
     /**
      * Generate a base frame.
      */
@@ -29,6 +31,7 @@ public class HelpView {
         this.il = new ImageLoader();
         this.gui = new MyGUIFactory();
         this.frame = this.gui.createFrame();
+        helpImagePath();
         this.loadHelpView();
     }
     /**
@@ -54,5 +57,12 @@ public class HelpView {
      */
     public JFrame getFrame() {
         return this.frame;
+    }
+    /**
+     * 
+     */
+    private void helpImagePath() {
+        helpImagePath = "/image/" + st.getRis() + "_HelpImage.png";
+        System.out.println(" " + helpImagePath);
     }
 }
