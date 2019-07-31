@@ -19,6 +19,14 @@ public class MyGUIFactory implements GUIFactory {
     private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static final double WINDOW_SCALE_WIDTH = 0.5;
     private static final double WINDOW_SCALE_HEIGHT = 0.66;
+    /**
+     * width value of frame.
+     */
+    public static final int FRAME_WIDTH = (int) (SCREEN_WIDTH * WINDOW_SCALE_WIDTH);
+    /**
+     * height value of frame.
+     */
+    public static final int FRAME_HEIGHT = (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT);
     private static final int INITIAL_POSITION = 100;
     private static final Float WQHD_SIZE = 64f;
     private static final Float QHD_SIZE = 36f;
@@ -49,7 +57,7 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JFrame createFrame() {
         final JFrame frame = new JFrame();
-        frame.setSize((int) (SCREEN_WIDTH * WINDOW_SCALE_WIDTH), (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT));
+        frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setLocation(INITIAL_POSITION, INITIAL_POSITION);

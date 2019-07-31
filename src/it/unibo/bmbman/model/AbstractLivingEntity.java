@@ -117,7 +117,8 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
      */
     @Override
     public void update() {
-        this.getPosition().translate(this.getVelocity().getXcomponent(), this.getVelocity().getYcomponent());
+        this.setPosition(new Point(this.getPosition().x + this.getVelocity().getXcomponent(), 
+                this.getPosition().y + this.getVelocity().getYcomponent()));
     }
 
 }

@@ -12,7 +12,7 @@ public class Velocity {
     /**
      * Constant value for velocity.
      */
-    public static final int SPEED = 2;
+    public static final int SPEED = 3;
 
     private Pair<Integer, Integer> vel;
     /**

@@ -23,4 +23,8 @@ public class Wall extends AbstractEntity {
     @Override
     public void update() {
     }
+
+    @Override
+    protected void reachedBorder() {
+    }
 }

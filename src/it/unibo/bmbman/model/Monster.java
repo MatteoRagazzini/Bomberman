@@ -64,4 +64,12 @@ public class Monster extends AbstractLivingEntity {
         setDirection(d); 
         move();
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    protected void reachedBorder() {
+        setDirection(randomDirection());
+        move();
+    }
 }
