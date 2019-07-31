@@ -1,8 +1,12 @@
 package it.unibo.bmbman.model.engine;
 
+<<<<<<< HEAD
 
 import it.unibo.bmbman.model.AbstractLivingEntity;
 import it.unibo.bmbman.model.Entity;
+=======
+import it.unibo.bmbman.view.SinglePlayerView;
+>>>>>>> testCollider
 
 /**
  * 
@@ -18,6 +22,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
     private boolean isRunning;
+    private SinglePlayerView spv = new SinglePlayerView();
     /*private final Handler handler;cambiare nome e tipo poi*/
     /*private final int modality; intero che indica multiplayer o single player*/
     /**
@@ -40,6 +45,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             /*
              * qui creo un nuovo campo da gioco e avvio un timer
              */
+            spv.getFrame().setVisible(true);
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -81,12 +87,13 @@ public class GameEngineImp extends Thread implements GameEngine {
                 /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
                  * chiamerà lui per questo qua non metto render*/
                 /*togliere anche questa stampa*/
-                System.out.println("update" + now);
+                spv.render();
+//                System.out.println("update" + now);
                 /*togliere*/
             }
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
-            System.out.println("sveglio");
+//            System.out.println("sveglio");
         }
            this.stopEngine();
     }
@@ -99,7 +106,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             sleepTime = remainingToSleepTime;
         }
         try {
-            System.out.println("dormirò" + sleepTime);
+//            System.out.println("dormirò" + sleepTime);
             /*manda in sleep il thread*/
             GameEngineImp.sleep(sleepTime);
         } catch (InterruptedException e) {

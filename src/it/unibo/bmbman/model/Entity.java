@@ -1,8 +1,6 @@
 package it.unibo.bmbman.model;
-
-
-import java.awt.geom.Point2D;
-import java.awt.geom.Rectangle2D;
+import java.awt.Dimension;
+import java.awt.Point;
 /**
  * 
  * models general aspects of entities.
@@ -13,12 +11,12 @@ public interface Entity {
      *
      * @return entity's position in the world
      */
-    Point2D getPosition();
+    Point getPosition();
     /**
      * Used to set entity's position.
      * @param position new entity's position
      */
-    void setPosition(Point2D position);
+    void setPosition(Point position);
     /**
      * 
      */
@@ -27,7 +25,7 @@ public interface Entity {
      * 
      * @return entity's dimension
      */
-    Rectangle2D getDimension();
+    Dimension getDimension();
     /**
      * 
      * @return if entity is solid
@@ -38,9 +36,27 @@ public interface Entity {
      * @return entity's type
      */
     EntityType getType();
+<<<<<<< HEAD
    /**
     * Used to modify entity behavior.
     * @param receiver the entity that collide with me.
     */
     void onCollision(Entity receiver); 
+=======
+    /**
+     * Used to get {@link CollisionComponent}.
+     * @return the {@link CollisionComponent} associated with this entity
+     */
+    CollisionComponent getCollisionComponent();
+    /**
+     * Used to modify entity behavior after collision.
+     * @param receiver the entity with which this entity collided
+     * @param newPosition new entity's position to avoid continuous collisions
+     */
+    void onCollision(Entity receiver, Point newPosition);
+    /**
+     * Used to update entity status during the game.
+     */
+    void update();
+>>>>>>> testCollider
 }
