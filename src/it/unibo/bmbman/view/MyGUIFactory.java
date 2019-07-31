@@ -32,9 +32,9 @@ public class MyGUIFactory implements GUIFactory {
     private static final Float WQHD_SIZE = 64f;
     private static final Float QHD_SIZE = 36f;
     private static final Float FHD_SIZE = 32f;
-    private static final Float HD_SIZE = 24f;
+    private static final Float HD_SIZE = 20f;
     private GameFont font;
-    private ScreenTool st = new ScreenTool();
+    private final ScreenTool st = new ScreenTool();
 
     @Override
     /**

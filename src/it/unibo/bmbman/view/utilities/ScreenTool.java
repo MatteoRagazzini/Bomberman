@@ -15,20 +15,16 @@ public class ScreenTool {
     private static final double HEIGHT_REF_QHD = 1200;
     private final String ris;
     /**
-     * .
+     * Get the screen resolution and save it.
      */
     public ScreenTool() {
         ris = getScreenRes();
     }
     /**
-     * .
-     */
-
-    /**
      * Method to get the screen resolution.
      * @return the screen resolution
      */
-    public static String getScreenRes() {
+    private static String getScreenRes() {
         if (SCREEN_WIDTH > WIDTH_REF_WQHD && SCREEN_HEIGHT > HEIGHT_REF_WQHD) {
             return "WQHD";
         } else if (SCREEN_WIDTH < WIDTH_REF_HD && SCREEN_HEIGHT < HEIGHT_REF_HD) {
@@ -41,7 +37,7 @@ public class ScreenTool {
     }
     /**
      * Getter for resolution type.
-     * @return resolution
+     * @return the resolution
      */
     public String getRis() {
         return this.ris;

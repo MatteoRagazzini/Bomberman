@@ -2,10 +2,6 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -21,7 +17,6 @@ public class HelpView {
     private final GUIFactory gui;
     private final JFrame frame;
     private final ImageLoader il;
-    private JPanel panel;
     private String helpImagePath;
     private final ScreenTool st = new ScreenTool();
     /**
@@ -31,17 +26,17 @@ public class HelpView {
         this.il = new ImageLoader();
         this.gui = new MyGUIFactory();
         this.frame = this.gui.createFrame();
-        helpImagePath();
+        saveHelpImagePath();
         this.loadHelpView();
     }
     /**
      * Method used to custom the frame.
      */
     private void loadHelpView() {
-        this.panel = new JPanel();
+        final JPanel panel = new JPanel();
         this.frame.add(panel);
         this.frame.setTitle("BOMBERMAN - Help Menu");
-        this.panel.setBackground(Color.BLACK);
+        panel.setBackground(Color.BLACK);
         final JLabel label = new JLabel(new ImageIcon(il.loadImage(helpImagePath)));
         panel.add(label, BorderLayout.CENTER);
         this.frame.setVisible(true);
@@ -59,9 +54,9 @@ public class HelpView {
         return this.frame;
     }
     /**
-     * 
+     * Save the help image path based on the screen resolution.
      */
-    private void helpImagePath() {
+    private void saveHelpImagePath() {
         helpImagePath = "/image/" + st.getRis() + "_HelpImage.png";
         System.out.println(" " + helpImagePath);
     }

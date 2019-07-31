@@ -39,7 +39,6 @@ public class GameFont {
     /**
      * Set the font's size.
      * @param size the new size
-     * @return 
      */
     public static void setFontSize(final Float size) {
         fontSize = size;

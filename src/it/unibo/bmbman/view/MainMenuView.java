@@ -3,33 +3,20 @@ package it.unibo.bmbman.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Toolkit;
-import java.awt.image.BufferedImage;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
-import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
@@ -49,7 +36,7 @@ public class MainMenuView {
     private final ScreenTool st = new ScreenTool();
     private String titleImagePath;
     private String mainImagePath;
-    private final String buttonImagePath = "/redBricks.jpg";
+    // private static final String BUTTON_IMAGE_PATH = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
@@ -60,8 +47,8 @@ public class MainMenuView {
     public MainMenuView() {
         this.gui = new MyGUIFactory();
         il = new ImageLoader();
-        mainImagePath();
-        titleImagePath();
+        saveMainImagePath();
+        saveTitleImagePath();
     }
     /**
      * Load all the menu components.
@@ -132,15 +119,15 @@ public class MainMenuView {
         }
     }
     /**
-     * 
+     * Save the main image path based on the screen resolution.
      */
-    private void mainImagePath() {
+    private void saveMainImagePath() {
         mainImagePath = "/image/" + st.getRis() + "_MainImage.png";
     }
     /**
-     * 
+     * Save the title image path based on the screen resolution.
      */
-    private void titleImagePath() {
+    private void saveTitleImagePath() {
         titleImagePath = "/image/" + st.getRis() + "_TitleImage.jpg";
     }
 }
