@@ -36,9 +36,6 @@ public class GameFont {
     public Font getFont() {
         return this.font;
     }
-<<<<<<< HEAD
-}
-=======
     /**
      * Set the font's size.
      * @param size the new size
@@ -47,4 +44,3 @@ public class GameFont {
         this.fontSize = size;
     }
 }
->>>>>>> b8c670d3bbc37e307071db734122b10a2cd63118

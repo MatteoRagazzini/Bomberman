@@ -36,13 +36,7 @@ public interface Entity {
      * @return entity's type
      */
     EntityType getType();
-<<<<<<< HEAD
-   /**
-    * Used to modify entity behavior.
-    * @param receiver the entity that collide with me.
-    */
-    void onCollision(Entity receiver); 
-=======
+
     /**
      * Used to get {@link CollisionComponent}.
      * @return the {@link CollisionComponent} associated with this entity
@@ -58,5 +52,4 @@ public interface Entity {
      * Used to update entity status during the game.
      */
     void update();
->>>>>>> testCollider
 }

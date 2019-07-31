@@ -1,8 +1,4 @@
 package it.unibo.bmbman.model;
-<<<<<<< HEAD
-=======
-
->>>>>>> testCollider
 import it.unibo.bmbman.model.utilities.Velocity;
 /**
  * Interface to model a living entity that is an entity with one or more lives and capable of moving.

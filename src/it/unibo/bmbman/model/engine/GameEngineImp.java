@@ -1,12 +1,6 @@
 package it.unibo.bmbman.model.engine;
 
-<<<<<<< HEAD
-
-import it.unibo.bmbman.model.AbstractLivingEntity;
-import it.unibo.bmbman.model.Entity;
-=======
 import it.unibo.bmbman.view.SinglePlayerView;
->>>>>>> testCollider
 
 /**
  * 

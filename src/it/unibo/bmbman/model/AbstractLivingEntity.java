@@ -24,54 +24,8 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     public AbstractLivingEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension, final int lives) {
         super(position, solidity, entityType, dimension);
         this.lives = lives;
-<<<<<<< HEAD
-        this.solidity = solidity;
-        this.entityType = entityType;
-        this.dimension = dimension;
-        this.velocity = new Velocity(0, 0);
-    }
-    /**
-     * 
-     */
-    @Override
-    public void setPosition(final Point2D position) {
-        this.position = position;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Point2D getPosition() {
-        return position;
-    }
-    @Override
-    public void remove() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Rectangle2D getDimension() {
-        return this.dimension;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isSolid() {
-        return this.solidity;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public EntityType getType() {
-        return this.entityType;
-=======
         this.direction = Direction.IDLE;
         this.velocity = Velocity.ZERO;
->>>>>>> testCollider
     }
     /**
      * {@inheritDoc}
