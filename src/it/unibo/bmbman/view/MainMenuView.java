@@ -4,9 +4,11 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Image;
+import java.awt.Insets;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
@@ -22,6 +24,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
+import javax.swing.border.Border;
 
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
@@ -36,11 +39,14 @@ public class MainMenuView {
     private JPanel northP;
     private JPanel eastP;
     private JPanel centerP;
+    //aggiunto per gestire il gridbaglayout
+    private GridBagConstraints c;
     private JFrame f;
     private final GUIFactory gui;
     private final ImageLoader il;
     private final String titleImagePath = "/title.jpg";
     private final String mainImagePath = "/2.png";
+    private final String buttonImagePath = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
@@ -72,7 +78,15 @@ public class MainMenuView {
      */
     private void loadPanels() {
         // Create CENTER Panel
-        centerP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
+        centerP = new JPanel(new GridBagLayout());
+        centerP.setBackground(Color.BLACK);
+        //parte del constraints
+        c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 0.5;
+        c.weighty = 1.0;
+        //magic number da cambiare in caso di 46
+        c.insets = new Insets(25, 60, 35, 20); 
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         // Create EAST Panel
         eastP = new JPanel(new BorderLayout());
@@ -103,7 +117,12 @@ public class MainMenuView {
                 mainMenuController.setOptionSelected(jbMap.get(jb));
                 this.f.setVisible(false);
             });
-            centerP.add(b);
+            b.setBorderPainted(true);
+           //finchè non capisco come mettere in foreground il testo
+           // b.setIcon(new ImageIcon(il.loadImage(buttonImagePath)));
+            c.gridx = 0;
+            c.gridy = i; //voglio che vengano messi uno sotto all'altro 
+            centerP.add(b, c);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
     }
