@@ -6,11 +6,13 @@ import java.awt.Point;
  * Models the general aspects of a lifeless entity.
  *
  */
-public abstract class AbstractStaticEntity implements Entity {
+public abstract class AbstractEntity implements Entity {
+
     private Point position;
     private boolean solidity;
-    private EntityType entityType;
-    private Dimension dimension;
+    private final EntityType entityType;
+    private final Dimension dimension;
+    private final CollisionComponent collisionComponent;
     /**
      * Create a static entity.
      * @param position the point in the game world
@@ -18,11 +20,12 @@ public abstract class AbstractStaticEntity implements Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractStaticEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
+    public AbstractEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
         this.position = position;
         this.solidity = solidity;
         this.entityType = entityType;
         this.dimension = dimension;
+        this.collisionComponent = new CollisionComponentImpl(this);
     }
     /**
      * {@inheritDoc}
@@ -64,6 +67,13 @@ public abstract class AbstractStaticEntity implements Entity {
     @Override
     public EntityType getType() {
         return this.entityType;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public CollisionComponent getCollisionComponent() {
+        return this.collisionComponent;
     }
     /**
      * {@inheritDoc}

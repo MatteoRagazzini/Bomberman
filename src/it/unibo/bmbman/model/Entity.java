@@ -1,6 +1,7 @@
 package it.unibo.bmbman.model;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.Rectangle;
 /**
  * 
  * models general aspects of entities.
@@ -36,6 +37,11 @@ public interface Entity {
      * @return entity's type
      */
     EntityType getType();
+    /**
+     * Used to get {@link CollisionComponent}.
+     * @return the {@link CollisionComponent} associated with this entity
+     */
+    CollisionComponent getCollisionComponent();
     /**
      * Used to modify entity behavior after collision.
      * @param receiver the entity with which this entity collided

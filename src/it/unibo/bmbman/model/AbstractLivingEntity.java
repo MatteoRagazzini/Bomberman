@@ -9,71 +9,23 @@ import it.unibo.bmbman.model.utilities.Velocity;
  * Models the general aspects of a living entity.
  *
  */
-public abstract class AbstractLivingEntity implements LivingEntity, Entity {
-    private Point position;
+public abstract class AbstractLivingEntity extends AbstractEntity implements LivingEntity {
     private int lives;
-    private boolean solidity;
-    private EntityType entityType;
-    private Dimension dimension;
     private Velocity velocity;
     private Direction direction;
     /**
-     * Create a living entity.
-     * @param position the point in the game world
-     * @param lives how many lives the entity has.
-     * @param solidity if the entity is solid
-     * @param entityType which type of game entity is
-     * @param dimension width and height  of the entity
+     * Create an {@link AbstractLivingEntity}.
+     * @param position where the entity is in the world
+     * @param solidity .
+     * @param entityType the {@link EntityType} of this entity
+     * @param dimension the {@link Dimension} of entity
+     * @param lives the number of lives that the entity has
      */
-    public AbstractLivingEntity(final Point position, final int lives, final boolean solidity, 
-            final EntityType entityType, final Dimension dimension) {
-        this.position = position;
+    public AbstractLivingEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension, final int lives) {
+        super(position, solidity, entityType, dimension);
         this.lives = lives;
-        this.solidity = solidity;
-        this.entityType = entityType;
-        this.dimension = dimension;
+        this.direction = Direction.IDLE;
         this.velocity = Velocity.ZERO;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setPosition(final Point position) {
-        this.position = position;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Point getPosition() {
-        return position;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void remove() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Dimension getDimension() {
-        return this.dimension;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isSolid() {
-        return this.solidity;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public EntityType getType() {
-        return this.entityType;
     }
     /**
      * {@inheritDoc}
@@ -159,14 +111,13 @@ public abstract class AbstractLivingEntity implements LivingEntity, Entity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver) {
-        // TODO Auto-generated method stub
-    }
+    abstract public void onCollision(final Entity receiver);
     /**
      * {@inheritDoc}
      */
     @Override
     public void update() {
-        this.position.translate(this.getVelocity().getXcomponent(), this.getVelocity().getYcomponent());
+        this.getPosition().translate(this.getVelocity().getXcomponent(), this.getVelocity().getYcomponent());
     }
+
 }

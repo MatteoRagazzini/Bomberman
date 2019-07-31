@@ -28,7 +28,7 @@ public class SinglePlayerView {
     private final JFrame frame = gui.createFrame();
     private final GameController game = new GameControllerImpl();
     private final Wall w = new Wall(new Point(150, 150),true, EntityType.WALL ,new Dimension(50, 50));
-    private final Monster m = new Monster(new Point(150, 300), 1, true, EntityType.MONSTER, new Dimension(50, 50));
+    private final Monster m = new Monster(new Point(150, 300), true, EntityType.MONSTER, new Dimension(50, 50), 1);
 /**
  * construct the frame.
  */

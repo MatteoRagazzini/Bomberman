@@ -4,7 +4,7 @@ import java.awt.Point;
 /**
  * Class used to model the beaviour of a wall.
  */
-public class Wall extends AbstractStaticEntity {
+public class Wall extends AbstractEntity {
     /**
      * Create a wall.
      * @param position start position of the monster

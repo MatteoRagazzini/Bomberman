@@ -9,6 +9,7 @@ import java.awt.Point;
  *
  */
 public class Monster extends AbstractLivingEntity {
+
     private Random rand = new Random();
 
     /**
@@ -19,8 +20,8 @@ public class Monster extends AbstractLivingEntity {
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Monster(final Point position, final int lives, final boolean solidity, final EntityType entityType, final Dimension dimension) {
-        super(position, lives, solidity, entityType, dimension);
+    public Monster(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension, int lives) {
+        super(position, solidity, entityType, dimension, lives);
         this.setDirection(Direction.UP);
         move();
     }
@@ -35,16 +36,16 @@ public class Monster extends AbstractLivingEntity {
         final int dir = rand.nextInt(4);
         Direction d = this.getDirection();
         switch (dir) {
-            case 0 : d = Direction.DOWN;
+        case 0 : d = Direction.DOWN;
+        break;
+        case 1 : d = Direction.UP;
+        break;
+        case 2 : d = Direction.LEFT;
+        break;
+        case 3 : d = Direction.RIGHT;
+        break;
+        default :
             break;
-            case 1 : d = Direction.UP;
-            break;
-            case 2 : d = Direction.LEFT;
-            break;
-            case 3 : d = Direction.RIGHT;
-            break;
-            default :
-                break;
         }
         return d;
     } 
@@ -55,9 +56,9 @@ public class Monster extends AbstractLivingEntity {
     public void onCollision(final Entity receiver) {
         System.out.println("modifico direzione");
         Direction d = randomDirection();
-//        while(d == this.getDirection()) {
-//            d = randomDirection();
-//        }
+        //        while(d == this.getDirection()) {
+        //            d = randomDirection();
+        //        }
         System.out.println(d);
         setDirection(d); 
         move();
