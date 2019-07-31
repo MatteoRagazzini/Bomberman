@@ -11,29 +11,25 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import it.unibo.bmbman.view.utilities.ImageLoader;
 /**
  * Frame for help section of the main menu.
  */
 public class HelpView {
     private final GUIFactory gui;
     private final JFrame frame;
+    private final ImageLoader il;
     private JPanel panel;
-    private BufferedImage helpImage = loadImage("/help1.0.png");
+    private final String helpImagePath = "/help1.0.png";
     /**
      * Generate a base frame.
      */
     public HelpView() {
+        this.il = new ImageLoader();
         this.gui = new MyGUIFactory();
         this.frame = this.gui.createFrame();
         this.loadHelpView();
-    }
-    private BufferedImage loadImage(String text) {
-        try {
-            this.helpImage = ImageIO.read(getClass().getResource(text));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return this.helpImage;
     }
     /**
      * Method used to custom the frame.
@@ -43,7 +39,7 @@ public class HelpView {
         this.frame.add(panel);
         this.frame.setTitle("BOMBERMAN - Help Menu");
         this.panel.setBackground(Color.BLACK);
-        final JLabel label = new JLabel(new ImageIcon(helpImage));
+        final JLabel label = new JLabel(new ImageIcon(il.loadImage(helpImagePath)));
         panel.add(label, BorderLayout.CENTER);
         this.frame.setVisible(true);
         final JButton b = gui.createReturnButton(this.frame);

@@ -3,10 +3,14 @@ package it.unibo.bmbman.view;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +26,7 @@ import javax.swing.SwingConstants;
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
+import it.unibo.bmbman.view.utilities.ImageLoader;
 /**
  * define the start menu of the game.
  */
@@ -33,9 +38,9 @@ public class MainMenuView {
     private JPanel centerP;
     private JFrame f;
     private final GUIFactory gui;
-    private BufferedImage image;
-    private final BufferedImage titleImage = loadImage("/title.jpg");
-    private final BufferedImage mainImage = loadImage("/2.png");
+    private final ImageLoader il;
+    private final String titleImagePath = "/title.jpg";
+    private final String mainImagePath = "/2.png";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
@@ -45,16 +50,16 @@ public class MainMenuView {
      */
     public MainMenuView() {
         this.gui = new MyGUIFactory();
+        il = new ImageLoader();
     }
     /**
      * Load all the menu components.
      */
     public void loadMainMenuView() {
-        this.f = this.gui.createFrame();
+        f = this.gui.createFrame();
+        f.setTitle("BOMBERMAN - Main Menu");
         loadPanels();
         loadButtons();
-        f.setTitle("BOMBERMAN - Main Menu");
-        f.setIconImage(mainImage);
         f.setVisible(true);
         f.pack();
         System.out.println("FRAME" + f.getSize());
@@ -66,18 +71,23 @@ public class MainMenuView {
      * Create two panels and add them to the frame.
      */
     private void loadPanels() {
+        // Create CENTER Panel
         centerP = new JPanel(new GridLayout(MainMenuOption.values().length, 1));
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
-        eastP = new JPanel(new GridBagLayout());
+        // Create EAST Panel
+        eastP = new JPanel(new BorderLayout());
         eastP.setPreferredSize(new Dimension((int) (f.getWidth() * EAST_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
+        eastP.setBackground(Color.BLACK);
+        final JLabel label = new JLabel(new ImageIcon(il.loadImage(mainImagePath)));
+        eastP.add(label, BorderLayout.CENTER);
+        System.out.println(" " + label.getSize());
+        // Create NORTH Panel
         northP = new JPanel(new BorderLayout());
         northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
-        eastP.setBackground(Color.BLACK);
-        final JLabel label = new JLabel(new ImageIcon(mainImage));
-        eastP.add(label);
-        final JLabel title = new JLabel(new ImageIcon(titleImage));
+        final JLabel title = new JLabel(new ImageIcon(il.loadImage(titleImagePath)));
         northP.setBackground(Color.BLACK);
         northP.add(title, BorderLayout.SOUTH);
+        // Add Panels to the Frame
         f.add(centerP, BorderLayout.CENTER);
         f.add(northP, BorderLayout.NORTH);
         f.add(eastP, BorderLayout.EAST);
@@ -96,18 +106,5 @@ public class MainMenuView {
             centerP.add(b);
             jbMap.put(b, MainMenuOption.values()[i]);
         }
-    }
-    /**
-     * Method to load an image.
-     * @param text the image path
-     * @return a buffered image
-     */
-    private BufferedImage loadImage(final String text) {
-        try {
-            this.image = ImageIO.read(getClass().getResource(text));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return this.image;
     }
 }
