@@ -8,7 +8,7 @@ import it.unibo.bmbman.model.Entity;
 public interface GameController {
     /**
      * Used to store all the entities in game.
-     * @param entity
+     * @param entity the {@link Entity} to add
      */
     void addEntity(Entity entity);
     /**

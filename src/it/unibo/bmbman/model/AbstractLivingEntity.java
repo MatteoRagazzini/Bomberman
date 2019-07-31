@@ -111,7 +111,7 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
      * {@inheritDoc}
      */
     @Override
-    abstract public void onCollision(final Entity receiver);
+    public abstract void onCollision(Entity receiver);
     /**
      * {@inheritDoc}
      */

@@ -16,7 +16,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
     private boolean isRunning;
-    SinglePlayerView spv = new SinglePlayerView();
+    private SinglePlayerView spv = new SinglePlayerView();
     /*private final Handler handler;cambiare nome e tipo poi*/
     /*private final int modality; intero che indica multiplayer o single player*/
     /**

@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model;
 import java.awt.Dimension;
 import java.awt.Point;
-import java.awt.Rectangle;
 /**
  * 
  * models general aspects of entities.
