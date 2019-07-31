@@ -2,6 +2,7 @@ package it.unibo.bmbman.view;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JRadioButtonMenuItem;
 
 /**
  * interface for abstract factory pattern.
@@ -26,4 +27,10 @@ public interface GUIFactory {
      * @return the button created
      */
     JButton createReturnButton(JFrame frame);
+    /**
+     * Method to generate a RadioButtonMenuItem.
+     * @param text the button's text
+     * @return the button created
+     */
+    JRadioButtonMenuItem createRadioButton(String text);
 }

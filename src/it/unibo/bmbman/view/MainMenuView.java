@@ -87,7 +87,7 @@ public class MainMenuView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
         c.weighty = 1.0;
-        //magic number da cambiare in caso di 46
+        //magic number da cambiare in caso di 4k
         c.insets = new Insets(25, 60, 35, 20); 
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         // Create EAST Panel

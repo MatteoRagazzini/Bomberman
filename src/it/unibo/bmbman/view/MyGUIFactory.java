@@ -7,6 +7,7 @@ import java.awt.Toolkit;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ScreenTool;
@@ -49,6 +50,21 @@ public class MyGUIFactory implements GUIFactory {
         button.setFocusPainted(false);
         button.setForeground(Color.WHITE);
         return button;
+    }
+/**
+ * {@inheritDoc}
+ */
+    public JRadioButtonMenuItem createRadioButton(final String text) {
+        final JRadioButtonMenuItem radioButton = new JRadioButtonMenuItem(text);
+        checkFontSize();
+        font = new GameFont();
+        radioButton.setFont(font.getFont());
+        radioButton.setBackground(Color.BLACK);
+        radioButton.setBorderPainted(false);
+        radioButton.setFocusPainted(false);
+        radioButton.setForeground(Color.WHITE);
+        radioButton.setSize(500, 500);
+        return radioButton;
     }
 
     @Override
