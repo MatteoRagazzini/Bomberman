@@ -26,12 +26,12 @@ public class SinglePlayerView {
     private final GUIFactory gui = new MyGUIFactory();
     private final JFrame frame = gui.createFrame();
     private final GameController game = new GameControllerImpl();
-    private final Wall wUP = new Wall(new Point(400, 80), true, EntityType.WALL, new Dimension(50, 50));
-    private final Wall wDOWN = new Wall(new Point(400, 600), true, EntityType.WALL, new Dimension(50, 50));
-    private final Wall w1 = new Wall(new Point(10, 100), true, EntityType.WALL, new Dimension(50, 50));
-    private final Wall wLEFT = new Wall(new Point(50, 260), true, EntityType.WALL, new Dimension(50, 50));
-    private final Wall wRIGHT = new Wall(new Point(700, 260), true, EntityType.WALL, new Dimension(50, 50));
-    private final Monster m = new Monster(new Point(400, 260), true, EntityType.MONSTER, new Dimension(50, 50), 1);
+    private final Wall wUP = new Wall(new Point(400, 80),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wDOWN = new Wall(new Point(400, 600),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall w1 = new Wall(new Point(10, 100),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wLEFT = new Wall(new Point(50, 260),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
+    private final Monster m = new Monster(new Point(500, 260), EntityType.MONSTER, new Dimension(50, 50), 1);
 /**
  * construct the frame.
  */

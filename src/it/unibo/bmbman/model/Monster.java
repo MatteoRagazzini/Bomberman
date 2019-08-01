@@ -21,7 +21,7 @@ public class Monster extends AbstractLivingEntity {
      */
     public Monster(final Point position, final EntityType entityType, final Dimension dimension, final int lives) {
         super(position, entityType, dimension, lives);
-        this.setDirection(randomDirection());
+        this.setDirection(Direction.DOWN);
         move();
     }
     /**

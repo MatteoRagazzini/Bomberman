@@ -4,7 +4,6 @@ import java.awt.Dimension;
 import java.awt.Point;
 /**
  * 
- * @author retta
  *
  */
 public class Tile extends AbstractEntity{
