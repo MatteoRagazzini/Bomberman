@@ -1,5 +1,6 @@
 package it.unibo.bmbman.view.entities;
 
+import java.awt.Point;
 import java.awt.geom.Dimension2D;
 
 import it.unibo.bmbman.view.utilities.Sprite;
@@ -10,16 +11,16 @@ import it.unibo.bmbman.view.utilities.Sprite;
  */
 public interface EntityView {
 
-//   /**
-//     * Set the position of entity view.
-//     * @param position the point in the world
-//     */
-//    void setPosition(Point2D position);
-//    /**
-//     * Used to know where is the entity view.
-//     * @return the position
-//     */
-//    Point2D getPosition();
+   /**
+     * Set the position of entity view.
+     * @param position the point in the world
+     */
+    void setPosition(Point position);
+    /**
+     * Used to know where is the entity view.
+     * @return the position
+     */
+    Point getPosition();
        /**
      * Set the dimension of entity view.
      * @param dimension the height and width of the entity view
