@@ -11,7 +11,6 @@ import it.unibo.bmbman.view.MyGUIFactory;
 public abstract class AbstractEntity implements Entity {
 
     private Point position;
-    private boolean solidity;
     private final EntityType entityType;
     private final Dimension dimension;
     private final CollisionComponent collisionComponent;
@@ -22,9 +21,8 @@ public abstract class AbstractEntity implements Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
+    public AbstractEntity(final Point position, final EntityType entityType, final Dimension dimension) {
         this.position = position;
-        this.solidity = solidity;
         this.entityType = entityType;
         this.dimension = dimension;
         this.collisionComponent = new CollisionComponentImpl(this);
@@ -61,13 +59,6 @@ public abstract class AbstractEntity implements Entity {
     @Override
     public Dimension getDimension() {
         return this.dimension;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean isSolid() {
-        return this.solidity;
     }
     /**
      * {@inheritDoc}

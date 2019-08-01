@@ -16,13 +16,12 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     /**
      * Create an {@link AbstractLivingEntity}.
      * @param position where the entity is in the world
-     * @param solidity .
      * @param entityType the {@link EntityType} of this entity
      * @param dimension the {@link Dimension} of entity
      * @param lives the number of lives that the entity has
      */
-    public AbstractLivingEntity(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension, final int lives) {
-        super(position, solidity, entityType, dimension);
+    public AbstractLivingEntity(final Point position, final EntityType entityType, final Dimension dimension, final int lives) {
+        super(position, entityType, dimension);
         this.lives = lives;
         this.direction = Direction.IDLE;
         this.velocity = Velocity.ZERO;

@@ -16,12 +16,11 @@ public class Monster extends AbstractLivingEntity {
      * Create a monster.
      * @param position start position of the monster
      * @param lives number of lives
-     * @param solidity da togliere
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Monster(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension, final int lives) {
-        super(position, solidity, entityType, dimension, lives);
+    public Monster(final Point position, final EntityType entityType, final Dimension dimension, final int lives) {
+        super(position, entityType, dimension, lives);
         this.setDirection(randomDirection());
         move();
     }

@@ -28,11 +28,6 @@ public interface Entity {
     Dimension getDimension();
     /**
      * 
-     * @return if entity is solid
-     */
-    boolean isSolid();
-    /**
-     * 
      * @return entity's type
      */
     EntityType getType();

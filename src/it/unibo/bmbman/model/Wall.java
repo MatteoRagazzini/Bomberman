@@ -8,12 +8,11 @@ public class Wall extends AbstractEntity {
     /**
      * Create a wall.
      * @param position start position of the monster
-     * @param solidity da togliere
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Wall(final Point position, final boolean solidity, final EntityType entityType, final Dimension dimension) {
-        super(position, solidity, entityType, dimension);
+    public Wall(final Point position, final EntityType entityType, final Dimension dimension) {
+        super(position, entityType, dimension);
     }
 
     @Override
