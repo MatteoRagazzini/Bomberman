@@ -1,6 +1,7 @@
 package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
+import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Toolkit;
 
@@ -52,9 +53,9 @@ public class MyGUIFactory implements GUIFactory {
         button.setForeground(Color.WHITE);
         return button;
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     public JRadioButtonMenuItem createRadioButton(final String text) {
         final JRadioButtonMenuItem radioButton = new JRadioButtonMenuItem(text);
         checkFontSize();
@@ -94,11 +95,11 @@ public class MyGUIFactory implements GUIFactory {
         southPanel.add(back);
         return back;
     }
-/**
- * Used to change font size according to resolution the of the screen.
- */
-public void checkFontSize() {
-    switch (st.getRis()) {
+    /**
+     * Used to change font size according to resolution the of the screen.
+     */
+    public void checkFontSize() {
+        switch (st.getRis()) {
         case "WQHD":
             GameFont.setFontSize(WQHD_SIZE);
             break;
@@ -113,21 +114,32 @@ public void checkFontSize() {
             break;
         default:
             break;
+        }
     }
-}
-@Override
-/**
- * {@inheritDoc}
- */
-public JLabel createLabel(final String text) {
-    final JLabel label = new JLabel(text);
-    checkFontSize();
-    font = new GameFont();
-    label.setFont(font.getFont());
-    label.setBackground(Color.BLACK);
-//    label.setBorderPainted(false);
-//    label.setFocusPainted(false);
-    label.setForeground(Color.WHITE);
-    return label;
-}
+    @Override
+    /**
+     * {@inheritDoc}
+     */
+    public JLabel createLabel(final String text) {
+        final JLabel label = new JLabel(text);
+        checkFontSize();
+        font = new GameFont();
+        label.setFont(font.getFont());
+        label.setBackground(Color.BLACK);
+        //    label.setBorderPainted(false);
+        //    label.setFocusPainted(false);
+        label.setForeground(Color.WHITE);
+        return label;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public JFrame createFrameWithCanvas() {
+        final JFrame frameWCanvas = createFrame();
+        final Canvas canvas = new Canvas();
+        canvas.setBackground(Color.BLACK);
+        frameWCanvas.getContentPane().add(canvas);
+        return frameWCanvas;
+    }
 }

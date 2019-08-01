@@ -19,15 +19,13 @@ import it.unibo.bmbman.model.Wall;
  *
  */
 public class SinglePlayerView {
-    /**
-     * 
-     */
-    private final Canvas canvas = new Canvas();
+
     private final GUIFactory gui = new MyGUIFactory();
+    private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private final GameController game = new GameControllerImpl();
     private final Wall wUP = new Wall(new Point(400, 80),  EntityType.WALL, new Dimension(50, 50));
-    private final Wall wDOWN = new Wall(new Point(400, 600),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wDOWN = new Wall(new Point(400, MyGUIFactory.FRAME_HEIGHT),  EntityType.WALL, new Dimension(50, 50));
     private final Wall w1 = new Wall(new Point(10, 100),  EntityType.WALL, new Dimension(50, 50));
     private final Wall wLEFT = new Wall(new Point(50, 260),  EntityType.WALL, new Dimension(50, 50));
     private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
@@ -36,8 +34,9 @@ public class SinglePlayerView {
  * construct the frame.
  */
     public SinglePlayerView() {
+        canvas.setSize(MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         frame.getContentPane().add(canvas);
-        canvas.setBackground(Color.BLACK);
+        frame.pack();
         frame.setVisible(true);
         game.addEntity(wUP);
         game.addEntity(wDOWN);
@@ -45,6 +44,8 @@ public class SinglePlayerView {
         game.addEntity(w1);
         game.addEntity(wLEFT);
         game.addEntity(m);
+        System.out.println(canvas.getHeight());
+
     }
     /**
      * get the frame.

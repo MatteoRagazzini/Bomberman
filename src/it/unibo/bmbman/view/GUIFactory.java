@@ -34,10 +34,15 @@ public interface GUIFactory {
      * @return the button created
      */
     JRadioButtonMenuItem createRadioButton(String text);
-/**
- * Method to generate a Label.
- * @param text the Label text
- * @return a new label
- */
-   JLabel createLabel(String text);
+    /**
+     * Method to generate a Label.
+     * @param text the Label text
+     * @return a new label
+     */
+    JLabel createLabel(String text);
+    /**
+     * Method to generate a black Canvas.
+     * @return {@link JFrame}
+     */
+    JFrame createFrameWithCanvas();
 }

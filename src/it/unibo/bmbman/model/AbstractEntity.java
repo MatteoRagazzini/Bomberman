@@ -17,7 +17,6 @@ public abstract class AbstractEntity implements Entity {
     /**
      * Create a static entity.
      * @param position the point in the game world
-     * @param solidity if the entity is solid
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
@@ -42,7 +41,7 @@ public abstract class AbstractEntity implements Entity {
         this.position.x = position.x <= 0 ? 0 
                 : position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.x;
         this.position.y = position.y <= 0 ? 0 
-                : position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT - this.dimension.height : position.y;
+                : position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.height : position.y;
         if (position.x <= 0 || position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.y <= 0 || position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
             reachedBorder();
         }
