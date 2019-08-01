@@ -6,6 +6,7 @@ import java.awt.Toolkit;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
@@ -113,5 +114,20 @@ public void checkFontSize() {
         default:
             break;
     }
+}
+@Override
+/**
+ * {@inheritDoc}
+ */
+public JLabel createLabel(final String text) {
+    final JLabel label = new JLabel(text);
+    checkFontSize();
+    font = new GameFont();
+    label.setFont(font.getFont());
+    label.setBackground(Color.BLACK);
+//    label.setBorderPainted(false);
+//    label.setFocusPainted(false);
+    label.setForeground(Color.WHITE);
+    return label;
 }
 }
