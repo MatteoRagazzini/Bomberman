@@ -12,7 +12,7 @@ public class Velocity {
     /**
      * Constant value for velocity.
      */
-    public static final int SPEED = 5;
+    public static final int SPEED = 3;
     private Pair<Integer, Integer> vel;
     /**
      * Construct the vector of velocity.
@@ -55,7 +55,7 @@ public class Velocity {
      */
     @Override
     public String toString() {
-        return "Velocity [x=" + vel.getX() + "y="+ vel.getY()+"]";
+        return "Velocity [x=" + vel.getX() + "y=" + vel.getY() + "]";
     }
 }
 

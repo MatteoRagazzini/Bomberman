@@ -45,10 +45,15 @@ public interface EntityView {
      * Used to get the image associated to the entity.
      * @return the sprite
      */
-    Sprite getSprite();
+    Image getSprite();
     /**
      * Set the visibility of entity.
      * @param visible if true the entity view is visible
      */
     void setVisible(boolean visible);
+    /**
+     * Used to know if the entity is visible or not.
+     * @return true if entity is visible, false otherwise
+     */
+    boolean getVisible();
 }
