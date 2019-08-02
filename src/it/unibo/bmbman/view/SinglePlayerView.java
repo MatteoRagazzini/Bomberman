@@ -4,8 +4,11 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferStrategy;
+import java.awt.image.ImageObserver;
+import java.awt.image.ImageProducer;
 
 import javax.swing.JFrame;
 
@@ -15,7 +18,11 @@ import it.unibo.bmbman.controller.KeyInput;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.Monster;
+import it.unibo.bmbman.model.Tile;
 import it.unibo.bmbman.model.Wall;
+import it.unibo.bmbman.view.entities.TileView;
+import it.unibo.bmbman.view.utilities.Sprite;
+import it.unibo.bmbman.view.utilities.SpriteSheet;
 /**
  * Frame for single player game mode.
  *
@@ -33,6 +40,8 @@ public class SinglePlayerView {
     private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
     private final Hero hero = new Hero();
     private final Monster m = new Monster(new Point(500, 260), EntityType.MONSTER, new Dimension(50, 50), 1);
+    private final Tile tile = new Tile(new Point(0, 0), new Dimension(17, 17));
+    private final TileView tv = new TileView(tile.getPosition(), tile.getDimension(), (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage(), true);
     /**
      * construct the frame.
      */
@@ -78,6 +87,8 @@ public class SinglePlayerView {
         addWall(wRIGHT, bs);
         addWall(w1, bs);
         Graphics gm = bs.getDrawGraphics();
+        Graphics gf = bs.getDrawGraphics();
+        gf.drawImage(tv.getSprite(), tile.getPosition().x, tile.getPosition().y, tile.getDimension().width, tile.getDimension().height, null);
         gm.setColor(Color.GREEN);
         gm.fillRect((int) m.getPosition().getX(), (int) m.getPosition().getY(), (int) m.getDimension().getWidth(), (int) m.getDimension().getHeight());
         Graphics gh = bs.getDrawGraphics();

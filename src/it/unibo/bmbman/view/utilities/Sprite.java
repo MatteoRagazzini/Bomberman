@@ -1,5 +1,6 @@
 package it.unibo.bmbman.view.utilities;
 
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 
 /**
@@ -23,5 +24,12 @@ public class Sprite {
      */
     public BufferedImage getBufferedImage() {
         return image;
+    }
+    /**
+     * use to convert bufferedImage in Image type.
+     * @return the image in image Java.awt type
+     */
+    public Image getImage() {
+        return (Image) image;
     }
 }
