@@ -9,6 +9,7 @@ import java.util.stream.Collectors;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
+import it.unibo.bmbman.model.Hero;
 /**
  * An implementation of {@link GameController}.
  */
@@ -70,6 +71,13 @@ public class GameControllerImpl implements GameController {
     @Override
     public void collisionDetect() {
         this.setCollider.stream().forEach(c -> c.collision(getUnwalkableEntity()));
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Hero getHero() {
+        return (Hero) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
     }
 
 }

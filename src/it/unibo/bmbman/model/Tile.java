@@ -6,7 +6,7 @@ import java.awt.Point;
  * 
  *
  */
-public class Tile extends AbstractEntity{
+public class Tile extends AbstractEntity {
 /**
  * 
  * @param position 

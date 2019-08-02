@@ -46,6 +46,7 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     @Override
     public void removeLife() {
         this.lives = this.lives - 1 > 0 ? this.lives - 1 : 0; 
+        System.out.println("ti sono rimaste: " + this.lives + "vite");
     }
     /**
      * {@inheritDoc}
@@ -98,6 +99,7 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     @Override
     public void setDirection(final Direction direction) {
         this.direction = direction;
+        move();
     }
     /**
      * {@inheritDoc}
@@ -118,6 +120,9 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     public void update() {
         this.setPosition(new Point(this.getPosition().x + this.getVelocity().getXcomponent(), 
                 this.getPosition().y + this.getVelocity().getYcomponent()));
+        if (!isAlive()) {
+//           System.out.println("sei morto");
+        }
     }
 
 }

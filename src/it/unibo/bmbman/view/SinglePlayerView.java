@@ -11,7 +11,9 @@ import javax.swing.JFrame;
 
 import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.GameControllerImpl;
+import it.unibo.bmbman.controller.KeyInput;
 import it.unibo.bmbman.model.EntityType;
+import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Wall;
 /**
@@ -29,14 +31,16 @@ public class SinglePlayerView {
     private final Wall w1 = new Wall(new Point(10, 100),  EntityType.WALL, new Dimension(50, 50));
     private final Wall wLEFT = new Wall(new Point(50, 260),  EntityType.WALL, new Dimension(50, 50));
     private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
+    private final Hero hero = new Hero();
     private final Monster m = new Monster(new Point(500, 260), EntityType.MONSTER, new Dimension(50, 50), 1);
-/**
- * construct the frame.
- */
+    /**
+     * construct the frame.
+     */
     public SinglePlayerView() {
         canvas.setSize(MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         frame.getContentPane().add(canvas);
         frame.pack();
+        frame.addKeyListener(new KeyInput(game));
         frame.setVisible(true);
         game.addEntity(wUP);
         game.addEntity(wDOWN);
@@ -44,7 +48,7 @@ public class SinglePlayerView {
         game.addEntity(w1);
         game.addEntity(wLEFT);
         game.addEntity(m);
-        System.out.println(canvas.getHeight());
+        game.addEntity(hero);
 
     }
     /**
@@ -76,6 +80,9 @@ public class SinglePlayerView {
         Graphics gm = bs.getDrawGraphics();
         gm.setColor(Color.GREEN);
         gm.fillRect((int) m.getPosition().getX(), (int) m.getPosition().getY(), (int) m.getDimension().getWidth(), (int) m.getDimension().getHeight());
+        Graphics gh = bs.getDrawGraphics();
+        gh.setColor(Color.MAGENTA);
+        gh.fillRect((int) hero.getPosition().getX(), (int) hero.getPosition().getY(), (int) hero.getDimension().getWidth(), (int) hero.getDimension().getHeight());
         bs.show();
     }
     private void addWall(final Wall w, final BufferStrategy bs) {
