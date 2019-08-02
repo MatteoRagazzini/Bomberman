@@ -12,8 +12,7 @@ public class Velocity {
     /**
      * Constant value for velocity.
      */
-    public static final int SPEED = 3;
-
+    public static final int SPEED = 5;
     private Pair<Integer, Integer> vel;
     /**
      * Construct the vector of velocity.
@@ -42,7 +41,7 @@ public class Velocity {
      * @param x the value of new x component
      */
     public void setXcomponent(final int x) {
-       vel = new Pair<>(x, this.vel.getY());
+        vel = new Pair<>(x, this.vel.getY());
     }
     /**
      * Used to set y component of velocity.
@@ -50,6 +49,13 @@ public class Velocity {
      */
     public void setYcomponent(final int y) {
         vel = new Pair<>(this.vel.getX(), y);
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return "Velocity [x=" + vel.getX() + "y="+ vel.getY()+"]";
     }
 }
 

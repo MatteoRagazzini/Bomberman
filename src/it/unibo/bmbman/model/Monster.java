@@ -21,8 +21,7 @@ public class Monster extends AbstractLivingEntity {
      */
     public Monster(final Point position, final EntityType entityType, final Dimension dimension, final int lives) {
         super(position, entityType, dimension, lives);
-        this.setDirection(Direction.DOWN);
-        move();
+        this.setDirection(randomDirection());
     }
     /**
      * Method used to generate a random direction.
@@ -53,15 +52,10 @@ public class Monster extends AbstractLivingEntity {
      */
     @Override
     public void onCollision(final Entity receiver, final Point newPosition) {
+        System.out.println("Mostro colliso con " + receiver.getType());
         this.setPosition(newPosition);
-        System.out.println("modifico direzione");
         Direction d = randomDirection();
-        //        while(d == this.getDirection()) {
-        //            d = randomDirection();
-        //        }
-        System.out.println(d);
         setDirection(d); 
-        move();
     }
     /**
      * {@inheritDoc}
@@ -69,6 +63,5 @@ public class Monster extends AbstractLivingEntity {
     @Override
     protected void reachedBorder() {
         setDirection(randomDirection());
-        move();
     }
 }

@@ -43,8 +43,8 @@ public class CollisionControllerImpl implements CollisionController {
      */
     @Override
     public void notifyCollision(final Entity receiver, final Point newPosition) {
-        System.out.println("notifico collisione con " + receiver.getType());
         this.followedEntity.onCollision(receiver, newPosition);
+        receiver.onCollision(followedEntity, receiver.getPosition());
 
     }
 

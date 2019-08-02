@@ -2,6 +2,7 @@ package it.unibo.bmbman.controller;
 
 import java.util.Set;
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.Hero;
 /**
  * Interface to handler all the entity in game.
  */
@@ -31,6 +32,11 @@ public interface GameController {
      * @return a set of entity
      */
     Set<Entity> getUnbreakableEntity();
+    /**
+     * Used to get the hero.
+     * @return {@link Entity} representing player. 
+     */
+    Hero getHero();
     /**
      * this method notify a collision to {@link collisionController}.
      */

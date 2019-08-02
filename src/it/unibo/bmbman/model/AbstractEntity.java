@@ -42,7 +42,7 @@ public abstract class AbstractEntity implements Entity {
                 : position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.x;
         this.position.y = position.y <= 0 ? 0 
                 : position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.height : position.y;
-        if (position.x <= 0 || position.x >= MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.y <= 0 || position.y >= MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
+        if (position.x < 0 || position.x > MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.y < 0 || position.y > MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
             reachedBorder();
         }
     }

@@ -60,10 +60,10 @@ public class MainMenuView {
         loadButtons();
         f.setVisible(true);
         f.pack();
-        System.out.println("FRAME" + f.getSize());
-        System.out.println("CENTER " + this.centerP.getSize());
-        System.out.println("EAST " + this.eastP.getSize());
-        System.out.println("NORTH " + this.northP.getSize());
+//        System.out.println("FRAME" + f.getSize());
+//        System.out.println("CENTER " + this.centerP.getSize());
+//        System.out.println("EAST " + this.eastP.getSize());
+//        System.out.println("NORTH " + this.northP.getSize());
     }
     /**
      * Create two panels and add them to the frame.
@@ -86,7 +86,6 @@ public class MainMenuView {
         eastP.setBackground(Color.BLACK);
         final JLabel label = new JLabel(new ImageIcon(il.loadImage(mainImagePath)));
         eastP.add(label, BorderLayout.CENTER);
-        System.out.println(" " + label.getSize());
         // Create NORTH Panel
         northP = new JPanel(new BorderLayout());
         northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
