@@ -3,6 +3,7 @@ package it.unibo.bmbman.controller;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.view.HelpView;
+import it.unibo.bmbman.view.LeaderboardView;
 import it.unibo.bmbman.view.OptionsView;
 
 /**
@@ -27,6 +28,8 @@ public class MainMenuControllerImpl implements MainMenuController {
             //        case MULTIPLAYER:
             //            break;
         case LEADERBOARD:
+            final LeaderboardView lv = new LeaderboardView();
+            lv.getFrame().setVisible(true);
             break;
         case SETTINGS:
             final OptionsView ov = new OptionsView();
