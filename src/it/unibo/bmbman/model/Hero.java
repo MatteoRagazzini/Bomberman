@@ -12,7 +12,7 @@ public class Hero extends AbstractLivingEntity {
      * Construct a Hero in game.
      */
     public Hero() {
-        super(new Point(200, 200), EntityType.HERO, new Dimension(48, 48), 3);
+        super(new Point(200, 200), EntityType.HERO, new Dimension(45, 50), 3);
     }
 
     @Override

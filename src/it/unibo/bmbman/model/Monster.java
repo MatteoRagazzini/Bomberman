@@ -20,7 +20,7 @@ public class Monster extends AbstractLivingEntity {
      * @param position start position of the monster
      */
     public Monster(final Point position) {
-        super(position, EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
+        super(position, EntityType.MONSTER, new Dimension(DIMX, DIMY), NLIVES);
         this.setDirection(randomDirection());
     }
     /**
