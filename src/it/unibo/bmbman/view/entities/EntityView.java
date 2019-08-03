@@ -1,6 +1,7 @@
 package it.unibo.bmbman.view.entities;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -34,8 +35,9 @@ public interface EntityView {
     Dimension getDimension();
     /**
      * the method to update the graphics of entity.
+     * @param g {@link Graphics} to update
      */
-    void render();
+    void render(Graphics g);
     /**
      * Used to set the image of the entity.
      * @param image the sprite to set

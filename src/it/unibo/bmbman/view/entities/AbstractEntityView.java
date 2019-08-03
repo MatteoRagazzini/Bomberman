@@ -1,6 +1,7 @@
 package it.unibo.bmbman.view.entities;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 /**
@@ -58,7 +59,7 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public abstract void render();
+    public abstract void render(Graphics g);
     /**
      * {@inheritDoc}
      */

@@ -1,6 +1,7 @@
 package it.unibo.bmbman.view.entities;
 
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
@@ -23,7 +24,7 @@ public class TileView extends AbstractEntityView{
  * 
  */
     @Override
-    public void render() {
+    public void render(Graphics g) {
     }
 
 }
