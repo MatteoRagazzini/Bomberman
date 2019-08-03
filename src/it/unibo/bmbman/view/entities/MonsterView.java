@@ -16,7 +16,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  */
 public class MonsterView extends AbstractEntityView {
     private static final String MONSTERSSPATH = "/monsterSpriteSheet.png";
-    private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
+    //private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
     private final AnimationImpl animation = new AnimationImpl();
 /**
  * Create a monster view.
