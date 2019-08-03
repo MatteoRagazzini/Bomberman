@@ -1,5 +1,6 @@
 package it.unibo.bmbman.controller;
 
+import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -10,29 +11,28 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.view.entities.EntityView;
 /**
  * An implementation of {@link GameController}.
  */
 public class GameControllerImpl implements GameController {
     private final List<Entity> worldEntity;
-    private final Set<CollisionController> setCollider;
+    private final Set<EntityController> setController;
     /**
      * Construct an implementation of {@link GameController}.
      */
     public GameControllerImpl() {
         this.worldEntity = new ArrayList<>();
-        this.setCollider = new HashSet<>();
+        this.setController = new HashSet<>();
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void addEntity(final Entity entity) {
+    public void addEntity(final Entity entity, final EntityView entityView) {
         this.worldEntity.add(entity);
-        if (entity.getType() == EntityType.HERO || entity.getType() == EntityType.MONSTER) {
-            this.setCollider.add(new CollisionControllerImpl(entity));
+        this.setController.add(new EntityControllerImpl(entity, entityView));
         }
-    }
     /**
      * {@inheritDoc}
      */
@@ -70,7 +70,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void collisionDetect() {
-        this.setCollider.stream().forEach(c -> c.collision(getUnwalkableEntity()));
+        this.setController.stream().map(c -> c.getCollisionController()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
     }
     /**
      * {@inheritDoc}
@@ -78,6 +78,14 @@ public class GameControllerImpl implements GameController {
     @Override
     public Hero getHero() {
         return (Hero) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update(final Graphics g) {
+        collisionDetect();
+        this.setController.forEach(c -> c.update(g));
     }
 
 }
