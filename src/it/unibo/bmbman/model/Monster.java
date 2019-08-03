@@ -11,16 +11,16 @@ import java.awt.Point;
 public class Monster extends AbstractLivingEntity {
 
     private Random rand = new Random();
+    private static final int DIMX = 48;
+    private static final int DIMY = 48;
+    private static final int NLIVES = 1;
 
     /**
      * Create a monster.
      * @param position start position of the monster
-     * @param lives number of lives
-     * @param entityType type of the entity
-     * @param dimension dimension2D of the monster
      */
-    public Monster(final Point position, final EntityType entityType, final Dimension dimension, final int lives) {
-        super(position, entityType, dimension, lives);
+    public Monster(final Point position) {
+        super(position, EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
         this.setDirection(randomDirection());
     }
     /**

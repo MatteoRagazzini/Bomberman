@@ -21,6 +21,7 @@ import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Tile;
 import it.unibo.bmbman.model.Wall;
 import it.unibo.bmbman.view.entities.HeroView;
+import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.utilities.Sprite;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
@@ -41,7 +42,8 @@ public class SinglePlayerView {
     private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
     private final Hero hero = new Hero();
     private final HeroView heroView = new HeroView(hero.getPosition());
-    private final Monster m = new Monster(new Point(500, 260), EntityType.MONSTER, new Dimension(50, 50), 1);
+    private final Monster m = new Monster(new Point(500, 260));
+    private final MonsterView mv = new MonsterView(m.getPosition(), m.getDimension(), null, true);
     private final Tile tile = new Tile(new Point(0, 0), new Dimension(17, 17));
     private final TileView tv = new TileView(tile.getPosition(), tile.getDimension(), (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage(), true);
     /**
@@ -91,6 +93,7 @@ public class SinglePlayerView {
         Graphics gm = bs.getDrawGraphics();
         Graphics gf = bs.getDrawGraphics();
         gf.drawImage(tv.getSprite(), tile.getPosition().x, tile.getPosition().y, tile.getDimension().width, tile.getDimension().height, null);
+        
         gm.setColor(Color.GREEN);
         gm.fillRect((int) m.getPosition().getX(), (int) m.getPosition().getY(), (int) m.getDimension().getWidth(), (int) m.getDimension().getHeight());
         Graphics gh = bs.getDrawGraphics();
