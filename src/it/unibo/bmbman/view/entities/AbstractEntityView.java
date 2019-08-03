@@ -4,6 +4,9 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+
+import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.Entity;
 /**
  * Abstarct implementation of entityView.
  */
@@ -12,6 +15,7 @@ public abstract class AbstractEntityView implements EntityView {
     private Point position;
     private  Dimension dimension;
     private Image image;
+    private Direction direction;
     private boolean visible;
     /**
      * Constructor for an EntityView.
@@ -25,6 +29,7 @@ public abstract class AbstractEntityView implements EntityView {
         this.dimension = dimension;
         this.image = image;
         this.visible = visible;
+        this.direction = Direction.IDLE;
     }
     /**
      * {@inheritDoc}
@@ -59,11 +64,6 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public abstract void render(Graphics g);
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void setSprite(final Image image) {
         this.image = image;
     }
@@ -88,6 +88,18 @@ public abstract class AbstractEntityView implements EntityView {
     public boolean getVisible() {
         return this.visible;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void changeDirection(final Direction direction) {
+        this.direction = direction;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void render(Graphics g);
 
 
 }

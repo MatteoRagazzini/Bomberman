@@ -5,6 +5,8 @@ import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
 
+import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.view.utilities.Sprite;
 
 /**
@@ -58,4 +60,9 @@ public interface EntityView {
      * @return true if entity is visible, false otherwise
      */
     boolean getVisible();
+    /**
+     * Used to change sprites according to direction.
+     * @param direction the direction in which the entity is moving
+     */
+    void changeDirection(Direction direction);
 }
