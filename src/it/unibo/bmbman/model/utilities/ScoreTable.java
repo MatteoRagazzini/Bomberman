@@ -13,7 +13,7 @@ public class ScoreTable extends AbstractTableModel {
     private String[][] data;
     /**
      * 
-     * @param list of data to populate the table.
+     * @param list of data to populate 
      */
     public ScoreTable(final List<List<String>> list) {
         super();
