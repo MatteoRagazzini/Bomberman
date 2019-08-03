@@ -16,7 +16,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  */
 public class MonsterView extends AbstractEntityView {
     private static final String MONSTERSSPATH = "/monsterSpriteSheet.png";
-    //private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
+    private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
     private final AnimationImpl animation = new AnimationImpl();
 /**
  * Create a monster view.
@@ -25,13 +25,14 @@ public class MonsterView extends AbstractEntityView {
  * @param image the image of the monster
  * @param visible the visibility of the monster
  */
-    public MonsterView(final Point position, final Dimension dimension, final Image image, final boolean visible) {
-        super(position, dimension, image, visible); 
+    public MonsterView(final Point position, final Dimension dimension) {
+        super(position, dimension, monsterSpritesheet.getSprite(2, 1, 48), true); 
         animation.createAnimation(MONSTERSSPATH, 3, 50);
     }
 
     @Override
     public final void render(final Graphics g) {
+        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
     }
 }
 

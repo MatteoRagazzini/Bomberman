@@ -6,8 +6,6 @@ import java.awt.Image;
 import java.awt.Point;
 
 import it.unibo.bmbman.model.Direction;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.view.utilities.Sprite;
 
 /**
  * Interface to model the general view aspects of each entity in the game.

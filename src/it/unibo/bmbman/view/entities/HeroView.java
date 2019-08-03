@@ -25,7 +25,7 @@ public class HeroView extends AbstractEntityView {
 
     @Override
     public void render(final Graphics g) {
-        
+        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
     }
 
 }

@@ -4,11 +4,8 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Point;
 import java.awt.image.BufferStrategy;
-import java.awt.image.ImageObserver;
-import java.awt.image.ImageProducer;
 
 import javax.swing.JFrame;
 
@@ -23,6 +20,7 @@ import it.unibo.bmbman.model.Wall;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.TileView;
+import it.unibo.bmbman.view.entities.WallView;
 import it.unibo.bmbman.view.utilities.Sprite;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
 /**
@@ -43,7 +41,12 @@ public class SinglePlayerView {
     private final Hero hero = new Hero();
     private final HeroView heroView = new HeroView(hero.getPosition());
     private final Monster m = new Monster(new Point(500, 260));
-    private final MonsterView mv = new MonsterView(m.getPosition(), m.getDimension(), null, true);
+    private final MonsterView mv = new MonsterView(m.getPosition(), m.getDimension());
+    private final WallView wvup = new WallView(wUP.getPosition());
+    private final WallView wvr = new WallView(wRIGHT.getPosition());
+    private final WallView wv1 = new WallView(w1.getPosition());
+    private final WallView wvd = new WallView(wDOWN.getPosition());
+    private final WallView wvl = new WallView(wLEFT.getPosition());
     private final Tile tile = new Tile(new Point(0, 0), new Dimension(17, 17));
     private final TileView tv = new TileView(tile.getPosition(), tile.getDimension(), (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage(), true);
     /**
@@ -55,13 +58,14 @@ public class SinglePlayerView {
         frame.pack();
         frame.addKeyListener(new KeyInput(game));
         frame.setVisible(true);
-        game.addEntity(wUP);
-        game.addEntity(wDOWN);
-        game.addEntity(wRIGHT);
-        game.addEntity(w1);
-        game.addEntity(wLEFT);
-        game.addEntity(m);
-        game.addEntity(hero);
+        game.addEntity(wUP, wvup);
+        game.addEntity(wDOWN, wvd);
+        game.addEntity(wRIGHT, wvr);
+        game.addEntity(w1, wv1);
+        game.addEntity(wLEFT, wvl);
+        game.addEntity(m, mv);
+        game.addEntity(hero, heroView);
+        game.addEntity(tile, tv);
 
     }
     /**
@@ -75,8 +79,6 @@ public class SinglePlayerView {
      * used to update graphics component.
      */
     public void render() {
-        game.collisionDetect();
-        m.update();
         BufferStrategy bs = canvas.getBufferStrategy();
         if (bs == null) {
             canvas.createBufferStrategy(3);
@@ -85,20 +87,20 @@ public class SinglePlayerView {
         Graphics bg = bs.getDrawGraphics();
         bg.setColor(Color.black);
         bg.fillRect(0, 0, frame.getWidth(), frame.getHeight());
-        addWall(wUP, bs);
-        addWall(wDOWN, bs);
-        addWall(wLEFT, bs);
-        addWall(wRIGHT, bs);
-        addWall(w1, bs);
-        Graphics gm = bs.getDrawGraphics();
-        Graphics gf = bs.getDrawGraphics();
-        gf.drawImage(tv.getSprite(), tile.getPosition().x, tile.getPosition().y, tile.getDimension().width, tile.getDimension().height, null);
-        
-        gm.setColor(Color.GREEN);
-        gm.fillRect((int) m.getPosition().getX(), (int) m.getPosition().getY(), (int) m.getDimension().getWidth(), (int) m.getDimension().getHeight());
-        Graphics gh = bs.getDrawGraphics();
-        gh.drawImage(heroView.getSprite(), hero.getPosition().x, hero.getPosition().y, heroView.getDimension().width, heroView.getDimension().height, null);
-        bs.show();
+        game.update(bs.getDrawGraphics());
+//        addWall(wUP, bs);
+//        addWall(wDOWN, bs);
+//        addWall(wLEFT, bs);
+//        addWall(wRIGHT, bs);
+//        addWall(w1, bs);
+//        Graphics gm = bs.getDrawGraphics();
+//        Graphics gf = bs.getDrawGraphics();
+//        gf.drawImage(tv.getSprite(), tile.getPosition().x, tile.getPosition().y, tile.getDimension().width, tile.getDimension().height, null);
+//        gm.setColor(Color.GREEN);
+//        gm.fillRect((int) m.getPosition().getX(), (int) m.getPosition().getY(), (int) m.getDimension().getWidth(), (int) m.getDimension().getHeight());
+//        Graphics gh = bs.getDrawGraphics();
+//        gh.drawImage(heroView.getSprite(), hero.getPosition().x, hero.getPosition().y, heroView.getDimension().width, heroView.getDimension().height, null);
+         bs.show();
     }
     private void addWall(final Wall w, final BufferStrategy bs) {
         Graphics g = bs.getDrawGraphics();

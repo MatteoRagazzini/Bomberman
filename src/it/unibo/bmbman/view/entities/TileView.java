@@ -25,6 +25,7 @@ public class TileView extends AbstractEntityView{
  */
     @Override
     public void render(Graphics g) {
+        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
     }
 
 }
