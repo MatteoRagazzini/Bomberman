@@ -1,7 +1,9 @@
 package it.unibo.bmbman.view.entities;
 
+import java.awt.Dimension;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.Point;
-import java.awt.geom.Dimension2D;
 
 import it.unibo.bmbman.view.utilities.Sprite;
 
@@ -25,29 +27,35 @@ public interface EntityView {
      * Set the dimension of entity view.
      * @param dimension the height and width of the entity view
      */
-    void setDimension(Dimension2D dimension);
+    void setDimension(Dimension dimension);
     /**
      * Used to know the width and height of the entityView.
      * @return  the dimension of entity view 
      */
-    Dimension2D getDimension();
+    Dimension getDimension();
     /**
      * the method to update the graphics of entity.
+     * @param g {@link Graphics} to update
      */
-    void render();
+    void render(Graphics g);
     /**
      * Used to set the image of the entity.
      * @param image the sprite to set
      */
-    void setSprite(Sprite image);
+    void setSprite(Image image);
     /**
      * Used to get the image associated to the entity.
      * @return the sprite
      */
-    Sprite getSprite();
+    Image getSprite();
     /**
      * Set the visibility of entity.
-     * @param visibility if true the entity view is visible
+     * @param visible if true the entity view is visible
      */
-    void setVisibility(boolean visibility);
+    void setVisible(boolean visible);
+    /**
+     * Used to know if the entity is visible or not.
+     * @return true if entity is visible, false otherwise
+     */
+    boolean getVisible();
 }

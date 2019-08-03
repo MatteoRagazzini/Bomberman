@@ -2,12 +2,8 @@ package it.unibo.bmbman.controller;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
-import org.omg.Messaging.SYNC_WITH_TRANSPORT;
-
 import it.unibo.bmbman.model.Direction;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.Hero;
+
 /**
  * Used to move the hero in his adventure.
  */
@@ -18,7 +14,6 @@ public class KeyInput implements KeyListener {
      * @param gc gameCOntroller
      */
     public KeyInput(final GameController gc) {
-        super();
         this.gc = gc;
     }
     /**
@@ -51,8 +46,7 @@ public class KeyInput implements KeyListener {
     @Override
     public void keyReleased(final KeyEvent e) {
 //        System.out.println("FUNZIONE REALES");
-//        gc.getHero().setDirection(Direction.IDLE);
-//        gc.getHero().move();
+        gc.getHero().setDirection(Direction.IDLE);
     }
 
     @Override
