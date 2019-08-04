@@ -38,11 +38,11 @@ public interface EntityView {
      * @param g {@link Graphics} to update
      */
     void render(Graphics g);
-    /**
-     * Used to set the image of the entity.
-     * @param image the sprite to set
-     */
-    void setSprite(Image image);
+//    /**
+//     * Used to set the image of the entity.
+//     * @param image the sprite to set
+//     */
+//    void setSprite(Image image);
     /**
      * Used to get the image associated to the entity.
      * @return the sprite
@@ -63,4 +63,9 @@ public interface EntityView {
      * @param direction the direction in which the entity is moving
      */
     void changeDirection(Direction direction);
+    /**
+     * Used to know in which direction the entity is moving.
+     * @return {@link Direction}
+     */
+    Direction getDirection();
 }

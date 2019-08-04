@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.awt.Point;
 
 import it.unibo.bmbman.model.Direction;
-import it.unibo.bmbman.model.Entity;
 /**
  * Abstarct implementation of entityView.
  */
@@ -14,20 +13,17 @@ public abstract class AbstractEntityView implements EntityView {
 
     private Point position;
     private  Dimension dimension;
-    private Image image;
     private Direction direction;
     private boolean visible;
     /**
      * Constructor for an EntityView.
      * @param position where is the entity in our terrien
      * @param dimension the dimension of entity
-     * @param image the image of entity
      * @param visible if the enity is visible or not
      */
-    public AbstractEntityView(final Point position, final Dimension dimension, final Image image, final boolean visible) {
+    public AbstractEntityView(final Point position, final Dimension dimension, final boolean visible) {
         this.position = position;
         this.dimension = dimension;
-        this.image = image;
         this.visible = visible;
         this.direction = Direction.IDLE;
     }
@@ -60,20 +56,18 @@ public abstract class AbstractEntityView implements EntityView {
     public Dimension getDimension() {
         return this.dimension;
     }
+//    /**
+//     * {@inheritDoc}
+//     */
+//    @Override
+//    public void setSprite(final Image image) {
+//        this.image = image;
+//    }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setSprite(final Image image) {
-        this.image = image;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Image getSprite() {
-        return this.image;
-    }
+    public abstract Image getSprite();
     /**
      * {@inheritDoc}
      */
@@ -99,7 +93,17 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public abstract void render(Graphics g);
+    public Direction getDirection() {
+        return this.direction;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void render(final Graphics g) {
+        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
+    }
 
 
 }
