@@ -10,22 +10,19 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
 
 public class TileView extends AbstractEntityView{
     private static final int GRASS_SPRITE_DIMENSION = 17;
-/**
- * used to create a tile.
- * @param position the object position
- * @param dimension the image dimension
- * @param image the sprite 
- * @param visible if is visible or not
- */
+    /**
+     * used to create a tile.
+     * @param position the object position
+     * @param dimension the image dimension
+     * @param image the sprite 
+     * @param visible if is visible or not
+     */
     public TileView(final Point position, final Dimension dimension, final Image image, final boolean visible) {
-        super(new Point(0, 0), new Dimension(GRASS_SPRITE_DIMENSION,GRASS_SPRITE_DIMENSION) , (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage(), true);
+        super(new Point(0, 0), new Dimension(GRASS_SPRITE_DIMENSION,GRASS_SPRITE_DIMENSION), true);
     }
-/**
- * 
- */
     @Override
-    public void render(Graphics g) {
-        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
+    public Image getSprite() {
+        return (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage();
     }
 
 }

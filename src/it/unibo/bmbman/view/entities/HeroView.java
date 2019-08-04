@@ -1,31 +1,55 @@
 package it.unibo.bmbman.view.entities;
 
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.EnumMap;
+import java.util.Map;
 
+import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.view.utilities.Animation;
+import it.unibo.bmbman.view.utilities.AnimationImpl;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
 /**
  * Class to create Hero view.
  */
 public class HeroView extends AbstractEntityView {
 
-    private static final String PATH_HERO_IMAGES = "/AvengerSprite.png";
-    private final static SpriteSheet ss = new SpriteSheet(PATH_HERO_IMAGES);
-    private final static Image idleImage = ss.getSprite(8, 5, 48);
+    private static final String PATH_HERO_IMAGES = "/Hero/hero";
+    private static final int DIMENSION = 48;
+    private static final int FRAME_PER_ANIMATION = 3;
+    private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
     /**
      * Construct an {@link HeroView}.
      * @param position position of enitity
      */
     public HeroView(final Point position) {
-        super(position, new Dimension(48, 48), idleImage , true);
-        // TODO Auto-generated constructor stub
+        super(position, new Dimension(DIMENSION, DIMENSION), true);
+        setMapDirection();
     }
 
-    @Override
-    public void render(final Graphics g) {
-        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
+    private void setMapDirection() {
+        SpriteSheet ss = new SpriteSheet(PATH_HERO_IMAGES + "I.png");
+        this.sprites.put(Direction.IDLE, new AnimationImpl());
+        this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
+        for (int i = 0; i < Direction.values().length - 1; i++) {
+            System.out.println("setto " + i + " " + Direction.values()[i]);
+            setDirectionAnimation(PATH_HERO_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
+                    Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
+        }
     }
+
+    private void setDirectionAnimation(final String path, final Direction d, final int dimension, final int frame) {
+        this.sprites.put(d, new AnimationImpl());
+        this.sprites.get(d).createAnimation(path, frame, dimension);
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Image getSprite() {
+        return this.sprites.get(this.getDirection()).getNextImage();
+    }
+
 
 }

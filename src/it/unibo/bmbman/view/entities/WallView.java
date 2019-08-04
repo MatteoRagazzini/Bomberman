@@ -15,13 +15,13 @@ public class WallView extends AbstractEntityView {
     
 
     public WallView(Point position) {
-        super(position, new Dimension(50,50), idleImage, true);
+        super(position, new Dimension(50,50), true);
         // TODO Auto-generated constructor stub
     }
 
     @Override
-    public void render(Graphics g) {
-        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
+    public Image getSprite() {
+        return idleImage;
     }
 
 }

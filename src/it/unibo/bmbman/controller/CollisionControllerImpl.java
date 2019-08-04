@@ -25,13 +25,13 @@ public class CollisionControllerImpl implements CollisionController {
         entities.stream().filter(e -> !e.equals(followedEntity))
         .forEach(e -> {
             if (checkCollision(e, followedEntity.getCollisionComponent().getTopHitbox())) {
-                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y + this.followedEntity.getDimension().height));
+                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y + e.getDimension().height));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getBottomHitbox())) {
-                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y - this.followedEntity.getDimension().height));
+                notifyCollision(e, new Point(this.followedEntity.getPosition().x, e.getPosition().y - e.getDimension().height));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getLeftHitbox())) {
-                notifyCollision(e, new Point(e.getPosition().x + this.followedEntity.getDimension().width, this.followedEntity.getPosition().y));
+                notifyCollision(e, new Point(e.getPosition().x + e.getDimension().width, this.followedEntity.getPosition().y));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getRightHitbox())) {
-                notifyCollision(e, new Point(e.getPosition().x - this.followedEntity.getDimension().width, this.followedEntity.getPosition().y));
+                notifyCollision(e, new Point(e.getPosition().x - e.getDimension().width, this.followedEntity.getPosition().y));
             }
         });
     }

@@ -18,21 +18,21 @@ public class MonsterView extends AbstractEntityView {
     private static final String MONSTERSSPATH = "/monsterSpriteSheet.png";
     private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
     private final AnimationImpl animation = new AnimationImpl();
-/**
- * Create a monster view.
- * @param position where the monster is located
- * @param dimension the dimension of the monster
- * @param image the image of the monster
- * @param visible the visibility of the monster
- */
+    /**
+     * Create a monster view.
+     * @param position where the monster is located
+     * @param dimension the dimension of the monster
+     * @param image the image of the monster
+     * @param visible the visibility of the monster
+     */
     public MonsterView(final Point position, final Dimension dimension) {
-        super(position, dimension, monsterSpritesheet.getSprite(2, 1, 48), true); 
-        animation.createAnimation(MONSTERSSPATH, 3, 50);
+        super(position, dimension, true); 
+        //animation.createAnimation(MONSTERSSPATH, 3, 50);
     }
 
     @Override
-    public final void render(final Graphics g) {
-        g.drawImage(getSprite(), getPosition().x, getPosition().y, getDimension().width, getDimension().height, null);
+    public Image getSprite() {
+        return  monsterSpritesheet.getSprite(2, 1, 48);
     }
 }
 
