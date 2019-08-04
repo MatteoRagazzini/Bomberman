@@ -1,6 +1,5 @@
 package it.unibo.bmbman.view.utilities;
 
-import java.awt.Dimension;
 import java.awt.Image;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,13 +12,12 @@ import java.util.Optional;
 public class AnimationImpl implements Animation {
 
     private final List<Image> animation;
-    private Iterator<Image> frame;
+    private int frame = 0;
     /**
      * Construct {@link Animation}.
      */
     public AnimationImpl() {
         this.animation = new ArrayList<>();
-        frame = this.animation.iterator();
     }
     /**
      * {@inheritDoc}
@@ -33,10 +31,14 @@ public class AnimationImpl implements Animation {
      */
     @Override
     public Image getNextImage() {
-        if (!frame.hasNext()) {
-            frame = this.animation.iterator();
+        if (frame < this.animation.size()) {
+            frame++;
+            return this.animation.get(frame - 1);
+        } else {
+            frame = 0;
+            return this.animation.get(frame);
         }
-        return frame.next();
+
     }
     /**
      * {@inheritDoc}
@@ -52,7 +54,7 @@ public class AnimationImpl implements Animation {
     public void createAnimation(final String path, final int frame, final int dimension) {
         final SpriteSheet ss = new SpriteSheet(path);
         for (int i = 1; i <= frame; i++) {
-            this.animation.add(new Sprite(ss, 1, i, dimension).getBufferedImage());
+            this.animation.add(new Sprite(ss, i, 1, dimension).getBufferedImage());
         }
     }
 }
