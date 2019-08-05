@@ -4,9 +4,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Point;
+import java.util.EnumMap;
+import java.util.Map;
 
 import it.unibo.bmbman.model.Direction;
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
 /**
@@ -15,24 +18,41 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  *
  */
 public class MonsterView extends AbstractEntityView {
-    private static final String MONSTERSSPATH = "/monsterSpriteSheet.png";
-    private static final SpriteSheet monsterSpritesheet = new SpriteSheet(MONSTERSSPATH);
-    private final AnimationImpl animation = new AnimationImpl();
+    private static final String PATH_MONSTER_IMAGES = "/Monster/monster";
+    private static final int DIMENSION = 43;
+    private static final int FRAME_PER_ANIMATION = 3;
+    private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
+
     /**
      * Create a monster view.
      * @param position where the monster is located
      * @param dimension the dimension of the monster
-     * @param image the image of the monster
-     * @param visible the visibility of the monster
      */
     public MonsterView(final Point position, final Dimension dimension) {
-        super(position, dimension, true); 
-        //animation.createAnimation(MONSTERSSPATH, 3, 50);
+        super(position, new Dimension(DIMENSION, DIMENSION), true); 
+        setMapDirection();
+    }
+    private void setMapDirection() {
+//        SpriteSheet ss = new SpriteSheet(PATH_MONSTER_IMAGES + "I.png");
+//        this.sprites.put(Direction.IDLE, new AnimationImpl());
+//        this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
+        for (int i = 0; i < Direction.values().length - 1; i++) {
+            System.out.println("setto " + i + " " + Direction.values()[i]);
+            setDirectionAnimation(PATH_MONSTER_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
+                    Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
+        }
     }
 
+    private void setDirectionAnimation(final String path, final Direction d, final int dimension, final int frame) {
+        this.sprites.put(d, new AnimationImpl());
+        this.sprites.get(d).createAnimation(path, frame, dimension);
+    }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSprite() {
-        return  monsterSpritesheet.getSprite(2, 1, 48);
+        return this.sprites.get(this.getDirection()).getNextImage();
     }
 }
 
