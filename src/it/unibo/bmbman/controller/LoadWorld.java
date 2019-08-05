@@ -16,7 +16,6 @@ import it.unibo.bmbman.view.entities.WallView;
  */
 public class LoadWorld {
     private final GameController gc;
-
     /**
      * Construct the level.
      * @param gc {@link GameController}

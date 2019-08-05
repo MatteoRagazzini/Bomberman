@@ -1,9 +1,12 @@
 package it.unibo.bmbman.model.engine;
 
+import com.sun.xml.internal.ws.assembler.jaxws.MustUnderstandTubeFactory;
+
 import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.GameControllerImpl;
 import it.unibo.bmbman.controller.GameStateController;
 import it.unibo.bmbman.controller.LoadWorld;
+import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.view.GameTimer;
 
 /**
@@ -23,6 +26,8 @@ public class GameEngineImp extends Thread implements GameEngine {
     private final GameController game;
     private final GameStateController gameState;
     private final GameTimer gameTimer;
+    private final SoundsController soundsController;
+   
     /**
      * set variables.
      * @param gs {@link GameStateController} of game
@@ -34,6 +39,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.gameState = gs;
         this.game = new GameControllerImpl(gameState);
         this.gameTimer = new GameTimer();
+        this.soundsController = new SoundsController();
         final LoadWorld load = new LoadWorld(game);
         load.loadEntity();
         /*this.modality=1; ci andrà quella presa in input*/
@@ -52,7 +58,9 @@ public class GameEngineImp extends Thread implements GameEngine {
              */
             this.gameTimer.start();
             this.game.startGame();
-
+            if (!soundsController.getMusicSound().isPlaying()) {
+                soundsController.getMusicSound().play();
+            }
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -65,6 +73,9 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void stopEngine() {
         if (this.isRunning) {
             this.isRunning = false;
+            if (soundsController.getMusicSound().isPlaying()) {
+                soundsController.getMusicSound().stop();
+            }
             this.gameState.goToGameOver();
             this.game.gameOver();
             this.gameTimer.stop();

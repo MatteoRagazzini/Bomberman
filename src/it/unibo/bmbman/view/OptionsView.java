@@ -92,6 +92,7 @@ public class OptionsView {
             new MainMenuView().loadMainMenuView();
         });
         final JRadioButtonMenuItem musicOn = gui.createRadioButton("ON");
+        musicOn.setSelected(true);
         c.gridx = 1;
         c.gridy = 0; 
         c.weightx = 0; //mi serve per spostare i tasti in fondo
