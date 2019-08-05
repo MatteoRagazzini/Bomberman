@@ -36,7 +36,7 @@ public class MainMenuView {
     private final ScreenTool st = new ScreenTool();
     private String titleImagePath;
     private String mainImagePath;
-    // private static final String BUTTON_IMAGE_PATH = "/redBricks.jpg";
+//    private static final String BUTTON_IMAGE_PATH = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
@@ -110,7 +110,7 @@ public class MainMenuView {
             });
             b.setBorderPainted(true);
            //finchè non capisco come mettere in foreground il testo
-           // b.setIcon(new ImageIcon(il.loadImage(buttonImagePath)));
+//            b.setIcon(new ImageIcon(il.loadImage(BUTTON_IMAGE_PATH)));
             c.gridx = 0;
             c.gridy = i; //voglio che vengano messi uno sotto all'altro 
             centerP.add(b, c);

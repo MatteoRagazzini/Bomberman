@@ -1,6 +1,10 @@
 package it.unibo.bmbman.model.engine;
 
-import it.unibo.bmbman.view.SinglePlayerView;
+import it.unibo.bmbman.controller.GameController;
+import it.unibo.bmbman.controller.GameControllerImpl;
+import it.unibo.bmbman.controller.GameStateController;
+import it.unibo.bmbman.controller.LoadWorld;
+import it.unibo.bmbman.view.GameTimer;
 
 /**
  * 
@@ -16,18 +20,25 @@ public class GameEngineImp extends Thread implements GameEngine {
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
     private boolean isRunning;
-    private SinglePlayerView spv = new SinglePlayerView();
-    /*private final Handler handler;cambiare nome e tipo poi*/
-    /*private final int modality; intero che indica multiplayer o single player*/
+    private final GameController game;
+    private final GameStateController gameState;
+    private final GameTimer gameTimer;
     /**
      * set variables.
+     * @param gs {@link GameStateController} of game
      */
-    public GameEngineImp(/*sicuro passerò la modalità di gioco, single o multiplayer, e un handler*/) {
+    public GameEngineImp(final GameStateController gs) {
         super();
         this.update = true;
         this.isRunning = false;
+        this.gameState = gs;
+        this.game = new GameControllerImpl(gameState);
+        this.gameTimer = new GameTimer();
+        final LoadWorld load = new LoadWorld(game);
+        load.loadEntity();
         /*this.modality=1; ci andrà quella presa in input*/
         /*this.handler=handler;*/
+        System.out.println("costruisco game Engine");
     }
     /**
      * start thread's execution.
@@ -39,7 +50,9 @@ public class GameEngineImp extends Thread implements GameEngine {
             /*
              * qui creo un nuovo campo da gioco e avvio un timer
              */
-            spv.getFrame().setVisible(true);
+            this.gameTimer.start();
+            this.game.startGame();
+
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -52,10 +65,9 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void stopEngine() {
         if (this.isRunning) {
             this.isRunning = false;
-            /*
-             * chiamerò un metodo tipo freeze(); su tutto e bloccherà ogni oggetto.
-             *
-             */
+            this.gameState.goToGameOver();
+            this.game.gameOver();
+            this.gameTimer.stop();
             try {
                 /* manda in join il thread*/
                 this.join();
@@ -65,6 +77,13 @@ public class GameEngineImp extends Thread implements GameEngine {
         }
     }
     /**
+     * Set if thread is in pause.
+     * @param inPause boolean value
+     */
+    public void setPause(final boolean inPause) {
+        this.isRunning = !inPause;
+    }
+    /**
      * {@inheritDoc}.
      */
     @Override
@@ -72,7 +91,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning) {
+        while (isRunning && this.game.isGameOver()) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
@@ -81,15 +100,15 @@ public class GameEngineImp extends Thread implements GameEngine {
                 /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
                  * chiamerà lui per questo qua non metto render*/
                 /*togliere anche questa stampa*/
-                spv.render();
-//                System.out.println("update" + now);
+                this.game.update();
+                //                System.out.println("update" + now);
                 /*togliere*/
             }
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
-//            System.out.println("sveglio");
+            //            System.out.println("sveglio");
         }
-           this.stopEngine();
+        this.stopEngine();
     }
     private void sleepToNextFrame(final long deltaTime) {
         long sleepTime;
@@ -100,7 +119,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             sleepTime = remainingToSleepTime;
         }
         try {
-//            System.out.println("dormirò" + sleepTime);
+            //            System.out.println("dormirò" + sleepTime);
             /*manda in sleep il thread*/
             GameEngineImp.sleep(sleepTime);
         } catch (InterruptedException e) {

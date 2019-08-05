@@ -9,12 +9,15 @@ import it.unibo.bmbman.model.Direction;
  */
 public class KeyInput implements KeyListener {
     private final GameController gc;
+    private final GameStateController gs;
     /**
      * KeyInput.
-     * @param gc gameCOntroller
+     * @param gc {@link GameController}
+     * @param gs {@link GameStateController}
      */
-    public KeyInput(final GameController gc) {
+    public KeyInput(final GameController gc, final GameStateController gs) {
         this.gc = gc;
+        this.gs = gs;
     }
     /**
      * {@inheritDoc}
@@ -34,6 +37,8 @@ public class KeyInput implements KeyListener {
         case KeyEvent.VK_RIGHT:
             gc.getHero().setDirection(Direction.RIGHT);
             break;
+        case KeyEvent.VK_P:
+            gs.goToPause();
         default:
             gc.getHero().setDirection(Direction.IDLE);
             break;

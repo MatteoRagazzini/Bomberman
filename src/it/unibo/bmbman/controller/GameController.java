@@ -1,6 +1,5 @@
 package it.unibo.bmbman.controller;
 
-import java.awt.Graphics;
 import java.util.Set;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.Hero;
@@ -9,6 +8,14 @@ import it.unibo.bmbman.view.entities.EntityView;
  * Interface to handler all the entity in game.
  */
 public interface GameController {
+    /**
+     * Used to start the game.
+     */
+    void startGame();
+    /**
+     * Used to notify GameOver.
+     */
+    void gameOver();
     /**
      * Used to store all the entities in game.
      * @param entity the {@link Entity} to add
@@ -41,10 +48,14 @@ public interface GameController {
      */
     Hero getHero();
     /**
-     * Used to update any entity in the world.
-     * @param g graphics to update
+     * Used to know if game is over.
+     * @return true if hero is dead
      */
-    void update(Graphics g);
+    boolean isGameOver();
+    /**
+     * Used to update any entity in the world.
+     */
+    void update();
     /**
      * this method notify a collision to {@link collisionController}.
      */

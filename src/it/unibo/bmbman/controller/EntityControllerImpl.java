@@ -54,9 +54,6 @@ public class EntityControllerImpl implements EntityController {
     public Optional<CollisionController> getCollisionController() {
         return this.cc;
     }
-    /**
-     * {@inheritDoc}.
-     */
     private void updateView() {
         this.ev.setDimension(en.getDimension());
         this.ev.setPosition(en.getPosition());

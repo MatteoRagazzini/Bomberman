@@ -1,5 +1,6 @@
 package it.unibo.bmbman.controller;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -11,6 +12,8 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.view.MyGUIFactory;
+import it.unibo.bmbman.view.SinglePlayerView;
 import it.unibo.bmbman.view.entities.EntityView;
 /**
  * An implementation of {@link GameController}.
@@ -18,12 +21,24 @@ import it.unibo.bmbman.view.entities.EntityView;
 public class GameControllerImpl implements GameController {
     private final List<Entity> worldEntity;
     private final Set<EntityController> setController;
+    private SinglePlayerView spv;
+    private final GameStateController gstate;
     /**
      * Construct an implementation of {@link GameController}.
+     * @param gstate {@link GameStateController}
      */
-    public GameControllerImpl() {
+    public GameControllerImpl(final GameStateController gstate) {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
+        this.gstate = gstate;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void startGame() {
+        this.spv = new SinglePlayerView(new KeyInput(this, gstate));
+        this.spv.getFrame().setVisible(true);
     }
     /**
      * {@inheritDoc}
@@ -80,12 +95,28 @@ public class GameControllerImpl implements GameController {
         return (Hero) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
     }
     /**
+     * 
+     * @return true if the hero is dead
+     */
+    public boolean isGameOver() {
+        return getHero().isAlive();
+    }
+    /**
      * {@inheritDoc}
      */
     @Override
-    public void update(final Graphics g) {
+    public void update() {
+        final Graphics g = this.spv.getGraphics();
+        g.setColor(Color.BLACK);
+        g.fillRect(0, 0, MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         collisionDetect();
         this.setController.forEach(c -> c.update(g));
+        this.spv.render();
     }
+    @Override
+    public void gameOver() {
+        this.spv.getFrame().setVisible(false);
+    }
+
 
 }
