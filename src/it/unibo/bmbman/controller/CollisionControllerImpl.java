@@ -26,13 +26,13 @@ public class CollisionControllerImpl implements CollisionController {
         entities.stream().filter(e -> !e.equals(followedEntity))
         .forEach(e -> {
             if (checkCollision(e, followedEntity.getCollisionComponent().getTopHitbox())) {
-                notifyCollision(e, new Position(this.followedEntity.getPosition().getX(), e.getPosition().getY() + e.getDimension().height));
+                notifyCollision(e, new Position(this.followedEntity.getPosition().getX(), e.getPosition().getY() + e.getDimension().getHeight()));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getBottomHitbox())) {
-                notifyCollision(e, new Position(this.followedEntity.getPosition().getX(), e.getPosition().getY() - e.getDimension().height));
+                notifyCollision(e, new Position(this.followedEntity.getPosition().getX(), e.getPosition().getY() - e.getDimension().getHeight()));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getLeftHitbox())) {
-                notifyCollision(e, new Position(e.getPosition().getX() + e.getDimension().width, this.followedEntity.getPosition().getY()));
+                notifyCollision(e, new Position(e.getPosition().getX() + e.getDimension().getWidth(), this.followedEntity.getPosition().getY()));
             } else if (checkCollision(e, followedEntity.getCollisionComponent().getRightHitbox())) {
-                notifyCollision(e, new Position(e.getPosition().getX() - e.getDimension().width, this.followedEntity.getPosition().getY()));
+                notifyCollision(e, new Position(e.getPosition().getX() - e.getDimension().getWidth(), this.followedEntity.getPosition().getY()));
             }
         });
     }

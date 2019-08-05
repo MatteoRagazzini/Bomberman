@@ -1,11 +1,11 @@
 package it.unibo.bmbman.controller;
 
-import java.awt.Dimension;
 
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Wall;
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.entities.HeroView;

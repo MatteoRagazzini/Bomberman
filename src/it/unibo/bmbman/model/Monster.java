@@ -1,8 +1,10 @@
 package it.unibo.bmbman.model;
 
 import java.util.Random;
+
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
-import java.awt.Dimension;
+
 /**
  * Model the creation and the beaviour of the monster.
  * 

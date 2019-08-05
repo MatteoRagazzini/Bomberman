@@ -1,9 +1,10 @@
 package it.unibo.bmbman.view.entities;
 
-import java.awt.Dimension;
+
 import java.awt.Graphics;
 import java.awt.Image;
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**

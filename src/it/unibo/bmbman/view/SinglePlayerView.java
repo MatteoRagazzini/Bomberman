@@ -1,7 +1,6 @@
 package it.unibo.bmbman.view;
 
 import java.awt.Canvas;
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
@@ -9,6 +8,7 @@ import javax.swing.JFrame;
 
 import it.unibo.bmbman.controller.KeyInput;
 import it.unibo.bmbman.model.Tile;
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.utilities.Sprite;

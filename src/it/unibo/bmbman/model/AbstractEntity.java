@@ -1,6 +1,7 @@
 package it.unibo.bmbman.model;
 
-import java.awt.Dimension;
+
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 /**
@@ -38,10 +39,10 @@ public abstract class AbstractEntity implements Entity {
     @Override
     public void setPosition(final Position position) {
         this.position.setX(position.getX() < 0 ? 0 
-                : position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.getX());
+                : position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() ? MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() : position.getX());
         this.position.setY(position.getY() < 0 ? 0 
-                : position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.height : position.getY());
-        if (position.getX() < 0 || position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.getY() < 0 || position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
+                : position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.getHeight() ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.getHeight() : position.getY());
+        if (position.getX() < 0 || position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() || position.getY() < 0 || position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.getHeight()) {
             reachedBorder();
         }
     }

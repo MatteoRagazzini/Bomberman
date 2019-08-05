@@ -1,11 +1,10 @@
 package it.unibo.bmbman.view.entities;
 
-import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
 
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Abstarct implementation of entityView.
@@ -103,7 +102,7 @@ public abstract class AbstractEntityView implements EntityView {
      */
     @Override
     public void render(final Graphics g) {
-        g.drawImage(getSprite(), getPosition().getX(), getPosition().getY(), getDimension().width, getDimension().height, null);
+        g.drawImage(getSprite(), getPosition().getX(), getPosition().getY(), getDimension().getWidth(), getDimension().getHeight(), null);
     }
 
 

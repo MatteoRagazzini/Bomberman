@@ -1,5 +1,6 @@
 package it.unibo.bmbman.model;
-import java.awt.Dimension;
+
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Class used to model the beaviour of a wall.

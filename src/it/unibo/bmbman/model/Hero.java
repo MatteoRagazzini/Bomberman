@@ -1,6 +1,7 @@
 package it.unibo.bmbman.model;
 
-import java.awt.Dimension;
+
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Representing a hero in our application.

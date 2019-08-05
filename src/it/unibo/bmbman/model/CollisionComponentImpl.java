@@ -22,7 +22,7 @@ public class CollisionComponentImpl implements CollisionComponent {
     @Override
     public Rectangle getHitbox() {
         return new Rectangle(entity.getPosition().getX(), entity.getPosition().getY(),
-                entity.getDimension().width, entity.getDimension().height);
+                entity.getDimension().getWidth(), entity.getDimension().getHeight());
     }
     /**
      * {@inheritDoc}
@@ -30,15 +30,15 @@ public class CollisionComponentImpl implements CollisionComponent {
     @Override
     public Rectangle getTopHitbox() {
         return new Rectangle(entity.getPosition().getX() + POSITION_ADJUSTMENT, entity.getPosition().getY(),
-                entity.getDimension().width - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
+                entity.getDimension().getWidth() - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Rectangle getBottomHitbox() {
-        return new Rectangle(entity.getPosition().getX() + POSITION_ADJUSTMENT, entity.getPosition().getY() + entity.getDimension().height - HEIGHT_ADJUSTMENT,
-                entity.getDimension().width - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
+        return new Rectangle(entity.getPosition().getX() + POSITION_ADJUSTMENT, entity.getPosition().getY() + entity.getDimension().getHeight() - HEIGHT_ADJUSTMENT,
+                entity.getDimension().getWidth() - WIDTH_ADJUSTMENT, HEIGHT_ADJUSTMENT);
     }
     /**
      * {@inheritDoc}
@@ -46,15 +46,15 @@ public class CollisionComponentImpl implements CollisionComponent {
     @Override
     public Rectangle getLeftHitbox() {
         return new Rectangle(entity.getPosition().getX(), entity.getPosition().getY() + POSITION_ADJUSTMENT,
-                HEIGHT_ADJUSTMENT, entity.getDimension().height - WIDTH_ADJUSTMENT);
+                HEIGHT_ADJUSTMENT, entity.getDimension().getHeight() - WIDTH_ADJUSTMENT);
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Rectangle getRightHitbox() {
-        return new Rectangle(entity.getPosition().getX() + entity.getDimension().width - HEIGHT_ADJUSTMENT, entity.getPosition().getY() + POSITION_ADJUSTMENT,
-                HEIGHT_ADJUSTMENT, entity.getDimension().height - WIDTH_ADJUSTMENT);
+        return new Rectangle(entity.getPosition().getX() + entity.getDimension().getWidth() - HEIGHT_ADJUSTMENT, entity.getPosition().getY() + POSITION_ADJUSTMENT,
+                HEIGHT_ADJUSTMENT, entity.getDimension().getHeight() - WIDTH_ADJUSTMENT);
     }
 
 }

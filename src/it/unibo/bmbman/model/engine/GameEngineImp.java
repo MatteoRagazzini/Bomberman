@@ -27,7 +27,6 @@ public class GameEngineImp extends Thread implements GameEngine {
     private final GameStateController gameState;
     private final GameTimer gameTimer;
     private final SoundsController soundsController;
-   
     /**
      * set variables.
      * @param gs {@link GameStateController} of game

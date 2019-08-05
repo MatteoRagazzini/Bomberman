@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model;
-import java.awt.Dimension;
-import java.awt.Point;
 
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * 
