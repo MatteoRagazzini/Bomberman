@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model;
 import java.awt.Dimension;
-import java.awt.Point;
+import it.unibo.bmbman.model.utilities.Position;
 /**
  * Class used to model the beaviour of a wall.
  */
@@ -11,12 +11,12 @@ public class Wall extends AbstractEntity {
      * @param entityType type of the entity
      * @param dimension dimension2D of the monster
      */
-    public Wall(final Point position, final EntityType entityType, final Dimension dimension) {
+    public Wall(final Position position, final EntityType entityType, final Dimension dimension) {
         super(position, entityType, dimension);
     }
 
     @Override
-    public void onCollision(final Entity receiver, final Point newPosition) {
+    public void onCollision(final Entity receiver, final Position newPosition) {
     }
 
     @Override

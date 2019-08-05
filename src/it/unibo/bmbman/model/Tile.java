@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model;
 
 import java.awt.Dimension;
-import java.awt.Point;
+import it.unibo.bmbman.model.utilities.Position;
 /**
  * 
  *
@@ -12,7 +12,7 @@ public class Tile extends AbstractEntity {
  * @param position 
  * @param dimension 
  */
-    public Tile(final Point position, final Dimension dimension) {
+    public Tile(final Position position, final Dimension dimension) {
         super(position, EntityType.TILE, dimension);
         // TODO Auto-generated constructor stub
     }
@@ -23,7 +23,7 @@ public class Tile extends AbstractEntity {
     }
 
     @Override
-    public void onCollision(final Entity receiver, final Point newPosition) {
+    public void onCollision(final Entity receiver, final Position newPosition) {
         // TODO Auto-generated method stub
     }
 

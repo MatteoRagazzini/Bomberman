@@ -17,6 +17,7 @@ import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Tile;
 import it.unibo.bmbman.model.Wall;
+import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.TileView;
@@ -33,21 +34,21 @@ public class SinglePlayerView {
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private final GameController game = new GameControllerImpl();
-    private final Wall wUP = new Wall(new Point(400, 80),  EntityType.WALL, new Dimension(50, 50));
-    private final Wall wDOWN = new Wall(new Point(400, MyGUIFactory.FRAME_HEIGHT),  EntityType.WALL, new Dimension(50, 50));
-    private final Wall w1 = new Wall(new Point(10, 100),  EntityType.WALL, new Dimension(50, 50));
-    private final Wall wLEFT = new Wall(new Point(50, 260),  EntityType.WALL, new Dimension(50, 50));
-    private final Wall wRIGHT = new Wall(new Point(700, 260), EntityType.WALL, new Dimension(50, 50));
+    private final Wall wUP = new Wall(new Position(400, 80),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wDOWN = new Wall(new Position(400, MyGUIFactory.FRAME_HEIGHT),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall w1 = new Wall(new Position(10, 100),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wLEFT = new Wall(new Position(50, 260),  EntityType.WALL, new Dimension(50, 50));
+    private final Wall wRIGHT = new Wall(new Position(700, 260), EntityType.WALL, new Dimension(50, 50));
     private final Hero hero = new Hero();
     private final HeroView heroView = new HeroView(hero.getPosition());
-    private final Monster m = new Monster(new Point(500, 260));
+    private final Monster m = new Monster(new Position(500, 260));
     private final MonsterView mv = new MonsterView(m.getPosition(), m.getDimension());
     private final WallView wvup = new WallView(wUP.getPosition());
     private final WallView wvr = new WallView(wRIGHT.getPosition());
     private final WallView wv1 = new WallView(w1.getPosition());
     private final WallView wvd = new WallView(wDOWN.getPosition());
     private final WallView wvl = new WallView(wLEFT.getPosition());
-    private final Tile tile = new Tile(new Point(0, 0), new Dimension(17, 17));
+    private final Tile tile = new Tile(new Position(0, 0), new Dimension(17, 17));
     private final TileView tv = new TileView(tile.getPosition(), tile.getDimension(), (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage(), true);
     /**
      * construct the frame.

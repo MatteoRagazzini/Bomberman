@@ -1,9 +1,9 @@
 package it.unibo.bmbman.controller;
 
-import java.awt.Point;
 import java.util.Set;
 
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.utilities.Position;
 
 /**
  * Collision Manager.
@@ -19,6 +19,6 @@ public interface CollisionController {
      * @param receiver {@link Entity} with which the collision occurred
      * @param newPosition new entity's position to avoid continuous collisions
      */
-    void notifyCollision(Entity receiver, Point newPosition);
+    void notifyCollision(Entity receiver, Position newPosition);
 
 }

@@ -3,9 +3,8 @@ package it.unibo.bmbman.view.entities;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
-import java.awt.Point;
-
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.utilities.Position;
 
 /**
  * Interface to model the general view aspects of each entity in the game.
@@ -17,12 +16,12 @@ public interface EntityView {
      * Set the position of entity view.
      * @param position the point in the world
      */
-    void setPosition(Point position);
+    void setPosition(Position position);
     /**
      * Used to know where is the entity view.
      * @return the position
      */
-    Point getPosition();
+    Position getPosition();
        /**
      * Set the dimension of entity view.
      * @param dimension the height and width of the entity view

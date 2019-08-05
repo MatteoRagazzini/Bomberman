@@ -1,8 +1,7 @@
 package it.unibo.bmbman.model;
 
 import java.awt.Dimension;
-import java.awt.Point;
-
+import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 /**
  * Models the general aspects of a lifeless entity.
@@ -10,7 +9,7 @@ import it.unibo.bmbman.view.MyGUIFactory;
  */
 public abstract class AbstractEntity implements Entity {
 
-    private Point position;
+    private Position position;
     private final EntityType entityType;
     private final Dimension dimension;
     private final CollisionComponent collisionComponent;
@@ -20,7 +19,7 @@ public abstract class AbstractEntity implements Entity {
      * @param entityType which type of game entity is
      * @param dimension width and height  of the entity
      */
-    public AbstractEntity(final Point position, final EntityType entityType, final Dimension dimension) {
+    public AbstractEntity(final Position position, final EntityType entityType, final Dimension dimension) {
         this.position = position;
         this.entityType = entityType;
         this.dimension = dimension;
@@ -30,19 +29,19 @@ public abstract class AbstractEntity implements Entity {
      * {@inheritDoc}
      */
     @Override
-    public Point getPosition() {
+    public Position getPosition() {
         return position;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void setPosition(final Point position) {
-        this.position.x = position.x < 0 ? 0 
-                : position.x > MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.x;
-        this.position.y = position.y < 0 ? 0 
-                : position.y > MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.height : position.y;
-        if (position.x < 0 || position.x > MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.y < 0 || position.y > MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
+    public void setPosition(final Position position) {
+        this.position.setX(position.getX() < 0 ? 0 
+                : position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.width ? MyGUIFactory.FRAME_WIDTH - this.dimension.width : position.getX());
+        this.position.setY(position.getY() < 0 ? 0 
+                : position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.height ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.height : position.getY());
+        if (position.getX() < 0 || position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.width || position.getY() < 0 || position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.height) {
             reachedBorder();
         }
     }
@@ -81,7 +80,7 @@ public abstract class AbstractEntity implements Entity {
      * {@inheritDoc}
      */
     @Override
-    public abstract void onCollision(Entity receiver, Point newPosition);
+    public abstract void onCollision(Entity receiver, Position newPosition);
     /**
      * {@inheritDoc}
      */

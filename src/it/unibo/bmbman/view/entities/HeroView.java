@@ -2,11 +2,11 @@ package it.unibo.bmbman.view.entities;
 
 import java.awt.Dimension;
 import java.awt.Image;
-import java.awt.Point;
 import java.util.EnumMap;
 import java.util.Map;
 
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
@@ -23,7 +23,7 @@ public class HeroView extends AbstractEntityView {
      * Construct an {@link HeroView}.
      * @param position position of enitity
      */
-    public HeroView(final Point position) {
+    public HeroView(final Position position) {
         super(position, new Dimension(DIMENSION, DIMENSION), true);
         setMapDirection();
     }

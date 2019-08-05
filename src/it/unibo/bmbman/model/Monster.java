@@ -1,8 +1,8 @@
 package it.unibo.bmbman.model;
 
 import java.util.Random;
+import it.unibo.bmbman.model.utilities.Position;
 import java.awt.Dimension;
-import java.awt.Point;
 /**
  * Model the creation and the beaviour of the monster.
  * 
@@ -19,7 +19,7 @@ public class Monster extends AbstractLivingEntity {
      * Create a monster.
      * @param position start position of the monster
      */
-    public Monster(final Point position) {
+    public Monster(final Position position) {
         super(position, EntityType.MONSTER, new Dimension(DIMX, DIMY), NLIVES);
         this.setDirection(randomDirection());
     }
@@ -51,7 +51,7 @@ public class Monster extends AbstractLivingEntity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver, final Point newPosition) {
+    public void onCollision(final Entity receiver, final Position newPosition) {
         System.out.println("Mostro colliso con " + receiver.getType());
         this.setPosition(newPosition);
         Direction d = randomDirection();
