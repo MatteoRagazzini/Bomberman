@@ -19,7 +19,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  */
 public class MonsterView extends AbstractEntityView {
     private static final String PATH_MONSTER_IMAGES = "/Monster/monster";
-    private static final int DIMENSION = 43;
+    private static final int DIMENSION = 48;
     private static final int FRAME_PER_ANIMATION = 3;
     private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
 
@@ -33,7 +33,7 @@ public class MonsterView extends AbstractEntityView {
         setMapDirection();
     }
     private void setMapDirection() {
-//        SpriteSheet ss = new SpriteSheet(PATH_MONSTER_IMAGES + "I.png");
+//        SpriteSheet ss = new SpriteSheet(PATH_MONSTER_IMAGES + "D.png");
 //        this.sprites.put(Direction.IDLE, new AnimationImpl());
 //        this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
         for (int i = 0; i < Direction.values().length - 1; i++) {
