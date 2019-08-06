@@ -34,7 +34,8 @@ import it.unibo.bmbman.view.utilities.ImageLoader;
 public class OptionsView {
 
     private final Map<JRadioButton, OptionsList> jbMap = new HashMap<>();
-     private final OptionsMenuController omc = new OptionMenuControllerImpl();
+     private final OptionsMenuController omc ;
+     private final MainMenuView mainView;
      private static final int BORDERSPACE = 50;
      private Insets inset = new Insets(0, BORDERSPACE, 0, BORDERSPACE);
     private JPanel centerP; 
@@ -45,10 +46,12 @@ public class OptionsView {
     /**
      * Create options menu view.
      */
-    public OptionsView() {
+    public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController opt) {
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         loadOptionsView();
+        mainView = mainMenuView;
+        this.omc = opt;
     }
 
     /**
@@ -95,7 +98,7 @@ public class OptionsView {
         final JButton returnB = gui.createReturnButton(this.f);
      returnB.addActionListener(e -> {
           this.f.setVisible(false);
-          new MainMenuView().loadMainMenuView();
+          this.mainView.setVisible(true);
       });
         final ButtonGroup music = new ButtonGroup();
         for (int i = 0; i < OptionsList.values().length; i++) {

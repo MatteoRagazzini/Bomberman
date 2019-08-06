@@ -33,7 +33,6 @@ public class MonsterView extends AbstractEntityView {
 //        this.sprites.put(Direction.IDLE, new AnimationImpl());
 //        this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
         for (int i = 0; i < Direction.values().length - 1; i++) {
-            System.out.println("setto " + i + " " + Direction.values()[i]);
             setDirectionAnimation(PATH_MONSTER_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
                     Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
         }

@@ -9,4 +9,10 @@ public interface OptionsMenuController {
      * @param optionselected the selected option
      */
     void setOptionSelected(OptionsList optionselected);
+    
+    /**
+     * Used to get the {@link SoundsController}.
+     * @return {@link SoundsController}
+     */
+    SoundsController getSoundController();
 }

@@ -42,11 +42,11 @@ public class SoundsController {
         return this.music;
     }
     
-    public void SetSoundOn() {
-        this.SoundOn=true;
+    public void setSoundOn() {
+        this.SoundOn = true;
     }
-    public void SetSoundOff() {
-        this.SoundOn=false;
+    public void setSoundOff() {
+        this.SoundOn = false;
     }
     public boolean getSoundState() {
         return this.SoundOn;

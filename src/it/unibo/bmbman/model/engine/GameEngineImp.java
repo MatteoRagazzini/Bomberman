@@ -38,7 +38,7 @@ public class GameEngineImp extends Thread implements GameEngine {
      * set variables.
      * @param gs {@link GameStateController} of game
      */
-    public GameEngineImp(final GameStateController gs) {
+    public GameEngineImp(final GameStateController gs, final SoundsController sc) {
         super();
         this.level = im.loadImage("/level.png");
         this.update = true;
@@ -46,7 +46,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.gameState = gs;
         this.game = new GameControllerImpl(gameState);
         this.gameTimer = new GameTimer();
-        this.soundsController = new SoundsController();
+        this.soundsController = sc;
         final LoadWorld load = new LoadWorld(game);
         load.loadEntity(level);
         /*this.modality=1; ci andrà quella presa in input*/
@@ -110,11 +110,14 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning && this.game.isGameOver()) {
+        while (isRunning /*&& this.game.isGameOver()*/) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
             if (this.update) {
+                if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
+                    soundsController.getMusicSound().play();
+                }
                 /*viene chiamato anche il metodo che legge in input*/
                 /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
                  * chiamerà lui per questo qua non metto render*/

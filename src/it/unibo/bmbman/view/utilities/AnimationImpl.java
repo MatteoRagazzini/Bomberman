@@ -2,8 +2,10 @@ package it.unibo.bmbman.view.utilities;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 /**
  * An implementation of {@link Animation}.
@@ -11,7 +13,8 @@ import java.util.Optional;
 public class AnimationImpl implements Animation {
 
     private final List<Image> animation;
-    private int frame = 0;
+    //private int frame = 0;
+    private Iterator<Image> iterator;
     /**
      * Construct {@link Animation}.
      */
@@ -30,13 +33,14 @@ public class AnimationImpl implements Animation {
      */
     @Override
     public Image getNextImage() {
-        if (frame < this.animation.size()) {
-            frame++;
-            return this.animation.get(frame - 1);
-        } else {
-            frame = 0;
-            return this.animation.get(frame);
-        }
+//        if (frame < this.animation.size()) {
+//            frame++;
+//            return this.animation.get(frame - 1);
+//        } else {
+//            frame = 0;
+//            return this.animation.get(frame);
+//        }
+        return this.iterator.next();
 
     }
     /**
@@ -45,6 +49,7 @@ public class AnimationImpl implements Animation {
     @Override
     public void addFrame(final Image frame) {
         this.animation.add(frame);
+        setIterator();
     }
     /**
      * {@inheritDoc}
@@ -55,5 +60,11 @@ public class AnimationImpl implements Animation {
         for (int i = 1; i <= frame; i++) {
             this.animation.add(new Sprite(ss, i, 1, dimension).getBufferedImage());
         }
+        setIterator();
+    }
+    private void setIterator() {
+        this.iterator = Stream.iterate(0, i -> (i + 1) % this.animation.size())
+                .map(i -> this.animation.get(i))
+                .iterator();
     }
 }

@@ -5,23 +5,31 @@ package it.unibo.bmbman.controller;
 public class OptionMenuControllerImpl implements OptionsMenuController {
     private final SoundsController sc = new SoundsController();
     /**
-     * .
+     * {@inheritDoc}
      */
     @Override
     public void setOptionSelected(final OptionsList optionselected) {
         switch (optionselected) {
             case SOUNDON:
-                sc.SetSoundOn();
+                sc.setSoundOn();
                 System.out.println(sc.getSoundState());
                 break;
             case SOUNDOFF:
-                sc.SetSoundOff();
+                sc.setSoundOff();
                 System.out.println(sc.getSoundState());
                 break;
             default:
                 break;
         }
 
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public SoundsController getSoundController() {
+        return this.sc;
     }
 
 }

@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
+import it.unibo.bmbman.controller.OptionMenuControllerImpl;
+import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
@@ -24,7 +26,8 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
  */
 public class MainMenuView {
     private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
-    private final MainMenuController mainMenuController = new MainMenuControllerImpl();
+    private final MainMenuController mainMenuController;
+    private final OptionsMenuController optionMenuController = new OptionMenuControllerImpl();
     private JPanel northP;
     private JPanel eastP;
     private JPanel centerP;
@@ -49,6 +52,7 @@ public class MainMenuView {
         il = new ImageLoader();
         saveMainImagePath();
         saveTitleImagePath();
+        mainMenuController = new MainMenuControllerImpl(this, optionMenuController);
     }
     /**
      * Load all the menu components.
@@ -128,5 +132,12 @@ public class MainMenuView {
      */
     private void saveTitleImagePath() {
         titleImagePath = "/image/" + st.getRis() + "_TitleImage.jpg";
+    }
+    /**
+     * Used to set visibility of MainMenu frame.
+     * @param isVisible boolean value
+     */
+    public void setVisible(final boolean isVisible) {
+        this.f.setVisible(isVisible);
     }
 }
