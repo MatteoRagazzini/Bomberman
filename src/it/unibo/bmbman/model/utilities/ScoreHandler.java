@@ -1,80 +1,84 @@
 package it.unibo.bmbman.model.utilities;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileReader;
-import java.io.FileWriter;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
+
 /**
  * 
- * It keeps track of score, game time and name of players.
+ * It keeps track of best {@link PlayerScore}.
  *
  */
-public class ScoreHandler {
-    private String fileName; /*= "src" + System.getProperty("file.separator") + "score.txt";*/
-    private List<List<String>> data = new ArrayList<>();
-/**
- * 
- * @param ps playerScore
- * @throws Exception 
- */
-    public ScoreHandler(final PlayerScore ps) throws Exception {
+public final class ScoreHandler {
+    private static final String FILE_NAME = "score.txt";
+    private static List<PlayerScore> data = new ArrayList<>();
+
+    private ScoreHandler() {
         super();
-        this.save(this.createList(ps));
-        this.read();
-    }
-    private List<String> createList(final PlayerScore ps) {
-         List<String> list = new ArrayList<>();
-         list.add(ps.getName());
-         list.add(String.valueOf(ps.getScore()));
-         list.add(ps.getGameTime());
-         return list;
     }
     /**
-     * Append data on file score.txt.
-     * @param list of score, game time and name of the player
-     * @throws Exception 
+     * Write object into file score.txt.
+     * @param list of {@link PlayerScore}
      */
-    private void save(final List<String> list) {
-        try (final BufferedWriter bw = new BufferedWriter(new FileWriter(fileName, true))) {
-            list.stream().forEach(i -> {
-                    System.out.println("Write " + i + " on file");
-                    try {
-                        bw.write(i + " ");
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-            });
-            bw.newLine();
-        } catch (Exception e1) {
-            e1.printStackTrace();
+    private static void save(final List<PlayerScore> list) {
+        try (
+          final ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))
+        ) {
+            System.out.println("Write object");
+            o.writeObject(list);
+            o.close();
+        } catch (IOException e) {
+            throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
+
     }
     /**
-     * Read data from score.txt.
-     * @throws Exception
+     * Read object from score.txt.
      */
-    private void read() throws Exception {
-        try (final BufferedReader br = new BufferedReader(new FileReader(fileName))) {
-            String line = null;
-            while ((line = br.readLine()) != null) {
-                List<String> list = new ArrayList<>();
-                this.data.add(list);
-                final Scanner sc = new Scanner(line);
-                while (sc.hasNext()) {
-                    list.add(sc.next());
-                }
-                sc.close();
-            }
+    private static List<PlayerScore> read() {
+        try (
+          final ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))
+        ) {
+            System.out.println("Read object");
+            data = (List<PlayerScore>) br.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            throw new IllegalArgumentException("File doesn't exist");
         }
+        return data;
     }
     /**
-     * Get data that are into score.txt.
+     * Get a list of {@link PlayerScore}.
      * @return data
      */
-    public List<List<String>> getData() {
-        return this.data;
+    public static List<PlayerScore> getData() {
+        return data;
+    }
+    /**
+     * If score.txt already exists, the method reads the content and invokes check method; 
+     * then it adds the given PlayerScore into data list and write the list into file.
+     * @param ps PlayerScore
+     */
+    public static void checkAndReadWrite(final PlayerScore ps) {
+        if (new File(FILE_NAME).exists()) {
+             read();
+             check(ps);
+        }
+        data.add(ps);
+        save(data);
+    }
+    /**
+     * Check if the given PlayerScore already has won a game; in this case, 
+     * update the score if it's better.
+     * @param PlayerScore to add or update if it's necessary. 
+     */
+    private static void check(final PlayerScore psToAdd) {
+        data.stream()
+            .filter(ps -> ps.getName().equals(psToAdd.getName()) && psToAdd.getScore() > ps.getScore())
+            .findAny().ifPresent(ps -> ps.setScore(psToAdd.getScore()));
     }
 }
