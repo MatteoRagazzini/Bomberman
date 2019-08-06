@@ -2,8 +2,6 @@ package it.unibo.bmbman.view.entities;
 
 import java.awt.Image;
 
-import org.omg.CORBA.portable.IDLEntity;
-
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
@@ -23,7 +21,9 @@ public class BonusVelocityView extends AbstractEntityView {
     public BonusVelocityView(final Position position, final Dimension dimension, final boolean visible) {
         super(position, dimension, visible);
     }
-
+    /**
+     * Load the image of the power-up.
+     */
     @Override
     public Image getSprite() {
         return idleImage;

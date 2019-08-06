@@ -34,7 +34,7 @@ public class LoadWorld {
         final Wall w1 = new Wall(new Position(10, 100),  EntityType.WALL, new Dimension(50, 50));
         final Wall wLEFT = new Wall(new Position(50, 260),  EntityType.WALL, new Dimension(50, 50));
         final Wall wRIGHT = new Wall(new Position(700, 260), EntityType.WALL, new Dimension(50, 50));
-        final BonusVelocity bonus1 = new BonusVelocity(new Position(400, 400), new Dimension(50, 50), this.gc);
+        final BonusVelocity bonus1 = new BonusVelocity(new Position(400, 400), new Dimension(50, 50));
         final Hero hero = new Hero(this.gc);
         final HeroView heroView = new HeroView(hero.getPosition());
         final Monster m = new Monster(new Position(500, 260));

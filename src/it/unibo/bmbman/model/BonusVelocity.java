@@ -1,8 +1,5 @@
 package it.unibo.bmbman.model;
 
-import java.util.concurrent.TimeUnit;
-
-import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
@@ -15,27 +12,14 @@ public class BonusVelocity extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the power-up.
      */
-    public BonusVelocity(final Position position, final Dimension dimension, final GameController gc) {
+    public BonusVelocity(final Position position, final Dimension dimension) {
         super(position, dimension);
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    protected void reachedBorder() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void powerupEffect(final Hero hero) {
-        hero.setVelocityModifier(2.0);
+        hero.setVelocityModifier(3.0);
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void update() {
-    }
-
 }

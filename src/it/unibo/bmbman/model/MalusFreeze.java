@@ -21,12 +21,6 @@ public class MalusFreeze extends AbstractPowerupEntity {
      * {@inheritDoc}
      */
     @Override
-    protected void reachedBorder() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void powerupEffect(final Hero hero) {
         hero.setVelocityModifier(0.0);
         try {
@@ -36,11 +30,4 @@ public class MalusFreeze extends AbstractPowerupEntity {
         }
         hero.setVelocityModifier(1.0);
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void update() {
-    }
-
 }

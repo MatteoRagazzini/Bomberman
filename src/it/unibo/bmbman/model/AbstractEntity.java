@@ -10,7 +10,7 @@ import it.unibo.bmbman.view.MyGUIFactory;
  */
 public abstract class AbstractEntity implements Entity {
 
-    private Position position;
+    private final Position position;
     private final EntityType entityType;
     private final Dimension dimension;
     private final CollisionComponent collisionComponent;

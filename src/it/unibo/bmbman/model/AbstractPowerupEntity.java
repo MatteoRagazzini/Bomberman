@@ -1,6 +1,5 @@
 package it.unibo.bmbman.model;
 
-import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
@@ -31,4 +30,10 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param hero the target of the effect.
      */
     public abstract void powerupEffect(Hero hero);
+    @Override
+    protected void reachedBorder() {
+    }
+    @Override
+    public void update() {
+    }
 }

@@ -22,12 +22,4 @@ public class BonusLife extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.addLife();
     }
-
-    @Override
-    protected void reachedBorder() {
-    }
-
-    @Override
-    public void update() {
-    }
 }

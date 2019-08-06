@@ -29,7 +29,7 @@ public class HeroView extends AbstractEntityView {
     }
 
     private void setMapDirection() {
-        SpriteSheet ss = new SpriteSheet(PATH_HERO_IMAGES + "I.png");
+        final SpriteSheet ss = new SpriteSheet(PATH_HERO_IMAGES + "I.png");
         this.sprites.put(Direction.IDLE, new AnimationImpl());
         this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
         for (int i = 0; i < Direction.values().length - 1; i++) {

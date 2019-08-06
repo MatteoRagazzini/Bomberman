@@ -10,12 +10,14 @@ import it.unibo.bmbman.model.utilities.Velocity;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
-    private GameController gc;
+    private final GameController gc;
+    private static final int START_POSITION = 200;
     /**
      * Construct a Hero in game.
+     * @param gc the game controller
      */
     public Hero(final GameController gc) {
-        super(new Position(200, 200), EntityType.HERO, new Dimension(45, 48), 3);
+        super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 3);
         this.gc = gc;
     }
 /**
