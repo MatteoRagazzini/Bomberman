@@ -1,5 +1,6 @@
 package it.unibo.bmbman.model;
 
+import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 

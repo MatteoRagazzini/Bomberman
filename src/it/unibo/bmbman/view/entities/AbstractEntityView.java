@@ -102,7 +102,9 @@ public abstract class AbstractEntityView implements EntityView {
      */
     @Override
     public void render(final Graphics g) {
-        g.drawImage(getSprite(), getPosition().getX(), getPosition().getY(), getDimension().getWidth(), getDimension().getHeight(), null);
+        if (this.visible) {
+            g.drawImage(getSprite(), getPosition().getX(), getPosition().getY(), getDimension().getWidth(), getDimension().getHeight(), null);
+        }
     }
 
 

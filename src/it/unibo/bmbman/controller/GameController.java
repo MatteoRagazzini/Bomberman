@@ -60,5 +60,10 @@ public interface GameController {
      * this method notify a collision to {@link collisionController}.
      */
     void collisionDetect();
+    /**
+     * Remove an entity from the world.
+     * @param entity the entity to be removed
+     */
+    void removeEntity(Entity entity);
 }
 

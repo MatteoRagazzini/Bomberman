@@ -1,6 +1,7 @@
 package it.unibo.bmbman.model;
 
 
+import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
@@ -9,11 +10,13 @@ import it.unibo.bmbman.model.utilities.Velocity;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
+    private GameController gc;
     /**
      * Construct a Hero in game.
      */
-    public Hero() {
+    public Hero(final GameController gc) {
         super(new Position(200, 200), EntityType.HERO, new Dimension(45, 48), 3);
+        this.gc = gc;
     }
 /**
  * {@inheritDoc}
@@ -25,6 +28,8 @@ public class Hero extends AbstractLivingEntity {
         System.out.println("Eroe colliso con" + receiver.getType());
         if (receiver.getType() == EntityType.MONSTER) {
             this.removeLife();
+        } else if (receiver.getType() == EntityType.POWER_UP) {
+            gc.removeEntity(receiver);
         }
     }
     /**

@@ -30,7 +30,7 @@ public enum EntityType {
     /**
      * They are bonus or malus hidden under the block that hero can pick.
      */
-    POWER_UP(EntityFeature.WALKABLE, EntityFeature.UNBREAKABLE); 
+    POWER_UP(EntityFeature.UNWALKABLE, EntityFeature.UNBREAKABLE); 
     private EntityFeature isWalkable;
     private EntityFeature isBreakable;
     /**

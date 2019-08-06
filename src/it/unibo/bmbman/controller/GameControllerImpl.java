@@ -117,6 +117,12 @@ public class GameControllerImpl implements GameController {
     public void gameOver() {
         this.spv.getFrame().setVisible(false);
     }
-
-
+    /**
+     * {@inheritDoc}}
+     */
+    public void removeEntity(final Entity entity) {
+        this.worldEntity.remove(entity);
+        this.setController.stream().filter(e -> e.getEntity().equals(entity))
+                                                   .forEach(e -> e.getEntityView().setVisible(false));
+    }
 }
