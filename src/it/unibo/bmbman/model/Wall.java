@@ -8,22 +8,27 @@ import it.unibo.bmbman.model.utilities.Position;
 public class Wall extends AbstractEntity {
     /**
      * Create a wall.
-     * @param position start position of the monster
-     * @param entityType type of the entity
-     * @param dimension dimension2D of the monster
+     * @param position position of the wall
+     * @param dimension dimension of the wall
      */
-    public Wall(final Position position, final EntityType entityType, final Dimension dimension) {
-        super(position, entityType, dimension);
+    public Wall(final Position position, final Dimension dimension) {
+        super(position, EntityType.WALL, dimension);
     }
-
+/**
+ * {@inheritDoc}
+ */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
     }
-
+/**
+ * {@inheritDoc}
+ */
     @Override
     public void update() {
     }
-
+/**
+ * {@inheritDoc}
+ */
     @Override
     protected void reachedBorder() {
     }

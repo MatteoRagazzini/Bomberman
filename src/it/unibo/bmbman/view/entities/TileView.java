@@ -5,24 +5,29 @@ import java.awt.Image;
 
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.utilities.Sprite;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
-
-public class TileView extends AbstractEntityView{
-    private static final int GRASS_SPRITE_DIMENSION = 17;
+/**
+ * used to show a tile sprite in the maze.
+ *
+ */
+public class TileView extends AbstractEntityView { 
+    private static final String TILE_PATH = "/tile.png";
+    private static final int TILE_SPRITE_DIMENSION = 50;
+    private final SpriteSheet ss = new SpriteSheet(TILE_PATH);
+    private final Image idleImage = ss.getSprite(1, 1, TILE_SPRITE_DIMENSION);
     /**
-     * used to create a tile.
-     * @param position the object position
-     * @param dimension the image dimension
-     * @param image the sprite 
-     * @param visible if is visible or not
+     * used to create a tile view image.
+     * @param position the tile position
      */
-    public TileView(final Position position, final Dimension dimension, final Image image, final boolean visible) {
-        super(new Position(0, 0), new Dimension(GRASS_SPRITE_DIMENSION,GRASS_SPRITE_DIMENSION), true);
+    public TileView(final Position position) {
+        super(position, new Dimension(TILE_SPRITE_DIMENSION, TILE_SPRITE_DIMENSION), true);
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSprite() {
-        return (new Sprite(new SpriteSheet("/Tilegrass.png"), 1, 1, 17)).getImage();
+        return idleImage;
     }
 
 }
