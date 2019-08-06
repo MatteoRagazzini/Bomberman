@@ -110,7 +110,8 @@ public class GameControllerImpl implements GameController {
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         collisionDetect();
-        this.setController.forEach(c -> c.update(g));
+        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update(g));
+        this.setController.stream().filter(ec -> ec.getEntity().getType() != EntityType.TILE).forEach(ec -> ec.update(g));
         this.spv.render();
     }
     @Override
