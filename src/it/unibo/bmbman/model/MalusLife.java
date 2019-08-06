@@ -4,15 +4,15 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
- * Model a bonus velocity power-up.
+ * Model a malus life power-up.
  */
-public class BonusVelocity extends AbstractPowerupEntity {
+public class MalusLife extends AbstractPowerupEntity {
     /**
-     * Construct a bonus velocity power-up in the world.
+     * Construct a malus life power-up in the world.
      * @param position where to create it.
      * @param dimension the dimension of the power-up.
      */
-    public BonusVelocity(final Position position, final Dimension dimension) {
+    public MalusLife(final Position position, final Dimension dimension) {
         super(position, dimension);
     }
     /**
@@ -20,9 +20,7 @@ public class BonusVelocity extends AbstractPowerupEntity {
      */
     @Override
     public void powerupEffect(final Hero hero) {
-        hero.setVelocityModifier(2.0);
+        hero.removeLife();
     }
-    @Override
-    public void update() {
-    }
+
 }

@@ -1,7 +1,5 @@
 package it.unibo.bmbman.model;
 
-import java.util.concurrent.TimeUnit;
-
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
@@ -23,11 +21,5 @@ public class MalusFreeze extends AbstractPowerupEntity {
     @Override
     public void powerupEffect(final Hero hero) {
         hero.setVelocityModifier(0.0);
-        try {
-            TimeUnit.SECONDS.sleep(3);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        hero.setVelocityModifier(1.0);
     }
 }
