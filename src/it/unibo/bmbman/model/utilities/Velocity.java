@@ -12,7 +12,7 @@ public class Velocity {
     /**
      * Constant value for velocity.
      */
-    public static final int SPEED = 3;
+    public static final int SPEED = 2;
     private Pair<Integer, Integer> vel;
     /**
      * Construct the vector of velocity.

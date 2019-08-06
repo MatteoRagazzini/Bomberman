@@ -9,7 +9,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  * Create the Bonus Velocity power-up view.
  */
 public class BonusVelocityView extends AbstractEntityView {
-    private static final String BONUS_VEL_PATH = "/wall.png";
+    private static final String BONUS_VEL_PATH = "/velocity.png";
     private final SpriteSheet ss = new SpriteSheet(BONUS_VEL_PATH);
     private final Image idleImage = ss.getSprite(1, 1, 50);
     /**
