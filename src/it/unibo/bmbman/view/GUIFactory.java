@@ -3,6 +3,7 @@ package it.unibo.bmbman.view;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 
 /**
@@ -33,7 +34,7 @@ public interface GUIFactory {
      * @param text the button's text
      * @return the button created
      */
-    JRadioButtonMenuItem createRadioButton(String text);
+    JRadioButton createRadioButton(String text);
     /**
      * Method to generate a Label.
      * @param text the Label text

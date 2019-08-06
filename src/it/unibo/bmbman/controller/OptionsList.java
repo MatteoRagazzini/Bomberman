@@ -7,7 +7,11 @@ public enum OptionsList {
     /**
      * Activate or Disable the game sound.
      */
-    SOUND("Sound");
+    SOUNDON("ON"),
+    /**
+     * Deactivate Sound.
+     */
+    SOUNDOFF("OFF");
     private final String name;
     OptionsList(final String name) {
         this.name = name;

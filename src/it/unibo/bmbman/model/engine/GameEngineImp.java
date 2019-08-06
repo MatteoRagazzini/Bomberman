@@ -1,5 +1,7 @@
 package it.unibo.bmbman.model.engine;
 
+import java.awt.image.BufferedImage;
+
 import com.sun.xml.internal.ws.assembler.jaxws.MustUnderstandTubeFactory;
 
 import it.unibo.bmbman.controller.GameController;
@@ -8,6 +10,9 @@ import it.unibo.bmbman.controller.GameStateController;
 import it.unibo.bmbman.controller.LoadWorld;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.view.GameTimer;
+import it.unibo.bmbman.view.MyGUIFactory;
+import it.unibo.bmbman.view.OptionsView;
+import it.unibo.bmbman.view.utilities.ImageLoader;
 
 /**
  * 
@@ -27,12 +32,15 @@ public class GameEngineImp extends Thread implements GameEngine {
     private final GameStateController gameState;
     private final GameTimer gameTimer;
     private final SoundsController soundsController;
+    private final BufferedImage level;
+    private final ImageLoader im = new ImageLoader();
     /**
      * set variables.
      * @param gs {@link GameStateController} of game
      */
     public GameEngineImp(final GameStateController gs) {
         super();
+        this.level = im.loadImage("/level.png");
         this.update = true;
         this.isRunning = false;
         this.gameState = gs;
@@ -40,7 +48,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.gameTimer = new GameTimer();
         this.soundsController = new SoundsController();
         final LoadWorld load = new LoadWorld(game);
-        load.loadEntity();
+        load.loadEntity(level);
         /*this.modality=1; ci andrà quella presa in input*/
         /*this.handler=handler;*/
         System.out.println("costruisco game Engine");
@@ -57,7 +65,8 @@ public class GameEngineImp extends Thread implements GameEngine {
              */
             this.gameTimer.start();
             this.game.startGame();
-            if (!soundsController.getMusicSound().isPlaying()) {
+            System.out.println(soundsController.getSoundState());
+            if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
                 soundsController.getMusicSound().play();
             }
             /*manda in start il thread e cambia il nome*/

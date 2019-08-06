@@ -54,7 +54,6 @@ public class Monster extends AbstractLivingEntity {
      */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
-        System.out.println("Mostro colliso con " + receiver.getType());
         this.setPosition(newPosition);
         Direction d = randomDirection();
         setDirection(d); 
