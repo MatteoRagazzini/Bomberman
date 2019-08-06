@@ -5,6 +5,9 @@ import it.unibo.bmbman.model.Block;
 import it.unibo.bmbman.model.BonusVelocity;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.MalusFreeze;
+import it.unibo.bmbman.model.MalusInvert;
+import it.unibo.bmbman.model.MalusSlow;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Tile;
 import it.unibo.bmbman.model.Wall;
@@ -14,6 +17,9 @@ import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.entities.BlockView;
 import it.unibo.bmbman.view.entities.BonusVelocityView;
 import it.unibo.bmbman.view.entities.HeroView;
+import it.unibo.bmbman.view.entities.MalusFreezeView;
+import it.unibo.bmbman.view.entities.MalusInvertView;
+import it.unibo.bmbman.view.entities.MalusSlowView;
 import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.entities.WallView;
@@ -40,7 +46,6 @@ public class LoadWorld {
         final Wall w1 = new Wall(new Position(10, 100),  new Dimension(50, 50));
         final Wall wLEFT = new Wall(new Position(50, 260),  new Dimension(50, 50));
         final Wall wRIGHT = new Wall(new Position(700, 260), new Dimension(50, 50));
-        final BonusVelocity bonus1 = new BonusVelocity(new Position(400, 400), new Dimension(50, 50));
         final Block block = new Block(new Position(200, 0), new Dimension(50, 50));
         final BlockView blockview = new BlockView(block.getPosition());
         final Tile tile0 = new Tile(new Position(0, 0), new Dimension(50, 50));
@@ -57,7 +62,16 @@ public class LoadWorld {
         final WallView wv1 = new WallView(w1.getPosition());
         final WallView wvd = new WallView(wDOWN.getPosition());
         final WallView wvl = new WallView(wLEFT.getPosition());
-        final BonusVelocityView bonus1view = new BonusVelocityView(bonus1.getPosition(), bonus1.getDimension(), true);
+        // Creo i malus
+        final MalusFreeze malus1 = new MalusFreeze(new Position(400, 400), new Dimension(50, 50));
+        final MalusFreezeView malus1view = new MalusFreezeView(malus1.getPosition(), malus1.getDimension(), true);
+        final MalusInvert malus2 = new MalusInvert(new Position(450, 400), new Dimension(50, 50));
+        final MalusInvertView malus2view = new MalusInvertView(malus2.getPosition(), malus2.getDimension(), true);
+        final MalusSlow malus3 = new MalusSlow(new Position(500, 400), new Dimension(50, 50));
+        final MalusSlowView malus3view = new MalusSlowView(malus3.getPosition(), malus3.getDimension(), true);
+        // Creo i bonus
+        final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
+        final BonusVelocityView bonus3view = new BonusVelocityView(bonus3.getPosition(), bonus3.getDimension(), true);
         this.gc.addEntity(tile0, new TileView(tile0.getPosition()));
         this.gc.addEntity(tile1, new TileView(tile1.getPosition()));
         this.gc.addEntity(tile2, new TileView(tile2.getPosition()));
@@ -71,7 +85,10 @@ public class LoadWorld {
         this.gc.addEntity(wLEFT, wvl);
         this.gc.addEntity(m, mv);
         this.gc.addEntity(hero, heroView);
-        this.gc.addEntity(bonus1, bonus1view);
+        this.gc.addEntity(malus1, malus1view);
+        this.gc.addEntity(malus2, malus2view);
+        this.gc.addEntity(malus3, malus3view);
+        this.gc.addEntity(bonus3, bonus3view);
     }
 
 }
