@@ -17,7 +17,7 @@ public class HeroView extends AbstractEntityView {
 
     private static final String PATH_HERO_IMAGES = "/Hero/hero";
     private static final int DIMENSION = 48;
-    private static final int FRAME_PER_ANIMATION = 3;
+    private static final int FRAME_PER_ANIMATION = 6;
     private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
     /**
      * Construct an {@link HeroView}.
@@ -33,7 +33,7 @@ public class HeroView extends AbstractEntityView {
         this.sprites.put(Direction.IDLE, new AnimationImpl());
         this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
         for (int i = 0; i < Direction.values().length - 1; i++) {
-            System.out.println("setto " + i + " " + Direction.values()[i]);
+            System.out.println("setto " + Direction.values()[i]);
             setDirectionAnimation(PATH_HERO_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
                     Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
         }

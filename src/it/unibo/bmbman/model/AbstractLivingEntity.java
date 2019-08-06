@@ -120,9 +120,6 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     public void update() {
         this.setPosition(new Position(this.getPosition().getX() + this.getVelocity().getXcomponent(), 
                 this.getPosition().getY() + this.getVelocity().getYcomponent()));
-        if (!isAlive()) {
-            //           System.out.println("sei morto");
-        }
     }
 
 }
