@@ -5,9 +5,14 @@ package it.unibo.bmbman.controller;
  */
 public enum OptionsList {
     /**
-     * Activate or Disable the game sound.
+     * Activate game sound.
      */
-    SOUND("Sound");
+    SOUNDON("Sound On"),
+    /**
+     * Disable game sound. 
+     */
+    SOUNDOFF("Sound Off");
+
     private final String name;
     OptionsList(final String name) {
         this.name = name;
