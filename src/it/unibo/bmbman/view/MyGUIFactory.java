@@ -3,7 +3,6 @@ package it.unibo.bmbman.view;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
-import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
@@ -37,12 +36,9 @@ public class MyGUIFactory implements GUIFactory {
     private static final Float QHD_SIZE = 36f;
     private static final Float FHD_SIZE = 32f;
     private static final Float HD_SIZE = 20f;
-    private static final Insets INS_WQHD = new Insets(50, 120, 70, 40);
-    private static final Insets INS_QHD = new Insets(33, 80, 47, 27);
-    private static final Insets INS_FHD = new Insets(25, 60, 35, 20);
-    private static final Insets INS_HD = new Insets(18, 43, 25, 14);
     private GameFont font;
     private final ScreenTool st = new ScreenTool();
+    
 
     @Override
     /**
@@ -81,7 +77,6 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JFrame createFrame() {
         final JFrame frame = new JFrame();
-        checkFontSize();
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -109,19 +104,15 @@ public class MyGUIFactory implements GUIFactory {
         switch (st.getRis()) {
         case "WQHD":
             GameFont.setFontSize(WQHD_SIZE);
-            MainMenuView.setInsets(INS_WQHD);
             break;
         case "QHD":
             GameFont.setFontSize(QHD_SIZE);
-            MainMenuView.setInsets(INS_QHD);
             break;
         case "FHD":
             GameFont.setFontSize(FHD_SIZE);
-            MainMenuView.setInsets(INS_FHD);
             break;
         case "HD":
             GameFont.setFontSize(HD_SIZE);
-            MainMenuView.setInsets(INS_HD);
             break;
         default:
             break;
