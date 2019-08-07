@@ -16,7 +16,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
-import it.unibo.bmbman.controller.MainMenuOption;
+import it.unibo.bmbman.controller.MainMenuList;
 import it.unibo.bmbman.controller.OptionMenuControllerImpl;
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
@@ -25,7 +25,7 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
  * define the start menu of the game.
  */
 public class MainMenuView {
-    private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
+    private final Map<JButton, MainMenuList> jbMap = new HashMap<>();
     private final MainMenuController mainMenuController;
     private final OptionsMenuController optMenuController;
     private JPanel northP;
@@ -113,8 +113,8 @@ public class MainMenuView {
      * Create a buttons for each menu option and add them to the panel.
      */
     private void loadButtons() {
-        for (int i = 0; i < MainMenuOption.values().length; i++) {
-            final JButton b = gui.createButton(MainMenuOption.values()[i].toString());
+        for (int i = 0; i < MainMenuList.values().length; i++) {
+            final JButton b = gui.createButton(MainMenuList.values()[i].toString());
             b.addActionListener(e -> {
                 final JButton jb = (JButton) e.getSource();
                 mainMenuController.setOptionSelected(jbMap.get(jb));
@@ -126,7 +126,7 @@ public class MainMenuView {
             c.gridx = 0;
             c.gridy = i; //voglio che vengano messi uno sotto all'altro 
             centerP.add(b, c);
-            jbMap.put(b, MainMenuOption.values()[i]);
+            jbMap.put(b, MainMenuList.values()[i]);
         }
     }
     /**

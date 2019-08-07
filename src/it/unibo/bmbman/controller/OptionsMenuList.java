@@ -3,7 +3,7 @@ package it.unibo.bmbman.controller;
 /**
  * All the available choices in the options menu.
  */
-public enum OptionsList {
+public enum OptionsMenuList {
     /**
      * Activate game sound.
      */
@@ -14,7 +14,7 @@ public enum OptionsList {
     SOUNDOFF("OFF");
 
     private final String name;
-    OptionsList(final String name) {
+    OptionsMenuList(final String name) {
         this.name = name;
     }
     /**

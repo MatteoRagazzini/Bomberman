@@ -8,7 +8,7 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
      * {@inheritDoc}
      */
     @Override
-    public void setOptionSelected(final OptionsList optionselected) {
+    public void setOptionSelected(final OptionsMenuList optionselected) {
         switch (optionselected) {
             case SOUNDON:
                 sc.setSoundOn();

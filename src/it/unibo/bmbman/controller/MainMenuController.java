@@ -9,5 +9,5 @@ public interface MainMenuController {
      * 
      * @param optionSelected the option chosen in {@link MainMenuView} by the player.
      */
-    void setOptionSelected(MainMenuOption optionSelected);
+    void setOptionSelected(MainMenuList optionSelected);
 }

@@ -4,7 +4,7 @@ package it.unibo.bmbman.controller;
  * Main menu possible choices, when the application start.
  * 
  */
-public enum MainMenuOption {
+public enum MainMenuList {
     /**
      * Classic game mode with one player VS CPU.
     */
@@ -30,7 +30,7 @@ public enum MainMenuOption {
      * Construct a {@code MainMenuOption}.
      * @param name of main menu option
      */
-    MainMenuOption(final String name) {
+    MainMenuList(final String name) {
         this.name = name;
     }
     /**

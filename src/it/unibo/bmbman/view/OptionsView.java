@@ -18,7 +18,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import it.unibo.bmbman.controller.OptionsList;
+import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
@@ -29,7 +29,7 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
  */
 public class OptionsView {
 
-    private final Map<JRadioButton, OptionsList> jbMap = new HashMap<>();
+    private final Map<JRadioButton, OptionsMenuList> jbMap = new HashMap<>();
     private final OptionsMenuController optionsMenuCtrl;
     private final MainMenuView mainView;
     private final ScreenTool st = new ScreenTool();
@@ -114,8 +114,8 @@ public class OptionsView {
             this.mainView.getFrame().setVisible(true);
         });
         final ButtonGroup music = new ButtonGroup();
-        for (int i = 0; i < OptionsList.values().length; i++) {
-            final JRadioButton b = gui.createRadioButton(OptionsList.values()[i].toString());
+        for (int i = 0; i < OptionsMenuList.values().length; i++) {
+            final JRadioButton b = gui.createRadioButton(OptionsMenuList.values()[i].toString());
             b.addActionListener(e -> {
                 final JRadioButton jb = (JRadioButton) e.getSource();
                 optionsMenuCtrl.setOptionSelected((jbMap.get(jb)));
@@ -128,7 +128,7 @@ public class OptionsView {
             c.gridy = 0; 
             music.add(b);
             centerP.add(b, c);
-            jbMap.put(b, OptionsList.values()[i]);
+            jbMap.put(b, OptionsMenuList.values()[i]);
         }
     }
     /**

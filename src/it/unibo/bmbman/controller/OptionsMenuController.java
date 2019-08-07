@@ -8,7 +8,7 @@ public interface OptionsMenuController {
      * 
      * @param optionselected the selected option
      */
-    void setOptionSelected(OptionsList optionselected);
+    void setOptionSelected(OptionsMenuList optionselected);
     /**
      * Used to get the SoundController.
      * @return {@link SoundsController}

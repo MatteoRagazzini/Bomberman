@@ -28,7 +28,7 @@ public class MainMenuControllerImpl implements MainMenuController {
      * {@inheritDoc}
      */
     @Override
-    public void setOptionSelected(final MainMenuOption optionSelected) {
+    public void setOptionSelected(final MainMenuList optionSelected) {
         switch (optionSelected) {
         case SINGLE_PLAYER:
            gameState.goToSinglePlayerGame();
@@ -37,7 +37,7 @@ public class MainMenuControllerImpl implements MainMenuController {
             //        case MULTIPLAYER:
             //            break;
         case LEADERBOARD:
-            final LeaderboardView lv = new LeaderboardView();
+            final LeaderboardView lv = new LeaderboardView(mainMenuView);
             lv.getFrame().setVisible(true);
             break;
         case SETTINGS:
