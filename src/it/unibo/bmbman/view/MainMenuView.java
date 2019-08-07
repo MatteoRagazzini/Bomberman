@@ -85,7 +85,6 @@ public class MainMenuView {
         // Create CENTER Panel
         centerP = new JPanel(new GridBagLayout());
         centerP.setBackground(Color.BLACK);
-        //parte del constraints
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
