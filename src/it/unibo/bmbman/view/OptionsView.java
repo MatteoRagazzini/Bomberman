@@ -123,7 +123,6 @@ public class OptionsView {
             if (b.getText().equals("ON")) {
                 b.setSelected(true);
             }
-            b.setBorderPainted(true);
             c.weightx = 0; //mi serve per spostare i tasti on e off in fondo
             c.gridx = i + 1;
             c.gridy = 0; 
