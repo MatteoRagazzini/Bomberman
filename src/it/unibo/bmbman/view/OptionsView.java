@@ -3,6 +3,7 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -10,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -18,6 +20,7 @@ import javax.swing.JRadioButton;
 
 import it.unibo.bmbman.controller.OptionsList;
 import it.unibo.bmbman.controller.OptionsMenuController;
+import it.unibo.bmbman.view.utilities.ImageLoader;
 
 
 /**
@@ -26,24 +29,28 @@ import it.unibo.bmbman.controller.OptionsMenuController;
 public class OptionsView {
 
     private final Map<JRadioButton, OptionsList> jbMap = new HashMap<>();
-     private final OptionsMenuController omc ;
-     private final MainMenuView mainView;
-     private static final int BORDERSPACE = 50;
-     private Insets inset = new Insets(0, BORDERSPACE, 0, BORDERSPACE);
+    private final OptionsMenuController optionsMenuCtrl;
+    private final MainMenuView mainView;
+    private static final int BORDERSPACE = 50;
     private JPanel centerP; 
+    private JPanel eastP;
+    private JPanel northP;
     private GridBagConstraints c;
     private JFrame f;
     private final MyGUIFactory gui;
+    private final ImageLoader il = new ImageLoader();
 
     /**
      * Create options menu view.
+     * @param mainMenuView the {@link MainMenuView} with which is related
+     * @param optionsMenuController the {@link OptionsMenuController} that manage all the choises
      */
-    public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController opt) {
+    public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController optionsMenuController) {
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         loadOptionsView();
         mainView = mainMenuView;
-        this.omc = opt;
+        this.optionsMenuCtrl = optionsMenuController;
     }
 
     /**
@@ -57,47 +64,57 @@ public class OptionsView {
         loadButtons();
     }
 
-/**
- * Used to loadLabels.
- */
+    /**
+     * Used to loadLabels.
+     */
     private void loadLabels() {
-       // for (int i = 0; i < OptionsList.values().length; i++) {
-            final JLabel music = gui.createLabel("Music");
-            c.gridx = 0;
-            c.gridy = 0;
-            centerP.add(music, c);
-       // }
+        // for (int i = 0; i < OptionsList.values().length; i++) {
+        final JLabel musicLabel = gui.createLabel("Music");
+        final JLabel titleLabel = gui.createLabel("Options Menù");
+        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage("/Options.png")));
+        northP.add(titleLabel, BorderLayout.CENTER);
+        eastP.add(iconLabel, BorderLayout.CENTER);
+        c.gridx = 0;
+        c.gridy = 0;
+        centerP.add(musicLabel, c);
+        // }
     }
 
-/**
- * Used to load panels.
- */
+    /**
+     * Used to load panels.
+     */
     private void loadPanels() {
         centerP = new JPanel(new GridBagLayout());
+        eastP = new JPanel(new BorderLayout());
+        northP = new JPanel(new BorderLayout());
         centerP.setBackground(Color.black);
+        eastP.setBackground(Color.BLACK);
+        northP.setBackground(Color.BLACK);
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
-        c.weighty = 1.0;
-        c.insets = inset;
+        c.weighty = 3.0;
+        c.insets = new Insets(0, BORDERSPACE, 0, BORDERSPACE);
         f.add(centerP, BorderLayout.CENTER);
+        f.add(eastP, BorderLayout.EAST);
+        f.add(northP, BorderLayout.NORTH);
     }
 
-/**
- * Used to load buttons.
- */
+    /**
+     * Used to load buttons.
+     */
     private void loadButtons() {
         final JButton returnB = gui.createReturnButton(this.f);
-     returnB.addActionListener(e -> {
-          this.f.setVisible(false);
-          this.mainView.getFrame().setVisible(true);
-      });
+        returnB.addActionListener(e -> {
+            this.f.setVisible(false);
+            this.mainView.getFrame().setVisible(true);
+        });
         final ButtonGroup music = new ButtonGroup();
         for (int i = 0; i < OptionsList.values().length; i++) {
             final JRadioButton b = gui.createRadioButton(OptionsList.values()[i].toString());
             b.addActionListener(e -> {
                 final JRadioButton jb = (JRadioButton) e.getSource();
-                omc.setOptionSelected((jbMap.get(jb)));
+                optionsMenuCtrl.setOptionSelected((jbMap.get(jb)));
             });
             if (b.getText().equals("ON")) {
                 b.setSelected(true);
@@ -110,29 +127,6 @@ public class OptionsView {
             jbMap.put(b, OptionsList.values()[i]);
         }
     }
-
-//    private void loadButtons() {
-//        final JButton returnB = gui.createReturnButton(this.f);
-//        returnB.addActionListener(e -> {
-//            this.f.setVisible(false);
-//            new MainMenuView().loadMainMenuView();
-//        });
-//        final JRadioButtonMenuItem musicOn = gui.createRadioButton();
-//        musicOn.setSelected(true);
-//        c.gridx = 1;
-//        c.gridy = 0; 
-//        c.weightx = 0; //mi serve per spostare i tasti in fondo
-//        centerP.add(musicOn, c);
-//        //jbMap.put(musicB, OptionsList.values()[0]);
-//        final ButtonGroup music = new ButtonGroup();
-//        musicOn.setSize(100, 100);
-//        final JRadioButtonMenuItem musicOff = gui.createRadioButton("OFF");
-//        c.gridx = 2;
-//        c.gridy = 0;
-//        centerP.add(musicOff, c);
-//        music.add(musicOn);
-//        music.add(musicOff);
-//    }
     /**
      * Getter method.
      * @return the options view frame
