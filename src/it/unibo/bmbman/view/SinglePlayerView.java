@@ -33,6 +33,7 @@ public class SinglePlayerView {
             canvas.createBufferStrategy(3);
             bs = canvas.getBufferStrategy();
         }
+        System.out.println(this.frame.getHeight() + " " + this.frame.getWidth());
 
     }
     /**
