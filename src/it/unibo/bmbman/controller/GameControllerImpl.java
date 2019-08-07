@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import it.unibo.bmbman.model.AbstractLivingEntity;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
@@ -111,7 +112,9 @@ public class GameControllerImpl implements GameController {
         g.fillRect(0, 0, MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         collisionDetect();
         this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update(g));
-        this.setController.stream().filter(ec -> ec.getEntity().getType() != EntityType.TILE).forEach(ec -> ec.update(g));
+        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.POWER_UP).forEach(ec -> ec.update(g));
+        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL )
+        .forEach(ec -> ec.update(g));
         this.spv.render();
     }
     @Override

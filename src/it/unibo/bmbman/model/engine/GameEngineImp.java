@@ -1,8 +1,6 @@
 package it.unibo.bmbman.model.engine;
 
-import java.awt.image.BufferedImage;
 
-import com.sun.xml.internal.ws.assembler.jaxws.MustUnderstandTubeFactory;
 
 import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.GameControllerImpl;
@@ -10,10 +8,6 @@ import it.unibo.bmbman.controller.GameStateController;
 import it.unibo.bmbman.controller.LoadWorld;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.view.GameTimer;
-import it.unibo.bmbman.view.MyGUIFactory;
-import it.unibo.bmbman.view.OptionsView;
-import it.unibo.bmbman.view.utilities.ImageLoader;
-
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.
@@ -107,7 +101,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning /*&& this.game.isGameOver()*/) {
+        while (isRunning && this.game.isGameOver()) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
