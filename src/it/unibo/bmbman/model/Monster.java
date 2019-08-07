@@ -57,8 +57,7 @@ public class Monster extends AbstractLivingEntity {
         System.out.println("Mostro colliso con " + receiver.getType());
         if (receiver.getType() != EntityType.POWER_UP) {
             this.setPosition(newPosition);
-            Direction d = randomDirection();
-            setDirection(d); 
+            setDirection(randomDirection()); 
         }
     }
     /**

@@ -51,11 +51,6 @@ public class LoadWorld {
         final Wall wRIGHT = new Wall(new Position(700, 260), new Dimension(50, 50));
         final Block block = new Block(new Position(200, 0), new Dimension(50, 50));
         final BlockView blockview = new BlockView(block.getPosition());
-        final Tile tile0 = new Tile(new Position(0, 0), new Dimension(50, 50));
-        final Tile tile1 = new Tile(new Position(50, 0), new Dimension(50, 50));
-        final Tile tile2 = new Tile(new Position(100, 0), new Dimension(50, 50));
-        final Tile tile3 = new Tile(new Position(150, 0), new Dimension(50, 50));
-        final Tile tile4 = new Tile(new Position(200, 0), new Dimension(50, 50));
         final Hero hero = new Hero(this.gc);
         final HeroView heroView = new HeroView(hero.getPosition());
         final Monster m = new Monster(new Position(500, 260));
