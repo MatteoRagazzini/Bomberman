@@ -23,7 +23,7 @@ public class SinglePlayerView {
      * @param ki {@link KeyInput}
      */
     public SinglePlayerView(final KeyInput ki) {
-        canvas.setSize(MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
+        canvas.setSize(950, 750);
         frame.getContentPane().add(canvas);
         frame.pack();
         frame.addKeyListener(ki);
