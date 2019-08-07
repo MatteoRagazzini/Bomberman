@@ -39,6 +39,7 @@ public class MainMenuView {
     private final ScreenTool st = new ScreenTool();
     private String titleImagePath;
     private String mainImagePath;
+    private static Insets ins;
 //    private static final String BUTTON_IMAGE_PATH = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
@@ -90,7 +91,7 @@ public class MainMenuView {
         c.weightx = 0.5;
         c.weighty = 1.0;
         //magic number da cambiare in caso di 4k
-        c.insets = new Insets(25, 60, 35, 20); 
+        c.insets = this.ins; 
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         // Create EAST Panel
         eastP = new JPanel(new BorderLayout());
@@ -140,5 +141,12 @@ public class MainMenuView {
      */
     private void saveTitleImagePath() {
         titleImagePath = "/image/" + st.getRis() + "_TitleImage.jpg";
+    }
+    /**
+     * .
+     * @param insets .
+     */
+    public static void setInsets(final Insets insets) {
+        ins = insets;
     }
 }

@@ -7,7 +7,7 @@ import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
 
 public class MalusFreezeView extends AbstractEntityView {
-    private static final String MALUS_FREEZE_PATH = "/sa.png";
+    private static final String MALUS_FREEZE_PATH = "/freeze.png";
     private final SpriteSheet ss = new SpriteSheet(MALUS_FREEZE_PATH);
     private final Image idleImage = ss.getSprite(1, 1, 50);
     /**
