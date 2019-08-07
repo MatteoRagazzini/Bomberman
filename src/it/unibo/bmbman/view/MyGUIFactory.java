@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.SwingConstants;
 import it.unibo.bmbman.view.utilities.GameFont;
@@ -56,8 +57,8 @@ public class MyGUIFactory implements GUIFactory {
     /**
      * {@inheritDoc}
      */
-    public JRadioButtonMenuItem createRadioButton(final String text) {
-        final JRadioButtonMenuItem radioButton = new JRadioButtonMenuItem(text);
+    public JRadioButton createRadioButton(final String text) {
+        final JRadioButton radioButton = new JRadioButton(text);
         checkFontSize();
         font = new GameFont();
         radioButton.setFont(font.getFont());
