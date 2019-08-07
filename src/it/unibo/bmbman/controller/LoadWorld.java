@@ -3,12 +3,14 @@ package it.unibo.bmbman.controller;
 
 import it.unibo.bmbman.model.Block;
 import it.unibo.bmbman.model.BonusVelocity;
+import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.MalusFreeze;
 import it.unibo.bmbman.model.MalusInvert;
 import it.unibo.bmbman.model.MalusSlow;
 import it.unibo.bmbman.model.Monster;
+import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.Tile;
 import it.unibo.bmbman.model.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
@@ -41,6 +43,7 @@ public class LoadWorld {
      * Loads all the entity.
      */
     public void loadEntity() {
+        final Terrain terrain = new Terrain(); 
         final Wall wUP = new Wall(new Position(400, 80), new Dimension(50, 50));
         final Wall wDOWN = new Wall(new Position(400, MyGUIFactory.FRAME_HEIGHT),  new Dimension(50, 50));
         final Wall w1 = new Wall(new Position(10, 100),  new Dimension(50, 50));
@@ -72,11 +75,18 @@ public class LoadWorld {
         // Creo i bonus
         final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
         final BonusVelocityView bonus3view = new BonusVelocityView(bonus3.getPosition(), bonus3.getDimension(), true);
+        for (int i = 0; i < 18; i++) {
+            for (int j = 0; j < 13; j++) {
+            this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
+            }
+        }
+        /*
         this.gc.addEntity(tile0, new TileView(tile0.getPosition()));
         this.gc.addEntity(tile1, new TileView(tile1.getPosition()));
         this.gc.addEntity(tile2, new TileView(tile2.getPosition()));
         this.gc.addEntity(tile3, new TileView(tile3.getPosition()));
         this.gc.addEntity(tile4, new TileView(tile4.getPosition()));
+        */
         this.gc.addEntity(block, blockview);
         this.gc.addEntity(wUP, wvup);
         this.gc.addEntity(wDOWN, wvd);

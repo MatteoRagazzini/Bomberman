@@ -3,7 +3,7 @@ package it.unibo.bmbman.model;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
- * Class used to model the beaviour of a wall.
+ * Class used to model the behavior of a wall.
  */
 public class Wall extends AbstractEntity {
     /**
@@ -33,3 +33,4 @@ public class Wall extends AbstractEntity {
     protected void reachedBorder() {
     }
 }
+

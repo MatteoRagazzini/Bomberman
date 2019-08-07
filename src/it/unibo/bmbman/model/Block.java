@@ -3,7 +3,7 @@ package it.unibo.bmbman.model;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
     /**
-     *Class used to model the beaviour of a block.
+     *Class used to model the behavior of a block.
      *
      */
 public class Block extends AbstractEntity {
