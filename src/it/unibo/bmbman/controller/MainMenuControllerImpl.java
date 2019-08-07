@@ -45,7 +45,7 @@ public class MainMenuControllerImpl implements MainMenuController {
             ov.getFrame().setVisible(true);
             break;
         case HELP:
-            final HelpView hv = new HelpView();
+            final HelpView hv = new HelpView(mainMenuView);
             hv.getFrame().setVisible(true);
             break;
         default:

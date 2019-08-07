@@ -16,13 +16,16 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
 public class HelpView {
     private final GUIFactory gui;
     private final JFrame frame;
+    private final MainMenuView mainView;
     private final ImageLoader il;
     private String helpImagePath;
     private final ScreenTool st = new ScreenTool();
     /**
      * Generate a base frame.
+     * @param mainMenuView the frame of the main menu.
      */
-    public HelpView() {
+    public HelpView(final MainMenuView mainMenuView) {
+        this.mainView = mainMenuView;
         this.il = new ImageLoader();
         this.gui = new MyGUIFactory();
         this.frame = this.gui.createFrame();
@@ -43,7 +46,7 @@ public class HelpView {
         final JButton b = gui.createReturnButton(this.frame);
         b.addActionListener(e -> {
             this.frame.setVisible(false);
-            new MainMenuView().loadMainMenuView();
+            this.mainView.getFrame().setVisible(true);
         });
     }
     /**
@@ -58,6 +61,5 @@ public class HelpView {
      */
     private void saveHelpImagePath() {
         helpImagePath = "/image/" + st.getRis() + "_HelpImage.png";
-        System.out.println(" " + helpImagePath);
     }
 }

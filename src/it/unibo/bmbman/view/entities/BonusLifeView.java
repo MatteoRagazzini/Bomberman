@@ -5,11 +5,9 @@ import java.awt.Image;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
-/**
- * Create the Bonus Velocity power-up view.
- */
-public class BonusVelocityView extends AbstractEntityView {
-    private static final String BONUS_VEL_PATH = "/velocity.png";
+
+public class BonusLifeView extends AbstractEntityView {
+    private static final String BONUS_VEL_PATH = "/prova.png";
     private final SpriteSheet ss = new SpriteSheet(BONUS_VEL_PATH);
     private final Image idleImage = ss.getSprite(1, 1, 50);
     /**
@@ -18,7 +16,7 @@ public class BonusVelocityView extends AbstractEntityView {
      * @param dimension the dimension of the power-up
      * @param visible if the power-up is visible or not
      */
-    public BonusVelocityView(final Position position, final Dimension dimension, final boolean visible) {
+    public BonusLifeView(final Position position, final Dimension dimension, final boolean visible) {
         super(position, dimension, visible);
     }
     /**
