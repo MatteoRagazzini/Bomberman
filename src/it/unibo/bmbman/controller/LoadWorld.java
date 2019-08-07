@@ -94,6 +94,7 @@ public class LoadWorld {
         this.gc.addEntity(malus2, malus2view);
         this.gc.addEntity(malus3, malus3view);
         this.gc.addEntity(bonus3, bonus3view);
+        this.gc.addEntity(new Monster(new Position(150, 150)), new MonsterView(new Position(150, 150), new Dimension(48, 48)));
     }
 
 }

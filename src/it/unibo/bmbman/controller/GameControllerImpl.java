@@ -117,6 +117,9 @@ public class GameControllerImpl implements GameController {
         .forEach(ec -> ec.update(g));
         this.spv.render();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void gameOver() {
         this.spv.getFrame().setVisible(false);
