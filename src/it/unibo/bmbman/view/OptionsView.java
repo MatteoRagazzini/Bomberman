@@ -21,6 +21,7 @@ import javax.swing.JRadioButton;
 import it.unibo.bmbman.controller.OptionsList;
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ScreenTool;
 
 
 /**
@@ -31,7 +32,9 @@ public class OptionsView {
     private final Map<JRadioButton, OptionsList> jbMap = new HashMap<>();
     private final OptionsMenuController optionsMenuCtrl;
     private final MainMenuView mainView;
-    private static final int BORDERSPACE = 50;
+    private final ScreenTool st = new ScreenTool();
+    private static Insets insets;
+    private String optionsImagePath;
     private JPanel centerP; 
     private JPanel eastP;
     private JPanel northP;
@@ -59,6 +62,7 @@ public class OptionsView {
     private void loadOptionsView() {
         f.setTitle("BOMBERMAN - Options Menu");
         f.setBackground(Color.black);
+        saveOptionsImagePath();
         loadPanels();
         loadLabels();
         loadButtons();
@@ -71,7 +75,7 @@ public class OptionsView {
         // for (int i = 0; i < OptionsList.values().length; i++) {
         final JLabel musicLabel = gui.createLabel("Music");
         final JLabel titleLabel = gui.createLabel("Options Menù");
-        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage("/Options.png")));
+        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
         northP.add(titleLabel, BorderLayout.CENTER);
         eastP.add(iconLabel, BorderLayout.CENTER);
         c.gridx = 0;
@@ -86,7 +90,7 @@ public class OptionsView {
     private void loadPanels() {
         centerP = new JPanel(new GridBagLayout());
         eastP = new JPanel(new BorderLayout());
-        northP = new JPanel(new BorderLayout());
+        northP = new JPanel();
         centerP.setBackground(Color.black);
         eastP.setBackground(Color.BLACK);
         northP.setBackground(Color.BLACK);
@@ -94,7 +98,7 @@ public class OptionsView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
         c.weighty = 3.0;
-        c.insets = new Insets(0, BORDERSPACE, 0, BORDERSPACE);
+        c.insets = this.insets;
         f.add(centerP, BorderLayout.CENTER);
         f.add(eastP, BorderLayout.EAST);
         f.add(northP, BorderLayout.NORTH);
@@ -119,6 +123,7 @@ public class OptionsView {
             if (b.getText().equals("ON")) {
                 b.setSelected(true);
             }
+            b.setBorderPainted(true);
             c.weightx = 0; //mi serve per spostare i tasti on e off in fondo
             c.gridx = i + 1;
             c.gridy = 0; 
@@ -133,5 +138,16 @@ public class OptionsView {
      */
     public JFrame getFrame() {
         return this.f;
+    }
+/**
+ * 
+ * @param insets
+ */
+    public static void setInsets(final Insets insets) {
+        OptionsView.insets = insets;
+    }
+    
+    private void saveOptionsImagePath() {
+        optionsImagePath = "/image/" + st.getRis() + "_OptionsImage.png";
     }
 }

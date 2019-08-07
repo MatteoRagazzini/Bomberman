@@ -3,6 +3,7 @@ package it.unibo.bmbman.view;
 import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Color;
+import java.awt.Insets;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
@@ -33,12 +34,15 @@ public class MyGUIFactory implements GUIFactory {
     public static final int FRAME_HEIGHT = (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT);
     private static final int INITIAL_POSITION = 100;
     private static final Float WQHD_SIZE = 64f;
+    private static final Insets WQHD_INSETS = new Insets(50, 120, 70, 40);
+    private static final Insets QHD_INSETS = new Insets(33, 80, 47, 27);
+    private static final Insets FHD_INSETS = new Insets(25, 60, 35, 20);
+    private static final Insets HD_INSETS = new Insets(18, 43, 25, 14);
     private static final Float QHD_SIZE = 36f;
     private static final Float FHD_SIZE = 32f;
     private static final Float HD_SIZE = 20f;
     private GameFont font;
     private final ScreenTool st = new ScreenTool();
-    
 
     @Override
     /**
@@ -76,6 +80,7 @@ public class MyGUIFactory implements GUIFactory {
      * Create a general frame.
      */
     public JFrame createFrame() {
+        checkFontSize();
         final JFrame frame = new JFrame();
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setResizable(false);
@@ -104,15 +109,23 @@ public class MyGUIFactory implements GUIFactory {
         switch (st.getRis()) {
         case "WQHD":
             GameFont.setFontSize(WQHD_SIZE);
+            MainMenuView.setInsets(WQHD_INSETS);
+            OptionsView.setInsets(WQHD_INSETS);
             break;
         case "QHD":
             GameFont.setFontSize(QHD_SIZE);
+            MainMenuView.setInsets(QHD_INSETS);
+            OptionsView.setInsets(QHD_INSETS);
             break;
         case "FHD":
             GameFont.setFontSize(FHD_SIZE);
+            MainMenuView.setInsets(FHD_INSETS);
+            OptionsView.setInsets(FHD_INSETS);
             break;
         case "HD":
             GameFont.setFontSize(HD_SIZE);
+            MainMenuView.setInsets(HD_INSETS);
+            OptionsView.setInsets(HD_INSETS);
             break;
         default:
             break;
