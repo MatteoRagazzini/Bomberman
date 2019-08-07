@@ -17,7 +17,7 @@ import it.unibo.bmbman.view.utilities.AnimationImpl;
 public class MonsterView extends AbstractEntityView {
     private static final String PATH_MONSTER_IMAGES = "/Monster/monster";
     private static final int DIMENSION = 48;
-    private static final int FRAME_PER_ANIMATION = 3;
+    private static final int FRAME_PER_ANIMATION = 6;
     private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
 
     /**
