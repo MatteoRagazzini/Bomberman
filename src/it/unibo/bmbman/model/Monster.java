@@ -36,16 +36,16 @@ public class Monster extends AbstractLivingEntity {
         final int dir = rand.nextInt(4);
         Direction d = this.getDirection();
         switch (dir) {
-        case 0 : d = Direction.DOWN;
-        break;
-        case 1 : d = Direction.UP;
-        break;
-        case 2 : d = Direction.LEFT;
-        break;
-        case 3 : d = Direction.RIGHT;
-        break;
-        default :
+            case 0 : d = Direction.DOWN;
             break;
+            case 1 : d = Direction.UP;
+            break;
+            case 2 : d = Direction.LEFT;
+            break;
+            case 3 : d = Direction.RIGHT;
+            break;
+            default :
+                break;
         }
         return d;
     } 
@@ -55,9 +55,11 @@ public class Monster extends AbstractLivingEntity {
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
         System.out.println("Mostro colliso con " + receiver.getType());
-        this.setPosition(newPosition);
-        Direction d = randomDirection();
-        setDirection(d); 
+        if (receiver.getType() != EntityType.POWER_UP) {
+            this.setPosition(newPosition);
+            Direction d = randomDirection();
+            setDirection(d); 
+        }
     }
     /**
      * {@inheritDoc}
