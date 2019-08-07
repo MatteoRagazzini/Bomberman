@@ -6,23 +6,17 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButtonMenuItem;
-import javax.swing.JToggleButton;
 
-import com.sun.org.apache.bcel.internal.generic.LoadInstruction;
-
-import it.unibo.bmbman.controller.MainMenuOption;
 import it.unibo.bmbman.controller.OptionsList;
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.controller.OptionsMenuController;
+
 
 /**
  * View of the options menu.
@@ -35,14 +29,20 @@ public class OptionsView {
     private GridBagConstraints c;
     private JFrame f;
     private final MyGUIFactory gui;
+    private final MainMenuView mainView;
+    private final OptionsMenuController optController;
 
     /**
-     * Create options menu view.
+     * Creat option menu view.
+     * @param mv {@link MainMenuView}
+     * @param opt {@link OptionsMenuController}
      */
-    public OptionsView() {
+    public OptionsView(final MainMenuView mv, final OptionsMenuController opt) {
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         loadOptionsView();
+        this.mainView = mv;
+        this.optController = opt;
     }
 
     /**
@@ -89,7 +89,7 @@ public class OptionsView {
         final JButton returnB = gui.createReturnButton(this.f);
         returnB.addActionListener(e -> {
             this.f.setVisible(false);
-            new MainMenuView().loadMainMenuView();
+            this.mainView.getFrame().setVisible(true);
         });
         final JRadioButtonMenuItem musicOn = gui.createRadioButton("ON");
         musicOn.setSelected(true);

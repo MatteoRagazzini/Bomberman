@@ -17,6 +17,8 @@ import javax.swing.JPanel;
 import it.unibo.bmbman.controller.MainMenuController;
 import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuOption;
+import it.unibo.bmbman.controller.OptionMenuControllerImpl;
+import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
@@ -24,7 +26,8 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
  */
 public class MainMenuView {
     private final Map<JButton, MainMenuOption> jbMap = new HashMap<>();
-    private final MainMenuController mainMenuController = new MainMenuControllerImpl();
+    private final MainMenuController mainMenuController;
+    private final OptionsMenuController optMenuController;
     private JPanel northP;
     private JPanel eastP;
     private JPanel centerP;
@@ -46,6 +49,8 @@ public class MainMenuView {
      */
     public MainMenuView() {
         this.gui = new MyGUIFactory();
+        this.optMenuController = new OptionMenuControllerImpl();
+        this.mainMenuController = new MainMenuControllerImpl(this, optMenuController);
         il = new ImageLoader();
         saveMainImagePath();
         saveTitleImagePath();
@@ -64,6 +69,13 @@ public class MainMenuView {
 //        System.out.println("CENTER " + this.centerP.getSize());
 //        System.out.println("EAST " + this.eastP.getSize());
 //        System.out.println("NORTH " + this.northP.getSize());
+    }
+    /**
+     * Used to get MainMenu frame.
+     * @return {@link JFrame}
+     */
+    public JFrame getFrame() {
+        return this.f;
     }
     /**
      * Create two panels and add them to the frame.

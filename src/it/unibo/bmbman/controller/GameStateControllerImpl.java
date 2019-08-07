@@ -1,9 +1,10 @@
 package it.unibo.bmbman.controller;
 
+
+
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.view.GameOverView;
-import it.unibo.bmbman.view.GameTimer;
 /**
  * An implementation of {@link GameStateController}.
  *
@@ -11,10 +12,15 @@ import it.unibo.bmbman.view.GameTimer;
 
 public class GameStateControllerImpl implements GameStateController {
 
-    private final GameEngine gameEngine = new GameEngineImp(this);
+    private final GameEngine gameEngine;
     private boolean inPause;
-
-
+    /**
+     * Contruct a {@link GameStateControllerImpl}.
+     * @param sc {@link SoundsController}
+     */
+    public GameStateControllerImpl(final SoundsController sc) {
+        this.gameEngine = new GameEngineImp(this, sc);
+    }
     /**
      * {@inheritDoc}
      */
@@ -26,7 +32,9 @@ public class GameStateControllerImpl implements GameStateController {
     @Override
     public void goToPause() {
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void goToGameOver() {
         final GameOverView over = new GameOverView();

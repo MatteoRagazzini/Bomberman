@@ -1,11 +1,18 @@
 package it.unibo.bmbman.model.engine;
 
+import java.awt.image.BufferedImage;
+
+import com.sun.xml.internal.ws.assembler.jaxws.MustUnderstandTubeFactory;
+
 import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.GameControllerImpl;
 import it.unibo.bmbman.controller.GameStateController;
 import it.unibo.bmbman.controller.LoadWorld;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.view.GameTimer;
+import it.unibo.bmbman.view.MyGUIFactory;
+import it.unibo.bmbman.view.OptionsView;
+import it.unibo.bmbman.view.utilities.ImageLoader;
 
 /**
  * 
@@ -29,16 +36,16 @@ public class GameEngineImp extends Thread implements GameEngine {
      * set variables.
      * @param gs {@link GameStateController} of game
      */
-    public GameEngineImp(final GameStateController gs) {
+    public GameEngineImp(final GameStateController gs, final SoundsController sc) {
         super();
         this.update = true;
         this.isRunning = false;
         this.gameState = gs;
         this.game = new GameControllerImpl(gameState);
         this.gameTimer = new GameTimer();
-        this.soundsController = new SoundsController();
-        final LoadWorld load = new LoadWorld(game);
-        load.loadEntity();
+        this.soundsController = sc;
+        final LoadWorld lw = new LoadWorld(game);
+        lw.loadEntity();
         /*this.modality=1; ci andrà quella presa in input*/
         /*this.handler=handler;*/
         System.out.println("costruisco game Engine");
@@ -50,11 +57,16 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void startEngine() {
         if (!this.isRunning) {
             this.isRunning = true;
+            /*
+             * qui creo un nuovo campo da gioco e avvio un timer
+             */
             this.gameTimer.start();
             this.game.startGame();
-            if (!soundsController.getMusicSound().isPlaying()) {
+            System.out.println(soundsController.getSoundState());
+            if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
                 soundsController.getMusicSound().play();
             }
+            /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
         }
@@ -95,15 +107,25 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning && this.game.isGameOver()) {
+        while (isRunning /*&& this.game.isGameOver()*/) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
             if (this.update) {
+                if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
+                    soundsController.getMusicSound().play();
+                }
+                /*viene chiamato anche il metodo che legge in input*/
+                /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
+                 * chiamerà lui per questo qua non metto render*/
+                /*togliere anche questa stampa*/
                 this.game.update();
+                //                System.out.println("update" + now);
+                /*togliere*/
             }
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
+            //            System.out.println("sveglio");
         }
         this.stopEngine();
     }

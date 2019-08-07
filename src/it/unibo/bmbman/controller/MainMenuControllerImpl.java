@@ -1,10 +1,7 @@
 package it.unibo.bmbman.controller;
-
-import it.unibo.bmbman.model.engine.GameEngine;
-import it.unibo.bmbman.model.engine.GameEngineImp;
-import it.unibo.bmbman.view.GameTimer;
 import it.unibo.bmbman.view.HelpView;
 import it.unibo.bmbman.view.LeaderboardView;
+import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.OptionsView;
 
 /**
@@ -12,8 +9,21 @@ import it.unibo.bmbman.view.OptionsView;
  *
  */
 public class MainMenuControllerImpl implements MainMenuController {
-    
-    private final GameStateController gameState = new GameStateControllerImpl();
+
+    private final GameStateController gameState;
+    private final OptionsMenuController opt;
+    private final MainMenuView mainMenuView;
+    /**
+     * Construct a {@link MainMenuController}.
+     * @param mainMenuView the view of main manu
+     * @param opt {@link OptionMenuController}
+     */
+    public MainMenuControllerImpl(final MainMenuView mainMenuView, final OptionsMenuController opt) {
+        super();
+        this.mainMenuView = mainMenuView;
+        this.opt = opt;
+        this.gameState = new GameStateControllerImpl(this.opt.getSoundController());
+    }
     /**
      * {@inheritDoc}
      */
@@ -31,7 +41,7 @@ public class MainMenuControllerImpl implements MainMenuController {
             lv.getFrame().setVisible(true);
             break;
         case SETTINGS:
-            final OptionsView ov = new OptionsView();
+            final OptionsView ov = new OptionsView(mainMenuView, opt);
             ov.getFrame().setVisible(true);
             break;
         case HELP:
@@ -42,4 +52,6 @@ public class MainMenuControllerImpl implements MainMenuController {
             break;
         }
     }
+
 }
+
