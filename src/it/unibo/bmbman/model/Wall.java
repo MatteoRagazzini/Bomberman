@@ -14,23 +14,28 @@ public class Wall extends AbstractEntity {
     public Wall(final Position position, final Dimension dimension) {
         super(position, EntityType.WALL, dimension);
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update() {
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void reachedBorder() {
+    }
+    @Override
+    public boolean remove() {
+        // TODO Auto-generated method stub
+        return false;
     }
 }
 

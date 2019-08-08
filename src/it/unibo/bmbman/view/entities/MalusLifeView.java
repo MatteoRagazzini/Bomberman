@@ -9,7 +9,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  * Create the MalusLife power-up View.
  */
 public class MalusLifeView extends AbstractEntityView {
-    private static final String MALUS_LIFE_PATH = "/mlife.png";
+    private static final String MALUS_LIFE_PATH = "/life1.png";
     private final SpriteSheet ss = new SpriteSheet(MALUS_LIFE_PATH);
     private final Image idleImage = ss.getSprite(1, 1, 50);
     /**

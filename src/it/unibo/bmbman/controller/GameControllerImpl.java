@@ -107,6 +107,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void update() {
+        removeEntities();
         final Graphics g = this.spv.getGraphics();
         g.setColor(Color.BLACK);
         g.fillRect(0, 0, MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
@@ -127,9 +128,11 @@ public class GameControllerImpl implements GameController {
     /**
      * {@inheritDoc}}
      */
-    public void removeEntity(final Entity entity) {
-        this.worldEntity.remove(entity);
-        this.setController.stream().filter(e -> e.getEntity().equals(entity))
-                                                   .forEach(e -> e.getEntityView().setVisible(false));
+    @Override
+    public void removeEntities() {
+        final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
+        this.worldEntity.removeAll(entityToRemoved);
+        this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
     }
+   
 }

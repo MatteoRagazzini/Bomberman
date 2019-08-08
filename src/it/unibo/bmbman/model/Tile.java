@@ -7,31 +7,36 @@ import it.unibo.bmbman.model.utilities.Position;
  *
  */
 public class Tile extends AbstractEntity {
-/**
- * crate a tile.
- * @param position position of the tile
- * @param dimension dimension of the tile
- */
+    /**
+     * crate a tile.
+     * @param position position of the tile
+     * @param dimension dimension of the tile
+     */
     public Tile(final Position position, final Dimension dimension) {
         super(position, EntityType.TILE, dimension);
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     protected void reachedBorder() {
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update() {
+    }
+    @Override
+    public boolean remove() {
+        // TODO Auto-generated method stub
+        return false;
     }
 
 }

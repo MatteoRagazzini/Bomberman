@@ -19,9 +19,10 @@ public interface Entity {
      */
     void setPosition(Position position);
     /**
-     * 
+     * Used to know if the entity must be removed.
+     * @return boolean value
      */
-    void remove();
+    boolean remove();
     /**
      * 
      * @return entity's dimension

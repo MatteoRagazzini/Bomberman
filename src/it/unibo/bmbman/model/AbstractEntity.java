@@ -48,10 +48,10 @@ public abstract class AbstractEntity implements Entity {
     }
     /**
      * {@inheritDoc}
+     * @return 
      */
     @Override
-    public void remove() {
-    }
+    abstract public boolean remove();
     /**
      * {@inheritDoc}
      */
