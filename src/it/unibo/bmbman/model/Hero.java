@@ -30,8 +30,6 @@ public class Hero extends AbstractLivingEntity {
         System.out.println("Eroe colliso con" + receiver.getType());
         if (receiver.getType() == EntityType.MONSTER) {
             this.removeLife();
-        } else if (receiver.getType() == EntityType.POWER_UP) {
-            gc.removeEntity(receiver);
         }
     }
     /**

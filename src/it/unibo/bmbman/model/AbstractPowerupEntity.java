@@ -53,4 +53,8 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             }
         }
     }
+    @Override
+    public boolean remove() {
+        return this.startTime > 0;
+    }
 }

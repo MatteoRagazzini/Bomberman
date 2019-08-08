@@ -2,6 +2,7 @@ package it.unibo.bmbman.controller;
 
 
 import it.unibo.bmbman.model.Block;
+import it.unibo.bmbman.model.BonusLife;
 import it.unibo.bmbman.model.BonusVelocity;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityType;
@@ -17,6 +18,7 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.entities.BlockView;
+import it.unibo.bmbman.view.entities.BonusLifeView;
 import it.unibo.bmbman.view.entities.BonusVelocityView;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MalusFreezeView;
@@ -70,6 +72,8 @@ public class LoadWorld {
         // Creo i bonus
         final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
         final BonusVelocityView bonus3view = new BonusVelocityView(bonus3.getPosition(), bonus3.getDimension(), true);
+        final BonusLife bLife = new BonusLife(new Position(550, 250), new Dimension(50, 50));
+        final BonusLifeView bLifeView = new BonusLifeView(bLife.getPosition(), bLife.getDimension(), true);
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 15; j++) {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
@@ -95,6 +99,7 @@ public class LoadWorld {
         this.gc.addEntity(malus3, malus3view);
         this.gc.addEntity(bonus3, bonus3view);
         this.gc.addEntity(new Monster(new Position(150, 150)), new MonsterView(new Position(150, 150), new Dimension(48, 48)));
+        this.gc.addEntity(bLife, bLifeView);
     }
 
 }

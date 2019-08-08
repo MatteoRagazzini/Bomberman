@@ -9,7 +9,7 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  * Create the Bonus life power-up view.
  */
 public class BonusLifeView extends AbstractEntityView {
-    private static final String BONUS_VEL_PATH = "/prova.png";
+    private static final String BONUS_VEL_PATH = "/life1.png";
     private final SpriteSheet ss = new SpriteSheet(BONUS_VEL_PATH);
     private final Image idleImage = ss.getSprite(1, 1, 50);
     /**

@@ -61,9 +61,8 @@ public interface GameController {
      */
     void collisionDetect();
     /**
-     * Remove an entity from the world.
-     * @param entity the entity to be removed
+     * Remove entities from the world.
      */
-    void removeEntity(Entity entity);
+    void removeEntities();
 }
 
