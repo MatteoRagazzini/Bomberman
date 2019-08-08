@@ -38,7 +38,7 @@ public class BackgroundPanel extends JPanel
 	 */
 	public BackgroundPanel(Image image)
 	{
-		this(image, SCALED);
+		this(image, ACTUAL);
 	}
 
 	/*

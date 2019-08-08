@@ -154,8 +154,7 @@ public class MyGUIFactory implements GUIFactory {
         font = new GameFont();
         label.setFont(font.getFont());
         label.setBackground(Color.BLACK);
-        //    label.setBorderPainted(false);
-        //    label.setFocusPainted(false);
+        label.setOpaque(true);
         label.setForeground(Color.WHITE);
         return label;
     }

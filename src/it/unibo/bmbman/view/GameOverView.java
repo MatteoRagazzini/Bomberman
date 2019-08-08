@@ -5,10 +5,14 @@ import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -24,8 +28,10 @@ import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
+import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
+import javafx.scene.layout.Background;
 /**
  * Frame for game over.
  */
@@ -34,17 +40,16 @@ public class GameOverView {
     private MyGUIFactory gui;
     private JFrame f;
     private JPanel centerP; 
-    private JPanel eastP;
+    private JPanel backgroundP;
     private JPanel northP;
     private JButton enterName;
     private JTextField nameTextField;
     private final String score;
     private String gameOverImagePath;
+    private Image image;
     private GridBagConstraints c;
     private static Insets insets;
-    private final ImageLoader il = new ImageLoader();
     private final ScreenTool st = new ScreenTool();
-    //    private final JTextField t;
     //    private static final String MESSAGE = "Your name is already present. "
     //                           + "If you are a new player click OK and change name, otherwise close";
     //    private final JButton jbOk = new JButton("OK");
@@ -83,9 +88,7 @@ public class GameOverView {
         final JLabel playerTimeLabel = gui.createLabel(score);
         final JLabel scoreLabel = gui.createLabel("Score");
         final JLabel playerScoreLabel = gui.createLabel("100");
-        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(gameOverImagePath)));
         northP.add(titleLabel, BorderLayout.CENTER);
-        eastP.add(iconLabel, BorderLayout.NORTH);
         c.gridx = 0;
         c.gridy = 0;
         centerP.add(timeLabel, c);
@@ -103,19 +106,19 @@ public class GameOverView {
      * Used to load Panels.
      */
     private void loadPanels() {
+        backgroundP = new BackgroundPanel(LoadImage(gameOverImagePath));
+        backgroundP.setBackground(Color.BLACK);
         centerP = new JPanel(new GridBagLayout());
-        eastP = new JPanel(new BorderLayout());
+        centerP.setOpaque(false);
         northP = new JPanel();
-        centerP.setBackground(Color.black);
-        eastP.setBackground(Color.BLACK);
         northP.setBackground(Color.BLACK);
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.5;
-        c.weighty = 3.0;
+        c.weightx = 0.1;
+        c.weighty = 0;
         c.insets = this.insets;
-        f.add(centerP, BorderLayout.CENTER);
-        f.add(eastP, BorderLayout.EAST);
+        backgroundP.add(centerP);
+        f.add(backgroundP, BorderLayout.CENTER);
         f.add(northP, BorderLayout.NORTH);
     }
     /**
@@ -128,6 +131,7 @@ public class GameOverView {
             new MainMenuView().loadMainMenuView();
         });
         enterName = gui.createButton("Save");
+        enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
             PlayerScore ps = new PlayerScore(nameTextField.getText());
             ps.setGameTime(score);
@@ -136,7 +140,10 @@ public class GameOverView {
         });
         c.gridx = 1;
         c.gridy = 2;
+        //enterName.setOpaque(false);
+        //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
+
     }
     /**
      * Used to load JTextField. 
@@ -166,6 +173,15 @@ public class GameOverView {
      */
     public static void setInsets(final Insets insets) {
         GameOverView.insets = insets;
+    }
+
+    private Image LoadImage(String text) {
+        try {
+            image = ImageIO.read(getClass().getResource(text));
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+        return image;
     }
 
     //  this.t = new JTextField(20);
