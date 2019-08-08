@@ -15,7 +15,7 @@ import it.unibo.bmbman.model.utilities.SoundImpl;
 public class SoundsController {
 
     private Sound music;
-    private boolean SoundOn = true;
+    private boolean soundOn = true;
 
     /**
      * Creates a {@code SoundsController}.
@@ -43,12 +43,12 @@ public class SoundsController {
     }
     
     public void setSoundOn() {
-        this.SoundOn = true;
+        this.soundOn = true;
     }
     public void setSoundOff() {
-        this.SoundOn = false;
+        this.soundOn = false;
     }
     public boolean getSoundState() {
-        return this.SoundOn;
+        return this.soundOn;
     }
 }

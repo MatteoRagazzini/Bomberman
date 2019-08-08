@@ -91,7 +91,8 @@ public class GameEngineImp extends Thread implements GameEngine {
      * @param inPause boolean value
      */
     public void setPause(final boolean inPause) {
-        this.isRunning = !inPause;
+        this.update = !inPause;
+        this.soundsController.getMusicSound().stop();
     }
     /**
      * {@inheritDoc}.

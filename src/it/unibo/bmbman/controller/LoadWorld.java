@@ -61,11 +61,11 @@ public class LoadWorld {
 //        final WallView wvd = new WallView(wDOWN.getPosition());
 //        final WallView wvl = new WallView(wLEFT.getPosition());
         // Creo i malus
-        final MalusFreeze malus1 = new MalusFreeze(new Position(400, 400), new Dimension(50, 50));
+        final MalusFreeze malus1 = new MalusFreeze(new Position(250, 150), new Dimension(50, 50));
         final MalusFreezeView malus1view = new MalusFreezeView(malus1.getPosition(), malus1.getDimension(), true);
-        final MalusInvert malus2 = new MalusInvert(new Position(450, 400), new Dimension(50, 50));
+        final MalusInvert malus2 = new MalusInvert(new Position(450, 250), new Dimension(50, 50));
         final MalusInvertView malus2view = new MalusInvertView(malus2.getPosition(), malus2.getDimension(), true);
-        final MalusSlow malus3 = new MalusSlow(new Position(500, 400), new Dimension(50, 50));
+        final MalusSlow malus3 = new MalusSlow(new Position(650, 400), new Dimension(50, 50));
         final MalusSlowView malus3view = new MalusSlowView(malus3.getPosition(), malus3.getDimension(), true);
         // Creo i bonus
         final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));

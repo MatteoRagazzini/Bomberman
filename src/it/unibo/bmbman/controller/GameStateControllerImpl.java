@@ -31,6 +31,8 @@ public class GameStateControllerImpl implements GameStateController {
 
     @Override
     public void goToPause() {
+        inPause = !inPause;
+        gameEngine.setPause(inPause);
     }
     /**
      * {@inheritDoc}
