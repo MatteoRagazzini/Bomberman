@@ -10,6 +10,8 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
+
+import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.model.utilities.ScoreTable;
 import it.unibo.bmbman.view.utilities.GameFont;
 /**
@@ -50,32 +52,22 @@ public class LeaderboardView extends JTable {
         final JLabel label = new JLabel("LEADERBOARD");
         label.setFont(font.getFont());
         this.northP.add(label);
-//        final TableModel tm = new ScoreTable();
-//        final JTable t = new JTable(tm);
-//        final TableRowSorter<TableModel> sorter = new TableRowSorter<>(t.getModel());
-//        sorter.setComparator(2, new Comparator<Integer>() {
-//              @Override
-//              public int compare(Integer o1, Integer o2) {
-//                  return o1.compareTo(o2);
-//              }
-//      });
-//        sorter.sort();
-//        sorter.setModel(t.getModel());
-//        t.setRowSorter(sorter);
-//        SouthP.add(t);
-//        t.getTableHeader().setFont(font.getFont());
-//        t.getTableHeader().setBackground(Color.ORANGE);
-//        t.getTableHeader().setReorderingAllowed(false);
-//        t.getTableHeader().setResizingAllowed(false);
-//        GameFont.setFontSize(SIZE);
-//        t.setFont(font.getFont());
-//        t.setRowHeight(ROW_HEIGHT);
-//        t.setBackground(Color.YELLOW);
-//        final JScrollPane scrollPane = new JScrollPane(t);
-//        SouthP.add(scrollPane);
-//        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLUE, BORDER_THICKNESS, true));
-//        t.setPreferredScrollableViewportSize(new Dimension(600, 450));
-//        t.setFillsViewportHeight(true);
+        final TableModel tm = new ScoreTable(ScoreHandler.getData());
+        final JTable t = new JTable(tm);
+        southP.add(t);
+        t.getTableHeader().setFont(font.getFont());
+        t.getTableHeader().setBackground(Color.ORANGE);
+        t.getTableHeader().setReorderingAllowed(false);
+        t.getTableHeader().setResizingAllowed(false);
+        GameFont.setFontSize(SIZE);
+        t.setFont(font.getFont());
+        t.setRowHeight(ROW_HEIGHT);
+        t.setBackground(Color.YELLOW);
+        final JScrollPane scrollPane = new JScrollPane(t);
+        southP.add(scrollPane);
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLUE, BORDER_THICKNESS, true));
+        t.setPreferredScrollableViewportSize(new Dimension(600, 450));
+        t.setFillsViewportHeight(true);
         this.frame.setVisible(true);
         final JButton b = gf.createReturnButton(this.frame);
         b.addActionListener(e -> {

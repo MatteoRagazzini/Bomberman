@@ -10,7 +10,7 @@ import it.unibo.bmbman.view.GameTimer;
 public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    private GameTimer gameTime;
+    private String gameTime;
     private int score = 0;
 /**
  * 
@@ -25,20 +25,20 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
  * @return name
  */
     public String getName() {
-        return name;
+        return this.name;
     }
 /**
  * 
  * @return gameTime
  */
     public String getGameTime() {
-        return gameTime.toString();
+        return this.gameTime;
     }
 /**
  * 
  * @param gameTime 
  */
-    public void setGameTime(final GameTimer gameTime) {
+    public void setGameTime(final String gameTime) {
         this.gameTime = gameTime;
     }
 /**
@@ -46,7 +46,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
  * @return score
  */
     public int getScore() {
-        return score;
+        return this.score;
     }
 /**
  * 
@@ -59,7 +59,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     public int compareTo(final PlayerScore ps) {
         return (ps.getScore() != this.getScore())
               ? ps.getScore() - this.getScore()
-              : this.gameTime.getTotSeconds() - ps.gameTime.getTotSeconds();
+              : GameTimer.getTotSeconds() - GameTimer.getTotSeconds();
     }
 
     @Override

@@ -8,43 +8,39 @@ import javax.swing.Timer;
  */
 public class GameTimer extends Timer {
     private static final long serialVersionUID = 1L;
-    private static final int SECONDS_IN_MINUTE = 60;
     private static final int DELAY = 1000;
-    private static int seconds = 0;
-    private static int minutes = 0;
+    private static final int SECONDS_IN_MINUTE = 60;
+    private static int seconds;
+    private static int minutes;
+
     /**
      * Create GameTimer.
+     * @param label2 
      */
-    public GameTimer(/*JLabel label*/) {
+    public GameTimer(/*JLabel label2*/) {
         super(DELAY, a -> {
             seconds++;
-            if (seconds == SECONDS_IN_MINUTE) {
+            if(seconds == SECONDS_IN_MINUTE) {
                 minutes++;
                 seconds = 0;
             }
-            //label.setText(String.format("%02d:%02d", minutes, seconds));
+            //label2.setText(String.format("%02d:%02d", minutes, seconds));
             System.out.println(String.format("%02d:%02d", minutes, seconds));
         }); 
     }
     /**
      * 
-     * @return seconds
+     * @return totSec
      */
-    public static int getSeconds() {
-        return seconds;
-    }
-    /**
-     * 
-     * @return minutes
-     */
-    public static int getMinutes() {
-        return minutes;
-    }
-    /**
-     * 
-     * @return gameTime in seconds
-     */
-    public int getTotSeconds() {
+    public static int getTotSeconds() {
         return seconds + (minutes * SECONDS_IN_MINUTE);
+    } 
+    /**
+     * 
+     * @return string
+     */
+    public static String getString() {
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }
+
