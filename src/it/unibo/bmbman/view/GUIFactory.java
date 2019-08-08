@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
+import javax.swing.JTextField;
 
 /**
  * interface for abstract factory pattern.
@@ -41,6 +42,11 @@ public interface GUIFactory {
      * @return a new label
      */
     JLabel createLabel(String text);
+    /**
+     * Method to generate a TextField.
+     * @return a new JTextField
+     */
+    JTextField createTextField();
     /**
      * Method to generate a black Canvas.
      * @return {@link JFrame}

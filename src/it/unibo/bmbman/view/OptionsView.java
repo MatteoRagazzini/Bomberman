@@ -68,21 +68,6 @@ public class OptionsView {
         loadButtons();
     }
 
-    /**
-     * Used to loadLabels.
-     */
-    private void loadLabels() {
-        // for (int i = 0; i < OptionsList.values().length; i++) {
-        final JLabel musicLabel = gui.createLabel("Music");
-        final JLabel titleLabel = gui.createLabel("Options Menù");
-        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
-        northP.add(titleLabel, BorderLayout.CENTER);
-        eastP.add(iconLabel, BorderLayout.CENTER);
-        c.gridx = 0;
-        c.gridy = 0;
-        centerP.add(musicLabel, c);
-        // }
-    }
 
     /**
      * Used to load panels.
@@ -102,6 +87,22 @@ public class OptionsView {
         f.add(centerP, BorderLayout.CENTER);
         f.add(eastP, BorderLayout.EAST);
         f.add(northP, BorderLayout.NORTH);
+    }
+
+    /**
+     * Used to loadLabels.
+     */
+    private void loadLabels() {
+        // for (int i = 0; i < OptionsList.values().length; i++) {
+        final JLabel musicLabel = gui.createLabel("Music");
+        final JLabel titleLabel = gui.createLabel("Options Menù");
+        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
+        northP.add(titleLabel, BorderLayout.CENTER);
+        eastP.add(iconLabel, BorderLayout.CENTER);
+        c.gridx = 0;
+        c.gridy = 0;
+        centerP.add(musicLabel, c);
+        // }
     }
 
     /**
@@ -139,13 +140,16 @@ public class OptionsView {
         return this.f;
     }
 /**
- * 
- * @param insets
+ * Used to get the right inset according to screen resolution.
+ * @param insets the right insets
  */
     public static void setInsets(final Insets insets) {
         OptionsView.insets = insets;
     }
-    
+
+    /**
+     * Used to change the image according to screen resolution.
+     */
     private void saveOptionsImagePath() {
         optionsImagePath = "/image/" + st.getRis() + "_OptionsImage.png";
     }
