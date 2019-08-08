@@ -31,7 +31,9 @@ public class MainMenuView {
     private JPanel northP;
     private JPanel eastP;
     private JPanel centerP;
-    //aggiunto per gestire il gridbaglayout
+    /**
+     * Parameter added to manage GridBag layout.
+     */
     private GridBagConstraints c;
     private JFrame f;
     private final GUIFactory gui;
@@ -40,7 +42,6 @@ public class MainMenuView {
     private String titleImagePath;
     private String mainImagePath;
     private static Insets ins;
-//    private static final String BUTTON_IMAGE_PATH = "/redBricks.jpg";
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
@@ -66,10 +67,6 @@ public class MainMenuView {
         loadButtons();
         f.setVisible(true);
         f.pack();
-//        System.out.println("FRAME" + f.getSize());
-//        System.out.println("CENTER " + this.centerP.getSize());
-//        System.out.println("EAST " + this.eastP.getSize());
-//        System.out.println("NORTH " + this.northP.getSize());
     }
     /**
      * Used to get MainMenu frame.
