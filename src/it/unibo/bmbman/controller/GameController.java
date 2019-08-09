@@ -23,6 +23,10 @@ public interface GameController {
      */
     void addEntity(Entity entity, EntityView enitityView);
     /**
+     * Used to add a {@link Bomb}.
+     */
+    void addBomb();
+    /**
      * used to know all the unwalkable entities.
      * @return a set of entity
      */

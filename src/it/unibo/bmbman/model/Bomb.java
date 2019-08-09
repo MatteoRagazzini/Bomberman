@@ -24,7 +24,7 @@ public class Bomb extends AbstractEntity {
         super(position, EntityType.BOMB, new Dimension(50, 50));
         this.isPlanted = false; 
         this.isExploded = false;
-        this.explosion = new Pair<>(new Rectangle(position.getX(), position.getX() + 50, 0, 0),
+        this.explosion = new Pair<>(new Rectangle(position.getX(), position.getX()+50, 0, 0),
                                     new Rectangle(position.getY(), position.getY()-50, 0, 0));
     }
     /**
@@ -33,13 +33,6 @@ public class Bomb extends AbstractEntity {
      */
     public boolean isPlanted() {
         return this.isPlanted;
-    }
-    /**
-     * 
-     * @return if is exploded 
-     */
-    public boolean isExploded() {
-        return this.isExploded;
     }
     /**
      * 
@@ -82,7 +75,7 @@ public class Bomb extends AbstractEntity {
                 final Position pos = this.getPosition();
                 Rectangle horizontal = new Rectangle(pos.getX(), pos.getX()+50, 50*RANGE, 50);
                 Rectangle vertical = new Rectangle(pos.getY(), pos.getY()-50, 50, 50*RANGE);
-                explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
+                this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
                 System.out.println("INIZIO ESPLOSIONE");
             }
         }

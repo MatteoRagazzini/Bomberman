@@ -5,10 +5,12 @@ import java.awt.Graphics;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 import it.unibo.bmbman.model.AbstractLivingEntity;
+import it.unibo.bmbman.model.Bomb;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
@@ -40,7 +42,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void startGame() {
-        this.spv = new SinglePlayerView(new KeyInput(this, gstate, bc));
+        this.spv = new SinglePlayerView(new KeyInput(this, this.gstate, this.bc));
         this.spv.getFrame().setVisible(true);
     }
     /**
@@ -50,7 +52,16 @@ public class GameControllerImpl implements GameController {
     public void addEntity(final Entity entity, final EntityView entityView) {
         this.worldEntity.add(entity);
         this.setController.add(new EntityControllerImpl(entity, entityView));
-        }
+    }
+    /**
+     * {@inheritDoc}
+     */
+    public void addBomb() {
+       final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
+       if (plantedBomb.isPresent()) {
+           this.worldEntity.add(plantedBomb.get());
+       }
+    }
     /**
      * {@inheritDoc}
      */
@@ -119,6 +130,7 @@ public class GameControllerImpl implements GameController {
         this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.BLOCK).forEach(ec -> ec.update(g));
         this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL)
         .forEach(ec -> ec.update(g));
+        this.bc.update(g);
         this.spv.render();
     }
     /**
