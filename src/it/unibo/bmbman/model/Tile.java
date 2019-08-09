@@ -33,9 +33,11 @@ public class Tile extends AbstractEntity {
     @Override
     public void update() {
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean remove() {
-        // TODO Auto-generated method stub
         return false;
     }
 

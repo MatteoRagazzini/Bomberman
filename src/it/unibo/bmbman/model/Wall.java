@@ -32,9 +32,11 @@ public class Wall extends AbstractEntity {
     @Override
     protected void reachedBorder() {
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean remove() {
-        // TODO Auto-generated method stub
         return false;
     }
 }

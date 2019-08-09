@@ -116,7 +116,8 @@ public class GameControllerImpl implements GameController {
         collisionDetect();
         this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update(g));
         this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.POWER_UP).forEach(ec -> ec.update(g));
-        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL )
+        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.BLOCK).forEach(ec -> ec.update(g));
+        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL)
         .forEach(ec -> ec.update(g));
         this.spv.render();
     }
@@ -136,5 +137,4 @@ public class GameControllerImpl implements GameController {
         this.worldEntity.removeAll(entityToRemoved);
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
     }
-   
 }
