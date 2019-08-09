@@ -7,6 +7,7 @@ import it.unibo.bmbman.model.BonusVelocity;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.Key;
 import it.unibo.bmbman.model.MalusFreeze;
 import it.unibo.bmbman.model.MalusInvert;
 import it.unibo.bmbman.model.MalusSlow;
@@ -70,6 +71,8 @@ public class LoadWorld {
         final PowerUpView bonus3view = new PowerUpView(bonus3.getPosition(), bonus3.getDimension(), true, PowerUpType.BONUS_SPEED.toString());
         final BonusLife bLife = new BonusLife(new Position(550, 250), new Dimension(50, 50));
         final PowerUpView bLifeView = new PowerUpView(bLife.getPosition(), bLife.getDimension(), true, PowerUpType.BONUS_LIFE.toString());
+        final Key key = new Key(new Position(550, 250), new Dimension(50, 50));
+        final PowerUpView keyView = new PowerUpView(key.getPosition(), key.getDimension(), true, PowerUpType.KEY.toString());
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 15; j++) {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
@@ -96,7 +99,7 @@ public class LoadWorld {
         this.gc.addEntity(malus3, malus3view);
         this.gc.addEntity(bonus3, bonus3view);
         this.gc.addEntity(new Monster(new Position(150, 150)), new MonsterView(new Position(150, 150), new Dimension(48, 48)));
-        this.gc.addEntity(bLife, bLifeView);
+        this.gc.addEntity(key, keyView);
     }
 
 }
