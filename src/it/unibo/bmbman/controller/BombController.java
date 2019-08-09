@@ -1,10 +1,14 @@
 package it.unibo.bmbman.controller;
 
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import it.unibo.bmbman.model.Bomb;
+import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.Explosion;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
@@ -14,22 +18,20 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public class BombController {
     private LinkedList<Bomb> amountBombs;
-    private final GameController gc;
     /**
      * 
-     * @param gc 
+     * @param worldEntity 
      */
-    public BombController(final GameController gc) {
+    public BombController(final List<Entity> worldEntity) {
         super();
+        worldEntity.add(addBomb());
         this.amountBombs = new LinkedList<>();
-        this.addBomb();
-        this.gc = gc;
     }
     /**
      * 
      * @return bomb
      */
-    public LinkedList<Bomb> getBomb() {
+    public List<Bomb> getBomb() {
         return this.amountBombs;
     }
     /**
@@ -43,12 +45,20 @@ public class BombController {
     }
     /**
      * 
+     * @return bomb
      */
-    public void addBomb() {
-        System.out.println("add bomb");
-        final Bomb b = new Bomb(new Dimension(40, 40), this);
+    public Bomb addBomb() {
+       // System.out.println("add bomb");
+        final Bomb b = new Bomb(new Dimension(40, 40));
         this.amountBombs.add(b);
-        //this.gc.addEntity(b, entityView);
+        return b;
+    }
+    /**
+     * 
+     */
+    public void removeBomb() {
+        final List<Bomb> bombToRemove = getBomb().stream().filter(b -> b.remove()).collect(Collectors.toList());
+        this.amountBombs.removeAll(bombToRemove);
     }
     /**
      * 
@@ -60,10 +70,19 @@ public class BombController {
             //b.setPosition(pos); mi dà errore
             b.setPlanted(true);
             b.startTimer();
-            System.out.println("piantata bomba");
+            //System.out.println("piantata bomba");
         }
     }
+    /**
+     * 
+     */
+    public void update() {
+    }
+    /**
+     * 
+     */
     public void startExplosion() {
-        //new Explosion(bomb.getPosition(), null, dimension)
+        //final Explosion e = new Explosion(bomb.getPosition(), null, dimension);
+       // e.setIsStarted();
     }
 }

@@ -8,19 +8,19 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public class Bomb extends AbstractEntity {
     private boolean isPlanted;
+    private boolean isExploded;
     private long timer = 0;
     private static final int MAX_TIMER = 3;
     private static final long MILLIS = 1000;
-    private BombController bc;
     /**
      * 
      * @param dimension 
      * @param bc 
      */
-    public Bomb(final Dimension dimension, final BombController bc) {
+    public Bomb(final Dimension dimension) {
         super(null, EntityType.BOMB, dimension);
         this.isPlanted = false; 
-        this.bc = bc;
+        this.isExploded = false;
     }
     /**
      * 
@@ -28,6 +28,10 @@ public class Bomb extends AbstractEntity {
      */
     public boolean isPlanted() {
         return this.isPlanted;
+    }
+    
+    public boolean isExploded() {
+        return this.isExploded;
     }
 
     /**
@@ -46,8 +50,7 @@ public class Bomb extends AbstractEntity {
 
     @Override
     public boolean remove() {
-        bc.getBomb().remove(this);
-        return !this.isPlanted;
+        return this.isExploded;
     }
 
     @Override
@@ -66,8 +69,7 @@ public class Bomb extends AbstractEntity {
             final long now = System.currentTimeMillis() / MILLIS;
             if (now - this.timer >= MAX_TIMER) {
                 this.timer = 0;
-                bc.startExplosion();
-                this.remove();
+                this.isExploded = true;
                 System.out.println("INIZIO ESPLOSIONE");
             }
         }
