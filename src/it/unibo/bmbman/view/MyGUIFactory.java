@@ -14,6 +14,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 
@@ -184,3 +186,4 @@ public class MyGUIFactory implements GUIFactory {
         return frameWCanvas;
     }
 }
+

@@ -88,6 +88,7 @@ public class GameOverView {
         final JLabel playerTimeLabel = gui.createLabel(score);
         final JLabel scoreLabel = gui.createLabel("Score");
         final JLabel playerScoreLabel = gui.createLabel("100");
+        final JLabel enterYourName = gui.createLabel("Enter your name");
         northP.add(titleLabel, BorderLayout.CENTER);
         c.gridx = 0;
         c.gridy = 0;
@@ -101,6 +102,9 @@ public class GameOverView {
         c.gridx = 1;
         c.gridy = 1;
         centerP.add(playerScoreLabel, c);
+        c.gridx = 0;
+        c.gridy = 2;
+        centerP.add(enterYourName, c);
     }
     /**
      * Used to load Panels.
@@ -117,7 +121,8 @@ public class GameOverView {
         c.weightx = 0.1;
         c.weighty = 0;
         c.insets = this.insets;
-        backgroundP.add(centerP);
+        backgroundP.setLayout(new BorderLayout());
+        backgroundP.add(centerP, BorderLayout.WEST);
         f.add(backgroundP, BorderLayout.CENTER);
         f.add(northP, BorderLayout.NORTH);
     }
@@ -139,7 +144,7 @@ public class GameOverView {
             ScoreHandler.checkAndReadWrite(ps);
         });
         c.gridx = 1;
-        c.gridy = 2;
+        c.gridy = 3;
         //enterName.setOpaque(false);
         //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
@@ -151,7 +156,7 @@ public class GameOverView {
     private void loadTextField() {
         this.nameTextField = gui.createTextField();
         c.gridx = 0;
-        c.gridy = 2;
+        c.gridy = 3;
         centerP.add(nameTextField, c);
     }
     /**

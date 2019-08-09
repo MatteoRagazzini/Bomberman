@@ -77,34 +77,26 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
         return result;
     }
     @Override
-    public boolean equals(final Object obj) {
-        if (this == obj) {
+    public boolean equals(Object obj) {
+        if (this == obj)
             return true;
-        }
-        if (obj == null) {
+        if (obj == null)
             return false;
-        }
-        if (getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
         PlayerScore other = (PlayerScore) obj;
         if (gameTime == null) {
-            if (other.gameTime != null) {
+            if (other.gameTime != null)
                 return false;
-            }
-        } else if (!gameTime.equals(other.gameTime)) {
+        } else if (!gameTime.equals(other.gameTime))
             return false;
-        }
         if (name == null) {
-            if (other.name != null) {
+            if (other.name != null)
                 return false;
-            }
-        } else if (!name.equals(other.name)) {
+        } else if (!name.equals(other.name))
             return false;
-        }
-        if (score != other.score) {
+        if (score != other.score)
             return false;
-        }
         return true;
     }
 }

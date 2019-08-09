@@ -16,7 +16,7 @@ public class CollisionComponentImpl implements CollisionComponent {
     public CollisionComponentImpl(final Entity  entity) {
         this.entity = entity;
     }
-    /**
+    /** 
      * {@inheritDoc}
      */
     @Override
