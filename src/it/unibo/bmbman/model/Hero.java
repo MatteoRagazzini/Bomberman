@@ -11,6 +11,7 @@ import it.unibo.bmbman.model.utilities.Velocity;
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private final GameController gc;
+    private int bombNumber;
     private static final int START_POSITION = 50;
     /**
      * Construct a Hero in game.
@@ -19,6 +20,7 @@ public class Hero extends AbstractLivingEntity {
     public Hero(final GameController gc) {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 3);
         this.gc = gc;
+        this.bombNumber = 1;
     }
 /**
  * {@inheritDoc}
@@ -68,6 +70,19 @@ public class Hero extends AbstractLivingEntity {
     @Override
     protected void reachedBorder() {
 
+    }
+    /**
+     * Used to know how many bombs the hero can plant.
+     * @return the number of bombs
+     */
+    public int getBombNumber() {
+        return this.bombNumber;
+    }
+    /**
+     * Used to add a bomb to hero stock.
+     */
+    public void incrementBombNumber() {
+        this.bombNumber++;
     }
 
 }
