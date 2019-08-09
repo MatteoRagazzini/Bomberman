@@ -13,7 +13,7 @@ public class MalusLife extends AbstractPowerupEntity {
      * @param dimension the dimension of the power-up.
      */
     public MalusLife(final Position position, final Dimension dimension) {
-        super(position, dimension);
+        super(position, dimension, false);
     }
     /**
      * {@inheritDoc}

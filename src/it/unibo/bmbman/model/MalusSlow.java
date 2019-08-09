@@ -13,7 +13,7 @@ public class MalusSlow extends AbstractPowerupEntity {
      * @param dimension the dimension of the power-up.
      */
     public MalusSlow(final Position position, final Dimension dimension) {
-        super(position, dimension);
+        super(position, dimension, false);
     }
     /**
      * {@inheritDoc}

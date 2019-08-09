@@ -10,6 +10,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
 
     private static final int DURATION = 5;
     private static final long MILLIS = 1000;
+    private final boolean isBonus;
     private Hero hero;
     private long startTime;
     /**
@@ -17,8 +18,9 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param position the position where i want to locate the power-up
      * @param dimension the dimension of the power-up
      */
-    public AbstractPowerupEntity(final Position position, final Dimension dimension) {
+    public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
         super(position, EntityType.POWER_UP, dimension);
+        this.isBonus = isBonus;
     }
     /**
      * After a collision with the hero, activate the power-up effect.
@@ -36,6 +38,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param hero the target of the effect.
      */
     public abstract void powerupEffect(Hero hero);
+
     @Override
     protected void reachedBorder() {
     }
@@ -49,7 +52,6 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             if (now - startTime >= DURATION) {
                 startTime = 0;
                 hero.setVelocityModifier(1.0);
-                System.out.println("Finito effetto");
             }
         }
     }

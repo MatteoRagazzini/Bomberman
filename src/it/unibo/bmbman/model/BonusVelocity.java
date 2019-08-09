@@ -13,7 +13,7 @@ public class BonusVelocity extends AbstractPowerupEntity {
      * @param dimension the dimension of the power-up.
      */
     public BonusVelocity(final Position position, final Dimension dimension) {
-        super(position, dimension);
+        super(position, dimension, true);
     }
     /**
      * {@inheritDoc}

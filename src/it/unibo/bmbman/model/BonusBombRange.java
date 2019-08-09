@@ -12,7 +12,7 @@ public class BonusBombRange extends AbstractPowerupEntity {
      * @param dimension the dimension of the power-up.
      */
     public BonusBombRange(final Position position, final Dimension dimension) {
-        super(position, dimension);
+        super(position, dimension, true);
     }
     /**
      * {@inheritDoc}}

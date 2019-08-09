@@ -13,7 +13,7 @@ public class BonusLife extends AbstractPowerupEntity {
      * @param dimension the dimension of the power-up.
      */
     public BonusLife(final Position position, final Dimension dimension) {
-        super(position, dimension);
+        super(position, dimension, true);
     }
     /**
      * {@inheritDoc}
