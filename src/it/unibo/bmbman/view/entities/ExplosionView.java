@@ -14,10 +14,10 @@ import it.unibo.bmbman.view.utilities.AnimationImpl;
  *
  *
  */
-public class BombView extends AbstractEntityView {
-    private static final String PATH_BOMB_IMAGES = "/bombs/bomb";
+public class ExplosionView extends AbstractEntityView {
+    private static final String PATH_EXPLOSION_IMAGES = "/bombs/explosion.png";
     private static final int DIMENSION = 50;
-    private static final int FRAME_PER_ANIMATION = 2;
+    private static final int FRAME_PER_ANIMATION = 9;
     private final Animation sprites = new AnimationImpl();
 
     /**
@@ -25,15 +25,16 @@ public class BombView extends AbstractEntityView {
      * @param position where the monster is located
      * @param dimension the dimension of the monster
      */
-    public BombView(final Position position, final Dimension dimension) {
+    public ExplosionView(final Position position, final Dimension dimension) {
         super(position, new Dimension(DIMENSION, DIMENSION), true); 
-        this.sprites.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION, DIMENSION);
+        this.sprites.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION, DIMENSION);
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Image getSprite() {
+        //questo va però fatto solo 1 volta
         return this.sprites.getNextImage();
     }
 }
