@@ -1,6 +1,5 @@
 package it.unibo.bmbman.controller;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,13 +22,14 @@ public class BombController {
     public BombController(final GameController gc) {
         super();
         this.amountBombs = new LinkedList<>();
+        this.addBomb();
         this.gc = gc;
     }
     /**
      * 
      * @return bomb
      */
-    public List<Bomb> getBomb() {
+    public LinkedList<Bomb> getBomb() {
         return this.amountBombs;
     }
     /**
@@ -43,24 +43,27 @@ public class BombController {
     }
     /**
      * 
-     * @param bomb 
      */
-    public void addBomb(final Bomb bomb) {
-        final Bomb b = new Bomb(new Dimension(40,40));
+    public void addBomb() {
+        System.out.println("add bomb");
+        final Bomb b = new Bomb(new Dimension(40, 40), this);
         this.amountBombs.add(b);
         //this.gc.addEntity(b, entityView);
     }
-
-    void plantBomb(final Position pos) {
-        if (this.amountBombs.size() > 1) {
+    /**
+     * 
+     * @param pos 
+     */
+    public void plantBomb(final Position pos) {
+        if (this.amountBombs.size() >= 1) {
             final Bomb b = amountBombs.getLast();
-            b.setPosition(pos);
+            //b.setPosition(pos); mi dà errore
             b.setPlanted(true);
             b.startTimer();
-            System.out.println("piantata");
+            System.out.println("piantata bomba");
         }
     }
-//    void startExplosion() {
-//        new Explosion(bomb.getPosition(), null, dimension)
-//    }
+    public void startExplosion() {
+        //new Explosion(bomb.getPosition(), null, dimension)
+    }
 }

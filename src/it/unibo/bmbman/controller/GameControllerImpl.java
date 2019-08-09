@@ -24,6 +24,7 @@ public class GameControllerImpl implements GameController {
     private final Set<EntityController> setController;
     private SinglePlayerView spv;
     private final GameStateController gstate;
+    private final BombController bc;
     /**
      * Construct an implementation of {@link GameController}.
      * @param gstate {@link GameStateController}
@@ -32,13 +33,14 @@ public class GameControllerImpl implements GameController {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
         this.gstate = gstate;
+        this.bc = new BombController(this);
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public void startGame() {
-        this.spv = new SinglePlayerView(new KeyInput(this, gstate));
+        this.spv = new SinglePlayerView(new KeyInput(this, gstate, bc));
         this.spv.getFrame().setVisible(true);
     }
     /**

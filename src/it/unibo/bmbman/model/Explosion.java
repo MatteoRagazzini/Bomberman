@@ -2,12 +2,21 @@ package it.unibo.bmbman.model;
 
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
-
+/**
+ * 
+ * @author lucia
+ *
+ */
 public class Explosion extends AbstractEntity {
     private Hero hero;
     private boolean isStarted;
-
-    public Explosion(Position position, EntityType entityType, Dimension dimension) {
+    /**
+     * 
+     * @param position 
+     * @param entityType 
+     * @param dimension 
+     */
+    public Explosion(final Position position, final EntityType entityType, final Dimension dimension) {
         super(position, entityType, dimension);
         this.isStarted = false;
     }
@@ -23,11 +32,12 @@ public class Explosion extends AbstractEntity {
     }
 
     @Override
-    public void onCollision(Entity receiver, Position newPosition) {
+    public void onCollision(final Entity receiver, final Position newPosition) {
         if (receiver.getType() == EntityType.HERO) {
             this.hero = (Hero) receiver;
             this.hero.removeLife();
         }
+        //altre collisioni
     }
 
     @Override
