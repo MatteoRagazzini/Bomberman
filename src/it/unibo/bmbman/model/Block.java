@@ -7,6 +7,7 @@ import it.unibo.bmbman.model.utilities.Position;
  *
  */
 public class Block extends AbstractEntity {
+    private boolean isBroken;
     /**
      * crate a breakable wall.
      * @param position the block position
@@ -26,6 +27,9 @@ public class Block extends AbstractEntity {
      */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
+        if (receiver.getType() == EntityType.BOMB) {
+            isBroken = true;
+        }
     }
     /**
      * {@inheritDoc}
@@ -38,7 +42,7 @@ public class Block extends AbstractEntity {
      */
     @Override
     public boolean remove() {
-        return false;
+        return isBroken;
     }
 
 }

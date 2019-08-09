@@ -14,11 +14,9 @@ public class Bomb extends AbstractEntity {
     private static final long MILLIS = 1000;
     /**
      * 
-     * @param dimension 
-     * @param bc 
      */
-    public Bomb(final Dimension dimension) {
-        super(null, EntityType.BOMB, dimension);
+    public Bomb(final Position position) {
+        super(position, EntityType.BOMB, new Dimension(50,50));
         this.isPlanted = false; 
         this.isExploded = false;
     }
