@@ -12,7 +12,11 @@ public class GameTimer extends Timer {
     private static final int SECONDS_IN_MINUTE = 60;
     private static int seconds;
     private static int minutes;
-
+    
+    {
+        seconds = 0;
+        minutes = 0;
+    }
     /**
      * Create GameTimer.
      * @param label2 

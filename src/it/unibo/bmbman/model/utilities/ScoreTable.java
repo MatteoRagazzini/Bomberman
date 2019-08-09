@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model.utilities;
 
 import java.util.List;
-import java.util.TreeSet;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -20,13 +19,14 @@ public class ScoreTable extends AbstractTableModel {
  * 
  * @param treeSet used to populate the table
  */
-    public ScoreTable(final TreeSet<PlayerScore> treeSet) {
+    public ScoreTable(final List<PlayerScore> treeSet) {
         this.rowCount = treeSet.size();
         this.colCount = this.column.length;
         this.data = new Object[treeSet.size()][this.getColumnCount()];
+        System.out.println(treeSet);
         this.fill(treeSet);
     }
-    private void fill(final TreeSet<PlayerScore> list) {
+    private void fill(final List<PlayerScore> list) {
         int rowIndex = 0;
         for (PlayerScore ps : list) {
             this.data[rowIndex][0] = rowIndex + 1;

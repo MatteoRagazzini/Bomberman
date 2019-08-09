@@ -52,14 +52,12 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
  * 
  * @param score 
  */
-    public void setScore(final int score) {
-        this.score = score;
+    public void setScore(int totSecond) {
+        this.score = totSecond;
     }
     @Override
     public int compareTo(final PlayerScore ps) {
-        return (ps.getScore() != this.getScore())
-              ? ps.getScore() - this.getScore()
-              : GameTimer.getTotSeconds() - GameTimer.getTotSeconds();
+        return ps.getScore() - this.getScore();
     }
 
     @Override

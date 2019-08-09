@@ -45,6 +45,7 @@ public class GameOverView {
     private JButton enterName;
     private JTextField nameTextField;
     private final String score;
+    private final int totSecond;
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
@@ -63,6 +64,7 @@ public class GameOverView {
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         this.score = GameTimer.getString();
+        this.totSecond = GameTimer.getTotSeconds();
         loadGameOverView();
     }
 
@@ -87,7 +89,7 @@ public class GameOverView {
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(score);
         final JLabel scoreLabel = gui.createLabel("Score");
-        final JLabel playerScoreLabel = gui.createLabel("100");
+        final JLabel playerScoreLabel = gui.createLabel(String.valueOf(totSecond));
         final JLabel enterYourName = gui.createLabel("Enter your name");
         northP.add(titleLabel, BorderLayout.CENTER);
         c.gridx = 0;
@@ -133,6 +135,7 @@ public class GameOverView {
         final JButton returnB = gui.createReturnButton(this.f);
         returnB.addActionListener(e -> {
             this.f.setVisible(false);
+            
             new MainMenuView().loadMainMenuView();
         });
         enterName = gui.createButton("Save");
@@ -140,7 +143,7 @@ public class GameOverView {
         enterName.addActionListener(e -> {
             PlayerScore ps = new PlayerScore(nameTextField.getText());
             ps.setGameTime(score);
-            ps.setScore(100);
+            ps.setScore(totSecond);
             ScoreHandler.checkAndReadWrite(ps);
         });
         c.gridx = 1;

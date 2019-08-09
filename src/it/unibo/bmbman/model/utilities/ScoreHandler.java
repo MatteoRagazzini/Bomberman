@@ -39,12 +39,9 @@ public final class ScoreHandler {
      */
     private static void save(List<PlayerScore> t) {
         System.out.println("SAVE");
-        System.out.println("t : " + t);
-        try (
-                final ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))
-                ) {
-            System.out.println("Write object");
-            t.sort((p1,p2) -> p1.compareTo(p2));
+        try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
+            t.sort((p1, p2) -> p2.getScore() - p1.getScore());
+            System.out.println("t : " + t);
             t.forEach(p -> {
                 try {
                     o.writeObject(p);
@@ -55,8 +52,6 @@ public final class ScoreHandler {
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
-        
-        System.out.println(data);
 
     }
     /**
@@ -65,32 +60,32 @@ public final class ScoreHandler {
      */
     private static List<PlayerScore> read() {
         System.out.println("READ");
-        try (
-                final ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))
-                ) {
-            
-            while(br.available() > 0) {
+        try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
+            while (br.available() > 0) {
                 data.add((PlayerScore) br.readObject());
             }
 //           data = (TreeSet<PlayerScore>) br.readObject();
         } catch (ClassNotFoundException | IOException e) {
             throw new IllegalArgumentException("File doesn't exist");
         }
+        data.sort((p1,p2) -> p2.getScore() - p1.getScore());
         return data;
     }
     /**
      * Get data that are into score.txt.
      * @return data
      */
-    public static TreeSet<PlayerScore> getData() {
-        read();
-        System.err.println(data);
-        return new TreeSet<>(data);
+    public static List<PlayerScore> getData() {
+        return read();
     }
-
-    public static void checkAndReadWrite(PlayerScore ps) {
+    /**
+     * .
+     * @param ps .
+     */
+    public static void checkAndReadWrite(final PlayerScore ps) {
         System.out.println("CHECKRW");
-        if(new File(FILE_NAME).exists()) {
+        System.out.println(ps);
+        if (new File(FILE_NAME).exists()) {
             read();
         }
         check(ps);
@@ -98,9 +93,9 @@ public final class ScoreHandler {
         save(data);
     }
 
-    private static void check(PlayerScore psToAdd) {
+    private static void check(final PlayerScore psToAdd) {
         data.stream()
-        .filter(ps->ps.getName().equals(psToAdd.getName()) && psToAdd.getScore() > ps.getScore())
-        .findAny().ifPresent(ps->ps.setScore(psToAdd.getScore()));
+        .filter(ps -> ps.getName().equals(psToAdd.getName()) && psToAdd.getScore() > ps.getScore())
+        .findAny().ifPresent(ps -> ps.setScore(psToAdd.getScore()));
     }
 }

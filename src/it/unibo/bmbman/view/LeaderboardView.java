@@ -20,12 +20,12 @@ import it.unibo.bmbman.view.utilities.GameFont;
  *
  */
 public class LeaderboardView extends JTable {
-    private final MainMenuView mainMenuView;
+    private final transient MainMenuView mainMenuView;
     private static final long serialVersionUID = 1L;
     private final JFrame frame;
     private JPanel northP;
     private JPanel southP;
-    private final GUIFactory gf;
+    private final transient GUIFactory gf;
     private static final Float SIZE = 20f;
     private static final int ROW_HEIGHT = 40;
     private static final int BORDER_THICKNESS = 5;
