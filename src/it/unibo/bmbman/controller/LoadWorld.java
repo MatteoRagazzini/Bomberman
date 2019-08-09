@@ -18,13 +18,9 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.entities.BlockView;
-import it.unibo.bmbman.view.entities.BonusLifeView;
-import it.unibo.bmbman.view.entities.BonusVelocityView;
 import it.unibo.bmbman.view.entities.HeroView;
-import it.unibo.bmbman.view.entities.MalusFreezeView;
-import it.unibo.bmbman.view.entities.MalusInvertView;
-import it.unibo.bmbman.view.entities.MalusSlowView;
 import it.unibo.bmbman.view.entities.MonsterView;
+import it.unibo.bmbman.view.entities.PowerUpView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.entities.WallView;
 import it.unibo.bmbman.view.utilities.Sprite;
@@ -64,16 +60,16 @@ public class LoadWorld {
 //        final WallView wvl = new WallView(wLEFT.getPosition());
         // Creo i malus
         final MalusFreeze malus1 = new MalusFreeze(new Position(250, 150), new Dimension(50, 50));
-        final MalusFreezeView malus1view = new MalusFreezeView(malus1.getPosition(), malus1.getDimension(), true);
+        final PowerUpView malus1view = new PowerUpView(malus1.getPosition(), malus1.getDimension(), true, PowerUpType.MALUS_FREEZE.toString());
         final MalusInvert malus2 = new MalusInvert(new Position(450, 250), new Dimension(50, 50));
-        final MalusInvertView malus2view = new MalusInvertView(malus2.getPosition(), malus2.getDimension(), true);
+        final PowerUpView malus2view = new PowerUpView(malus2.getPosition(), malus2.getDimension(), true, PowerUpType.MALUS_INVERT.toString());
         final MalusSlow malus3 = new MalusSlow(new Position(650, 400), new Dimension(50, 50));
-        final MalusSlowView malus3view = new MalusSlowView(malus3.getPosition(), malus3.getDimension(), true);
+        final PowerUpView malus3view = new PowerUpView(malus3.getPosition(), malus3.getDimension(), true, PowerUpType.MALUS_SLOW.toString());
         // Creo i bonus
         final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
-        final BonusVelocityView bonus3view = new BonusVelocityView(bonus3.getPosition(), bonus3.getDimension(), true);
+        final PowerUpView bonus3view = new PowerUpView(bonus3.getPosition(), bonus3.getDimension(), true, PowerUpType.BONUS_SPEED.toString());
         final BonusLife bLife = new BonusLife(new Position(550, 250), new Dimension(50, 50));
-        final BonusLifeView bLifeView = new BonusLifeView(bLife.getPosition(), bLife.getDimension(), true);
+        final PowerUpView bLifeView = new PowerUpView(bLife.getPosition(), bLife.getDimension(), true, PowerUpType.BONUS_LIFE.toString());
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 15; j++) {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
