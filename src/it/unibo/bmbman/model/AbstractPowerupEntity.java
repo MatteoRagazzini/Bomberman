@@ -2,6 +2,7 @@ package it.unibo.bmbman.model;
 
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.model.utilities.Scoring;
 
 /**
  * Models the general aspects of a power-up entity.
@@ -17,6 +18,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * Constructor for a general power-up.
      * @param position the position where i want to locate the power-up
      * @param dimension the dimension of the power-up
+     * @param isBonus if it's a bonus or a malus.
      */
     public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
         super(position, EntityType.POWER_UP, dimension);
@@ -31,6 +33,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             this.hero = (Hero) receiver;
             this.startTime = System.currentTimeMillis() / MILLIS;
             powerupEffect(hero);
+            Scoring.updateScore(this.isBonus);
         }
     }
     /**

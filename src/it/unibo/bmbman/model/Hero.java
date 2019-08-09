@@ -12,6 +12,7 @@ public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private final GameController gc;
     private int bombNumber;
+    private boolean gotKey = false;
     private static final int START_POSITION = 50;
     /**
      * Construct a Hero in game.
@@ -84,5 +85,19 @@ public class Hero extends AbstractLivingEntity {
     public void incrementBombNumber() {
         this.bombNumber++;
     }
+    /**
+     * Used to set if the hero has got the key.
+     */
+    public void setKeyFind() {
+        this.gotKey = true;
+    }
+    /**
+     * Method called only when the hero reach the door.
+     * If he already got the key, he win the match, otherwise do nothing.
+     */
+    public void checkWin() {
+        if (this.gotKey) {
 
+        }
+    }
 }

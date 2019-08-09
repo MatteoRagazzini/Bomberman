@@ -19,6 +19,6 @@ public class BonusBombNum extends AbstractPowerupEntity {
      */
     @Override
     public void powerupEffect(final Hero hero) {
-        // TODO Auto-generated method stub
+        hero.incrementBombNumber();
     }
 }
