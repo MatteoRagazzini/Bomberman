@@ -41,8 +41,8 @@ public class KeyInput implements KeyListener {
             break;
         case KeyEvent.VK_P:
             gs.goToPause();
-        case KeyEvent.VK_SPACE:
-            bc.plantBomb(gc.getHero().getPosition());
+//        case KeyEvent.VK_SPACE:
+//            bc.plantBomb(gc.getHero().getPosition());
         default:
             gc.getHero().setDirection(Direction.IDLE);
             break;

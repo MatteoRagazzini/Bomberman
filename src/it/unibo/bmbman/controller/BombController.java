@@ -24,8 +24,8 @@ public class BombController {
      */
     public BombController(final List<Entity> worldEntity) {
         super();
-        worldEntity.add(addBomb());
         this.amountBombs = new LinkedList<>();
+        //worldEntity.add(addBomb());
     }
     /**
      * 
