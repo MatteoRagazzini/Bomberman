@@ -33,7 +33,7 @@ public class GameControllerImpl implements GameController {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
         this.gstate = gstate;
-        this.bc = new BombController(this.worldEntity);
+        this.bc = new BombController();
     }
     /**
      * {@inheritDoc}

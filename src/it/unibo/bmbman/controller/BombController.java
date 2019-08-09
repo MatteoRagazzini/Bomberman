@@ -19,10 +19,8 @@ import it.unibo.bmbman.model.utilities.Position;
 public class BombController {
     private LinkedList<Bomb> amountBombs;
     /**
-     * 
-     * @param worldEntity 
      */
-    public BombController(final List<Entity> worldEntity) {
+    public BombController() {
         super();
         this.amountBombs = new LinkedList<>();
         //worldEntity.add(addBomb());
@@ -47,12 +45,12 @@ public class BombController {
      * 
      * @return bomb
      */
-    public Bomb addBomb() {
+    //public Bomb addBomb() {
        // System.out.println("add bomb");
-        final Bomb b = new Bomb(new Dimension(40, 40));
-        this.amountBombs.add(b);
-        return b;
-    }
+        //final Bomb b = new Bomb(new Dimension(40, 40));
+//        this.amountBombs.add(b);
+//        return b;
+   // }
     /**
      * 
      */
