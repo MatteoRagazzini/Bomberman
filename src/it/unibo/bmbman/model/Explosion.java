@@ -20,6 +20,10 @@ public class Explosion extends AbstractEntity {
         super(position, entityType, dimension);
         this.isStarted = false;
     }
+    
+    public void setIsStarted() {
+        this.isStarted = true;
+    }
 
     @Override
     public boolean remove() {
@@ -37,12 +41,22 @@ public class Explosion extends AbstractEntity {
             this.hero = (Hero) receiver;
             this.hero.removeLife();
         }
+        if (receiver.getType().getIsBreakable() == EntityFeature.BREAKABLE) {
+            
+        }
         //altre collisioni
     }
 
     @Override
     public void update() {
-        
+//        if (this.timer > 0) {
+//            final long now = System.currentTimeMillis() / MILLIS;
+//            if (now - this.timer >= MAX_TIMER) {
+//                this.timer = 0;
+//                this.isStarted = false;
+//                System.out.println("FINE ESPLOSIONE");
+//            }
+//        }
     }
 
 }
