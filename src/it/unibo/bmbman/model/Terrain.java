@@ -74,7 +74,9 @@ public class Terrain {
     }
     private void checkBlock(final List<Entity> blocklist) {
         blocklist.stream()
-                        .filter(s -> s.getPosition().equals(new Position(50, 50)))
+                        .filter(s -> s.getPosition().equals(new Position(50, 50))
+                                || s.getPosition().equals(new Position(100, 50))
+                                || s.getPosition().equals(new Position(50, 100)))
                         .collect(Collectors.toList())
                         .forEach((e) -> blocklist.remove(blockList.indexOf(e)));
         System.out.println(this.blockList.size());
