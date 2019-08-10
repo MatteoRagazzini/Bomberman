@@ -29,7 +29,7 @@ public class GameTimer extends Timer {
                 seconds = 0;
             }
             //label2.setText(String.format("%02d:%02d", minutes, seconds));
-            System.out.println(String.format("%02d:%02d", minutes, seconds));
+            //System.out.println(String.format("%02d:%02d", minutes, seconds));
         }); 
     }
     /**

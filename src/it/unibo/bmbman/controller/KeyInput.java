@@ -43,7 +43,7 @@ public class KeyInput implements KeyListener {
             gs.goToPause();
             break;
         case KeyEvent.VK_SPACE:
-            bc.plantBomb(gc.getHero());
+//            bc.plantBomb(gc.getHero());
             gc.addBomb();
             break;
         default:

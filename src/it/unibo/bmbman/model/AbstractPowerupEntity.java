@@ -54,6 +54,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             final long now = System.currentTimeMillis() / MILLIS;
             if (now - startTime >= DURATION) {
                 startTime = 0;
+                System.out.println("effetto finito");
                 hero.setVelocityModifier(1.0);
             }
         }

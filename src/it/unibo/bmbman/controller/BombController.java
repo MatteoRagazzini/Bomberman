@@ -29,20 +29,20 @@ public class BombController {
      * 
      * @return bombs exploded
      */
-    public Set<Bomb> getBombsToRemove() {
+    public List<Pair<Bomb, BombView>> getBombsToRemove() {
         return this.amountBombs.stream().filter(b -> b.getX().remove())
-                                        .map(b -> b.getX())
-                                        .collect(Collectors.toSet());
+                                        .collect(Collectors.toList());
     }
     /**
-     * 
-     * @return plantedBombs
+     * Used to get the bomb thar are in explosion.
+     * @return {@link List} of {@link Bomb}
      */
-//    public List<Bomb> getPlantedBomb() {
-//        return this.amountBombs.stream()
-//                               .filter(b -> b.isPlanted())
-//                               .collect(Collectors.toList());
-//    }
+    public List<Bomb> getBombInExplosion() {
+        return this.amountBombs.stream()
+                .filter(b -> b.getX().inExplosion())
+                .map(b -> b.getX())
+                .collect(Collectors.toList());
+    }
     /**
      * 
      * @param hero 
@@ -65,7 +65,7 @@ public class BombController {
      */
     public void update(final Graphics g) {
         this.amountBombs.forEach(b -> b.getX().update());
-        this.amountBombs.removeAll(this.amountBombs.stream().filter(b -> b.getX().remove()).collect(Collectors.toList()));
+       this.amountBombs.removeAll(getBombsToRemove());
         this.amountBombs.forEach(b -> b.getY().render(g));
     }
     /**
@@ -73,13 +73,14 @@ public class BombController {
      * @param entities 
      */
     public void collision(final Set<Entity> entities) {
-        this.getBombsToRemove().forEach(b -> {
+        this.getBombInExplosion().forEach(b -> {
                 entities.forEach(e -> {
                     if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
                         this.notifyCollision(e, b, e.getPosition());
                     }
                 });
         });
+        this.getBombInExplosion().forEach(b -> b.setBombExploded());
     }
     private boolean checkCollision(final Entity receiver, final Rectangle collider) {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);

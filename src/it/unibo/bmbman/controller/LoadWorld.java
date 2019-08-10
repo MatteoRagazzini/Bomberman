@@ -1,11 +1,9 @@
 package it.unibo.bmbman.controller;
 
 
-import it.unibo.bmbman.model.Block;
+
 import it.unibo.bmbman.model.BonusLife;
 import it.unibo.bmbman.model.BonusVelocity;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.Key;
 import it.unibo.bmbman.model.MalusFreeze;
@@ -13,19 +11,11 @@ import it.unibo.bmbman.model.MalusInvert;
 import it.unibo.bmbman.model.MalusSlow;
 import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Terrain;
-import it.unibo.bmbman.model.Tile;
-import it.unibo.bmbman.model.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.MyGUIFactory;
-import it.unibo.bmbman.view.entities.BlockView;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.PowerUpView;
-import it.unibo.bmbman.view.entities.TileView;
-import it.unibo.bmbman.view.entities.WallView;
-import it.unibo.bmbman.view.utilities.Sprite;
-import it.unibo.bmbman.view.utilities.SpriteSheet;
 /**
  * Used to load a level.
  */
@@ -79,19 +69,7 @@ public class LoadWorld {
             }
         }
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
-        /*
-        this.gc.addEntity(tile0, new TileView(tile0.getPosition()));
-        this.gc.addEntity(tile1, new TileView(tile1.getPosition()));
-        this.gc.addEntity(tile2, new TileView(tile2.getPosition()));
-        this.gc.addEntity(tile3, new TileView(tile3.getPosition()));
-        this.gc.addEntity(tile4, new TileView(tile4.getPosition()));
-        */
-//        this.gc.addEntity(block, blockview);
-//        this.gc.addEntity(wUP, wvup);
-//        this.gc.addEntity(wDOWN, wvd);
-//        this.gc.addEntity(wRIGHT, wvr);
-//        this.gc.addEntity(w1, wv1);
-//        this.gc.addEntity(wLEFT, wvl);
+
         this.gc.addEntity(m, mv);
         this.gc.addEntity(hero, heroView);
         this.gc.addEntity(malus1, malus1view);

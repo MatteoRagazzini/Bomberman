@@ -11,6 +11,7 @@ import it.unibo.bmbman.model.utilities.Position;
 public class Bomb extends AbstractEntity {
     private boolean isPlanted;
     private boolean isExploded;
+    private boolean inExplosion;
     private long timer = 0;
     private static final int MAX_TIMER = 3;
     private static final long MILLIS = 1000;
@@ -24,8 +25,8 @@ public class Bomb extends AbstractEntity {
         super(position, EntityType.BOMB, new Dimension(50, 50));
         this.isPlanted = false; 
         this.isExploded = false;
-        this.explosion = new Pair<>(new Rectangle(position.getX(), position.getX()+50, 0, 0),
-                                    new Rectangle(position.getY(), position.getY()-50, 0, 0));
+        this.explosion = new Pair<>(new Rectangle(position.getX()-50, position.getY(), 0, 0),
+                                    new Rectangle(position.getX(), position.getY()-50, 0, 0));
     }
     /**
      * 
@@ -56,7 +57,15 @@ public class Bomb extends AbstractEntity {
     public boolean remove() {
         return this.isExploded;
     }
+    public boolean inExplosion() {
+        return inExplosion;
+    }
 
+    public void setBombExploded() {
+        System.out.println("esplosa");
+        this.inExplosion = false;
+        this.isExploded = true;
+    }
     @Override
     protected void reachedBorder() {
     }
@@ -71,10 +80,10 @@ public class Bomb extends AbstractEntity {
             final long now = System.currentTimeMillis() / MILLIS;
             if (now - this.timer >= MAX_TIMER) {
                 this.timer = 0;
-                this.isExploded = true;
+                this.inExplosion = true;
                 final Position pos = this.getPosition();
-                Rectangle horizontal = new Rectangle(pos.getX(), pos.getX()+50, 50*RANGE, 50);
-                Rectangle vertical = new Rectangle(pos.getY(), pos.getY()-50, 50, 50*RANGE);
+                Rectangle horizontal = new Rectangle(pos.getX()-50, pos.getY(), 50*RANGE, 50);
+                Rectangle vertical = new Rectangle(pos.getX(), pos.getY()-50, 50, 50*RANGE);
                 this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
                 System.out.println("INIZIO ESPLOSIONE");
             }

@@ -4,6 +4,7 @@ import java.awt.Rectangle;
 import java.util.Set;
 
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * An implementation of {@link CollisionController}.

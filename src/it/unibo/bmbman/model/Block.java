@@ -28,6 +28,7 @@ public class Block extends AbstractEntity {
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
         if (receiver.getType() == EntityType.BOMB) {
+            System.out.println("Collison con BOMBA");
             isBroken = true;
         }
     }

@@ -61,10 +61,10 @@ public final class ScoreHandler {
     private static List<PlayerScore> read() {
         System.out.println("READ");
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
-            while (br.available() > 0) {
+            while(br.available() > 0) {
                 data.add((PlayerScore) br.readObject());
             }
-//           data = (TreeSet<PlayerScore>) br.readObject();
+            //           data = (TreeSet<PlayerScore>) br.readObject();
         } catch (ClassNotFoundException | IOException e) {
             throw new IllegalArgumentException("File doesn't exist");
         }

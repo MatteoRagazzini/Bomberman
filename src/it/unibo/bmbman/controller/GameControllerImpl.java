@@ -57,8 +57,10 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     public void addBomb() {
+
        final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
        if (plantedBomb.isPresent()) {
+           System.out.println("AGGIUNTA BOMBA");
            this.worldEntity.add(plantedBomb.get());
        }
     }
@@ -83,7 +85,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public Set<Entity> getBreakableEntity() {
-        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.BREAKABLE)
+        return worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.BREAKABLE)
                 .collect(Collectors.toSet());
     }
     /**
@@ -91,7 +93,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public Set<Entity> getUnbreakableEntity() {
-        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNBREAKABLE)
+        return worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.UNBREAKABLE)
                 .collect(Collectors.toSet());
     }
     /**
@@ -100,6 +102,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void collisionDetect() {
         this.setController.stream().map(c -> c.getCollisionController()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
+        this.bc.collision(getBreakableEntity());
     }
     /**
      * {@inheritDoc}
@@ -147,6 +150,8 @@ public class GameControllerImpl implements GameController {
     public void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
         this.worldEntity.removeAll(entityToRemoved);
+        final Set<EntityController> controllerToRemoved = this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity()) && c.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
+        this.setController.removeAll(controllerToRemoved);
     }
 }

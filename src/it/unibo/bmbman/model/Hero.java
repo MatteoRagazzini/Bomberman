@@ -23,16 +23,33 @@ public class Hero extends AbstractLivingEntity {
         this.gc = gc;
         this.bombNumber = 1;
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     *         System.out.println("Eroe colliso con" + receiver.getType());
+        if (receiver.getType() == EntityType.MONSTER) {
+            this.setPosition(newPosition);
+            this.setDirection(Direction.IDLE);
+            this.removeLife();
+        }
+     */
     @Override
     public void onCollision(final Entity receiver, final Position newPosition) {
-        this.setPosition(newPosition);
-        this.setDirection(Direction.IDLE);
-        System.out.println("Eroe colliso con" + receiver.getType());
-        if (receiver.getType() == EntityType.MONSTER) {
-            this.removeLife();
+        switch(receiver.getType()) {
+        case BOMB:
+            if (((Bomb)receiver).inExplosion()) {
+                removeLife();
+            }
+            break;
+        case MONSTER:
+            this.setPosition(newPosition);
+            this.setDirection(Direction.IDLE);
+            removeLife();
+            break;
+        default:
+            this.setPosition(newPosition);
+            this.setDirection(Direction.IDLE);
+            break;
+
         }
     }
     /**
@@ -41,23 +58,23 @@ public class Hero extends AbstractLivingEntity {
     @Override
     public void move() {
         switch (getDirection()) {
-            case IDLE:
-                setVelocity(Velocity.ZERO);
-                break;
-            case UP:
-                setVelocity(new Velocity(0, (int) (-Velocity.SPEED * velocityModifier)));
-                break;
-            case DOWN:
-                setVelocity(new Velocity(0, (int) (Velocity.SPEED * velocityModifier)));
-                break;
-            case LEFT:
-                setVelocity(new Velocity((int) (-Velocity.SPEED * velocityModifier), 0));
-                break;
-            case RIGHT:
-                setVelocity(new Velocity((int) (Velocity.SPEED * velocityModifier), 0));
-                break;
-            default:
-                break;
+        case IDLE:
+            setVelocity(Velocity.ZERO);
+            break;
+        case UP:
+            setVelocity(new Velocity(0, (int) (-Velocity.SPEED * velocityModifier)));
+            break;
+        case DOWN:
+            setVelocity(new Velocity(0, (int) (Velocity.SPEED * velocityModifier)));
+            break;
+        case LEFT:
+            setVelocity(new Velocity((int) (-Velocity.SPEED * velocityModifier), 0));
+            break;
+        case RIGHT:
+            setVelocity(new Velocity((int) (Velocity.SPEED * velocityModifier), 0));
+            break;
+        default:
+            break;
         }
         update();
     }
