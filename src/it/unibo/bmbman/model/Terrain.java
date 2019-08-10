@@ -43,6 +43,7 @@ public class Terrain {
        }
     addBlock(blockList);
     checkBlock(blockList);
+    addDoor();
     }
     /**
      * create wall in terrain.
@@ -66,7 +67,7 @@ public class Terrain {
      * 
      * @param li
      */
-    private void addBlock (final List<Entity> blockList) {
+    private void addBlock(final List<Entity> blockList) {
         IntStream.iterate(0, i -> i + 1)
         .limit(BLOCK_NUMBER)
         .forEach((i) -> blockList.add(new Block(new Position(random.nextInt(18)*50, random.nextInt(14)*50), new Dimension(50,50))));
@@ -74,11 +75,27 @@ public class Terrain {
     }
     private void checkBlock(final List<Entity> blocklist) {
         blocklist.stream()
-                        .filter(s -> s.getPosition().equals(new Position(50, 50))
-                                || s.getPosition().equals(new Position(100, 50))
-                                || s.getPosition().equals(new Position(50, 100)))
-                        .collect(Collectors.toList())
-                        .forEach((e) -> blocklist.remove(blockList.indexOf(e)));
+                 .filter(s -> s.getPosition().equals(new Position(50, 50))
+                         || s.getPosition().equals(new Position(100, 50))
+                         || s.getPosition().equals(new Position(50, 100))
+                         || s.getPosition().equals(new Position(17*50,13*50)))
+                  .collect(Collectors.toList())
+                  .forEach((e) -> blocklist.remove(blockList.indexOf(e)));
+//        List<Entity> li = new ArrayList<>();
+//        this.terrain.stream().forEach((e) -> e.stream().filter(i -> i.getType().equals(EntityType.WALL)).forEach(s -> li.add(s)));
+//        blocklist.stream()
+//                 .filter(s -> s.getPosition().equals(li.stream().forEach(i -> i.getPosition())))
+//                 .collect(Collectors.toList())
+//                 .forEach(e -> blocklist.remove(blocklist.indexOf(e)));
+//        
+//        blocklist.stream()
+//                 .filter(s -> s.getPosition().equals(this.terrain.stream()
+//                                                                 .forEach(e -> e.stream()
+//                                                                                .filter(i -> i.getType() == EntityType.WALL)
+//                                                                                .collect(Collectors.toList())
+//                                                                                .forEach(k -> k.getPosition()))))
+//                .collect(Collectors.toList())
+//                .forEach((e) -> blocklist.remove(blocklist.indexOf(e)));
         System.out.println(this.blockList.size());
     }
     /**
@@ -91,19 +108,32 @@ public class Terrain {
         return this.terrain.get(x).get(y);
     }
     /**
-     *  .
-     * @return 
+     * get the block position list.
+     * @return block position list
      */
     public List<Entity> getBlocks() {
         return this.blockList;
     }
+    private void addDoor() {
+        this.terrain.get(17).set(13, new Door(new Position(18*50, 14*50)));
+    }
+    public List<Entity> getTiles() {
+        //non so se funziona bene!!!
+        final List<Entity> li=new ArrayList<>();
+        this.terrain.stream()
+                    .forEach(e -> e.stream()
+                                   .filter(s -> s.getType() == EntityType.TILE)
+                                   .peek(k -> li.add(k))
+                            );
+        return li;
+    }
     /**
-     * 
-     * @param entity 
-     * @return 
+     * used to associate model object to the relative view.
+     * @param entity the entity that you what know the sprite 
+     * @return the sprite of the entity in input
      */
     public EntityView getEntityView(final Entity entity) {
-        switch(entity.getType()) {
+        switch (entity.getType()) {
         case TILE:
          return new TileView(entity.getPosition());
         case WALL:
