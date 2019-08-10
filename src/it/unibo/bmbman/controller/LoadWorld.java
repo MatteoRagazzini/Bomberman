@@ -61,7 +61,7 @@ public class LoadWorld {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
             }
         }
-        terrain.getTile();
+        terrain.getTiles();
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
 
         this.gc.addEntity(m, mv);
