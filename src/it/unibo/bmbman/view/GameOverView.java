@@ -26,6 +26,8 @@ import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.controller.OptionsMenuList;
+import it.unibo.bmbman.controller.Scoring;
+import it.unibo.bmbman.model.Score;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
@@ -63,7 +65,7 @@ public class GameOverView {
     public GameOverView() {
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
-        this.score = GameTimer.getString();
+        this.score = String.valueOf(100);
         this.totSecond = GameTimer.getTotSeconds();
         loadGameOverView();
     }
@@ -89,7 +91,7 @@ public class GameOverView {
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(score);
         final JLabel scoreLabel = gui.createLabel("Score");
-        final JLabel playerScoreLabel = gui.createLabel(String.valueOf(totSecond));
+        final JLabel playerScoreLabel = gui.createLabel(score);
         final JLabel enterYourName = gui.createLabel("Enter your name");
         northP.add(titleLabel, BorderLayout.CENTER);
         c.gridx = 0;
@@ -141,10 +143,10 @@ public class GameOverView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            PlayerScore ps = new PlayerScore(nameTextField.getText());
-            ps.setGameTime(score);
-            ps.setScore(totSecond);
-            ScoreHandler.checkAndReadWrite(ps);
+//            PlayerScore ps = new PlayerScore(nameTextField.getText());
+//            ps.setGameTime(score);
+//            ps.setScore(totSecond);
+            ScoreHandler.checkAndReadWrite(nameTextField.getText(), 100, GameTimer.getTotSeconds());
         });
         c.gridx = 1;
         c.gridy = 3;

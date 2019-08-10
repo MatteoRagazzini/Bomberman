@@ -1,8 +1,8 @@
 package it.unibo.bmbman.model;
 
+import it.unibo.bmbman.controller.Scoring;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.model.utilities.Scoring;
 
 /**
  * Models the general aspects of a power-up entity.
@@ -33,7 +33,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             this.hero = (Hero) receiver;
             this.startTime = System.currentTimeMillis() / MILLIS;
             powerupEffect(hero);
-            Scoring.updateScore(this.isBonus);
+            //Scoring.updateScore(this.isBonus);
         }
     }
     /**

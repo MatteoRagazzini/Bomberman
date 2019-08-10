@@ -27,6 +27,7 @@ public class GameControllerImpl implements GameController {
     private SinglePlayerView spv;
     private final GameStateController gstate;
     private final BombController bc;
+    private final Scoring scoring;
     /**
      * Construct an implementation of {@link GameController}.
      * @param gstate {@link GameStateController}
@@ -36,6 +37,7 @@ public class GameControllerImpl implements GameController {
         this.setController = new HashSet<>();
         this.gstate = gstate;
         this.bc = new BombController();
+        this.scoring = new Scoring();
     }
     /**
      * {@inheritDoc}
@@ -149,6 +151,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
+        this.scoring.setValue(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
         final Set<EntityController> controllerToRemoved = this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity()) && c.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));

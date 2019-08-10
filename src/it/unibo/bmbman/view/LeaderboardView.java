@@ -36,7 +36,7 @@ public class LeaderboardView extends JTable {
     public LeaderboardView(final MainMenuView mainMenuView) {
         super();
         this.mainMenuView = mainMenuView;
-        this.gf = new MyGUIFactory(); //cos'è questo errore 
+        this.gf = new MyGUIFactory(); 
         this.frame = this.gf.createFrame();
         this.loadLeaderboardView();
     }

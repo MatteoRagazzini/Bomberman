@@ -6,23 +6,16 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.TreeSet;
-
-import com.sun.org.apache.xalan.internal.xsltc.compiler.sym;
+import java.util.Optional;
 
 /**
- * 
  * It keeps track of best {@link PlayerScore}.
- *
  */
 public final class ScoreHandler {
-    /**
-     * 
-     */
     private static final String FILE_NAME = "score.txt";
-    private static List<PlayerScore> data = new LinkedList<>();
+    private static List<PlayerScore> data = new ArrayList<>();
     /**
      * 
      * @param list 
@@ -37,18 +30,10 @@ public final class ScoreHandler {
      * @param list of score, game time and name of the player
      * @throws Exception 
      */
-    private static void save(List<PlayerScore> t) {
+    private static void save(final List<PlayerScore> t) {
         System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-            t.sort((p1, p2) -> p2.getScore() - p1.getScore());
-            System.out.println("t : " + t);
-            t.forEach(p -> {
-                try {
-                    o.writeObject(p);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            });
+                    o.writeObject(t);
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
@@ -58,44 +43,58 @@ public final class ScoreHandler {
      * Read data from score.txt.
      * @throws Exception
      */
-    private static List<PlayerScore> read() {
-        System.out.println("READ");
-        try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
-            while(br.available() > 0) {
-                data.add((PlayerScore) br.readObject());
+    private static void read() {
+            System.out.println("READ");
+            try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
+                    data = (List<PlayerScore>) br.readObject();
+            } catch (ClassNotFoundException | IOException e) {
+                throw new IllegalArgumentException("File doesn't exist");
             }
-            //           data = (TreeSet<PlayerScore>) br.readObject();
-        } catch (ClassNotFoundException | IOException e) {
-            throw new IllegalArgumentException("File doesn't exist");
-        }
-        data.sort((p1,p2) -> p2.getScore() - p1.getScore());
-        return data;
+            data.sort((p1, p2) -> p1.compareTo(p2)); 
     }
     /**
      * Get data that are into score.txt.
      * @return data
      */
     public static List<PlayerScore> getData() {
-        return read();
-    }
-    /**
-     * .
-     * @param ps .
-     */
-    public static void checkAndReadWrite(final PlayerScore ps) {
-        System.out.println("CHECKRW");
-        System.out.println(ps);
         if (new File(FILE_NAME).exists()) {
             read();
         }
-        check(ps);
-        data.add(ps);
+        return data;
+    }
+    /**
+     * 
+     * @param playerName 
+     * @param score 
+     * @param time 
+     */
+    public static void checkAndReadWrite(final String playerName, final int score, final int time) {
+        System.out.println("CHECKRW");
+        if (new File(FILE_NAME).exists()) {
+            read();
+            final Optional<PlayerScore> p = checkIfPresent(playerName);
+            if (p.isPresent()) {
+                check(p.get(), score, time);
+            } else {
+                PlayerScore ps = new PlayerScore(playerName, score, time);
+                data.add(ps);
+            }
+        } else {
+            PlayerScore ps = new PlayerScore(playerName, score, time);
+            data.add(ps);
+        }
         save(data);
     }
+    private static Optional<PlayerScore> checkIfPresent(final String playerName) {
+        return data.stream()
+                   .filter(p -> p.getName().equals(playerName))
+                   .findAny();
+    }
 
-    private static void check(final PlayerScore psToAdd) {
-        data.stream()
-        .filter(ps -> ps.getName().equals(psToAdd.getName()) && psToAdd.getScore() > ps.getScore())
-        .findAny().ifPresent(ps -> ps.setScore(psToAdd.getScore()));
+    private static void check(final PlayerScore p, final int score, final int time) {
+        if (score > p.getScore()) {
+            p.setScore(score);
+            p.setGameTime(time);
+        }
     }
 }
