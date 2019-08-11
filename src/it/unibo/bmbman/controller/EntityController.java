@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.util.Optional;
 
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.EntityCollisionManager;
 import it.unibo.bmbman.view.entities.EntityView;
 
 /**
@@ -24,7 +25,7 @@ public interface EntityController {
      * Used to get {@link CollisionController} associated to the entity.
      * @return {@link CollisionController}
      */
-    Optional<CollisionController> getCollisionController();
+    Optional<EntityCollisionManager> getCollisionManager();
     /**
      * Used to update view and model.
      * @param g {@link Graphics} compontent to update view

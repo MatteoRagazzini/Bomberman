@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import it.unibo.bmbman.model.AbstractLivingEntity;
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.EntityCollisionManager;
+import it.unibo.bmbman.model.EntityCollisionManagerImpl;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.view.entities.EntityView;
 /**
@@ -14,7 +16,7 @@ public class EntityControllerImpl implements EntityController {
 
     private final Entity en;
     private final EntityView ev;
-    private final Optional<CollisionController> cc;
+    private final Optional<EntityCollisionManager> entityCollisionManager;
 
     /**
      * Construct an {@link EntityControllerImpl}.
@@ -27,9 +29,9 @@ public class EntityControllerImpl implements EntityController {
         this.ev = ev;
         updateView();
         if (en.getType() == EntityType.HERO || en.getType() == EntityType.MONSTER) {
-        this.cc = Optional.of(new CollisionControllerImpl(en));
+        this.entityCollisionManager = Optional.of(new EntityCollisionManagerImpl(en.getCollisionComponent()));
         } else {
-            this.cc = Optional.empty();
+            this.entityCollisionManager = Optional.empty();
         }
     }
 
@@ -51,8 +53,8 @@ public class EntityControllerImpl implements EntityController {
      * {@inheritDoc}
      */
     @Override
-    public Optional<CollisionController> getCollisionController() {
-        return this.cc;
+    public Optional<EntityCollisionManager> getCollisionManager() {
+        return this.entityCollisionManager;
     }
     private void updateView() {
         this.ev.setDimension(en.getDimension());

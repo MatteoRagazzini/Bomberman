@@ -50,12 +50,12 @@ public class LoadWorld {
 //        final WallView wvd = new WallView(wDOWN.getPosition());
 //        final WallView wvl = new WallView(wLEFT.getPosition());
         // Creo i malus
-        final MalusFreeze malus1 = new MalusFreeze(new Position(250, 150), new Dimension(50, 50));
-        final MalusInvert malus2 = new MalusInvert(new Position(450, 250), new Dimension(50, 50));
-        final MalusSlow malus3 = new MalusSlow(new Position(650, 400), new Dimension(50, 50));
-        // Creo i bonus
-        final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
-        final BonusLife bLife = new BonusLife(new Position(550, 250), new Dimension(50, 50));
+//        final MalusFreeze malus1 = new MalusFreeze(new Position(250, 150), new Dimension(50, 50));
+//        final MalusInvert malus2 = new MalusInvert(new Position(450, 250), new Dimension(50, 50));
+//        final MalusSlow malus3 = new MalusSlow(new Position(650, 400), new Dimension(50, 50));
+//        // Creo i bonus
+//        final BonusVelocity bonus3 = new BonusVelocity(new Position(400, 450), new Dimension(50, 50));
+//        final BonusLife bLife = new BonusLife(new Position(550, 250), new Dimension(50, 50));
         for (int i = 0; i < 19; i++) {
             for (int j = 0; j < 15; j++) {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));

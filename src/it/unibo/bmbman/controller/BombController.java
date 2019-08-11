@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import it.unibo.bmbman.model.Bomb;
+import it.unibo.bmbman.model.CollisionImpl;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.utilities.Pair;
@@ -65,8 +66,13 @@ public class BombController {
      */
     public void update(final Graphics g) {
         this.amountBombs.forEach(b -> b.getX().update());
-       this.amountBombs.removeAll(getBombsToRemove());
         this.amountBombs.forEach(b -> b.getY().render(g));
+    }
+    /**
+     * 
+     */
+    public void removeBomb() {
+        this.amountBombs.removeAll(getBombsToRemove());
     }
     /**
      * 
@@ -86,6 +92,6 @@ public class BombController {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);
     }
     private void notifyCollision(final Entity receiver, final Bomb b, final Position position) {
-        receiver.onCollision(b, receiver.getPosition());
+        receiver.onCollision(new CollisionImpl(b, receiver.getPosition()));
     }
 }

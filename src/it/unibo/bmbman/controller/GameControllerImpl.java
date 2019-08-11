@@ -103,7 +103,7 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void collisionDetect() {
-        this.setController.stream().map(c -> c.getCollisionController()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
+        this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
     /**
@@ -156,5 +156,6 @@ public class GameControllerImpl implements GameController {
         final Set<EntityController> controllerToRemoved = this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity()) && c.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
         this.setController.removeAll(controllerToRemoved);
+        this.bc.removeBomb();
     }
 }
