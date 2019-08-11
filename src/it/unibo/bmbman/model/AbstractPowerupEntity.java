@@ -28,9 +28,9 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * After a collision with the hero, activate the power-up effect.
      */
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
-        if (receiver.getType() == EntityType.HERO) {
-            this.hero = (Hero) receiver;
+    public void onCollision(final Collision c) {
+        if (c.getReceiver().getType() == EntityType.HERO) {
+            this.hero = (Hero) c.getReceiver();
             this.startTime = System.currentTimeMillis() / MILLIS;
             powerupEffect(hero);
             //Scoring.updateScore(this.isBonus);
@@ -63,4 +63,5 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
     public boolean remove() {
         return this.startTime > 0;
     }
+
 }

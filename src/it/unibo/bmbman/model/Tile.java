@@ -25,7 +25,7 @@ public class Tile extends AbstractEntity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
+    public void onCollision(final Collision c) {
     }
     /**
      * {@inheritDoc}
@@ -40,6 +40,7 @@ public class Tile extends AbstractEntity {
     public boolean remove() {
         return false;
     }
+
 
 }
 

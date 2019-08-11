@@ -79,7 +79,6 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
             default:
                 break;
         }
-        update();
     }
     /**
      * {@inheritDoc}
@@ -108,11 +107,6 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     public Direction getDirection() {
         return this.direction;
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public abstract void onCollision(Entity receiver, Position newPosition);
     /**
      * {@inheritDoc}
      */

@@ -41,10 +41,9 @@ public interface Entity {
     CollisionComponent getCollisionComponent();
     /**
      * Used to modify entity behavior after collision.
-     * @param receiver the entity with which this entity collided
-     * @param newPosition new entity's position to avoid continuous collisions
+     * @param c the {@link Collision}
      */
-    void onCollision(Entity receiver, Position newPosition);
+    void onCollision(Collision c);
     /**
      * Used to update entity status during the game.
      */

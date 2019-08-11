@@ -77,14 +77,12 @@ public abstract class AbstractEntity implements Entity {
      * Used to notify entity that reach the border.
      */
     protected abstract void reachedBorder();
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public abstract void onCollision(Entity receiver, Position newPosition);
+
     /**
      * {@inheritDoc}
      */
     @Override
     public abstract void update();
+    @Override
+    abstract public void onCollision(Collision c);
 }

@@ -10,6 +10,7 @@ import it.unibo.bmbman.model.utilities.Velocity;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
+    private boolean justCollide;
     private final GameController gc;
     private int bombNumber;
     private boolean gotKey = false;
@@ -21,36 +22,31 @@ public class Hero extends AbstractLivingEntity {
     public Hero(final GameController gc) {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 3);
         this.gc = gc;
-        this.bombNumber = 1;
+        this.bombNumber = 2;
     }
     /**
      * {@inheritDoc}
-     *         System.out.println("Eroe colliso con" + receiver.getType());
-        if (receiver.getType() == EntityType.MONSTER) {
-            this.setPosition(newPosition);
-            this.setDirection(Direction.IDLE);
-            this.removeLife();
-        }
      */
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
-        switch(receiver.getType()) {
+    public void onCollision(final Collision c) {
+        switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb)receiver).inExplosion()) {
+            if (((Bomb) c.getReceiver()).inExplosion()) {
                 removeLife();
             }
             break;
         case MONSTER:
-            this.setPosition(newPosition);
+            this.setPosition(c.getPosition());
             this.setDirection(Direction.IDLE);
             removeLife();
             break;
         default:
-            this.setPosition(newPosition);
+            this.setPosition(c.getPosition());
             this.setDirection(Direction.IDLE);
             break;
 
         }
+        this.justCollide = true;
     }
     /**
      * {@inheritDoc}
@@ -76,7 +72,7 @@ public class Hero extends AbstractLivingEntity {
         default:
             break;
         }
-        update();
+        justCollide = false;
     }
     /**
      * Set the velocity modifier field.
@@ -117,4 +113,5 @@ public class Hero extends AbstractLivingEntity {
 
         }
     }
+
 }

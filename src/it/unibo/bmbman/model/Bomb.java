@@ -71,10 +71,6 @@ public class Bomb extends AbstractEntity {
     }
 
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
-    }
-
-    @Override
     public void update() {
         if (this.timer > 0) {
             final long now = System.currentTimeMillis() / MILLIS;
@@ -94,5 +90,10 @@ public class Bomb extends AbstractEntity {
      */
     public void startTimer() {
         this.timer = System.currentTimeMillis() / MILLIS;
+    }
+    @Override
+    public void onCollision(Collision c) {
+        // TODO Auto-generated method stub
+        
     }
 }

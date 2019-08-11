@@ -53,28 +53,27 @@ public class Monster extends AbstractLivingEntity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
-        switch (receiver.getType()) {
+    public void onCollision(final Collision c) {
+        switch (c.getReceiver().getType()) {
         case BOMB:
-            if(((Bomb)receiver).inExplosion()) {
+            if (((Bomb) c.getReceiver()).inExplosion()) {
                 removeLife();
             } else {
                 setDirection(randomDirection());
-                this.setPosition(newPosition);
+                this.setPosition(c.getPosition());
             }
             break;
         case HERO:
             setDirection(Direction.getOpposite(getDirection()));
-            this.setPosition(newPosition);
+            this.setPosition(c.getPosition());
             break;
         case POWER_UP:
             break;
         default:
             setDirection(randomDirection());
-            this.setPosition(newPosition);
+            this.setPosition(c.getPosition());
             break;
         }
-
     }
     /**
      * {@inheritDoc}
@@ -83,4 +82,5 @@ public class Monster extends AbstractLivingEntity {
     protected void reachedBorder() {
         setDirection(randomDirection());
     }
+
 }

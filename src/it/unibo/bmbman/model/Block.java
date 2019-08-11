@@ -26,16 +26,6 @@ public class Block extends AbstractEntity {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Entity receiver, final Position newPosition) {
-        if (receiver.getType() == EntityType.BOMB) {
-            System.out.println("Collison con BOMBA");
-            isBroken = true;
-        }
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void update() {
     }
     /**
@@ -44,6 +34,12 @@ public class Block extends AbstractEntity {
     @Override
     public boolean remove() {
         return isBroken;
+    }
+    @Override
+    public void onCollision(final Collision c) {
+        if (c.getReceiver().getType() == EntityType.BOMB) {
+            isBroken = true;
+        }
     }
 
 }
