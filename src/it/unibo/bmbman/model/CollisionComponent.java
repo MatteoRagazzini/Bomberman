@@ -5,6 +5,12 @@ import java.awt.Rectangle;
  * Interface to CollisionComponent.
  */
 public interface CollisionComponent {
+    
+    /**
+     * Used to get the entity associated.
+     * @return {@link Entity}
+     */
+    Entity getFollowedEntity();
     /**
      * used to determine the area occupied by the entity.
      * @return a {@link Rectangle}
@@ -31,4 +37,9 @@ public interface CollisionComponent {
      * @return a {@link Rectangle}
      */
     Rectangle getRightHitbox();
+    /**
+     * Used to notify the entity a {@link Collision}.
+     * @param c {@link Collision}
+     */
+    void notifyCollision(Collision c);
 }
