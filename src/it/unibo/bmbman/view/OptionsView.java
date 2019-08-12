@@ -3,7 +3,6 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -93,16 +92,18 @@ public class OptionsView {
      * Used to loadLabels.
      */
     private void loadLabels() {
-        // for (int i = 0; i < OptionsList.values().length; i++) {
-        final JLabel musicLabel = gui.createLabel("Music");
         final JLabel titleLabel = gui.createLabel("Options Menù");
         final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
         northP.add(titleLabel, BorderLayout.CENTER);
         eastP.add(iconLabel, BorderLayout.CENTER);
+        final JLabel musicLabel = gui.createLabel("Music");
+        final JLabel effectsLabel = gui.createLabel("Effects");
         c.gridx = 0;
         c.gridy = 0;
         centerP.add(musicLabel, c);
-        // }
+        c.gridx = 0;
+        c.gridy = 1;
+        centerP.add(effectsLabel, c);
     }
 
     /**
@@ -115,6 +116,7 @@ public class OptionsView {
             this.mainView.getFrame().setVisible(true);
         });
         final ButtonGroup music = new ButtonGroup();
+        final ButtonGroup effects = new ButtonGroup();
         for (int i = 0; i < OptionsMenuList.values().length; i++) {
             final JRadioButton b = gui.createRadioButton(OptionsMenuList.values()[i].toString());
             b.addActionListener(e -> {
@@ -125,9 +127,13 @@ public class OptionsView {
                 b.setSelected(true);
             }
             c.weightx = 0; //mi serve per spostare i tasti on e off in fondo
-            c.gridx = i + 1;
-            c.gridy = 0; 
-            music.add(b);
+            c.gridx = (i % 2) + 1; 
+            c.gridy = i / 2; 
+            if (i < 2) {
+                music.add(b);
+            } else {
+                effects.add(b);
+            }
             centerP.add(b, c);
             jbMap.put(b, OptionsMenuList.values()[i]);
         }

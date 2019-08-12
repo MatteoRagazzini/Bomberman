@@ -29,6 +29,8 @@ public class LeaderboardView extends JTable {
     private static final Float SIZE = 20f;
     private static final int ROW_HEIGHT = 40;
     private static final int BORDER_THICKNESS = 5;
+    private static final int HEIGHT_DISTANCE = 230;
+    private static final int WIDTH_DISTANCE = 100;
     /**
      * Create LeaderboardView.
      * @param mainMenuView the actual {@link MainMenuView}
@@ -47,26 +49,27 @@ public class LeaderboardView extends JTable {
         this.southP = new JPanel();
         this.frame.add(northP, BorderLayout.NORTH);
         this.frame.add(southP, BorderLayout.CENTER);
-        this.southP.setBackground(Color.WHITE);
-        this.northP.setBackground(Color.WHITE);
-        final JLabel label = new JLabel("LEADERBOARD");
-        label.setFont(font.getFont());
+        this.southP.setBackground(Color.BLACK);
+        this.northP.setBackground(Color.BLACK);
+        final JLabel label = gf.createLabel("LEADERBOARD");
         this.northP.add(label);
         final TableModel tm = new ScoreTable(ScoreHandler.getData());
         final JTable t = new JTable(tm);
         southP.add(t);
         t.getTableHeader().setFont(font.getFont());
-        t.getTableHeader().setBackground(Color.ORANGE);
+        t.getTableHeader().setBackground(Color.BLACK);
+        t.getTableHeader().setForeground(Color.white);
         t.getTableHeader().setReorderingAllowed(false);
         t.getTableHeader().setResizingAllowed(false);
         GameFont.setFontSize(SIZE);
         t.setFont(font.getFont());
+        t.setForeground(Color.white);
         t.setRowHeight(ROW_HEIGHT);
-        t.setBackground(Color.YELLOW);
+        t.setBackground(Color.BLACK);
         final JScrollPane scrollPane = new JScrollPane(t);
         southP.add(scrollPane);
-        scrollPane.setBorder(BorderFactory.createLineBorder(Color.BLUE, BORDER_THICKNESS, true));
-        t.setPreferredScrollableViewportSize(new Dimension(600, 450));
+        scrollPane.setBorder(BorderFactory.createLineBorder(Color.white, BORDER_THICKNESS, true));
+        t.setPreferredScrollableViewportSize(new Dimension(frame.getWidth() - WIDTH_DISTANCE, frame.getHeight() - HEIGHT_DISTANCE));
         t.setFillsViewportHeight(true);
         this.frame.setVisible(true);
         final JButton b = gf.createReturnButton(this.frame);

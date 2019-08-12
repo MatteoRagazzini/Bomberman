@@ -35,7 +35,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.update = true;
         this.isRunning = false;
         this.gameState = gs;
-        this.game = new GameControllerImpl(gameState);
+        this.game = new GameControllerImpl(gameState, sc);
         this.gameTimer = new GameTimer();
         this.soundsController = sc;
         final LoadWorld lw = new LoadWorld(game);
@@ -56,8 +56,8 @@ public class GameEngineImp extends Thread implements GameEngine {
              */
             this.gameTimer.start();
             this.game.startGame();
-            System.out.println(soundsController.getSoundState());
-            if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
+            System.out.println(soundsController.getMusicState());
+            if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()){
                 soundsController.getMusicSound().play();
             }
             /*manda in start il thread e cambia il nome*/
@@ -112,7 +112,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             deltaTime = now - lastTime;
             lastTime = now;
             if (this.update) {
-                if (!soundsController.getMusicSound().isPlaying() && soundsController.getSoundState()){
+                if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()){
                     soundsController.getMusicSound().play();
                 }
                 /*viene chiamato anche il metodo che legge in input*/

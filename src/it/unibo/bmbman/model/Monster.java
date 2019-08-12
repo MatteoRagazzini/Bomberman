@@ -4,6 +4,7 @@ import java.util.Random;
 
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.entities.BombState;
 
 /**
  * Model the creation and the beaviour of the monster.
@@ -56,7 +57,7 @@ public class Monster extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).inExplosion()) {
+            if (((Bomb) c.getReceiver()).getState()==BombState.IN_EXPLOSION) {
                 removeLife();
             } else {
                 setDirection(randomDirection());

@@ -33,11 +33,11 @@ public class GameControllerImpl implements GameController {
      * Construct an implementation of {@link GameController}.
      * @param gstate {@link GameStateController}
      */
-    public GameControllerImpl(final GameStateController gstate) {
+    public GameControllerImpl(final GameStateController gstate, final SoundsController soundsController) {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
         this.gstate = gstate;
-        this.bc = new BombControllerImpl();
+        this.bc = new BombControllerImpl(soundsController);
         this.ps = new PlayerScore();
     }
     /**

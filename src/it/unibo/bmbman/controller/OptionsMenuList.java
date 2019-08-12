@@ -7,11 +7,19 @@ public enum OptionsMenuList {
     /**
      * Activate game sound.
      */
-    SOUNDON("ON"),
+    MUSICON("ON"),
     /**
      * Disable game sound. 
      */
-    SOUNDOFF("OFF");
+    MUSICOFF("OFF"),
+    /**
+     * Activate game sound.
+     */
+    EFFECTON("ON"),
+    /**
+     * Disable game sound. 
+     */
+    EFFECTOFF("OFF");
 
     private final String name;
     OptionsMenuList(final String name) {

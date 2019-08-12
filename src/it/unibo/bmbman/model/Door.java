@@ -11,8 +11,8 @@ public class Door extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the door.
      */
-    public Door(final Position position) {
-        super(position, true);
+    public Door() {
+        super(Terrain.DOOR_POSITION, true);
     }
 
     @Override

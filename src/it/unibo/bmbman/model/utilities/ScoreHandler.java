@@ -33,7 +33,7 @@ public final class ScoreHandler {
     private static void save(final List<PlayerScore> t) {
         System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-                    o.writeObject(t);
+            o.writeObject(t);
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
@@ -44,13 +44,13 @@ public final class ScoreHandler {
      * @throws Exception
      */
     private static void read() {
-            System.out.println("READ");
-            try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
-                    data = (List<PlayerScore>) br.readObject();
-            } catch (ClassNotFoundException | IOException e) {
-                throw new IllegalArgumentException("File doesn't exist");
-            }
-            data.sort((p1, p2) -> p1.compareTo(p2)); 
+        System.out.println("READ");
+        try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
+            data = (List<PlayerScore>) br.readObject();
+        } catch (ClassNotFoundException | IOException e) {
+            throw new IllegalArgumentException("File doesn't exist");
+        }
+        data.sort((p1, p2) -> p1.compareTo(p2)); 
     }
     /**
      * Get data that are into score.txt.
@@ -77,23 +77,23 @@ public final class ScoreHandler {
                 check(p.get(), score, time);
             } else {
                 //PlayerScore ps = new PlayerScore(playerName, score, time);
-               // data.add(ps);
+                // data.add(ps);
             }
         } else {
-           // PlayerScore ps = new PlayerScore(playerName, score, time);
+            // PlayerScore ps = new PlayerScore(playerName, score, time);
             //data.add(ps);
         }
         save(data);
     }
     private static Optional<PlayerScore> checkIfPresent(final String playerName) {
         return data.stream()
-                   .filter(p -> p.getName().equals(playerName))
-                   .findAny();
+                .filter(p -> p.getName().equals(playerName))
+                .findAny();
     }
 
     private static void check(final PlayerScore p, final int score, final int time) {
         if (score > p.getScore()) {
-           // p.setScore(score);
+            // p.setScore(score);
             p.setGameTime(time);
         }
     }

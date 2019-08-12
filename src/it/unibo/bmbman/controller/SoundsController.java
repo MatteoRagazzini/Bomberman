@@ -15,7 +15,10 @@ import it.unibo.bmbman.model.utilities.SoundImpl;
 public class SoundsController {
 
     private Sound music;
-    private boolean soundOn = true;
+    private Sound explosion;
+    private Sound placeBomb;
+    private boolean musicOn = true;
+    private boolean effectsOn = true;
 
     /**
      * Creates a {@code SoundsController}.
@@ -27,6 +30,8 @@ public class SoundsController {
     public SoundsController() {
         try {
             this.music = new SoundImpl("/music.wav");
+            this.explosion = new SoundImpl("/explosion.wav");
+            this.placeBomb = new SoundImpl("/placeBomb.wav");
 
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
@@ -41,14 +46,46 @@ public class SoundsController {
     public Sound getMusicSound() {
         return this.music;
     }
-    
-    public void setSoundOn() {
-        this.soundOn = true;
+    /**
+     * method to used to set the music game to be played.
+     */
+    public void setMusicdOn() {
+        this.musicOn = true;
     }
-    public void setSoundOff() {
-        this.soundOn = false;
+    /**
+     * method to used to set the music game not to be played.
+     */
+    public void setMusicOff() {
+        this.musicOn = false;
     }
-    public boolean getSoundState() {
-        return this.soundOn;
+    /**
+     * method to know if the music game has to start or not.
+     * @return a boolean
+     */
+    public boolean getMusicState() {
+        return this.musicOn;
+    }
+    public void setEffectsOn() {
+        this.effectsOn = true;
+    }
+    public void setEffectsOff() {
+        this.effectsOn = false;
+    }
+    public boolean getEffectState() {
+        return this.effectsOn;
+    }
+    /**
+     * Gets the explosion sound.
+     * @return explosion {@link Sound}
+     */
+    public Sound getExplosionSound() {
+        return this.explosion;
+    }
+    /**
+     * Gets the placedBomb sound.
+     * @return placeBomb {@link Sound}
+     */
+    public Sound getPlaceBombSound() {
+        return this.placeBomb;
     }
 }
