@@ -17,7 +17,8 @@ public class SoundsController {
     private Sound music;
     private Sound explosion;
     private Sound placeBomb;
-    private boolean soundOn = true;
+    private boolean musicOn = true;
+    private boolean effectsOn = true;
 
     /**
      * Creates a {@code SoundsController}.
@@ -48,21 +49,30 @@ public class SoundsController {
     /**
      * method to used to set the music game to be played.
      */
-    public void setSoundOn() {
-        this.soundOn = true;
+    public void setMusicdOn() {
+        this.musicOn = true;
     }
     /**
      * method to used to set the music game not to be played.
      */
-    public void setSoundOff() {
-        this.soundOn = false;
+    public void setMusicOff() {
+        this.musicOn = false;
     }
     /**
      * method to know if the music game has to start or not.
      * @return a boolean
      */
-    public boolean getSoundState() {
-        return this.soundOn;
+    public boolean getMusicState() {
+        return this.musicOn;
+    }
+    public void setEffectsOn() {
+        this.effectsOn = true;
+    }
+    public void setEffectsOff() {
+        this.effectsOn = false;
+    }
+    public boolean getEffectState() {
+        return this.effectsOn;
     }
     /**
      * Gets the explosion sound.
