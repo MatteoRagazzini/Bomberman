@@ -54,6 +54,7 @@ public class Terrain {
     private final List<List<Entity>> terrain = new ArrayList<>();
     private final List<Entity> blockList = new ArrayList<>();
     private final List<Position> freePosition;
+    private final List<Position> BlockPowerUpPosition;
 
 /**
  * 
@@ -75,6 +76,7 @@ public class Terrain {
 //    System.out.println("wall");
 //    getWalls().forEach(i->System.out.println(i.getPosition()));
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
+    BlockPowerUpPosition = getBlocks().stream().map(t-> t.getPosition()).collect(Collectors.toList());
     }
     /**
      * create wall in terrain.
@@ -193,6 +195,13 @@ public class Terrain {
         final int randomIndex = new Random().nextInt(freePosition.size()); 
         Position pos = new Position(freePosition.get(randomIndex));
         freePosition.remove(randomIndex);
+        return pos;
+    }
+    public Position getRandomBlockPosition() {
+
+        final int randomIndex = new Random().nextInt(BlockPowerUpPosition.size()); 
+        Position pos = new Position(BlockPowerUpPosition.get(randomIndex));
+        BlockPowerUpPosition.remove(randomIndex);
         return pos;
     }
     /**
