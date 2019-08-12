@@ -26,7 +26,7 @@ public class GameControllerImpl implements GameController {
     private final Set<EntityController> setController;
     private SinglePlayerView spv;
     private final GameStateController gstate;
-    private final BombController bc;
+    private final BombControllerImpl bc;
     private final Scoring scoring;
     /**
      * Construct an implementation of {@link GameController}.
@@ -36,7 +36,7 @@ public class GameControllerImpl implements GameController {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
         this.gstate = gstate;
-        this.bc = new BombController();
+        this.bc = new BombControllerImpl();
         this.scoring = new Scoring();
     }
     /**
