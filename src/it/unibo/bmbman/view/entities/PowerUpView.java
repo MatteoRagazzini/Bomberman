@@ -16,11 +16,9 @@ public class PowerUpView extends AbstractEntityView {
     /**
      * Constructor for a general power-up.
      * @param position where is the power-up in our terrain
-     * @param dimension the dimension of the power-up
-     * @param visible if the power-up is visible or not
      * @param path the path of the image to load.
      */
-    public PowerUpView(final Position position, final Dimension dimension, final boolean visible, final String path) {
+    public PowerUpView(final Position position,  final String path) {
         super(position, new Dimension(DIMENSION, DIMENSION), true);
         this.imagePath = path;
         this.ss = new SpriteSheet(imagePath);

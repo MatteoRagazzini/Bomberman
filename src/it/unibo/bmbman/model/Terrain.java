@@ -117,15 +117,18 @@ public class Terrain {
     private void addDoor() {
         this.terrain.get(17).set(13, new Door(new Position(18*50, 14*50)));
     }
+    /**
+     *  .
+     * @return  aa
+     */
     public List<Entity> getTiles() {
-        //non so se funziona bene!!!
-        final List<Entity> li=new ArrayList<>();
+        final List<Entity> tiles = new ArrayList<>();
         this.terrain.stream()
                     .forEach(e -> e.stream()
                                    .filter(s -> s.getType() == EntityType.TILE)
-                                   .peek(k -> li.add(k))
+                                   .forEach(k -> tiles.add(k))
                             );
-        return li;
+        return tiles;
     }
     /**
      * used to associate model object to the relative view.

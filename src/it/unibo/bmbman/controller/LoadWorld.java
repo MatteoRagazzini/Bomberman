@@ -2,8 +2,12 @@ package it.unibo.bmbman.controller;
 
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 import it.unibo.bmbman.model.BonusLife;
 import it.unibo.bmbman.model.BonusVelocity;
+import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.Hero;
 
 import it.unibo.bmbman.model.MalusFreeze;
@@ -15,6 +19,7 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MonsterView;
+import it.unibo.bmbman.view.entities.PowerUpView;
 
 /**
  * Used to load a level.
@@ -61,9 +66,14 @@ public class LoadWorld {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
             }
         }
-        terrain.getTiles();
+        System.out.println(terrain.getTiles().size());
+        terrain.getTiles().stream().forEach(t -> System.out.println(t.getPosition()));
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
-        terrain.getBlocks().stream().limit(10).forEach(i -> new BonusLife(i.getPosition()));
+        List<Entity> PUpList=new ArrayList<>();
+        
+        terrain.getBlocks().stream().limit(10).forEach(i -> PUpList.add(new BonusLife(i.getPosition())));
+        PUpList.stream().forEach(i-> gc.addEntity(i, new PowerUpView(i.getPosition(), PowerUpType.BONUS_LIFE.toString())));
+        PUpList.stream().forEach(i->System.out.println(i.getPosition()));
 
         this.gc.addEntity(m, mv);
         this.gc.addEntity(hero, heroView);
