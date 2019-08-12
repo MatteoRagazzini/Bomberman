@@ -10,9 +10,8 @@ public class MalusLife extends AbstractPowerupEntity {
     /**
      * Construct a malus life power-up in the world.
      * @param position where to create it.
-     * @param dimension the dimension of the power-up.
      */
-    public MalusLife(final Position position, final Dimension dimension) {
+    public MalusLife(final Position position) {
         super(position,  false);
     }
     /**
