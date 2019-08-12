@@ -12,8 +12,8 @@ public class MalusFreeze extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the power-up.
      */
-    public MalusFreeze(final Position position, final Dimension dimension) {
-        super(position, dimension, false);
+    public MalusFreeze(final Position position) {
+        super(position, false);
     }
     /**
      * {@inheritDoc}

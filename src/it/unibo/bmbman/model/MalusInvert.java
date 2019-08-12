@@ -12,8 +12,8 @@ public class MalusInvert extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the power-up.
      */
-    public MalusInvert(final Position position, final Dimension dimension) {
-        super(position, dimension, false);
+    public MalusInvert(final Position position) {
+        super(position,  false);
     }
     /**
      * {@inheritDoc}

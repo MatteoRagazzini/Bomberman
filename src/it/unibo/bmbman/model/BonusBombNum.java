@@ -11,8 +11,8 @@ public class BonusBombNum extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the power-up.
      */
-    public BonusBombNum(final Position position, final Dimension dimension) {
-        super(position, dimension, true);
+    public BonusBombNum(final Position position) {
+        super(position, true);
     }
     /**
      * {@inheritDoc}}

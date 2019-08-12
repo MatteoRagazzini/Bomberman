@@ -17,7 +17,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     /**
      * Constants for FPS(frames per second).
      */
-    public static final int FPS = 50;
+    public static final int FPS = 60;
     private static final int SECONDS = 1000;
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;

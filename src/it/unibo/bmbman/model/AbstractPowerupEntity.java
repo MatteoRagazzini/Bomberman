@@ -20,8 +20,8 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param dimension the dimension of the power-up
      * @param isBonus if it's a bonus or a malus.
      */
-    public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
-        super(position, EntityType.POWER_UP, dimension);
+    public AbstractPowerupEntity(final Position position, final boolean isBonus) {
+        super(position, EntityType.POWER_UP, new Dimension(50,50));
         this.isBonus = isBonus;
     }
     /**

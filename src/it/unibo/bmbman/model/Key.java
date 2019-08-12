@@ -11,8 +11,8 @@ public class Key extends AbstractPowerupEntity {
      * @param position where to create it.
      * @param dimension the dimension of the key.
      */
-    public Key(final Position position, final Dimension dimension) {
-        super(position, dimension, true);
+    public Key(final Position position) {
+        super(position, true);
     }
 
     @Override

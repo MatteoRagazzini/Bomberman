@@ -63,6 +63,7 @@ public class LoadWorld {
         }
         terrain.getTiles();
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
+        terrain.getBlocks().stream().limit(10).forEach(i -> new BonusLife(i.getPosition()));
 
         this.gc.addEntity(m, mv);
         this.gc.addEntity(hero, heroView);
