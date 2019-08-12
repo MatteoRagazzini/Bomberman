@@ -5,6 +5,7 @@ import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
+import it.unibo.bmbman.view.entities.BombState;
 /**
  * Representing a hero in our application.
  */
@@ -20,7 +21,7 @@ public class Hero extends AbstractLivingEntity {
      * @param gc the game controller
      */
     public Hero(final GameController gc) {
-        super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 3);
+        super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 100);
         this.gc = gc;
         this.bombNumber = 2;
     }
@@ -31,7 +32,7 @@ public class Hero extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).inExplosion()) {
+            if (((Bomb) c.getReceiver()).getState()==BombState.IN_EXPLOSION) {
                 removeLife();
             }
             break;

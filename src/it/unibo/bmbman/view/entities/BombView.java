@@ -19,7 +19,9 @@ public class BombView extends AbstractEntityView {
     private static final String PATH_BOMB_IMAGES = "/bombs/bomb.png";
     private static final String PATH_EXPLOSION_IMAGES = "/bombs/explosion.png";
     private static final int DIMENSION = 50;
-    private static final int FRAME_PER_ANIMATION = 6;
+    private static final int DIMENSION_EXPLOSION = 150;
+    private static final int FRAME_PER_ANIMATION_BOMB = 6;
+    private static final int FRAME_PER_ANIMATION_EXPLOSION = 5;
     private final Animation spriteBomb = new AnimationImpl();
     private final Animation spriteExplosion = new AnimationImpl();
     private final Map<BombState, Animation> sprite = new HashMap<>();
@@ -30,8 +32,8 @@ public class BombView extends AbstractEntityView {
      */
     public BombView(final Position position) {
         super(position, new Dimension(DIMENSION, DIMENSION), true); 
-        this.spriteBomb.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION, DIMENSION);
-        this.spriteExplosion.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION, DIMENSION);
+        this.spriteBomb.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION_BOMB, DIMENSION);
+        this.spriteExplosion.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION_EXPLOSION, DIMENSION_EXPLOSION);
         this.state = BombState.PLANTED; 
         fillMap();
     }
@@ -41,6 +43,10 @@ public class BombView extends AbstractEntityView {
      */
     public void setBombState(final BombState state) {
         this.state = state;
+        if (state == BombState.IN_EXPLOSION) {
+            setDimension(new Dimension(DIMENSION_EXPLOSION, DIMENSION_EXPLOSION));
+            setPosition(new Position(this.getPosition().getX()-50, this.getPosition().getY()-50));
+        }
     }
     /** 
      * Method to fill the map <state, animation>.
@@ -48,6 +54,7 @@ public class BombView extends AbstractEntityView {
     private void fillMap() {
         sprite.put(BombState.PLANTED, spriteBomb);
         sprite.put(BombState.IN_EXPLOSION, spriteExplosion);
+        sprite.put(BombState.EXPLODED, spriteExplosion);
     }
     /**
      * {@inheritDoc}

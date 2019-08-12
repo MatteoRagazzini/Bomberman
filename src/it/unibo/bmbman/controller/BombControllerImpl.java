@@ -14,6 +14,7 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.entities.BombState;
 import it.unibo.bmbman.view.entities.BombView;
 /**
  *
@@ -33,7 +34,7 @@ public class BombControllerImpl implements BombController {
     @Override
     public List<Pair<Bomb, BombView>> getBombsToRemove() {
         return this.amountBombs.stream().filter(b -> b.getX().remove())
-                                        .collect(Collectors.toList());
+                .collect(Collectors.toList());
     }
     /**
      * 
@@ -42,7 +43,7 @@ public class BombControllerImpl implements BombController {
     @Override
     public List<Bomb> getBombsInExplosion() {
         return this.amountBombs.stream()
-                .filter(b -> b.getX().inExplosion())
+                .filter(b -> b.getX().getState() == BombState.IN_EXPLOSION)
                 .map(b -> b.getX())
                 .collect(Collectors.toList());
     }
@@ -56,7 +57,6 @@ public class BombControllerImpl implements BombController {
         if (hero.getBombNumber() - this.amountBombs.size() >= 1) {
             final Position pos = new Position(Position.getCenteredPosition(hero.getPosition()));
             final Bomb b = new Bomb(pos);
-            b.setPlanted(true);
             b.startTimer();
             this.amountBombs.add(new Pair<Bomb, BombView>(b, new BombView(pos)));
             return Optional.of(b);
@@ -70,7 +70,10 @@ public class BombControllerImpl implements BombController {
     @Override
     public void update(final Graphics g) {
         this.amountBombs.forEach(b -> b.getX().update());
-        this.amountBombs.forEach(b -> b.getY().render(g));
+        this.amountBombs.forEach(b -> {
+            b.getY().setBombState(b.getX().getState());
+            b.getY().render(g); 
+        });
     }
     /**
      * 
@@ -87,11 +90,11 @@ public class BombControllerImpl implements BombController {
     @Override
     public void collision(final Set<Entity> entities) {
         this.getBombsInExplosion().forEach(b -> {
-                entities.forEach(e -> {
-                    if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
-                        this.notifyCollision(e, b, e.getPosition());
-                    }
-                });
+            entities.forEach(e -> {
+                if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
+                    this.notifyCollision(e, b, e.getPosition());
+                }
+            });
         });
         this.getBombsInExplosion().forEach(b -> b.setBombExploded());
     }
