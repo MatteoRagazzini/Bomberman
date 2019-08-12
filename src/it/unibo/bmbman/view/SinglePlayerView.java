@@ -9,6 +9,9 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.bmbman.controller.KeyInput;
+import it.unibo.bmbman.controller.Scoring;
+import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.utilities.PlayerScore;
 
 /**
  * Frame for single player game mode.
@@ -21,16 +24,18 @@ public class SinglePlayerView {
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
     private JPanel sPanel = new JPanel();
-    private JPanel nPanel = new JPanel();
-    private JPanel bar = new TopBar(nPanel);
+    private TopBar nPanel;
     /**
      * construct the frame.
      * @param ki {@link KeyInput}
+     * @param hero 
+     * @param ps 
      */
-    public SinglePlayerView(final KeyInput ki) {
+    public SinglePlayerView(final KeyInput ki, final PlayerScore ps, final Hero hero) {
+        nPanel = new TopBar(ps, hero);
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
-        canvas.setSize(950, 750);
+        canvas.setSize(19*50, 15*50);
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         frame.addKeyListener(ki);
@@ -40,8 +45,6 @@ public class SinglePlayerView {
             canvas.createBufferStrategy(3);
             bs = canvas.getBufferStrategy();
         }
-        System.out.println(this.frame.getHeight() + " " + this.frame.getWidth());
-
     }
     /**
      * get the frame.
@@ -63,6 +66,8 @@ public class SinglePlayerView {
      */
     public void render() {
         this.bs.show();
+        this.nPanel.render();
+        this.frame.pack();
     }
 
 }

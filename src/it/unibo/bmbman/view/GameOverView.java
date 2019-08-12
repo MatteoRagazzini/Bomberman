@@ -16,6 +16,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
@@ -32,13 +33,13 @@ public class GameOverView {
     private JPanel northP;
     private JButton enterName;
     private JTextField nameTextField;
-    private final String score;
     private final int totSecond;
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
     private static Insets insets;
     private final ScreenTool st = new ScreenTool();
+    private int score;
     //    private static final String MESSAGE = "Your name is already present. "
     //                           + "If you are a new player click OK and change name, otherwise close";
     //    private final JButton jbOk = new JButton("OK");
@@ -52,7 +53,7 @@ public class GameOverView {
         mainView = mainMenuView;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
-        this.score = String.valueOf(100);
+        //this.score = ps.getScore();
         this.totSecond = GameTimer.getTotSeconds();
         loadGameOverView();
     }
@@ -76,9 +77,9 @@ public class GameOverView {
     private void loadLabels() {
         final JLabel titleLabel = gui.createLabel("Game Over");
         final JLabel timeLabel = gui.createLabel("Game Time");
-        final JLabel playerTimeLabel = gui.createLabel(score);
+        final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
         final JLabel scoreLabel = gui.createLabel("Score");
-        final JLabel playerScoreLabel = gui.createLabel(score);
+        final JLabel playerScoreLabel = gui.createLabel(String.valueOf(this.score));
         final JLabel enterYourName = gui.createLabel("Enter your name");
         northP.add(titleLabel, BorderLayout.CENTER);
         c.gridx = 0;
@@ -129,10 +130,9 @@ public class GameOverView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-//            PlayerScore ps = new PlayerScore(nameTextField.getText());
-//            ps.setGameTime(score);
-//            ps.setScore(totSecond);
-            ScoreHandler.checkAndReadWrite(nameTextField.getText(), 100, GameTimer.getTotSeconds());
+            //ps.setGameTime(score);
+            //ps.setScore(totSecond);
+            ScoreHandler.checkAndReadWrite(nameTextField.getText(), this.score, GameTimer.getTotSeconds());
         });
         nameTextField.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent event) {
@@ -181,7 +181,7 @@ public class GameOverView {
         GameOverView.insets = insets;
     }
 
-    private Image loadImage(String text) {
+    private Image loadImage(final String text) {
         try {
             image = ImageIO.read(getClass().getResource(text));
         } catch (IOException e) {

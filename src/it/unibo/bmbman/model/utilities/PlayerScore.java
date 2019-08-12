@@ -1,7 +1,10 @@
 package it.unibo.bmbman.model.utilities;
 
 import java.io.Serializable;
+import java.util.List;
 
+import it.unibo.bmbman.controller.Scoring;
+import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.view.GameTimer;
 
 /** 
@@ -13,6 +16,9 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private int gameTime;
     private int score = 0;
     /**
+     * @param time 
+     * @param score 
+     * @param playerName 
      */
     public PlayerScore() {
         super();
@@ -49,8 +55,16 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
       * 
       * @param score 
       */
-    public void setScore(final int score) {
-        this.score = score;
+//    public void setScore(final int score) {
+//        this.score = score;
+//    }
+    public void setScore(final List<Entity> entityToRemoved) {
+        entityToRemoved.stream().forEach(e -> {
+            if (Scoring.getPoint(e) != 0) {
+                this.score = this.score + Scoring.getPoint(e);
+                //System.out.println(this.score.get);
+            }
+        });
     }
     @Override
     public int compareTo(final PlayerScore ps) {

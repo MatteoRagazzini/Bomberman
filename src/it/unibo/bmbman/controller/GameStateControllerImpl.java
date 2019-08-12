@@ -43,7 +43,7 @@ public class GameStateControllerImpl implements GameStateController {
      */
     @Override
     public void goToGameOver() {
-        final GameOverView over = new GameOverView(this.mainView);
+        final GameOverView over = new GameOverView(mainView);
         over.getFrame().setVisible(true);
     }
 

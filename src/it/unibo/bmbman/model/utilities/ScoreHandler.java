@@ -76,12 +76,12 @@ public final class ScoreHandler {
             if (p.isPresent()) {
                 check(p.get(), score, time);
             } else {
-                PlayerScore ps = new PlayerScore(playerName, score, time);
-                data.add(ps);
+                //PlayerScore ps = new PlayerScore(playerName, score, time);
+               // data.add(ps);
             }
         } else {
-            PlayerScore ps = new PlayerScore(playerName, score, time);
-            data.add(ps);
+           // PlayerScore ps = new PlayerScore(playerName, score, time);
+            //data.add(ps);
         }
         save(data);
     }
@@ -93,7 +93,7 @@ public final class ScoreHandler {
 
     private static void check(final PlayerScore p, final int score, final int time) {
         if (score > p.getScore()) {
-            p.setScore(score);
+           // p.setScore(score);
             p.setGameTime(time);
         }
     }

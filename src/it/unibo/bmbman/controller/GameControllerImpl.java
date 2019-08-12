@@ -15,6 +15,7 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.SinglePlayerView;
 import it.unibo.bmbman.view.entities.EntityView;
@@ -27,7 +28,7 @@ public class GameControllerImpl implements GameController {
     private SinglePlayerView spv;
     private final GameStateController gstate;
     private final BombControllerImpl bc;
-    private final Scoring scoring;
+    private final PlayerScore ps;
     /**
      * Construct an implementation of {@link GameController}.
      * @param gstate {@link GameStateController}
@@ -37,14 +38,14 @@ public class GameControllerImpl implements GameController {
         this.setController = new HashSet<>();
         this.gstate = gstate;
         this.bc = new BombControllerImpl();
-        this.scoring = new Scoring();
+        this.ps = new PlayerScore();
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public void startGame() {
-        this.spv = new SinglePlayerView(new KeyInput(this, this.gstate, this.bc));
+        this.spv = new SinglePlayerView(new KeyInput(this, this.gstate, this.bc), this.ps, this.getHero());
         this.spv.getFrame().setVisible(true);
     }
     /**
@@ -151,7 +152,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
-        this.scoring.setValue(entityToRemoved);
+        this.ps.setScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
         final Set<EntityController> controllerToRemoved = this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity()) && c.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
