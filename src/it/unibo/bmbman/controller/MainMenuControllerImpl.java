@@ -10,7 +10,7 @@ import it.unibo.bmbman.view.OptionsView;
  */
 public class MainMenuControllerImpl implements MainMenuController {
 
-    private final GameStateController gameState;
+    private GameStateController gameState;
     private final OptionsMenuController opt;
     private final MainMenuView mainMenuView;
     /**
@@ -22,7 +22,6 @@ public class MainMenuControllerImpl implements MainMenuController {
         super();
         this.mainMenuView = mainMenuView;
         this.opt = opt;
-        this.gameState = new GameStateControllerImpl(this.opt.getSoundController(), this.mainMenuView);
     }
     /**
      * {@inheritDoc}
@@ -31,6 +30,7 @@ public class MainMenuControllerImpl implements MainMenuController {
     public void setOptionSelected(final MainMenuList optionSelected) {
         switch (optionSelected) {
         case SINGLE_PLAYER:
+            this.gameState = new GameStateControllerImpl(this.opt.getSoundController(), this.mainMenuView);
            gameState.goToSinglePlayerGame();
             break;
             /* da implementare i prossimi casi*/
