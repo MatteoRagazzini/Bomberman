@@ -4,10 +4,14 @@ package it.unibo.bmbman.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.stream.IntStream;
 
 import it.unibo.bmbman.model.BonusLife;
 import it.unibo.bmbman.model.BonusVelocity;
+import it.unibo.bmbman.model.Door;
 import it.unibo.bmbman.model.Entity;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 
 import it.unibo.bmbman.model.MalusFreeze;
@@ -25,6 +29,7 @@ import it.unibo.bmbman.view.entities.PowerUpView;
  * Used to load a level.
  */
 public class LoadWorld {
+    private final static int MOSTER_NUMBER = 7;
     private final GameController gc;
     /**
      * Construct the level.
@@ -47,8 +52,7 @@ public class LoadWorld {
 //        final BlockView blockview = new BlockView(block.getPosition());
         final Hero hero = new Hero(this.gc);
         final HeroView heroView = new HeroView(hero.getPosition());
-        final Monster m = new Monster(new Position(500, 260));
-        final MonsterView mv = new MonsterView(m.getPosition(), m.getDimension());
+
 //        final WallView wvup = new WallView(wUP.getPosition());
 //        final WallView wvr = new WallView(wRIGHT.getPosition());
 //        final WallView wv1 = new WallView(w1.getPosition());
@@ -69,17 +73,19 @@ public class LoadWorld {
         System.out.println(terrain.getTiles().size());
         terrain.getTiles().stream().forEach(t -> System.out.println(t.getPosition()));
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
-        List<Entity> PUpList=new ArrayList<>();
+        List<Entity> powerUpList = new ArrayList<>();
         
-        terrain.getBlocks().stream().limit(10).forEach(i -> PUpList.add(new BonusLife(i.getPosition())));
-        PUpList.stream().forEach(i-> gc.addEntity(i, new PowerUpView(i.getPosition(), PowerUpType.BONUS_LIFE.toString())));
-        PUpList.stream().forEach(i->System.out.println(i.getPosition()));
+        terrain.getBlocks().stream().limit(10).forEach(i -> powerUpList.add(new BonusLife(i.getPosition())));
+        powerUpList.stream().forEach(i -> {
+            gc.addEntity(i, new PowerUpView(i.getPosition(), PowerUpType.BONUS_LIFE.toString()));
+            });
+        gc.addEntity(new Door(), new PowerUpView(Terrain.DOOR_POSITION, PowerUpType.DOOR.toString()));
+        List<Entity> mosterList = new ArrayList<>();
+        IntStream.iterate(0, i -> i + 1).limit(MOSTER_NUMBER).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
+        mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition(), new Dimension(48, 48))));
+        terrain.getTiles().forEach(t -> System.out.println(t.getPosition()));
 
-        this.gc.addEntity(m, mv);
         this.gc.addEntity(hero, heroView);
-
-        this.gc.addEntity(new Monster(new Position(150, 150)), new MonsterView(new Position(150, 150), new Dimension(48, 48)));
-
     }
 
 }
