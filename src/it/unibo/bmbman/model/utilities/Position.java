@@ -5,6 +5,9 @@ package it.unibo.bmbman.model.utilities;
 public class Position {
     private int x;
     private int y;
+    private static final int TILEDIM = 50;
+    private static final int HALFTILEDIM = 25;
+
     /**
      * Create a new position in the specified coordinate.
      * @param x the x coordinate
@@ -13,6 +16,14 @@ public class Position {
     public Position(final int x, final int y) {
         this.x = x;
         this.y = y;
+    }
+    /**
+     * Create a new position in the specified coordinate.
+     * @param pos a {@link Position}
+     */
+    public Position(final Position pos) {
+        this.x = pos.getX();
+        this.y = pos.getY();
     }
     /**
      * Method to get the x coordinate.
@@ -82,5 +93,15 @@ public class Position {
             return false;
         }
         return true;
+    }
+/**
+ * 
+ * @param position
+ * @return
+ */
+    public static  Position getCenteredPosition(final Position position) {
+        Position newPosition = new Position(((position.getX() + HALFTILEDIM) / TILEDIM) * TILEDIM, 
+                ((position.getY() + HALFTILEDIM) / TILEDIM) * TILEDIM);
+        return newPosition;
     }
 }

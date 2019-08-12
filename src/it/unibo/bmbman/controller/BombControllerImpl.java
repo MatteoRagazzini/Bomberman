@@ -54,7 +54,7 @@ public class BombControllerImpl implements BombController {
     @Override
     public Optional<Bomb> plantBomb(final Hero hero) {
         if (hero.getBombNumber() - this.amountBombs.size() >= 1) {
-            final Position pos = new Position(hero.getPosition().getX(), hero.getPosition().getY());
+            final Position pos = new Position(Position.getCenteredPosition(hero.getPosition()));
             final Bomb b = new Bomb(pos);
             b.setPlanted(true);
             b.startTimer();
