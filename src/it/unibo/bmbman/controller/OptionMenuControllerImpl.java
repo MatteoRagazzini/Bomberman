@@ -10,13 +10,17 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
     @Override
     public void setOptionSelected(final OptionsMenuList optionselected) {
         switch (optionselected) {
-            case SOUNDON:
-                sc.setSoundOn();
-                System.out.println(sc.getSoundState());
+            case MUSICON:
+                sc.setMusicdOn();
                 break;
-            case SOUNDOFF:
-                sc.setSoundOff();
-                System.out.println(sc.getSoundState());
+            case MUSICOFF:
+                sc.setMusicOff();
+                break;
+            case EFFECTON:
+                sc.setEffectsOn();
+                break;
+            case EFFECTOFF:
+                sc.setEffectsOff();
                 break;
             default:
                 break;

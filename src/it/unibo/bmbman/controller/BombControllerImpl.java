@@ -63,7 +63,9 @@ public class BombControllerImpl implements BombController {
             final Bomb b = new Bomb(pos);
             b.startTimer();
             this.amountBombs.add(new Pair<Bomb, BombView>(b, new BombView(pos)));
-            sc.getPlaceBombSound().play();
+            if (sc.getEffectState()) {
+                sc.getPlaceBombSound().play();
+            }
             return Optional.of(b);
         }
         return Optional.empty();
@@ -79,8 +81,10 @@ public class BombControllerImpl implements BombController {
             b.getY().setBombState(b.getX().getState());
             b.getY().render(g); 
             if (b.getX().getState() == BombState.IN_EXPLOSION) {
-                sc.getExplosionSound().play();
-                };
+                if (sc.getEffectState()) {
+                    sc.getExplosionSound().play();
+                }
+            }
         });
     }
     /**

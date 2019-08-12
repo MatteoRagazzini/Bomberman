@@ -12,7 +12,6 @@ import it.unibo.bmbman.view.entities.BombState;
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private boolean justCollide;
-    private final GameController gc;
     private int bombNumber;
     private boolean gotKey = false;
     private static final int START_POSITION = 50;
@@ -23,9 +22,8 @@ public class Hero extends AbstractLivingEntity {
      * Construct a Hero in game.
      * @param gc the game controller
      */
-    public Hero(final GameController gc) {
+    public Hero() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
-        this.gc = gc;
         this.bombNumber = 2;
     }
     /**
@@ -35,7 +33,7 @@ public class Hero extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).getState()==BombState.IN_EXPLOSION) {
+            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
                 removeLife();
             }
             break;

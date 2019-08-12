@@ -50,7 +50,7 @@ public class LoadWorld {
 //        final Wall wRIGHT = new Wall(new Position(700, 260), new Dimension(50, 50));
 //        final Block block = new Block(new Position(200, 0), new Dimension(50, 50));
 //        final BlockView blockview = new BlockView(block.getPosition());
-        final Hero hero = new Hero(this.gc);
+        final Hero hero = new Hero();
         final HeroView heroView = new HeroView(hero.getPosition());
 
 //        final WallView wvup = new WallView(wUP.getPosition());
