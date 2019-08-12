@@ -40,8 +40,14 @@ public class Terrain {
      * the door position.
      */
     public static final Position DOOR_POSITION = new Position(17 * CELL_DIMENSION, 13 * CELL_DIMENSION);
-    private static final int TERRAIN_ROWS = 15;
-    private static final int TERRAIN_COLUMNS = 19;
+    /**
+     * number of rows in terrain.
+     */
+    public static final int TERRAIN_ROWS = 15;
+    /**
+     * number of columns in terrain.
+     */
+    public static final int TERRAIN_COLUMNS = 19;
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION, 1 * CELL_DIMENSION);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION, 2 * CELL_DIMENSION);
     private static final int BLOCK_NUMBER = 200;
@@ -54,25 +60,28 @@ public class Terrain {
  */
     public Terrain() {
 
-    for (int i = 0; i < 19; i++) {
-        List<Entity> col = new ArrayList<>();
-        for (int j = 0; j < 15; j++) {
-            col.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-            col = addBorderWall(i, j, col);
+    for (int i = 0; i < TERRAIN_COLUMNS; i++) {
+        List<Entity> row = new ArrayList<>();
+        for (int j = 0; j < TERRAIN_ROWS; j++) {
+            row.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+            row = addBorderWall(i, j, row);
         }
-        if(i%2==0 ) {addWall(col);}
-        this.terrain.add(col);
+        if (i % 2 == 0) {
+            addWall(row);
+            }
+        this.terrain.add(row);
        }
-    
     addBlock();
+//    System.out.println("wall");
+//    getWalls().forEach(i->System.out.println(i.getPosition()));
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
     }
     /**
      * create wall in terrain.
      */
-    private List<Entity> addBorderWall(final int row, final int col,final  List<Entity> entityList) {
-        if (row == 0 || col == 0 || row == 18 || col == 14) {
-            entityList.set(col, new Wall(new Position(row*CELL_DIMENSION, col*CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+    private List<Entity> addBorderWall(final int row, final int column, final  List<Entity> entityList) {
+        if (row == 0 || column == 0 || row == TERRAIN_COLUMNS - 1 || column == TERRAIN_ROWS - 1) {
+            entityList.set(column, new Wall(new Position(row * CELL_DIMENSION, column * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
             }
         return entityList;
         }
@@ -90,9 +99,12 @@ public class Terrain {
      * @param li
      */
     private void addBlock() {
+        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX()+50,PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(),PLAYER_POSITION_DOWN.getY()+50), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
-        .limit(BLOCK_NUMBER)
-        .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(18) * CELL_DIMENSION, new Random().nextInt(14) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
+                 .limit(BLOCK_NUMBER)
+                 .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
+                         new Random().nextInt(TERRAIN_ROWS - 1) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
         checkBlock();
     }
     private void checkBlock() {
@@ -132,6 +144,9 @@ public class Terrain {
                     .forEach(e -> e.stream()
                                    .filter(s -> s.getType() == EntityType.TILE)
                                    .forEach(k -> tiles.add(k)));
+//        System.out.println("tiles");
+//        tiles.forEach(i->System.out.println(i.getPosition()));
+
         return tiles;
     }
     /**
@@ -139,10 +154,10 @@ public class Terrain {
      * @return
      */
     public List<Entity> getFreeTiles() { 
-        return this.getTiles().stream().filter(i -> i.getPosition() != PLAYER_POSITION 
-                                          && i.getPosition() != PLAYER_POSITION_RIGHT 
-                                          && i.getPosition() != PLAYER_POSITION_DOWN 
-                                          && i.getPosition() != DOOR_POSITION
+        return this.getTiles().stream().filter(i -> !i.getPosition().equals(PLAYER_POSITION) 
+                                          && !i.getPosition().equals(PLAYER_POSITION_RIGHT)
+                                          && !i.getPosition().equals(PLAYER_POSITION_DOWN)
+                                          && !i.getPosition().equals(DOOR_POSITION)
                                           && !getBlockPosition().contains(i.getPosition()))
                                 .collect(Collectors.toList());
 
@@ -162,17 +177,23 @@ public class Terrain {
     private List<Position> getWallsPosition() {
         return getWalls().stream().map(i->i.getPosition()).collect(Collectors.toList());
     }
-    
+    /**
+     * 
+     * @return
+     */
     private List<Position> getBlockPosition() {
         return getBlocks().stream().map(b -> b.getPosition()).collect(Collectors.toList());
     }
-//    
+    /**
+     * 
+     * @return
+     */
     public Position getFreeRandomPosition() {
+        System.out.println("FREE " + this.freePosition);
         final int randomIndex = new Random().nextInt(freePosition.size()); 
         Position pos = new Position(freePosition.get(randomIndex));
         freePosition.remove(randomIndex);
         return pos;
-        
     }
     /**
      * used to associate model object to the relative view.

@@ -70,7 +70,6 @@ public class LoadWorld {
             this.gc.addEntity(terrain.getEntity(i, j), terrain.getEntityView(terrain.getEntity(i, j)));
             }
         }
-        System.out.println(terrain.getTiles().size());
         terrain.getTiles().stream().forEach(t -> System.out.println(t.getPosition()));
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
         List<Entity> powerUpList = new ArrayList<>();
