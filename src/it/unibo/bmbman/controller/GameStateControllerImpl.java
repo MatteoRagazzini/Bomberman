@@ -5,6 +5,7 @@ package it.unibo.bmbman.controller;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.view.GameOverView;
+import it.unibo.bmbman.view.MainMenuView;
 /**
  * An implementation of {@link GameStateController}.
  *
@@ -14,12 +15,15 @@ public class GameStateControllerImpl implements GameStateController {
 
     private final GameEngine gameEngine;
     private boolean inPause;
+    private MainMenuView mainView; 
     /**
      * Contruct a {@link GameStateControllerImpl}.
      * @param sc {@link SoundsController}
+     * @param mainMenuView the current {@link MainMenuView}
      */
-    public GameStateControllerImpl(final SoundsController sc) {
+    public GameStateControllerImpl(final SoundsController sc, final MainMenuView mainMenuView) {
         this.gameEngine = new GameEngineImp(this, sc);
+        this.mainView = mainMenuView;
     }
     /**
      * {@inheritDoc}
@@ -39,7 +43,7 @@ public class GameStateControllerImpl implements GameStateController {
      */
     @Override
     public void goToGameOver() {
-        final GameOverView over = new GameOverView();
+        final GameOverView over = new GameOverView(this.mainView);
         over.getFrame().setVisible(true);
     }
 

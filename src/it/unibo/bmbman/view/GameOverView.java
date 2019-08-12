@@ -40,6 +40,7 @@ import javafx.scene.layout.Background;
 public class GameOverView {
 
     private MyGUIFactory gui;
+    private final MainMenuView mainView;
     private JFrame f;
     private JPanel centerP; 
     private JPanel backgroundP;
@@ -62,7 +63,8 @@ public class GameOverView {
     /**
      * Create a GameOverView.
      */
-    public GameOverView() {
+    public GameOverView(final MainMenuView mainMenuView) {
+        mainView = mainMenuView;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         this.score = String.valueOf(100);
@@ -137,8 +139,7 @@ public class GameOverView {
         final JButton returnB = gui.createReturnButton(this.f);
         returnB.addActionListener(e -> {
             this.f.setVisible(false);
-            
-            new MainMenuView().loadMainMenuView();
+            mainView.getFrame().setVisible(true);
         });
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);

@@ -22,7 +22,7 @@ public class MainMenuControllerImpl implements MainMenuController {
         super();
         this.mainMenuView = mainMenuView;
         this.opt = opt;
-        this.gameState = new GameStateControllerImpl(this.opt.getSoundController());
+        this.gameState = new GameStateControllerImpl(this.opt.getSoundController(), this.mainMenuView);
     }
     /**
      * {@inheritDoc}
