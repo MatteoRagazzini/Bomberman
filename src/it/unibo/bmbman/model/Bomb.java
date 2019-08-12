@@ -2,6 +2,7 @@ package it.unibo.bmbman.model;
 
 import java.awt.Rectangle;
 
+import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
@@ -58,7 +59,6 @@ public class Bomb extends AbstractEntity {
             final long now = System.currentTimeMillis() / MILLIS;
             if (now - this.timer >= MAX_TIMER) {
                 this.timer = 0;
-//                this.inExplosion = true;
                 this.state = BombState.IN_EXPLOSION;
                 final Position pos = this.getPosition();
                 Rectangle horizontal = new Rectangle(pos.getX()-50, pos.getY(), 50*RANGE, 50);

@@ -16,12 +16,15 @@ public class Hero extends AbstractLivingEntity {
     private int bombNumber;
     private boolean gotKey = false;
     private static final int START_POSITION = 50;
+    private static final int DIMX = 48;
+    private static final int DIMY = 48;
+    private static final int NLIVES = 3;
     /**
      * Construct a Hero in game.
      * @param gc the game controller
      */
     public Hero(final GameController gc) {
-        super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(45, 48), 100);
+        super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
         this.gc = gc;
         this.bombNumber = 2;
     }

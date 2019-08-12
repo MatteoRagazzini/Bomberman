@@ -8,6 +8,8 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.sun.corba.se.spi.orbutil.fsm.State;
+
 import it.unibo.bmbman.model.Bomb;
 import it.unibo.bmbman.model.CollisionImpl;
 import it.unibo.bmbman.model.Entity;
@@ -21,11 +23,13 @@ import it.unibo.bmbman.view.entities.BombView;
  */
 public class BombControllerImpl implements BombController {
     private List<Pair<Bomb, BombView>> amountBombs;
+    private SoundsController sc;
     /**
      */
-    public BombControllerImpl() {
+    public BombControllerImpl(final SoundsController soundsController) {
         super();
         this.amountBombs = new ArrayList<>();
+        this.sc = soundsController;
     }
     /**
      * 
@@ -59,6 +63,7 @@ public class BombControllerImpl implements BombController {
             final Bomb b = new Bomb(pos);
             b.startTimer();
             this.amountBombs.add(new Pair<Bomb, BombView>(b, new BombView(pos)));
+            sc.getPlaceBombSound().play();
             return Optional.of(b);
         }
         return Optional.empty();
@@ -73,6 +78,9 @@ public class BombControllerImpl implements BombController {
         this.amountBombs.forEach(b -> {
             b.getY().setBombState(b.getX().getState());
             b.getY().render(g); 
+            if (b.getX().getState() == BombState.IN_EXPLOSION) {
+                sc.getExplosionSound().play();
+                };
         });
     }
     /**

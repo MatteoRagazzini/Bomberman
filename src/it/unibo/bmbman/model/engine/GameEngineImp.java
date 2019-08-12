@@ -35,7 +35,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.update = true;
         this.isRunning = false;
         this.gameState = gs;
-        this.game = new GameControllerImpl(gameState);
+        this.game = new GameControllerImpl(gameState, sc);
         this.gameTimer = new GameTimer();
         this.soundsController = sc;
         final LoadWorld lw = new LoadWorld(game);
