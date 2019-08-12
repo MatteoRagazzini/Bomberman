@@ -2,38 +2,23 @@ package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
-import javax.swing.ButtonGroup;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-
-import it.unibo.bmbman.controller.OptionsMenuController;
-import it.unibo.bmbman.controller.OptionsMenuList;
-import it.unibo.bmbman.controller.Scoring;
-import it.unibo.bmbman.model.Score;
-import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
-import it.unibo.bmbman.view.utilities.ImageLoader;
 import it.unibo.bmbman.view.utilities.ScreenTool;
-import javafx.scene.layout.Background;
 /**
  * Frame for game over.
  */
@@ -116,7 +101,7 @@ public class GameOverView {
      * Used to load Panels.
      */
     private void loadPanels() {
-        backgroundP = new BackgroundPanel(LoadImage(gameOverImagePath));
+        backgroundP = new BackgroundPanel(loadImage(gameOverImagePath));
         backgroundP.setBackground(Color.BLACK);
         centerP = new JPanel(new GridBagLayout());
         centerP.setOpaque(false);
@@ -148,6 +133,16 @@ public class GameOverView {
 //            ps.setGameTime(score);
 //            ps.setScore(totSecond);
             ScoreHandler.checkAndReadWrite(nameTextField.getText(), 100, GameTimer.getTotSeconds());
+        });
+        nameTextField.addKeyListener(new KeyAdapter() {
+            public void keyReleased(final KeyEvent event) {
+                String content = nameTextField.getText();
+                if (!content.equals("")) {
+                    enterName.setEnabled(true);
+                } else {
+                    enterName.setEnabled(false);
+                }
+            }
         });
         c.gridx = 1;
         c.gridy = 3;
@@ -186,10 +181,10 @@ public class GameOverView {
         GameOverView.insets = insets;
     }
 
-    private Image LoadImage(String text) {
+    private Image loadImage(String text) {
         try {
             image = ImageIO.read(getClass().getResource(text));
-        }catch (IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return image;
@@ -223,16 +218,6 @@ public class GameOverView {
     //          this.frame.setVisible(false);
     //          new MainMenuView().loadMainMenuView();
     //      //}
-    //  });
-    //  this.t.addKeyListener(new KeyAdapter() {
-    //      public void keyReleased(final KeyEvent event) {
-    //          String content = t.getText();
-    //          if (!content.equals("")) {
-    //              jbOk.setEnabled(true);
-    //          } else {
-    //              jbOk.setEnabled(false);
-    //          }
-    //      }
     //  });
 
 }

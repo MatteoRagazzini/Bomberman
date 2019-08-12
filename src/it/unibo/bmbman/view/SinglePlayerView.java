@@ -1,10 +1,12 @@
 package it.unibo.bmbman.view;
 
+import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import it.unibo.bmbman.controller.KeyInput;
 
@@ -18,13 +20,18 @@ public class SinglePlayerView {
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
+    private JPanel sPanel = new JPanel();
+    private JPanel nPanel = new JPanel();
+    private JPanel bar = new TopBar(nPanel);
     /**
      * construct the frame.
      * @param ki {@link KeyInput}
      */
     public SinglePlayerView(final KeyInput ki) {
+        frame.add(sPanel);
+        frame.add(nPanel, BorderLayout.NORTH);
         canvas.setSize(950, 750);
-        frame.getContentPane().add(canvas);
+        sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         frame.addKeyListener(ki);
         frame.setVisible(true);

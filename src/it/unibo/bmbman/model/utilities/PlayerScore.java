@@ -13,16 +13,9 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private int gameTime;
     private int score = 0;
     /**
-     * 
-     * @param name 
-     * @param time 
-     * @param score 
      */
-    public PlayerScore(final String name, int score, int time) {
+    public PlayerScore() {
         super();
-        this.name = name;
-        this.score = score;
-        this.gameTime = time;
     }
     /**
      * 
