@@ -1,8 +1,14 @@
 package it.unibo.bmbman.view;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -10,6 +16,7 @@ import it.unibo.bmbman.controller.Scoring;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.view.utilities.GameFont;
+import it.unibo.bmbman.view.utilities.ImageLoader;
 
 public class TopBar extends JPanel {
     /**
@@ -17,26 +24,38 @@ public class TopBar extends JPanel {
      */
     private static final long serialVersionUID = 1L;
     //private JPanel panel;
-    private JLabel gameTime = new JLabel();
-    private JLabel score = new JLabel();
-    private JLabel lives = new JLabel();
+    private JLabel gameTime;
+    private JLabel score;
+    private JLabel lives;
+    private JLabel heart;
     private Hero hero;
     private PlayerScore ps;
+    private ImageLoader il = new ImageLoader();
     /**
      * 
+     * @param gui 
      * @param nPanel 
      * @param ps 
      * @param hero 
      */
-    public TopBar(final PlayerScore ps, final Hero hero) {
-        final GameFont font = new GameFont();
-        this.setLayout(new GridLayout(1, 3));
-        this.gameTime.setFont(font.getFont());
-        this.score.setFont(font.getFont());
-        this.lives.setFont(font.getFont());
-        this.add(gameTime);
-        this.add(score);
-        this.add(lives);
+    public TopBar(GUIFactory gui, final PlayerScore ps, final Hero hero) {
+        this.setLayout(new GridBagLayout());
+        this.setBackground(Color.BLACK);
+        GridBagConstraints c = new GridBagConstraints();
+        c.fill = GridBagConstraints.BOTH;
+        c.weightx = 0.5;
+        gameTime = gui.createLabel("");
+        score = gui.createLabel("");
+        lives = gui.createLabel("");
+        heart = new JLabel((new ImageIcon(il.loadImage("/powerups/+life.png"))));
+        c.anchor = GridBagConstraints.CENTER;
+        this.add(heart, c);
+        c.insets = new Insets(0, 0, 0, 0);
+        this.add(lives, c);
+        c.insets = new Insets(0, 100, 0, 0);
+        this.add(score, c);
+        gameTime.setPreferredSize(new Dimension(100,50));
+        this.add(gameTime, c);
         this.hero = hero;
         this.ps = ps;
     }

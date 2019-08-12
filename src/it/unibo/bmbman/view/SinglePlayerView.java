@@ -32,7 +32,7 @@ public class SinglePlayerView {
      * @param ps 
      */
     public SinglePlayerView(final KeyInput ki, final PlayerScore ps, final Hero hero) {
-        nPanel = new TopBar(ps, hero);
+        nPanel = new TopBar(gui, ps, hero);
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
         canvas.setSize(19*50, 15*50);
