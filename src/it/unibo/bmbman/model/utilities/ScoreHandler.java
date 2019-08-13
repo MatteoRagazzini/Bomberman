@@ -68,16 +68,16 @@ public final class ScoreHandler {
      * @param score 
      * @param time 
      */
-    public static void checkAndReadWrite(final String playerName, final int score, final int time) {
+    public static void checkAndReadWrite(final PlayerScore ps, final String playerName, final int time) {
         System.out.println("CHECKRW");
         if (new File(FILE_NAME).exists()) {
             read();
             final Optional<PlayerScore> p = checkIfPresent(playerName);
             if (p.isPresent()) {
-                check(p.get(), score, time);
+                check(p.get(), ps.getScore(), time);
             } else {
                 //PlayerScore ps = new PlayerScore(playerName, score, time);
-                // data.add(ps);
+                 data.add(ps);
             }
         } else {
             // PlayerScore ps = new PlayerScore(playerName, score, time);

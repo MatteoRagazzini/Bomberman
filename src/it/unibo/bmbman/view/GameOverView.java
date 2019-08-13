@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
@@ -40,6 +41,7 @@ public class GameOverView {
     private static Insets insets;
     private final ScreenTool st = new ScreenTool();
     private int score;
+    private PlayerScore ps;
     //    private static final String MESSAGE = "Your name is already present. "
     //                           + "If you are a new player click OK and change name, otherwise close";
     //    private final JButton jbOk = new JButton("OK");
@@ -48,12 +50,14 @@ public class GameOverView {
     //    private PlayerScore ps;
     /**
      * Create a GameOverView.
+     * @param ps 
      */
-    public GameOverView(final MainMenuView mainMenuView) {
+    public GameOverView(final MainMenuView mainMenuView, PlayerScore ps) {
         mainView = mainMenuView;
+        this.ps = ps;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
-        //this.score = ps.getScore();
+        this.score = ps.getScore();
         this.totSecond = GameTimer.getTotSeconds();
         loadGameOverView();
     }
@@ -132,7 +136,7 @@ public class GameOverView {
         enterName.addActionListener(e -> {
             //ps.setGameTime(score);
             //ps.setScore(totSecond);
-            ScoreHandler.checkAndReadWrite(nameTextField.getText(), this.score, GameTimer.getTotSeconds());
+            ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getTotSeconds());
         });
         nameTextField.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent event) {

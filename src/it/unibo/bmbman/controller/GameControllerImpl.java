@@ -80,7 +80,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void gameOver() {
         this.spv.getFrame().setVisible(false);
-        final GameOverView over = new GameOverView(mainView);
+        final GameOverView over = new GameOverView(mainView, ps);
         over.getFrame().setVisible(true);
     }
     /**
