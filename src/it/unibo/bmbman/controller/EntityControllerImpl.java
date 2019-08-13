@@ -67,10 +67,10 @@ public class EntityControllerImpl implements EntityController {
      * {@inheritDoc}
      */
     @Override
-    public void update(final Graphics g) {
+    public void update(/*final Graphics g*/) {
         updateView();
         this.en.update();
-        this.ev.render(g);
+//        this.ev.render(g);
 
     }
 

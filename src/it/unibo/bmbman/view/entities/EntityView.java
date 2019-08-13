@@ -4,6 +4,7 @@ package it.unibo.bmbman.view.entities;
 import java.awt.Graphics;
 import java.awt.Image;
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
@@ -12,6 +13,11 @@ import it.unibo.bmbman.model.utilities.Position;
  *
  */
 public interface EntityView {
+    /**
+     * Used to know which {@link EntityType} the entity is.
+     * @return {@link EntityType}
+     */
+    EntityType getType();
 
    /**
      * Set the position of entity view.

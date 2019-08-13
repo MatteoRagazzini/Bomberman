@@ -5,6 +5,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;
@@ -24,7 +25,7 @@ public class HeroView extends AbstractEntityView {
      * @param position position of enitity
      */
     public HeroView(final Position position) {
-        super(position, new Dimension(DIMENSION, DIMENSION), true);
+        super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.HERO);
         setMapDirection();
     }
 

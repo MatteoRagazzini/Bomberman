@@ -30,5 +30,5 @@ public interface EntityController {
      * Used to update view and model.
      * @param g {@link Graphics} compontent to update view
      */
-    void update(Graphics g);
+    void update(/*Graphics g*/);
 }

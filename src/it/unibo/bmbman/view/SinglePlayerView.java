@@ -4,14 +4,18 @@ import java.awt.BorderLayout;
 import java.awt.Canvas;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import it.unibo.bmbman.controller.KeyInput;
 import it.unibo.bmbman.controller.Scoring;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.view.entities.BombView;
+import it.unibo.bmbman.view.entities.EntityView;
 
 /**
  * Frame for single player game mode.
@@ -63,10 +67,18 @@ public class SinglePlayerView {
     /**
      * used to update the frame.
      */
-    public void render() {
+    public void render(final Set<EntityView> entitiesView, final Set<BombView> bombs) {
+        
+        entitiesView.stream().filter(ev -> ev.getType() == EntityType.TILE).forEach(v -> v.render(getGraphics()));
+        entitiesView.stream().filter(ev -> ev.getType() == EntityType.POWER_UP).forEach(v -> v.render(getGraphics()));
+        entitiesView.stream().filter(ev -> ev.getType() == EntityType.BLOCK).forEach(v -> v.render(getGraphics()));
+        entitiesView.stream().filter(ev -> ev.getType() == EntityType.WALL).forEach(v -> v.render(getGraphics()));
+        entitiesView.stream().filter(ev -> ev.getType() == EntityType.HERO || ev.getType() == EntityType.MONSTER).forEach(v -> v.render(getGraphics()));
+        bombs.forEach(b -> b.render(getGraphics()));
         this.bs.show();
         this.nPanel.render();
         this.frame.pack();
+        this.frame.requestFocus();
     }
 
 }

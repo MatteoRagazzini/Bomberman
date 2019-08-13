@@ -3,6 +3,7 @@ package it.unibo.bmbman.view.entities;
 
 import java.awt.Image;
 
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
@@ -20,7 +21,7 @@ public class TileView extends AbstractEntityView {
      * @param position the tile position
      */
     public TileView(final Position position) {
-        super(position, new Dimension(TILE_SPRITE_DIMENSION, TILE_SPRITE_DIMENSION), true);
+        super(position, new Dimension(TILE_SPRITE_DIMENSION, TILE_SPRITE_DIMENSION), true, EntityType.TILE);
     }
     /**
      * {@inheritDoc}

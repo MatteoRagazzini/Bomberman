@@ -2,6 +2,7 @@ package it.unibo.bmbman.view.entities;
 
 import java.awt.Image;
 
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.SpriteSheet;
@@ -19,7 +20,7 @@ public class BlockView extends AbstractEntityView {
  * @param position the block position
  */
     public BlockView(final Position position) {
-        super(position, new Dimension(BLOCK_SPRITE_DIMENSION, BLOCK_SPRITE_DIMENSION), true);
+        super(position, new Dimension(BLOCK_SPRITE_DIMENSION, BLOCK_SPRITE_DIMENSION), true, EntityType.BLOCK);
     }
 /**
  * {@inheritDoc}

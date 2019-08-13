@@ -14,6 +14,8 @@ import it.unibo.bmbman.view.entities.BombView;
  *
  */
 public interface BombController {
+    
+    Set<BombView> getBombView();
     /**
      * Get bombs that must be removed.
      * @return list of {@link Bomb, BombView}
@@ -34,7 +36,7 @@ public interface BombController {
      * Update {@link Bomb} view and model.
      * @param g {@link Graphics} to update view
      */
-    void update(Graphics g);
+    void update(/*Graphics g*/);
     /**
      * Remove bombs that are exploded. 
      */

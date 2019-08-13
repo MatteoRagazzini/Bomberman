@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;
@@ -31,7 +32,7 @@ public class BombView extends AbstractEntityView {
      * @param position where the monster is located
      */
     public BombView(final Position position) {
-        super(position, new Dimension(DIMENSION, DIMENSION), true); 
+        super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.BOMB); 
         this.spriteBomb.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION_BOMB, DIMENSION);
         this.spriteExplosion.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION_EXPLOSION, DIMENSION_EXPLOSION);
         this.state = BombState.PLANTED; 

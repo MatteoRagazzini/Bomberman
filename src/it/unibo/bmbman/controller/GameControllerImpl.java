@@ -169,16 +169,15 @@ public class GameControllerImpl implements GameController {
     public void update() {
         removeEntities();
         final Graphics g = this.spv.getGraphics();
-        g.setColor(Color.BLACK);
-        g.fillRect(0, 0, MyGUIFactory.FRAME_WIDTH, MyGUIFactory.FRAME_HEIGHT);
         collisionDetect();
-        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update(g));
-        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.POWER_UP).forEach(ec -> ec.update(g));
-        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.BLOCK).forEach(ec -> ec.update(g));
-        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL)
-        .forEach(ec -> ec.update(g));
-        this.bc.update(g);
-        this.spv.render();
+        this.setController.forEach(ec -> ec.update());
+        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update());
+        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.POWER_UP).forEach(ec -> ec.update());
+        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.BLOCK).forEach(ec -> ec.update());
+        //        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL)
+        //        .forEach(ec -> ec.update());
+        this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
+        this.bc.update();
     }
     /**
      * {@inheritDoc}}

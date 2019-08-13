@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.util.EnumMap;
 import java.util.Map;
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;
@@ -26,7 +27,7 @@ public class MonsterView extends AbstractEntityView {
      * @param dimension the dimension of the monster
      */
     public MonsterView(final Position position, final Dimension dimension) {
-        super(position, new Dimension(DIMENSION, DIMENSION), true); 
+        super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.MONSTER); 
         setMapDirection();
     }
     private void setMapDirection() {

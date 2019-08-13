@@ -1,14 +1,11 @@
 package it.unibo.bmbman.controller;
 
-import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
-import com.sun.corba.se.spi.orbutil.fsm.State;
 
 import it.unibo.bmbman.model.Bomb;
 import it.unibo.bmbman.model.CollisionImpl;
@@ -51,6 +48,11 @@ public class BombControllerImpl implements BombController {
                 .map(b -> b.getX())
                 .collect(Collectors.toList());
     }
+    
+    @Override
+    public Set<BombView> getBombView() {
+        return this.amountBombs.stream().map(b -> b.getY()).collect(Collectors.toSet());
+    }
     /**
      * 
      * {@inheritDoc} 
@@ -75,11 +77,11 @@ public class BombControllerImpl implements BombController {
      * {@inheritDoc} 
      */
     @Override
-    public void update(final Graphics g) {
+    public void update(/*final Graphics g*/) {
         this.amountBombs.forEach(b -> b.getX().update());
         this.amountBombs.forEach(b -> {
             b.getY().setBombState(b.getX().getState());
-            b.getY().render(g); 
+//            b.getY().render(g); 
             if (b.getX().getState() == BombState.IN_EXPLOSION) {
                 if (sc.getEffectState()) {
                     sc.getExplosionSound().play();

@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 
 import it.unibo.bmbman.model.Direction;
+import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
@@ -15,17 +16,24 @@ public abstract class AbstractEntityView implements EntityView {
     private  Dimension dimension;
     private Direction direction;
     private boolean visible;
+    private final EntityType entityType;
     /**
      * Constructor for an EntityView.
      * @param position where is the entity in our terrien
      * @param dimension the dimension of entity
      * @param visible if the enity is visible or not
      */
-    public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible) {
+    public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible, final EntityType entityType) {
         this.position = position;
         this.dimension = dimension;
         this.visible = visible;
         this.direction = Direction.IDLE;
+        this.entityType = entityType;
+    }
+    
+    @Override
+    public EntityType getType() {
+        return entityType;
     }
     /**
      * {@inheritDoc}
