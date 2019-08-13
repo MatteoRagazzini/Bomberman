@@ -38,13 +38,7 @@ public abstract class AbstractEntity implements Entity {
      */
     @Override
     public void setPosition(final Position position) {
-        this.position.setX(position.getX() < 0 ? 0 
-                : position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() ? MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() : position.getX());
-        this.position.setY(position.getY() < 0 ? 0 
-                : position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.getHeight() ? MyGUIFactory.FRAME_HEIGHT  - this.dimension.getHeight() : position.getY());
-        if (position.getX() < 0 || position.getX() > MyGUIFactory.FRAME_WIDTH - this.dimension.getWidth() || position.getY() < 0 || position.getY() > MyGUIFactory.FRAME_HEIGHT - this.dimension.getHeight()) {
-            reachedBorder();
-        }
+        this.position = position;
     }
     /**
      * {@inheritDoc}
@@ -73,11 +67,6 @@ public abstract class AbstractEntity implements Entity {
     public CollisionComponent getCollisionComponent() {
         return this.collisionComponent;
     }
-    /**
-     * Used to notify entity that reach the border.
-     */
-    protected abstract void reachedBorder();
-
     /**
      * {@inheritDoc}
      */

@@ -50,10 +50,6 @@ public class Bomb extends AbstractEntity {
         this.state = BombState.EXPLODED;
     }
     @Override
-    protected void reachedBorder() {
-    }
-
-    @Override
     public void update() {
         if (this.timer > 0) {
             final long now = System.currentTimeMillis() / MILLIS;

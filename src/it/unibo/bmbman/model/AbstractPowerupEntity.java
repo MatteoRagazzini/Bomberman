@@ -42,9 +42,6 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      */
     public abstract void powerupEffect(Hero hero);
 
-    @Override
-    protected void reachedBorder() {
-    }
     /**
      * {@inheritDoc}
      */

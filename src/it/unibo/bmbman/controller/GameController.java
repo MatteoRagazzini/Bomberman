@@ -17,6 +17,10 @@ public interface GameController {
      */
     void gameOver();
     /**
+     * Used to set in pause the game.
+     */
+    void pause();
+    /**
      * Used to store all the entities in game.
      * @param entity the {@link Entity} to add
      * @param enitityView the {@link EntityView} of entity to add

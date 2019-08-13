@@ -15,7 +15,11 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.engine.GameEngine;
+import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.view.GameOverView;
+import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.SinglePlayerView;
 import it.unibo.bmbman.view.entities.EntityView;
@@ -25,28 +29,59 @@ import it.unibo.bmbman.view.entities.EntityView;
 public class GameControllerImpl implements GameController {
     private final List<Entity> worldEntity;
     private final Set<EntityController> setController;
-    private SinglePlayerView spv;
-    private final GameStateController gstate;
+    private  SinglePlayerView spv;
     private final BombControllerImpl bc;
     private final PlayerScore ps;
+    private final MainMenuView mainView; 
+    private final GameEngine engine;
+    private boolean inPause;
     /**
      * Construct an implementation of {@link GameController}.
-     * @param gstate {@link GameStateController}
+     * @param soundsController {@link SoundsController}
+     * @param menuView {@link MainMenuView}
      */
-    public GameControllerImpl(final GameStateController gstate, final SoundsController soundsController) {
+    public GameControllerImpl(final SoundsController soundsController, final MainMenuView menuView) {
         this.worldEntity = new ArrayList<>();
         this.setController = new HashSet<>();
-        this.gstate = gstate;
         this.bc = new BombControllerImpl(soundsController);
         this.ps = new PlayerScore();
+        this.mainView = menuView;
+        this.engine = new GameEngineImp(this, soundsController);
+        final LoadWorld lw = new LoadWorld(this);
+        lw.loadEntity();
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public void startGame() {
-        this.spv = new SinglePlayerView(new KeyInput(this, this.gstate, this.bc), this.ps, this.getHero());
+        this.spv = new SinglePlayerView(new KeyInput(this, this.bc), this.ps, this.getHero());
         this.spv.getFrame().setVisible(true);
+        this.engine.startEngine();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void pause() {
+        inPause = !inPause;
+        this.engine.setPause(inPause);
+    }
+    /**
+     * 
+     * @return true if the hero is dead
+     */
+    public boolean isGameOver() {
+        return getHero().isAlive();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void gameOver() {
+        this.spv.getFrame().setVisible(false);
+        final GameOverView over = new GameOverView(mainView);
+        over.getFrame().setVisible(true);
     }
     /**
      * {@inheritDoc}
@@ -61,11 +96,11 @@ public class GameControllerImpl implements GameController {
      */
     public void addBomb() {
 
-       final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
-       if (plantedBomb.isPresent()) {
-           System.out.println("AGGIUNTA BOMBA");
-           this.worldEntity.add(plantedBomb.get());
-       }
+        final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
+        if (plantedBomb.isPresent()) {
+            System.out.println("AGGIUNTA BOMBA");
+            this.worldEntity.add(plantedBomb.get());
+        }
     }
     /**
      * {@inheritDoc}
@@ -115,13 +150,6 @@ public class GameControllerImpl implements GameController {
         return (Hero) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
     }
     /**
-     * 
-     * @return true if the hero is dead
-     */
-    public boolean isGameOver() {
-        return getHero().isAlive();
-    }
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -138,13 +166,6 @@ public class GameControllerImpl implements GameController {
         .forEach(ec -> ec.update(g));
         this.bc.update(g);
         this.spv.render();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void gameOver() {
-        this.spv.getFrame().setVisible(false);
     }
     /**
      * {@inheritDoc}}

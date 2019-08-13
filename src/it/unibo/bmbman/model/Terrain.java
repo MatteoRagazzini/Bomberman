@@ -191,14 +191,12 @@ public class Terrain {
      * @return
      */
     public Position getFreeRandomPosition() {
-        System.out.println("FREE " + this.freePosition);
         final int randomIndex = new Random().nextInt(freePosition.size()); 
         Position pos = new Position(freePosition.get(randomIndex));
         freePosition.remove(randomIndex);
         return pos;
     }
     public Position getRandomBlockPosition() {
-
         final int randomIndex = new Random().nextInt(BlockPowerUpPosition.size()); 
         Position pos = new Position(BlockPowerUpPosition.get(randomIndex));
         BlockPowerUpPosition.remove(randomIndex);

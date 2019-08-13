@@ -11,7 +11,6 @@ import it.unibo.bmbman.view.entities.BombState;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
-    private boolean justCollide;
     private int bombNumber;
     private boolean gotKey = false;
     private static final int START_POSITION = 50;
@@ -48,7 +47,6 @@ public class Hero extends AbstractLivingEntity {
             break;
 
         }
-        this.justCollide = true;
     }
     /**
      * {@inheritDoc}
@@ -74,7 +72,6 @@ public class Hero extends AbstractLivingEntity {
         default:
             break;
         }
-        justCollide = false;
     }
     /**
      * Set the velocity modifier field.
@@ -82,10 +79,6 @@ public class Hero extends AbstractLivingEntity {
      */
     public void setVelocityModifier(final Double modifier) {
         this.velocityModifier = modifier;
-    }
-    @Override
-    protected void reachedBorder() {
-
     }
     /**
      * Used to know how many bombs the hero can plant.

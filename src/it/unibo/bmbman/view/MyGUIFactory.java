@@ -11,11 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
-
-import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 

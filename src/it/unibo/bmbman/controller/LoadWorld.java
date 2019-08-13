@@ -59,7 +59,7 @@ public class LoadWorld {
         }
         
         List<Entity> mosterList = new ArrayList<>();
-        terrain.getTiles().stream().forEach(t -> System.out.println(t.getPosition()));
+//        terrain.getTiles().stream().forEach(t -> System.out.println(t.getPosition()));
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, terrain.getEntityView(i)));
         
 
@@ -69,7 +69,7 @@ public class LoadWorld {
         loadPowerUp();
         IntStream.iterate(0, i -> i + 1).limit(MOSTER_NUMBER).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
         mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition(), new Dimension(48, 48))));
-        terrain.getTiles().forEach(t -> System.out.println(t.getPosition()));
+//        terrain.getTiles().forEach(t -> System.out.println(t.getPosition()));
 
         this.gc.addEntity(hero, heroView);
     }

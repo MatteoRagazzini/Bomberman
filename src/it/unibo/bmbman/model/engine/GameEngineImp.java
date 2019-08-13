@@ -23,26 +23,20 @@ public class GameEngineImp extends Thread implements GameEngine {
     private boolean update;
     private boolean isRunning;
     private final GameController game;
-    private final GameStateController gameState;
     private final GameTimer gameTimer;
     private final SoundsController soundsController;
     /**
      * set variables.
-     * @param gs {@link GameStateController} of game
+     * @param gc {@link GameController}
+     * @param sc {@link SoundsController}
      */
-    public GameEngineImp(final GameStateController gs, final SoundsController sc) {
+    public GameEngineImp(final GameController gc, final SoundsController sc) {
         super();
         this.update = true;
         this.isRunning = false;
-        this.gameState = gs;
-        this.game = new GameControllerImpl(gameState, sc);
+        this.game = gc;
         this.gameTimer = new GameTimer();
         this.soundsController = sc;
-        final LoadWorld lw = new LoadWorld(game);
-        lw.loadEntity();
-        /*this.modality=1; ci andrà quella presa in input*/
-        /*this.handler=handler;*/
-        System.out.println("costruisco game Engine");
     }
     /**
      * start thread's execution.
@@ -55,7 +49,6 @@ public class GameEngineImp extends Thread implements GameEngine {
              * qui creo un nuovo campo da gioco e avvio un timer
              */
             this.gameTimer.start();
-            this.game.startGame();
             System.out.println(soundsController.getMusicState());
             if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()){
                 soundsController.getMusicSound().play();
@@ -75,7 +68,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             if (soundsController.getMusicSound().isPlaying()) {
                 soundsController.getMusicSound().stop();
             }
-            this.gameState.goToGameOver();
             this.game.gameOver();
             this.gameTimer.stop();
             try {

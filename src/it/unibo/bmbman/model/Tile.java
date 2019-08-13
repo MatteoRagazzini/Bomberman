@@ -19,12 +19,6 @@ public class Tile extends AbstractEntity {
      * {@inheritDoc}
      */
     @Override
-    protected void reachedBorder() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void onCollision(final Collision c) {
     }
     /**

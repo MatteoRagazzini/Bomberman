@@ -20,12 +20,6 @@ public class Block extends AbstractEntity {
      * {@inheritDoc}
      */
     @Override
-    protected void reachedBorder() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void update() {
     }
     /**

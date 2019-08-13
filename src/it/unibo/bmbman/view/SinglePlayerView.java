@@ -39,7 +39,6 @@ public class SinglePlayerView {
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         frame.addKeyListener(ki);
-        frame.setVisible(true);
         bs = this.canvas.getBufferStrategy();
         if (bs == null) {
             canvas.createBufferStrategy(3);

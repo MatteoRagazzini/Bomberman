@@ -9,16 +9,14 @@ import it.unibo.bmbman.model.Direction;
  */
 public class KeyInput implements KeyListener {
     private final GameController gc;
-    private final GameStateController gs;
     private final BombController bc;
     /**
      * KeyInput.
      * @param gc {@link GameController}
-     * @param gs {@link GameStateController}
+     * @param bc {@link BombController}
      */
-    public KeyInput(final GameController gc, final GameStateController gs, final BombController bc) {
+    public KeyInput(final GameController gc, final BombController bc) {
         this.gc = gc;
-        this.gs = gs;
         this.bc = bc;
     }
     /**
@@ -40,7 +38,7 @@ public class KeyInput implements KeyListener {
             gc.getHero().setDirection(Direction.RIGHT);
             break;
         case KeyEvent.VK_P:
-            gs.goToPause();
+            gc.pause();
             break;
         case KeyEvent.VK_SPACE:
 //            bc.plantBomb(gc.getHero());

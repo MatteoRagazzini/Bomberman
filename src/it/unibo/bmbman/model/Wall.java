@@ -30,12 +30,6 @@ public class Wall extends AbstractEntity {
      * {@inheritDoc}
      */
     @Override
-    protected void reachedBorder() {
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public boolean remove() {
         return false;
     }
