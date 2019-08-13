@@ -161,7 +161,7 @@ public class EndView {
         enterName.addActionListener(e -> {
             //ps.setGameTime(score);
             //ps.setScore(totSecond);
-            ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getTotSeconds());
+            ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getString());
             enterName.setEnabled(false);
         });
         nameTextField.addKeyListener(new KeyAdapter() {
