@@ -19,7 +19,6 @@ public class Hero extends AbstractLivingEntity {
     private static final int NLIVES = 3;
     /**
      * Construct a Hero in game.
-     * @param gc the game controller
      */
     public Hero() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
@@ -103,10 +102,8 @@ public class Hero extends AbstractLivingEntity {
      * Method called only when the hero reach the door.
      * If he already got the key, he win the match, otherwise do nothing.
      */
-    public void checkWin() {
-        if (this.gotKey) {
-
-        }
+    public boolean win() {
+        return gotKey;
     }
 
 }

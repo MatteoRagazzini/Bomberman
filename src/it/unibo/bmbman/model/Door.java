@@ -1,6 +1,5 @@
 package it.unibo.bmbman.model;
 
-import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Model the door to reach to win the game.
@@ -17,7 +16,7 @@ public class Door extends AbstractPowerupEntity {
 
     @Override
     public final void powerupEffect(final Hero hero) {
-        hero.checkWin();
+        hero.win();
     }
 
 }

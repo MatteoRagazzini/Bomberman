@@ -61,6 +61,11 @@ public interface GameController {
      */
     boolean isGameOver();
     /**
+     * Used to know if the player has won.
+     * @return true if the hero has the key and has found the door
+     */
+    boolean hasWon();
+    /**
      * Used to update any entity in the world.
      */
     void update();

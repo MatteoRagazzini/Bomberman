@@ -18,7 +18,7 @@ import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.utilities.PlayerScore;
-import it.unibo.bmbman.view.GameOverView;
+import it.unibo.bmbman.view.EndView;
 import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.SinglePlayerView;
@@ -80,7 +80,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void gameOver() {
         this.spv.getFrame().setVisible(false);
-        final GameOverView over = new GameOverView(mainView, ps);
+        final EndView over = new EndView(mainView, ps, EndGameState.LOSE);
         over.getFrame().setVisible(true);
     }
     /**
@@ -179,5 +179,10 @@ public class GameControllerImpl implements GameController {
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
         this.setController.removeAll(controllerToRemoved);
         this.bc.removeBomb();
+    }
+    @Override
+    public boolean hasWon() {
+        // TODO Auto-generated method stub
+        return false;
     }
 }

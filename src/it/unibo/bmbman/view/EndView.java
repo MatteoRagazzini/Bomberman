@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
@@ -24,7 +25,7 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
  * Frame for game over.
  */
-public class GameOverView {
+public class EndView {
 
     private MyGUIFactory gui;
     private final MainMenuView mainView;
@@ -42,6 +43,7 @@ public class GameOverView {
     private final ScreenTool st = new ScreenTool();
     private int score;
     private PlayerScore ps;
+    private final EndGameState state;
     //    private static final String MESSAGE = "Your name is already present. "
     //                           + "If you are a new player click OK and change name, otherwise close";
     //    private final JButton jbOk = new JButton("OK");
@@ -52,21 +54,33 @@ public class GameOverView {
      * Create a GameOverView.
      * @param ps 
      */
-    public GameOverView(final MainMenuView mainMenuView, PlayerScore ps) {
+    public EndView(final MainMenuView mainMenuView, PlayerScore ps, EndGameState state) {
         mainView = mainMenuView;
         this.ps = ps;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         this.score = ps.getScore();
         this.totSecond = GameTimer.getTotSeconds();
-        loadGameOverView();
+        this.state = state;
+        loadEndView();
     }
 
     /**
      * Customize the GameOverView view frame.
      */
-    private void loadGameOverView() {
-        f.setTitle("BOMBERMAN - GameOver");
+    private void loadEndView() {
+        switch (state) {
+        case LOSE:
+            f.setTitle("BOMBERMAN - GameOver");
+            break;
+        case WIN:
+            f.setTitle("BOMBERMAN - You WIN!");
+            break;
+        default:
+            break;
+        
+        }
+
         f.setBackground(Color.black);
         saveGameOverImagePath();
         loadPanels();
@@ -79,7 +93,18 @@ public class GameOverView {
      * Used to loadLabels.
      */
     private void loadLabels() {
-        final JLabel titleLabel = gui.createLabel("Game Over");
+        JLabel titleLabel = gui.createLabel("");
+        switch (state) {
+        case LOSE:
+            titleLabel = gui.createLabel("Game Over");
+            break;
+        case WIN:
+            titleLabel = gui.createLabel("YOU WIN!");
+            break;
+        default:
+            break;
+        
+        }
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
         final JLabel scoreLabel = gui.createLabel("Score");
@@ -137,6 +162,7 @@ public class GameOverView {
             //ps.setGameTime(score);
             //ps.setScore(totSecond);
             ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getTotSeconds());
+            enterName.setEnabled(false);
         });
         nameTextField.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent event) {
@@ -182,7 +208,7 @@ public class GameOverView {
      * @param insets the correct insects
      */
     public static void setInsets(final Insets insets) {
-        GameOverView.insets = insets;
+        EndView.insets = insets;
     }
 
     private Image loadImage(final String text) {
