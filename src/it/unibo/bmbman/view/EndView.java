@@ -34,6 +34,7 @@ public class EndView {
     private JPanel backgroundP;
     private JPanel northP;
     private JButton enterName;
+    private JButton nextLevel;
     private JTextField nameTextField;
     private final int totSecond;
     private String gameOverImagePath;
@@ -70,15 +71,15 @@ public class EndView {
      */
     private void loadEndView() {
         switch (state) {
-        case LOSE:
-            f.setTitle("BOMBERMAN - GameOver");
-            break;
-        case WIN:
-            f.setTitle("BOMBERMAN - You WIN!");
-            break;
-        default:
-            break;
-        
+            case LOSE:
+                f.setTitle("BOMBERMAN - GameOver");
+                break;
+            case WIN:
+                f.setTitle("BOMBERMAN - You WIN!");
+                break;
+            default:
+                break;
+
         }
 
         f.setBackground(Color.black);
@@ -95,15 +96,15 @@ public class EndView {
     private void loadLabels() {
         JLabel titleLabel = gui.createLabel("");
         switch (state) {
-        case LOSE:
-            titleLabel = gui.createLabel("Game Over");
-            break;
-        case WIN:
-            titleLabel = gui.createLabel("YOU WIN!");
-            break;
-        default:
-            break;
-        
+            case LOSE:
+                titleLabel = gui.createLabel("Game Over");
+                break;
+            case WIN:
+                titleLabel = gui.createLabel("YOU WIN!");
+                break;
+            default:
+                break;
+
         }
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
@@ -179,7 +180,16 @@ public class EndView {
         //enterName.setOpaque(false);
         //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
-
+        if(this.state == EndGameState.WIN) {
+            nextLevel = gui.createButton("Go to next level");
+            nextLevel.setBorderPainted(true);
+            nextLevel.setBackground(Color.darkGray);
+            nextLevel.addActionListener(e -> {
+            });
+            c.gridx = 2;
+            c.gridy = 3;
+            centerP.add(nextLevel, c);
+        }
     }
     /**
      * Used to load JTextField. 
