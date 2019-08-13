@@ -8,7 +8,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import it.unibo.bmbman.model.AbstractLivingEntity;
 import it.unibo.bmbman.model.Bomb;
 import it.unibo.bmbman.model.Entity;
@@ -35,6 +34,7 @@ public class GameControllerImpl implements GameController {
     private final MainMenuView mainView; 
     private final GameEngine engine;
     private boolean inPause;
+
     /**
      * Construct an implementation of {@link GameController}.
      * @param soundsController {@link SoundsController}
