@@ -1,7 +1,5 @@
 package it.unibo.bmbman.model;
 
-
-import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
@@ -12,6 +10,7 @@ import it.unibo.bmbman.view.entities.BombState;
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private int bombNumber;
+    private int lifeToRemove;
     private boolean gotKey;
     private boolean win;
     private static final int START_POSITION = 50;
@@ -23,7 +22,7 @@ public class Hero extends AbstractLivingEntity {
      */
     public Hero() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
-        this.bombNumber = 2;
+        this.bombNumber = 1;
     }
     /**
      * {@inheritDoc}
@@ -33,19 +32,22 @@ public class Hero extends AbstractLivingEntity {
         switch (c.getReceiver().getType()) {
         case BOMB:
             if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
-                removeLife();
+                lifeToRemove++;
             }
             break;
         case MONSTER:
             this.setPosition(c.getPosition());
             this.setDirection(Direction.IDLE);
-            removeLife();
+            lifeToRemove++;
             break;
         default:
             this.setPosition(c.getPosition());
             this.setDirection(Direction.IDLE);
             break;
 
+        }
+        if ( lifeToRemove == 1) {
+            removeLife();
         }
     }
     /**
@@ -72,6 +74,7 @@ public class Hero extends AbstractLivingEntity {
         default:
             break;
         }
+        lifeToRemove = 0;
     }
     /**
      * Set the velocity modifier field.
@@ -110,5 +113,6 @@ public class Hero extends AbstractLivingEntity {
     public boolean hasWon() {
         return win;
     }
+
 
 }
