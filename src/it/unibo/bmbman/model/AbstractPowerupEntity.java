@@ -33,8 +33,14 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             this.hero = (Hero) c.getReceiver();
             this.startTime = System.currentTimeMillis() / MILLIS;
             powerupEffect(hero);
-            //Scoring.updateScore(this.isBonus);
         }
+    }
+    /**
+     * 
+     * @return true if the power up is bonus, false if it is malus
+     */
+    public boolean isBonus() {
+        return this.isBonus;
     }
     /**
      * Active the effect.
@@ -60,5 +66,4 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
     public boolean remove() {
         return this.startTime > 0;
     }
-
 }

@@ -3,9 +3,6 @@ package it.unibo.bmbman.model.engine;
 
 
 import it.unibo.bmbman.controller.GameController;
-import it.unibo.bmbman.controller.GameControllerImpl;
-import it.unibo.bmbman.controller.GameStateController;
-import it.unibo.bmbman.controller.LoadWorld;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.view.GameTimer;
 /**
@@ -50,7 +47,7 @@ public class GameEngineImp extends Thread implements GameEngine {
              */
             this.gameTimer.start();
             System.out.println(soundsController.getMusicState());
-            if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()){
+            if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()) {
                 soundsController.getMusicSound().play();
             }
             /*manda in start il thread e cambia il nome*/
@@ -104,7 +101,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             deltaTime = now - lastTime;
             lastTime = now;
             if (this.update) {
-                if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()){
+                if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()) {
                     soundsController.getMusicSound().play();
                 }
                 /*viene chiamato anche il metodo che legge in input*/

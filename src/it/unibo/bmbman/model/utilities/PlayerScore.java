@@ -13,15 +13,13 @@ import it.unibo.bmbman.view.GameTimer;
 public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
-    private int gameTime;
-    private int score = 0;
+    private String gameTime;
+    private int score;
     /**
-     * @param time 
-     * @param score 
-     * @param playerName 
+     * 
      */
     public PlayerScore() {
-        super();
+        this.score = 0;
     }
     /**
      * 
@@ -34,7 +32,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
      * 
      * @return gameTime
      */
-    public int getGameTime() {
+    public String getGameTime() {
         return this.gameTime;
     }
     /**
@@ -46,37 +44,45 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
      }
      /**
       * 
-      * @param gameTime 
+      * @param name 
       */
-     public void setGameTime(final int totSeconds) {
-        this.gameTime = totSeconds;
+     public void setName(final String name) {
+         this.name = name;
+     }
+     /**
+      * 
+      * @param time 
+      */
+     public void setGameTime(final String time) {
+        this.gameTime = time;
      }
      /**
       * 
       * @param score 
       */
-//    public void setScore(final int score) {
-//        this.score = score;
-//    }
-    public void setScore(final List<Entity> entityToRemoved) {
+    public void setScore(final int score) {
+        this.score = score;
+    }
+    /**
+     * 
+     * @param entityToRemoved 
+     */
+    public void updateScore(final List<Entity> entityToRemoved) {
         entityToRemoved.stream().forEach(e -> {
-            if (Scoring.getPoint(e) != 0) {
+            if (!(Scoring.getPoint(e) <= 0 && this.score == 0)) {
                 this.score = this.score + Scoring.getPoint(e);
-                //System.out.println(this.score.get);
             }
         });
     }
     @Override
     public int compareTo(final PlayerScore ps) {
-        return (ps.getScore() != this.getScore())
-                ? ps.getScore() - this.getScore()
-                : this.getGameTime() - ps.getGameTime();
+        return ps.getScore() - this.getScore(); 
     }
     @Override
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + gameTime;
+        result = prime * result + ((gameTime == null) ? 0 : gameTime.hashCode());
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + score;
         return result;
@@ -90,7 +96,10 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
         if (getClass() != obj.getClass())
             return false;
         PlayerScore other = (PlayerScore) obj;
-        if (gameTime != other.gameTime)
+        if (gameTime == null) {
+            if (other.gameTime != null)
+                return false;
+        } else if (!gameTime.equals(other.gameTime))
             return false;
         if (name == null) {
             if (other.name != null)
@@ -101,4 +110,5 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
             return false;
         return true;
     }
+    
 }

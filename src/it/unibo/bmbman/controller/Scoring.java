@@ -2,6 +2,9 @@ package it.unibo.bmbman.controller;
 
 import java.util.List;
 
+import com.sun.org.apache.bcel.internal.generic.ISUB;
+
+import it.unibo.bmbman.model.AbstractPowerupEntity;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityType;
 
@@ -29,12 +32,9 @@ public enum Scoring {
      * @return point
      */
     public static int getPoint(final Entity e) {
-        if (e.toString().startsWith("Bonus")) {
-            return BONUS.value;
-        } else if (e.toString().startsWith("Malus")) {
-            return MALUS.value;
-        } else if (e.toString().equals("Door")) {
-            return DOOR.value;
+        if (e.getType() == EntityType.POWER_UP) {
+            final AbstractPowerupEntity en = (AbstractPowerupEntity) e;
+            return en.isBonus() ? BONUS.value : MALUS.value;
         } else if (e.getType().equals(EntityType.MONSTER)) {
             return MONSTER.value;
         }
