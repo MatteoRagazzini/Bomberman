@@ -18,7 +18,7 @@ import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.utilities.PlayerScore;
-import it.unibo.bmbman.view.GameOverView;
+import it.unibo.bmbman.view.EndView;
 import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.SinglePlayerView;
@@ -72,16 +72,19 @@ public class GameControllerImpl implements GameController {
      * @return true if the hero is dead
      */
     public boolean isGameOver() {
-        return getHero().isAlive();
+        return !getHero().isAlive();
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void gameOver() {
+    public void endView() {
         this.spv.getFrame().setVisible(false);
-        final GameOverView over = new GameOverView(mainView, ps);
-        over.getFrame().setVisible(true);
+        EndView end = new EndView(mainView, ps, EndGameState.LOSE);
+        if (hasWon()) {
+            end = new EndView(mainView, ps, EndGameState.WIN);
+        }
+        end.getFrame().setVisible(true);
     }
     /**
      * {@inheritDoc}
@@ -98,7 +101,6 @@ public class GameControllerImpl implements GameController {
 
         final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
         if (plantedBomb.isPresent()) {
-            System.out.println("AGGIUNTA BOMBA");
             this.worldEntity.add(plantedBomb.get());
         }
     }
@@ -179,5 +181,9 @@ public class GameControllerImpl implements GameController {
         this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
         this.setController.removeAll(controllerToRemoved);
         this.bc.removeBomb();
+    }
+    @Override
+    public boolean hasWon() {
+        return getHero().hasWon();
     }
 }

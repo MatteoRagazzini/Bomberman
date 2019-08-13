@@ -15,7 +15,7 @@ public interface GameController {
     /**
      * Used to notify GameOver.
      */
-    void gameOver();
+    void endView();
     /**
      * Used to set in pause the game.
      */
@@ -60,6 +60,11 @@ public interface GameController {
      * @return true if hero is dead
      */
     boolean isGameOver();
+    /**
+     * Used to know if the player has won.
+     * @return true if the hero has the key and has found the door
+     */
+    boolean hasWon();
     /**
      * Used to update any entity in the world.
      */

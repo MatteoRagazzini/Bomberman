@@ -44,7 +44,6 @@ public class Bomb extends AbstractEntity {
         
     }
     public void setBombExploded() {
-        System.out.println("esplosa");
 //        this.inExplosion = false;
 //        this.isExploded = true;
         this.state = BombState.EXPLODED;

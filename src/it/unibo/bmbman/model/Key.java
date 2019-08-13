@@ -17,6 +17,7 @@ public class Key extends AbstractPowerupEntity {
 
     @Override
     public final void powerupEffect(final Hero hero) {
+        System.out.println("PRESO CHIAVE");
         hero.setKeyFind();
     }
 

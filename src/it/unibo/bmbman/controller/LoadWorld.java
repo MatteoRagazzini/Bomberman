@@ -79,6 +79,7 @@ public class LoadWorld {
         this.gc.addEntity(new Door(), new PowerUpView(Terrain.DOOR_POSITION, PowerUpType.DOOR.toString()));
         position = terrain.getRandomBlockPosition();
         this.gc.addEntity(new Key(position), new PowerUpView(position, PowerUpType.KEY.toString()));
+        System.out.println("Key: " + position);
         position = terrain.getRandomBlockPosition();
         this.gc.addEntity(new BonusLife(position), new PowerUpView(position, PowerUpType.BONUS_LIFE.toString()));
         position = terrain.getRandomBlockPosition();

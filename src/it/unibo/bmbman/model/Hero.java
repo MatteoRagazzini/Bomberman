@@ -12,14 +12,14 @@ import it.unibo.bmbman.view.entities.BombState;
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private int bombNumber;
-    private boolean gotKey = false;
+    private boolean gotKey;
+    private boolean win;
     private static final int START_POSITION = 50;
     private static final int DIMX = 48;
     private static final int DIMY = 48;
     private static final int NLIVES = 3;
     /**
      * Construct a Hero in game.
-     * @param gc the game controller
      */
     public Hero() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
@@ -104,9 +104,11 @@ public class Hero extends AbstractLivingEntity {
      * If he already got the key, he win the match, otherwise do nothing.
      */
     public void checkWin() {
-        if (this.gotKey) {
-
-        }
+        win = gotKey;
+    }
+    
+    public boolean hasWon() {
+        return win;
     }
 
 }

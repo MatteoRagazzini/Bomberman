@@ -119,25 +119,25 @@ public class MyGUIFactory implements GUIFactory {
             GameFont.setFontSize(WQHD_SIZE);
             MainMenuView.setInsets(WQHD_INSETS);
             OptionsView.setInsets(WQHD_OPTION_INSETS);
-            GameOverView.setInsets(WQHD_GAMEOVER_INSETS);
+            EndView.setInsets(WQHD_GAMEOVER_INSETS);
             break;
         case "QHD":
             GameFont.setFontSize(QHD_SIZE);
             MainMenuView.setInsets(QHD_INSETS);
             OptionsView.setInsets(QHD_OPTION_INSETS);
-            GameOverView.setInsets(QHD_GAMEOVER_INSETS);
+            EndView.setInsets(QHD_GAMEOVER_INSETS);
             break;
         case "FHD":
             GameFont.setFontSize(FHD_SIZE);
             MainMenuView.setInsets(FHD_INSETS);
             OptionsView.setInsets(FHD_OPTION_INSETS);
-            GameOverView.setInsets(FHD_GAMEOVER_INSETS);
+            EndView.setInsets(FHD_GAMEOVER_INSETS);
             break;
         case "HD":
             GameFont.setFontSize(HD_SIZE);
             MainMenuView.setInsets(HD_INSETS);
             OptionsView.setInsets(HD_OPTION_INSETS);
-            GameOverView.setInsets(HD_GAMEOVER_INSETS);
+            EndView.setInsets(HD_GAMEOVER_INSETS);
             break;
         default:
             break;
