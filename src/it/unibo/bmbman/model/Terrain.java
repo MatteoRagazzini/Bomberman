@@ -76,7 +76,7 @@ public class Terrain {
     this.blockNumber = blocknumber;
     addBlock();
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
-    BlockPowerUpPosition = getBlocks().stream().map(t -> t.getPosition()).collect(Collectors.toList());
+    BlockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());;
     }
     /**
      * create wall in terrain.

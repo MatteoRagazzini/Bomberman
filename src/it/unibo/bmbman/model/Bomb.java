@@ -59,7 +59,6 @@ public class Bomb extends AbstractEntity {
                 Rectangle horizontal = new Rectangle(pos.getX()-50, pos.getY(), 50*RANGE, 50);
                 Rectangle vertical = new Rectangle(pos.getX(), pos.getY()-50, 50, 50*RANGE);
                 this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
-                System.out.println("INIZIO ESPLOSIONE");
             }
         }
     }
