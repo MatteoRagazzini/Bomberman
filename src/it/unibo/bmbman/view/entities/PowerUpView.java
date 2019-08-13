@@ -12,7 +12,7 @@ public class PowerUpView extends AbstractEntityView {
     private final String imagePath;
     private final SpriteSheet ss;
     private final Image idleImage;
-    private static final int DIMENSION = 50;
+    private static final int DIMENSION = 48;
     /**
      * Constructor for a general power-up.
      * @param position where is the power-up in our terrain

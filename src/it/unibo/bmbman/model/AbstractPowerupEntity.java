@@ -1,6 +1,5 @@
 package it.unibo.bmbman.model;
 
-import it.unibo.bmbman.controller.Scoring;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
@@ -11,18 +10,18 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
 
     private static final int DURATION = 5;
     private static final long MILLIS = 1000;
-    private final boolean isBonus;
+    private static final int DIMENSION = 48;
+    private final boolean bonus;
     private Hero hero;
     private long startTime;
     /**
      * Constructor for a general power-up.
      * @param position the position where i want to locate the power-up
-     * @param dimension the dimension of the power-up
      * @param isBonus if it's a bonus or a malus.
      */
     public AbstractPowerupEntity(final Position position, final boolean isBonus) {
-        super(position, EntityType.POWER_UP, new Dimension(50 ,50));
-        this.isBonus = isBonus;
+        super(position, EntityType.POWER_UP, new Dimension(DIMENSION, DIMENSION));
+        this.bonus = isBonus;
     }
     /**
      * After a collision with the hero, activate the power-up effect.
@@ -40,7 +39,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @return true if the power up is bonus, false if it is malus
      */
     public boolean isBonus() {
-        return this.isBonus;
+        return this.bonus;
     }
     /**
      * Active the effect.
