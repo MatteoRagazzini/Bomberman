@@ -50,7 +50,7 @@ public class Terrain {
     public static final int TERRAIN_COLUMNS = 19;
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION, 1 * CELL_DIMENSION);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION, 2 * CELL_DIMENSION);
-    private static final int BLOCK_NUMBER = 200;
+    private int blockNumber;
     private final List<List<Entity>> terrain = new ArrayList<>();
     private final List<Entity> blockList = new ArrayList<>();
     private final List<Position> freePosition;
@@ -58,8 +58,9 @@ public class Terrain {
 
 /**
  * 
+ * @param blocknumber
  */
-    public Terrain() {
+    public Terrain(final int blocknumber) {
 
     for (int i = 0; i < TERRAIN_COLUMNS; i++) {
         List<Entity> row = new ArrayList<>();
@@ -72,11 +73,10 @@ public class Terrain {
             }
         this.terrain.add(row);
        }
+    this.blockNumber = blocknumber;
     addBlock();
-//    System.out.println("wall");
-//    getWalls().forEach(i->System.out.println(i.getPosition()));
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
-    BlockPowerUpPosition = getBlocks().stream().map(t-> t.getPosition()).collect(Collectors.toList());
+    BlockPowerUpPosition = getBlocks().stream().map(t -> t.getPosition()).collect(Collectors.toList());
     }
     /**
      * create wall in terrain.
@@ -101,10 +101,10 @@ public class Terrain {
      * @param li
      */
     private void addBlock() {
-        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX()+50,PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(),PLAYER_POSITION_DOWN.getY()+50), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(), PLAYER_POSITION_DOWN.getY() + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
-                 .limit(BLOCK_NUMBER)
+                 .limit(blockNumber)
                  .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
                          new Random().nextInt(TERRAIN_ROWS - 1) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
         checkBlock();
@@ -177,7 +177,7 @@ public class Terrain {
         return walls;
     }
     private List<Position> getWallsPosition() {
-        return getWalls().stream().map(i->i.getPosition()).collect(Collectors.toList());
+        return getWalls().stream().map(i -> i.getPosition()).collect(Collectors.toList());
     }
     /**
      * 

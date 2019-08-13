@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model;
 
 public class LevelImpl implements Level {
-    private static final int BLOCKS_FOR_LEVEL = 75;
+    private static final int BLOCKS_FOR_LEVEL = 100;
     private static final int MONSTER_FOR_LEVEL = 2;
     private static final int ONE_TYPE_BONUS_FOR_LEVEL = 2;
     private static final int ONE_TYPE_MALUS_FOR_LEVEL = 1;
@@ -20,7 +20,7 @@ public class LevelImpl implements Level {
      * 
      */
     public LevelImpl() {
-        this.level = 1;
+        this.level = 2;
         this.setAll();
     }
     private void setAll() {

@@ -14,6 +14,8 @@ import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
 import it.unibo.bmbman.model.EntityType;
 import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.Level;
+import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.utilities.PlayerScore;
@@ -34,6 +36,7 @@ public class GameControllerImpl implements GameController {
     private final MainMenuView mainView; 
     private final GameEngine engine;
     private boolean inPause;
+    private Level lv = new LevelImpl(); 
 
     /**
      * Construct an implementation of {@link GameController}.
@@ -49,6 +52,14 @@ public class GameControllerImpl implements GameController {
         this.engine = new GameEngineImp(this, soundsController);
         final LoadWorld lw = new LoadWorld(this);
         lw.loadEntity();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Level getLevel() {
+
+        return lv; 
     }
     /**
      * {@inheritDoc}

@@ -4,6 +4,7 @@ import java.util.Set;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.Hero;
 import it.unibo.bmbman.view.entities.EntityView;
+import it.unibo.bmbman.model.Level;
 /**
  * Interface to handler all the entity in game.
  */
@@ -77,5 +78,10 @@ public interface GameController {
      * Remove entities from the world.
      */
     void removeEntities();
+    /**
+     * provides level information. 
+     * @return an instance of level
+     */
+    Level getLevel();
 }
 
