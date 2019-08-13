@@ -16,7 +16,12 @@ public class Door extends AbstractPowerupEntity {
 
     @Override
     public final void powerupEffect(final Hero hero) {
-        hero.win();
+        hero.checkWin();
+    }
+
+    @Override
+    public boolean remove() {
+        return false;
     }
 
 }

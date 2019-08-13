@@ -12,7 +12,8 @@ import it.unibo.bmbman.view.entities.BombState;
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
     private int bombNumber;
-    private boolean gotKey = false;
+    private boolean gotKey;
+    private boolean win;
     private static final int START_POSITION = 50;
     private static final int DIMX = 48;
     private static final int DIMY = 48;
@@ -102,8 +103,12 @@ public class Hero extends AbstractLivingEntity {
      * Method called only when the hero reach the door.
      * If he already got the key, he win the match, otherwise do nothing.
      */
-    public boolean win() {
-        return gotKey;
+    public void checkWin() {
+        win = gotKey;
+    }
+    
+    public boolean hasWon() {
+        return win;
     }
 
 }

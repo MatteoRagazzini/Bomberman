@@ -72,16 +72,19 @@ public class GameControllerImpl implements GameController {
      * @return true if the hero is dead
      */
     public boolean isGameOver() {
-        return getHero().isAlive();
+        return !getHero().isAlive();
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void gameOver() {
+    public void endView() {
         this.spv.getFrame().setVisible(false);
-        final EndView over = new EndView(mainView, ps, EndGameState.LOSE);
-        over.getFrame().setVisible(true);
+        EndView end = new EndView(mainView, ps, EndGameState.LOSE);
+        if (hasWon()) {
+            end = new EndView(mainView, ps, EndGameState.WIN);
+        }
+        end.getFrame().setVisible(true);
     }
     /**
      * {@inheritDoc}
@@ -98,7 +101,6 @@ public class GameControllerImpl implements GameController {
 
         final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
         if (plantedBomb.isPresent()) {
-            System.out.println("AGGIUNTA BOMBA");
             this.worldEntity.add(plantedBomb.get());
         }
     }
@@ -182,7 +184,6 @@ public class GameControllerImpl implements GameController {
     }
     @Override
     public boolean hasWon() {
-        // TODO Auto-generated method stub
-        return false;
+        return getHero().hasWon();
     }
 }

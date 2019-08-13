@@ -68,7 +68,7 @@ public class GameEngineImp extends Thread implements GameEngine {
             if (soundsController.getMusicSound().isPlaying()) {
                 soundsController.getMusicSound().stop();
             }
-            this.game.gameOver();
+            this.game.endView();
             this.gameTimer.stop();
             try {
                 /* manda in join il thread*/
@@ -99,7 +99,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning && this.game.isGameOver()) {
+        while (isRunning && !this.game.isGameOver() && !this.game.hasWon() ) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
