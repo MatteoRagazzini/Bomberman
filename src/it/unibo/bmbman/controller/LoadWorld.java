@@ -72,42 +72,42 @@ public class LoadWorld {
         for (int i = 0; i < level.getBonusLifeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new BonusLife(position), new PowerUpView(position, PowerUpType.BONUS_LIFE.toString()));
-            //System.out.println(position+"bonus life");
+            System.out.println(position+"bonus life");
         }
         for (int i = 0; i < level.getBonusBombNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new BonusBombNum(position), new PowerUpView(position, PowerUpType.BONUS_BOMB.toString()));
-            //System.out.println(position+"bonus bomb");
+            System.out.println(position+"bonus bomb");
         }
         for (int i = 0; i < level.getBonusRangeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new BonusBombRange(position), new PowerUpView(position, PowerUpType.BONUS_RANGE.toString()));
-            //System.out.println(position+"bonus range");
+            System.out.println(position+"bonus range");
         }
         for (int i = 0; i < level.getBonusVelocityNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new BonusVelocity(position), new PowerUpView(position, PowerUpType.BONUS_SPEED.toString()));
-            //System.out.println(position+"bonus speed");
+            System.out.println(position+"bonus speed");
         }
         for (int i = 0; i < level.getMalusFreezeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new MalusFreeze(position), new PowerUpView(position, PowerUpType.MALUS_FREEZE.toString()));
-            //System.out.println(position+"malus freeze");
+            System.out.println(position+"malus freeze");
         }
         for (int i = 0; i < level.getMalusLifeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new MalusLife(position), new PowerUpView(position, PowerUpType.MALUS_LIFE.toString()));
-            //System.out.println(position+"malus life");
+            System.out.println(position+"malus life");
         }
         for (int i = 0; i < level.getMalusSlowNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new MalusSlow(position), new PowerUpView(position, PowerUpType.MALUS_SLOW.toString()));
-            //System.out.println(position+"malus slow");
+            System.out.println(position+"malus slow");
         }
         for (int i = 0; i < level.getMalusInvertNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new MalusInvert(position), new PowerUpView(position, PowerUpType.MALUS_INVERT.toString()));
-            //System.out.println(position+"malus invert");
+            System.out.println(position+"malus invert");
         }
     }
 }

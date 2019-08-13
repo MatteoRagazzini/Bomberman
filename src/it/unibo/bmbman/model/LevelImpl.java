@@ -22,7 +22,7 @@ public class LevelImpl implements Level {
      * 
      */
     public LevelImpl() {
-        this.level = 3;
+        this.level = 1;
         this.setAll();
     }
     private void setAll() {
@@ -37,79 +37,97 @@ public class LevelImpl implements Level {
         this.bonusRangeNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
         this.bonusVelocityNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getLevel() {
         return this.level;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void levelUp() {
         this.level = level + 1;
         this.setAll();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void setLevelOne() {
         this.level = 1;
         this.setAll();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getBlocksNumber() {
-
         return this.blocksNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMonsterNumber() {
         return this.monstersNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMalusFreezeNumber() {
-
         return this.malusFreezeNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMalusInvertNumber() {
-
         return this.malusInvertNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMalusLifeNumber() {
-
         return this.malusLifeNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getMalusSlowNumber() {
-
         return this.malusSlowNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getBonusBombNumber() {
-
         return this.bonusBombNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getBonusRangeNumber() {
-
         return this.bonusRangeNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getBonusLifeNumber() {
-
         return this.bonusLifeNumber;
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int getBonusVelocityNumber() {
-
         return this.bonusVelocityNumber;
     }
 
