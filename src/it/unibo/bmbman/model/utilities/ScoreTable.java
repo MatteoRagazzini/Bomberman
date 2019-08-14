@@ -11,7 +11,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ScoreTable extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private String[] column = {"Rank", "Name", "Score", "Time"};
+    private String[] column = {"Rank", "Name", "Score", "Time", "Level"};
     private int rowCount;
     private int colCount;
     private Object[][] data;
@@ -33,6 +33,7 @@ public class ScoreTable extends AbstractTableModel {
             this.data[rowIndex][1] = ps.getName();
             this.data[rowIndex][2] = ps.getScore();
             this.data[rowIndex][3] = ps.getGameTime();
+            this.data[rowIndex][4] = ps.getLevel();
             rowIndex++;
             // this.setValueAt(string, rowIndex, colIndex);
         }

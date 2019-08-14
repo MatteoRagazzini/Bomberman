@@ -8,6 +8,7 @@ import it.unibo.bmbman.model.Level;
 /**
  * Interface to handler all the entity in game.
  */
+import it.unibo.bmbman.model.utilities.PlayerScore;
 public interface GameController {
     /**
      * Used to start the game.
@@ -56,6 +57,7 @@ public interface GameController {
      * @return {@link Entity} representing player. 
      */
     Hero getHero();
+    PlayerScore getPlayerScore();
     /**
      * Used to know if game is over.
      * @return true if hero is dead

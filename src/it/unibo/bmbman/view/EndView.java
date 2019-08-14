@@ -19,7 +19,6 @@ import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.controller.GameController;
-import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
@@ -37,39 +36,27 @@ public class EndView {
     private JButton enterName;
     private JButton nextLevel;
     private JTextField nameTextField;
-    private final int totSecond;
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
     private static Insets insets;
     private final ScreenTool st = new ScreenTool();
     private int score;
-    private PlayerScore ps;
     private final GameController gameController;
     private final EndGameState state;
-    //    private static final String MESSAGE = "Your name is already present. "
-    //                           + "If you are a new player click OK and change name, otherwise close";
-    //    private final JButton jbOk = new JButton("OK");
-    //    private boolean isPresent = false;
-    //    private int val;
-    //    private PlayerScore ps;
-
     /**
-     * Create an EndView after hero dead or win.
-     * @param mainMenuView
-     * @param ps
-     * @param state
-     * @param gameController
+     * 
+     * @param mainMenuView 
+     * @param state 
+     * @param gameController 
      */
-    public EndView(final MainMenuView mainMenuView, final PlayerScore ps, final EndGameState state, final GameController gameController) {
+    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController) {
         mainView = mainMenuView;
-        this.ps = ps;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
-        this.score = ps.getScore();
-        this.totSecond = GameTimer.getTotSeconds();
         this.state = state;
         this.gameController = gameController;
+        this.score = this.gameController.getPlayerScore().getScore();
         loadEndView();
     }
 
@@ -86,7 +73,6 @@ public class EndView {
                 break;
             default:
                 break;
-
         }
 
         f.setBackground(Color.black);
@@ -111,7 +97,6 @@ public class EndView {
                 break;
             default:
                 break;
-
         }
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
@@ -149,7 +134,7 @@ public class EndView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.1;
         c.weighty = 0;
-        c.insets = this.insets;
+        c.insets = insets;
         backgroundP.setLayout(new BorderLayout());
         backgroundP.add(centerP, BorderLayout.WEST);
         f.add(backgroundP, BorderLayout.CENTER);
@@ -167,25 +152,11 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            //ps.setGameTime(score);
-            //ps.setScore(totSecond);
-            ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getString());
+            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), this.gameController.getPlayerScore(), nameTextField.getText(), GameTimer.getString());
             enterName.setEnabled(false);
-        });
-        nameTextField.addKeyListener(new KeyAdapter() {
-            public void keyReleased(final KeyEvent event) {
-                String content = nameTextField.getText();
-                if (!content.equals("")) {
-                    enterName.setEnabled(true);
-                } else {
-                    enterName.setEnabled(false);
-                }
-            }
         });
         c.gridx = 1;
         c.gridy = 3;
-        //enterName.setOpaque(false);
-        //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
         if (this.state == EndGameState.WIN) {
             nextLevel = gui.createButton("Go to next level");
@@ -209,6 +180,16 @@ public class EndView {
         c.gridx = 0;
         c.gridy = 3;
         centerP.add(nameTextField, c);
+        nameTextField.addKeyListener(new KeyAdapter() {
+        public void keyReleased(final KeyEvent event) {
+            String content = nameTextField.getText();
+                if (!content.equals("")) {
+                    enterName.setEnabled(true);
+                } else {
+                    enterName.setEnabled(false);
+                }
+            }
+        });
     }
     /**
      * Used to get the actual frame.
@@ -239,35 +220,4 @@ public class EndView {
         }
         return image;
     }
-
-    //  this.t = new JTextField(20);
-    //  this.jb.addActionListener(i -> {
-    //          jd = new JDialog(this.frame, "Your name");
-    //          jd.add(t);
-    //          jd.add(jbOk);
-    //          jd.setSize(300, 150); 
-    //          jd.setLocationRelativeTo(this.frame);
-    //          jd.setLayout(new FlowLayout());
-    //          jd.setVisible(true);
-    //  });
-    //  this.jbOk.addActionListener(e -> {
-    //      PlayerScore ps = new PlayerScore(t.getText());
-    //      final String s = GameTimer.getString();
-    //      ps.setGameTime(s);
-    //      ps.setScore(100);
-    //      ScoreHandler.checkAndReadWrite(ps);
-    ////      ps = ScoreHandler.check(t.getText());
-    ////      this.isPresent = ScoreHandler.getData().stream().anyMatch(f -> f.getName().equals(t.getText()));
-    ////      if (this.isPresent) {
-    ////          val = JOptionPane.showConfirmDialog(this.frame, MESSAGE, null, 
-    ////                                            JOptionPane.DEFAULT_OPTION);
-    ////      }
-    ////      if (!this.isPresent || val == JOptionPane.CLOSED_OPTION) {
-    ////          System.out.println(ps.getName() + ps.getScore());
-    //         // ScoreHandler.checkAndWrite(ps);
-    //          this.frame.setVisible(false);
-    //          new MainMenuView().loadMainMenuView();
-    //      //}
-    //  });
-
 }

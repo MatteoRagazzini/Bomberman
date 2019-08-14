@@ -15,6 +15,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     private String name;
     private String gameTime;
     private int score;
+    private int level;
     /**
      * 
      */
@@ -33,7 +34,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
      * @return gameTime
      */
     public String getGameTime() {
-        return this.gameTime;
+        return GameTimer.getString();
     }
     /**
      * 
@@ -44,10 +45,24 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
      }
      /**
       * 
+      * @return level's number
+      */
+     public int getLevel() {
+         return this.level;
+     }
+     /**
+      * 
       * @param name 
       */
      public void setName(final String name) {
          this.name = name;
+     }
+     /**
+      * 
+      * @param level 
+      */
+     public void setLevel(final int level) {
+         this.level = level;
      }
      /**
       * 
@@ -76,7 +91,9 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
     }
     @Override
     public int compareTo(final PlayerScore ps) {
-        return ps.getScore() - this.getScore(); 
+        return ps.getLevel() != this.getLevel() ?
+               this.getLevel() - ps.getLevel() :
+               ps.getScore() - this.getScore();
     }
     @Override
     public int hashCode() {

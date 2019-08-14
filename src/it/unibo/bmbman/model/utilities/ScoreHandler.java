@@ -63,11 +63,12 @@ public final class ScoreHandler {
         return data;
     }
     /**
+     * @param level 
      * @param ps 
      * @param playerName 
      * @param time 
      */
-    public static void checkAndReadWrite(final PlayerScore ps, final String playerName, final String time) {
+    public static void checkAndReadWrite(final int level, final PlayerScore ps, final String playerName, final String time) {
         System.out.println("CHECKRW");
         if (new File(FILE_NAME).exists()) {
             read();
@@ -75,13 +76,15 @@ public final class ScoreHandler {
             if (p.isPresent()) {
                 check(p.get(), ps.getScore(), time);
             } else {
-                 ps.setGameTime(time);
+                 ps.setGameTime(time); 
                  ps.setName(playerName);
+                 ps.setLevel(level);
                  data.add(ps);
             }
         } else {
             ps.setGameTime(time);
             ps.setName(playerName);
+            ps.setLevel(level);
             data.add(ps);
         }
         save(data);

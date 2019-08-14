@@ -91,9 +91,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endView() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, ps, EndGameState.LOSE, this);
+        EndView end = new EndView(mainView, EndGameState.LOSE, this);
         if (hasWon()) {
-            end = new EndView(mainView, ps, EndGameState.WIN, this);
+            end = new EndView(mainView, EndGameState.WIN, this);
             reset();
         }
         end.getFrame().setVisible(true);
@@ -201,5 +201,9 @@ public class GameControllerImpl implements GameController {
     public void reset() {
         this.worldEntity = new CopyOnWriteArrayList<>();
         this.setController = new CopyOnWriteArraySet<>();
+    }
+    @Override
+    public PlayerScore getPlayerScore() {
+        return this.ps;
     }
 }
