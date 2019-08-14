@@ -36,16 +36,16 @@ public class MainMenuView {
      */
     private GridBagConstraints c;
     private JFrame f;
-    private final GUIFactory gui;
+    private final MyGUIFactory gui;
     private final ImageLoader il;
-    private final ScreenTool st = new ScreenTool();
     private String titleImagePath;
     private String mainImagePath;
-    private static Insets ins;
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
     private static final double NORTH_SCALE_HEIGHT = 0.2;
+    private static final Insets INSETS = new Insets(25, 60, 35, 20);
+
     /**
      * Create the main menu view.
      */
@@ -87,7 +87,7 @@ public class MainMenuView {
         c.weightx = 0.5;
         c.weighty = 1.0;
         //magic number da cambiare in caso di 4k
-        c.insets = this.ins; 
+        c.insets = gui.createScaledInsets(INSETS);
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         // Create EAST Panel
         eastP = new JPanel(new BorderLayout());
@@ -130,19 +130,12 @@ public class MainMenuView {
      * Save the main image path based on the screen resolution.
      */
     private void saveMainImagePath() {
-        mainImagePath = "/image/" + st.getRis() + "_MainImage.png";
+        mainImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_MainImage.png";
     }
     /**
      * Save the title image path based on the screen resolution.
      */
     private void saveTitleImagePath() {
-        titleImagePath = "/image/" + st.getRis() + "_TitleImage.jpg";
-    }
-    /**
-     * .
-     * @param insets .
-     */
-    public static void setInsets(final Insets insets) {
-        ins = insets;
+        titleImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_TitleImage.jpg";
     }
 }

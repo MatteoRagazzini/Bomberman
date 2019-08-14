@@ -2,9 +2,9 @@ package it.unibo.bmbman.model.engine;
 
 
 
-import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.SoundsController;
-import it.unibo.bmbman.view.GameTimer;
+import it.unibo.bmbman.controller.game.GameController;
+import it.unibo.bmbman.model.utilities.GameTimer;
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.
@@ -47,8 +47,8 @@ public class GameEngineImp extends Thread implements GameEngine {
              */
             this.gameTimer.start();
             System.out.println(soundsController.getMusicState());
-            if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()) {
-                soundsController.getMusicSound().play();
+            if (soundsController.getMusicState()) {
+                soundsController.getMusicSound().playInLoop();
             }
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
@@ -81,11 +81,12 @@ public class GameEngineImp extends Thread implements GameEngine {
      */
     public void setPause(final boolean inPause) {
         this.update = !inPause;
-        this.soundsController.getMusicSound().stop();
         if (inPause) {
             this.gameTimer.stop();
+            this.soundsController.getMusicSound().stop();
         } else {
             this.gameTimer.start();
+            this.soundsController.getMusicSound().playInLoop();
         }
     }
     /**
@@ -96,25 +97,15 @@ public class GameEngineImp extends Thread implements GameEngine {
         long lastTime = System.currentTimeMillis();
         long now;
         long deltaTime;
-        while (isRunning && !this.game.isGameOver() && !this.game.hasWon() ) {
+        while (isRunning && !this.game.isGameOver() && !this.game.hasWon()) {
             now = System.currentTimeMillis();
             deltaTime = now - lastTime;
             lastTime = now;
             if (this.update) {
-                if (!soundsController.getMusicSound().isPlaying() && soundsController.getMusicState()) {
-                    soundsController.getMusicSound().play();
-                }
-                /*viene chiamato anche il metodo che legge in input*/
-                /*controller.upadte(); che mi va ad aggiornare tutti gli oggetti e tutte le grafiche che
-                 * chiamerà lui per questo qua non metto render*/
-                /*togliere anche questa stampa*/
                 this.game.update();
-                //                System.out.println("update" + now);
-                /*togliere*/
             }
             deltaTime = System.currentTimeMillis() - now;
             sleepToNextFrame(deltaTime);
-            //            System.out.println("sveglio");
         }
         this.stopEngine();
     }
@@ -127,8 +118,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             sleepTime = remainingToSleepTime;
         }
         try {
-            //            System.out.println("dormirò" + sleepTime);
-            /*manda in sleep il thread*/
             GameEngineImp.sleep(sleepTime);
         } catch (InterruptedException e) {
             e.printStackTrace();

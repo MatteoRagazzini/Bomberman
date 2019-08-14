@@ -18,11 +18,13 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
-import it.unibo.bmbman.controller.GameController;
-import it.unibo.bmbman.model.utilities.ScoreHandler;
+import it.unibo.bmbman.controller.game.GameController;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.ScoreHandler;
+import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
-/**
+/** 
  * Frame for game over.
  */
 public class EndView {
@@ -39,24 +41,25 @@ public class EndView {
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
-    private static Insets insets;
-    private final ScreenTool st = new ScreenTool();
     private int score;
     private final GameController gameController;
     private final EndGameState state;
+    private final PlayerScore ps;
+    private static final Insets INSETS = new Insets(50, 25, 50, 25);
     /**
      * 
      * @param mainMenuView 
      * @param state 
      * @param gameController 
      */
-    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController) {
+    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScore ps) {
         mainView = mainMenuView;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         this.state = state;
         this.gameController = gameController;
-        this.score = this.gameController.getPlayerScore().getScore();
+        this.ps = ps;
+        this.score = ps.getScore();
         loadEndView();
     }
 
@@ -134,7 +137,7 @@ public class EndView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.1;
         c.weighty = 0;
-        c.insets = insets;
+        c.insets = gui.createScaledInsets(INSETS);
         backgroundP.setLayout(new BorderLayout());
         backgroundP.add(centerP, BorderLayout.WEST);
         f.add(backgroundP, BorderLayout.CENTER);
@@ -152,7 +155,7 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), this.gameController.getPlayerScore(), nameTextField.getText(), GameTimer.getString());
+            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), GameTimer.getString());
             enterName.setEnabled(false);
         });
         c.gridx = 1;
@@ -202,14 +205,7 @@ public class EndView {
      * Used to save the appropriete image according to screen resolution.
      */
     private void saveGameOverImagePath() {
-        gameOverImagePath = "/image/" + st.getRis() + "_GameOverImage.png";
-    }
-    /**
-     * Change the insects according to screen resolution.
-     * @param insets the correct insects
-     */
-    public static void setInsets(final Insets insets) {
-        EndView.insets = insets;
+        gameOverImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_GameOverImage.png";
     }
 
     private Image loadImage(final String text) {

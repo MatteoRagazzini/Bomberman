@@ -13,7 +13,8 @@ import java.io.InputStream;
 public class GameFont {
 
     private static final String FONT_URL = "/SecretAgent.ttf";
-    private static Float fontSize = 34f;
+    private static double scale = ScreenTool.getInstance().getScreenScale();
+    private static Float fontSize = (float) (32f*scale);
     private Font font;
     /**
      * Create a new font from a resource file.

@@ -19,7 +19,6 @@ public class HelpView {
     private final MainMenuView mainView;
     private final ImageLoader il;
     private String helpImagePath;
-    private final ScreenTool st = new ScreenTool();
     /**
      * Generate a base frame.
      * @param mainMenuView the frame of the main menu.
@@ -60,6 +59,6 @@ public class HelpView {
      * Save the help image path based on the screen resolution.
      */
     private void saveHelpImagePath() {
-        helpImagePath = "/image/" + st.getRis() + "_HelpImage.png";
+        helpImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_HelpImage.png";
     }
 }

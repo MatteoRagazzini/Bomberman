@@ -33,24 +33,12 @@ public class MyGUIFactory implements GUIFactory {
      */
     public static final int FRAME_HEIGHT = (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT);
     private static final int INITIAL_POSITION = 100;
-    private static final Float WQHD_SIZE = 64f;
-    private static final Insets WQHD_INSETS = new Insets(50, 120, 70, 40);
-    private static final Insets WQHD_OPTION_INSETS = new Insets(0, 50, 0, 50);
-    private static final Insets WQHD_GAMEOVER_INSETS = new Insets(100, 50, 100, 50);
-    private static final Insets QHD_INSETS = new Insets(33, 80, 47, 27);
-    private static final Insets QHD_OPTION_INSETS = new Insets(0, 33, 0, 33);
-    private static final Insets QHD_GAMEOVER_INSETS = new Insets(67, 33, 67, 33);
-    private static final Insets FHD_INSETS = new Insets(25, 60, 35, 20);
-    private static final Insets FHD_OPTION_INSETS = new Insets(0, 25, 0, 25);
-    private static final Insets FHD_GAMEOVER_INSETS = new Insets(50, 25, 50, 25);
-    private static final Insets HD_INSETS = new Insets(18, 43, 25, 14);
-    private static final Insets HD_OPTION_INSETS = new Insets(0, 18, 0, 18);
-    private static final Insets HD_GAMEOVER_INSETS = new Insets(36, 18, 36, 18);
-    private static final Float QHD_SIZE = 36f;
-    private static final Float FHD_SIZE = 32f;
-    private static final Float HD_SIZE = 20f;
-    private GameFont font;
-    private final ScreenTool st = new ScreenTool();
+    //    private static final Float WQHD_SIZE = 64f;
+    //    private static final Float QHD_SIZE = 36f;
+    //    private static final Float FHD_SIZE = 32f;
+    //    private static final Float HD_SIZE = 20f;
+    private GameFont font  = new GameFont();
+    private static final double scale = ScreenTool.getInstance().getScreenScale();
 
     @Override
     /**
@@ -58,8 +46,6 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JButton createButton(final String text) {
         final JButton button = new JButton(text);
-        checkFontSize();
-        font = new GameFont();
         button.setFont(font.getFont());
         button.setBackground(Color.BLACK);
         button.setBorderPainted(false);
@@ -72,14 +58,11 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JRadioButton createRadioButton(final String text) {
         final JRadioButton radioButton = new JRadioButton(text);
-        checkFontSize();
-        font = new GameFont();
         radioButton.setFont(font.getFont());
         radioButton.setBackground(Color.BLACK);
         radioButton.setBorderPainted(false);
         radioButton.setFocusPainted(false);
         radioButton.setForeground(Color.WHITE);
-        radioButton.setSize(500, 500);
         return radioButton;
     }
 
@@ -88,7 +71,6 @@ public class MyGUIFactory implements GUIFactory {
      * Create a general frame.
      */
     public JFrame createFrame() {
-        checkFontSize();
         final JFrame frame = new JFrame();
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
         frame.setResizable(false);
@@ -110,47 +92,20 @@ public class MyGUIFactory implements GUIFactory {
         southPanel.add(back);
         return back;
     }
-    /**
-     * Used to change font size according to resolution the of the screen.
-     */
-    public void checkFontSize() {
-        switch (st.getRis()) {
-        case "WQHD":
-            GameFont.setFontSize(WQHD_SIZE);
-            MainMenuView.setInsets(WQHD_INSETS);
-            OptionsView.setInsets(WQHD_OPTION_INSETS);
-            EndView.setInsets(WQHD_GAMEOVER_INSETS);
-            break;
-        case "QHD":
-            GameFont.setFontSize(QHD_SIZE);
-            MainMenuView.setInsets(QHD_INSETS);
-            OptionsView.setInsets(QHD_OPTION_INSETS);
-            EndView.setInsets(QHD_GAMEOVER_INSETS);
-            break;
-        case "FHD":
-            GameFont.setFontSize(FHD_SIZE);
-            MainMenuView.setInsets(FHD_INSETS);
-            OptionsView.setInsets(FHD_OPTION_INSETS);
-            EndView.setInsets(FHD_GAMEOVER_INSETS);
-            break;
-        case "HD":
-            GameFont.setFontSize(HD_SIZE);
-            MainMenuView.setInsets(HD_INSETS);
-            OptionsView.setInsets(HD_OPTION_INSETS);
-            EndView.setInsets(HD_GAMEOVER_INSETS);
-            break;
-        default:
-            break;
-        }
+
+    public Insets createScaledInsets(Insets insets) {
+        return new Insets((int)(insets.top*scale),(int)(insets.left*scale),
+                (int)(insets.bottom*scale), (int)(insets.bottom*scale));
     }
+    //    public Insets createScaledInsets(int top, int left, int bottom, int right) {
+    //        return new Insets((int)(top*scale),(int)(left*scale), (int)(bottom*scale), (int)(right*scale));
+    //    }
     @Override
     /**
      * {@inheritDoc}
      */
     public JLabel createLabel(final String text) {
         final JLabel label = new JLabel(text);
-        checkFontSize();
-        font = new GameFont();
         label.setFont(font.getFont());
         label.setBackground(Color.BLACK);
         label.setOpaque(true);
@@ -162,12 +117,10 @@ public class MyGUIFactory implements GUIFactory {
      */
     public JTextField createTextField() {
         final JTextField jTextField = new JTextField();
-        checkFontSize();
-        font = new GameFont();
         jTextField.setFont(font.getFont());
         jTextField.setBackground(Color.BLACK);
-       // jTextField.setBorderPainted(true);
-        //    label.setFocusPainted(false);
+        // jTextField.setBorderPainted(true);
+        // label.setFocusPainted(false);
         jTextField.setForeground(Color.WHITE);
         return jTextField;
     }
