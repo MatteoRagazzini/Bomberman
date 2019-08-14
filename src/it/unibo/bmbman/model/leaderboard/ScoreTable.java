@@ -1,6 +1,9 @@
 package it.unibo.bmbman.model.leaderboard;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 import javax.swing.table.AbstractTableModel;
 
@@ -17,23 +20,32 @@ public class ScoreTable extends AbstractTableModel {
     private Object[][] data;
 /**
  * 
- * @param treeSet used to populate the table
+ * @param list used to populate the table
  */
-    public ScoreTable(final List<PlayerScore> treeSet) {
-        this.rowCount = treeSet.size();
+    public ScoreTable(final List<PlayerScoreImpl> list) {
+        this.rowCount = list.size();
         this.colCount = this.column.length;
-        this.data = new Object[treeSet.size()][this.getColumnCount()];
-        System.out.println(treeSet);
-        this.fill(treeSet);
+        this.data = new Object[list.size()][this.getColumnCount()];
+        this.fill(list);
     }
-    private void fill(final List<PlayerScore> list) {
+    private void fill(final List<PlayerScoreImpl> list) {
+        Iterator<Entry<Integer, Long>> entry = list.stream()
+                                                 .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
+                                                 .entrySet().iterator();
         int rowIndex = 0;
-        for (PlayerScore ps : list) {
-            this.data[rowIndex][0] = rowIndex + 1;
+        int rank = 0;
+        Long count = entry.next().getValue();
+        for (PlayerScoreImpl ps : list) {
+            if (rank == count) {
+                count = entry.next().getValue();
+                rank = 0;
+            }
+            this.data[rowIndex][0] = rank + 1;
             this.data[rowIndex][1] = ps.getName();
             this.data[rowIndex][2] = ps.getScore();
             this.data[rowIndex][3] = ps.getGameTime();
             this.data[rowIndex][4] = ps.getLevel();
+            rank++;
             rowIndex++;
         }
     }
@@ -65,7 +77,6 @@ public class ScoreTable extends AbstractTableModel {
     public Object getValueAt(final int rowIndex, final int columnIndex) {
         return this.data[rowIndex][columnIndex];
     }
-
 }
 
 

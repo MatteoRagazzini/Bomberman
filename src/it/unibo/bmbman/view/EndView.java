@@ -19,7 +19,7 @@ import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.controller.game.GameController;
-import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.leaderboard.ScoreHandler;
 import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
@@ -44,7 +44,7 @@ public class EndView {
     private int score;
     private final GameController gameController;
     private final EndGameState state;
-    private final PlayerScore ps;
+    private final PlayerScoreImpl ps;
     private static final Insets INSETS = new Insets(50, 25, 50, 25);
     /**
      * 
@@ -52,7 +52,7 @@ public class EndView {
      * @param state 
      * @param gameController 
      */
-    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScore ps) {
+    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScoreImpl ps) {
         mainView = mainMenuView;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();

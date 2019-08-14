@@ -15,7 +15,7 @@ import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.entities.Bomb;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.Hero;
-import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.utilities.EntityFeature;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.EndView;
@@ -30,7 +30,7 @@ public class GameControllerImpl implements GameController {
     private  Set<EntityController> setController;
     private  SinglePlayerView spv;
     private  BombControllerImpl bc;
-    private PlayerScore ps;
+    private PlayerScoreImpl ps;
     private final MainMenuView mainView; 
     private  GameEngine engine;
     private boolean inPause;
@@ -59,7 +59,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void startGame() {
         this.bc = new BombControllerImpl();
-        this.ps = new PlayerScore();
+        this.ps = new PlayerScoreImpl();
         this.engine = new GameEngineImp(this);
         final LoadWorld lw = new LoadWorld(this);
         lw.loadEntity();

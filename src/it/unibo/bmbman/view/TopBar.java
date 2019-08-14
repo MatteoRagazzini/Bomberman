@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.unibo.bmbman.model.entities.Hero;
-import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.leaderboard.Scoring;
 import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.GameFont;
@@ -32,7 +32,7 @@ public class TopBar extends JPanel {
     private JLabel key;
     private Hero hero;
     private boolean keyloaded = false;
-    private PlayerScore ps;
+    private PlayerScoreImpl ps;
     private ImageLoader il = new ImageLoader();
     private GridBagConstraints c = new GridBagConstraints();
     /**
@@ -41,7 +41,7 @@ public class TopBar extends JPanel {
      * @param ps 
      * @param hero 
      */
-    public TopBar(final GUIFactory gui, final PlayerScore ps, final Hero hero) {
+    public TopBar(final GUIFactory gui, final PlayerScoreImpl ps, final Hero hero) {
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.BLACK);
         c.fill = GridBagConstraints.BOTH;
