@@ -17,28 +17,11 @@ public class ScreenTool {
     private static final double QHDSCALE = 1.33;
     private static final double FHDSCALE = 1;
     private static final double HDSCALE = 0.71;
-    private static ScreenTool istance = null;
     /**
-     * Costruttore privato, in quanto la creazione dell'istanza deve essere controllata.
+     * Method that returns the right scale for all components according to screen resolution.
+     * @return SCALE the right scale
      */
-    private ScreenTool() {}
-    /**
-     * La classe Contenitore viene caricata/inizializzata alla prima esecuzione di getInstance()
-     * ovvero al primo accesso a Contenitore.ISTANZA, ed in modo thread-safe.
-     * Anche l'inizializzazione dell'attributo statico, pertanto, viene serializzata.
-     */
-    private static class Contenitore { 
-        private final static ScreenTool ISTANZA = new ScreenTool();
-    }
-    /**
-     * Punto di accesso al Singleton. Ne assicura la creazione thread-safe
-     * solo all'atto della prima chiamata.
-     * @return il Singleton corrispondente
-     */
-    public static ScreenTool getInstance() {
-        return Contenitore.ISTANZA;
-    }
-    public double getScreenScale() {
+    public static double getScreenScale() {
         if (SCREEN_WIDTH > WIDTH_REF_WQHD && SCREEN_HEIGHT > HEIGHT_REF_WQHD) {
             return WQHDSCALE;
         } else if (SCREEN_WIDTH < WIDTH_REF_HD && SCREEN_HEIGHT < HEIGHT_REF_HD) {
@@ -49,7 +32,11 @@ public class ScreenTool {
             return FHDSCALE;
         }
     }
-    public String getScreenRes() {
+    /**
+     * Method that returns a String representing the screen resolution.
+     * @return a String representing the resolution of the scale
+     */
+    public static String getScreenRes() {
         if (SCREEN_WIDTH > WIDTH_REF_WQHD && SCREEN_HEIGHT > HEIGHT_REF_WQHD) {
             return "WQHD";
         } else if (SCREEN_WIDTH > WIDTH_REF_QHD && SCREEN_HEIGHT > HEIGHT_REF_QHD) {

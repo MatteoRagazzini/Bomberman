@@ -204,7 +204,7 @@ public class EndView {
      * Used to save the appropriete image according to screen resolution.
      */
     private void saveGameOverImagePath() {
-        gameOverImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_GameOverImage.png";
+        gameOverImagePath = "/image/" + ScreenTool.getScreenRes() + "_GameOverImage.png";
     }
 
     private Image loadImage(final String text) {

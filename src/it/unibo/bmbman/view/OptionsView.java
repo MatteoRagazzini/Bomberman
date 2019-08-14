@@ -149,6 +149,6 @@ public class OptionsView {
      * Used to change the image according to screen resolution.
      */
     private void saveOptionsImagePath() {
-        optionsImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_OptionsImage.png";
+        optionsImagePath = "/image/" + ScreenTool.getScreenRes() + "_OptionsImage.png";
     }
 }

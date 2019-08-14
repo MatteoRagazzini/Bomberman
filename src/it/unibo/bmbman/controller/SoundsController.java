@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
+
+import it.unibo.bmbman.model.entities.powerUp.Key;
 import it.unibo.bmbman.model.utilities.Sound;
 import it.unibo.bmbman.model.utilities.SoundImpl;
 
@@ -18,6 +20,7 @@ public class SoundsController {
     private static Optional<Sound> explosion;
     private static Optional<Sound> placeBomb;
     private static Optional<Sound> key;
+    private static String folder = "/Sounds";
     private boolean musicOn = true;
     private boolean effectsOn = true;
 
@@ -30,10 +33,10 @@ public class SoundsController {
      */
     public SoundsController() {
         try {
-            SoundsController.music = Optional.of(new SoundImpl("/music.wav"));
-            SoundsController.explosion = Optional.of(new SoundImpl("/explosion.wav"));
-            SoundsController.placeBomb = Optional.of(new SoundImpl("/placeBomb.wav"));
-            SoundsController.key = Optional.of(new SoundImpl("/key.wav"));
+            SoundsController.music = Optional.of(new SoundImpl(folder + "/music.wav"));
+            SoundsController.explosion = Optional.of(new SoundImpl(folder + "/explosion.wav"));
+            SoundsController.placeBomb = Optional.of(new SoundImpl(folder + "/placeBomb.wav"));
+            SoundsController.key = Optional.of(new SoundImpl(folder + "/key.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -86,13 +89,19 @@ public class SoundsController {
     public static Optional<Sound> getPlaceBombSound() {
         return placeBomb;
     }
+    /**
+     * Gets the {@link Key} sounds. 
+     * @return key {@link Sound}
+     */
     public static Optional<Sound> getKeySound() {
         return key;
     }
-
+    /**
+     * Method used to remove sounds if we don't want to hear them during the game.
+     */
     public void setSounds() {
         if (!musicOn) {
-            SoundsController.music = Optional.empty();   
+            SoundsController.music = Optional.empty();
         }
         if (!effectsOn) {
             SoundsController.explosion = Optional.empty();

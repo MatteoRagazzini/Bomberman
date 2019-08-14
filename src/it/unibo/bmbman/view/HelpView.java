@@ -59,6 +59,6 @@ public class HelpView {
      * Save the help image path based on the screen resolution.
      */
     private void saveHelpImagePath() {
-        helpImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_HelpImage.png";
+        helpImagePath = "/image/" + ScreenTool.getScreenRes() + "_HelpImage.png";
     }
 }

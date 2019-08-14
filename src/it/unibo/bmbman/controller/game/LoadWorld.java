@@ -62,7 +62,7 @@ public class LoadWorld {
         loadPowerUp();
         System.out.println(level.getLevel());
         IntStream.iterate(0, i -> i + 1).limit(level.getMonsterNumber()).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
-        mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition(), new Dimension(MONSTER_SPRITE_DIMENSION, MONSTER_SPRITE_DIMENSION))));
+        mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition())));
         this.gc.addEntity(hero, heroView);
     }
     private void loadPowerUp() {

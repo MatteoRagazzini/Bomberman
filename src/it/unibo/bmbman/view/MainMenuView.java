@@ -130,12 +130,12 @@ public class MainMenuView {
      * Save the main image path based on the screen resolution.
      */
     private void saveMainImagePath() {
-        mainImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_MainImage.png";
+        mainImagePath = "/image/" + ScreenTool.getScreenRes() + "_MainImage.png";
     }
     /**
      * Save the title image path based on the screen resolution.
      */
     private void saveTitleImagePath() {
-        titleImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_TitleImage.jpg";
+        titleImagePath = "/image/" + ScreenTool.getScreenRes() + "_TitleImage.jpg";
     }
 }

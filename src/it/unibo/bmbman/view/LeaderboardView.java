@@ -26,7 +26,6 @@ public class LeaderboardView extends JTable {
     private JPanel northP;
     private JPanel southP;
     private final transient GUIFactory gf;
-    private static final Float SIZE = 20f;
     private static final int ROW_HEIGHT = 40;
     private static final int BORDER_THICKNESS = 5;
     private static final int HEIGHT_DISTANCE = 230;
@@ -61,7 +60,6 @@ public class LeaderboardView extends JTable {
         t.getTableHeader().setForeground(Color.white);
         t.getTableHeader().setReorderingAllowed(false);
         t.getTableHeader().setResizingAllowed(false);
-        GameFont.setFontSize(SIZE);
         t.setFont(font.getFont());
         t.setForeground(Color.white);
         t.setRowHeight(ROW_HEIGHT);

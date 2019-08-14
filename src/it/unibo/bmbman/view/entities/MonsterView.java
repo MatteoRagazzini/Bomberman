@@ -25,9 +25,8 @@ public class MonsterView extends AbstractEntityView {
     /**
      * Create a monster view.
      * @param position where the monster is located
-     * @param dimension the dimension of the monster
      */
-    public MonsterView(final Position position, final Dimension dimension) {
+    public MonsterView(final Position position) {
         super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.MONSTER); 
         setMapDirection();
     }
