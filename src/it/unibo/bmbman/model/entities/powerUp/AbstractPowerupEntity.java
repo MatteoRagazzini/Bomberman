@@ -14,7 +14,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
 
     private static final int DURATION = 5;
     private static final long MILLIS = 1000;
-    private static final int DIMENSION = 45;
+    private static final int DIMENSION = 30;
     private final boolean bonus;
     private Hero hero;
     private long startTime;
@@ -23,9 +23,12 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param position the position where i want to locate the power-up
      * @param isBonus if it's a bonus or a malus.
      */
-    public AbstractPowerupEntity(final Position position, final boolean isBonus) {
-        super(new Position(position.getX() + 2, position.getY() + 2), EntityType.POWER_UP, new Dimension(DIMENSION, DIMENSION));
+    public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
+        super(new Position(position.getX(), position.getY()), EntityType.POWER_UP, dimension);
         this.bonus = isBonus;
+    }
+    public AbstractPowerupEntity(final Position position, final boolean isBonus) {
+        this(new Position(position.getX() + 10, position.getY() + 10), new Dimension(DIMENSION, DIMENSION), isBonus);
     }
     /**
      * After a collision with the hero, activate the power-up effect.
@@ -50,7 +53,6 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param hero the target of the effect.
      */
     public abstract void powerupEffect(Hero hero);
-    
     public abstract void removeEffect(Hero hero);
 
     /**
