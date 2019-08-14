@@ -33,7 +33,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
      * @return gameTime
      */
     public String getGameTime() {
-        return GameTimer.getString();
+        return this.gameTime;
     }
     /**
      * 
@@ -99,6 +99,7 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((gameTime == null) ? 0 : gameTime.hashCode());
+        result = prime * result + level;
         result = prime * result + ((name == null) ? 0 : name.hashCode());
         result = prime * result + score;
         return result;
@@ -117,6 +118,8 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
                 return false;
         } else if (!gameTime.equals(other.gameTime))
             return false;
+        if (level != other.level)
+            return false;
         if (name == null) {
             if (other.name != null)
                 return false;
@@ -125,6 +128,5 @@ public class PlayerScore implements Comparable<PlayerScore>, Serializable {
         if (score != other.score)
             return false;
         return true;
-    }
-    
+    }    
 }
