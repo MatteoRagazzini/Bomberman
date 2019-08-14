@@ -40,17 +40,10 @@ public class EndView {
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
-    private static Insets insets;
-    private final ScreenTool st = new ScreenTool();
     private int score;
     private PlayerScore ps;
     private final EndGameState state;
-    //    private static final String MESSAGE = "Your name is already present. "
-    //                           + "If you are a new player click OK and change name, otherwise close";
-    //    private final JButton jbOk = new JButton("OK");
-    //    private boolean isPresent = false;
-    //    private int val;
-    //    private PlayerScore ps;
+    private static final Insets INSETS = new Insets(50, 25, 50, 25);
     /**
      * Create a GameOverView.
      * @param ps 
@@ -142,7 +135,7 @@ public class EndView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.1;
         c.weighty = 0;
-        c.insets = this.insets;
+        c.insets = gui.createScaledInsets(INSETS);
         backgroundP.setLayout(new BorderLayout());
         backgroundP.add(centerP, BorderLayout.WEST);
         f.add(backgroundP, BorderLayout.CENTER);
@@ -180,7 +173,7 @@ public class EndView {
         //enterName.setOpaque(false);
         //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
-        if(this.state == EndGameState.WIN) {
+        if (this.state == EndGameState.WIN) {
             nextLevel = gui.createButton("Go to next level");
             nextLevel.setBorderPainted(true);
             nextLevel.setBackground(Color.darkGray);
@@ -211,14 +204,7 @@ public class EndView {
      * Used to save the appropriete image according to screen resolution.
      */
     private void saveGameOverImagePath() {
-        gameOverImagePath = "/image/" + st.getRis() + "_GameOverImage.png";
-    }
-    /**
-     * Change the insects according to screen resolution.
-     * @param insets the correct insects
-     */
-    public static void setInsets(final Insets insets) {
-        EndView.insets = insets;
+        gameOverImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_GameOverImage.png";
     }
 
     private Image loadImage(final String text) {

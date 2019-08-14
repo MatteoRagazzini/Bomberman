@@ -31,8 +31,8 @@ public class OptionsView {
     private final Map<JRadioButton, OptionsMenuList> jbMap = new HashMap<>();
     private final OptionsMenuController optionsMenuCtrl;
     private final MainMenuView mainView;
-    private final ScreenTool st = new ScreenTool();
-    private static Insets insets;
+    private static final Insets INSETS = new Insets(0, 60, 0, 0);
+//    private static final Insets INSETS = new Insets(25, 60, 35, 20);
     private String optionsImagePath;
     private JPanel centerP; 
     private JPanel eastP;
@@ -82,7 +82,7 @@ public class OptionsView {
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
         c.weighty = 3.0;
-        c.insets = this.insets;
+        c.insets = gui.createScaledInsets(INSETS);
         f.add(centerP, BorderLayout.CENTER);
         f.add(eastP, BorderLayout.EAST);
         f.add(northP, BorderLayout.NORTH);
@@ -123,7 +123,7 @@ public class OptionsView {
                 final JRadioButton jb = (JRadioButton) e.getSource();
                 optionsMenuCtrl.setOptionSelected((jbMap.get(jb)));
             });
-            if (b.getText().equals("ON")) {
+            if (b.getText().equals("OFF")) {
                 b.setSelected(true);
             }
             c.weightx = 0; //mi serve per spostare i tasti on e off in fondo
@@ -145,18 +145,10 @@ public class OptionsView {
     public JFrame getFrame() {
         return this.f;
     }
-/**
- * Used to get the right inset according to screen resolution.
- * @param insets the right insets
- */
-    public static void setInsets(final Insets insets) {
-        OptionsView.insets = insets;
-    }
-
     /**
      * Used to change the image according to screen resolution.
      */
     private void saveOptionsImagePath() {
-        optionsImagePath = "/image/" + st.getRis() + "_OptionsImage.png";
+        optionsImagePath = "/image/" + ScreenTool.getInstance().getScreenRes() + "_OptionsImage.png";
     }
 }

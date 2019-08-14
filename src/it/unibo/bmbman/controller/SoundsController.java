@@ -5,6 +5,8 @@ import java.io.IOException;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import com.sun.org.apache.bcel.internal.generic.RETURN;
+
 import it.unibo.bmbman.model.utilities.Sound;
 import it.unibo.bmbman.model.utilities.SoundImpl;
 
@@ -29,7 +31,7 @@ public class SoundsController {
      */
     public SoundsController() {
         try {
-            this.music = new SoundImpl("/music.wav");
+            this.music = new SoundImpl("/placeBomb.wav");
             this.explosion = new SoundImpl("/explosion.wav");
             this.placeBomb = new SoundImpl("/placeBomb.wav");
 
@@ -65,12 +67,22 @@ public class SoundsController {
     public boolean getMusicState() {
         return this.musicOn;
     }
+    /**
+     * Method to make the effects sounds active.
+     */
     public void setEffectsOn() {
         this.effectsOn = true;
     }
+    /**
+     * Method to disactivate effects sounds.
+     */
     public void setEffectsOff() {
         this.effectsOn = false;
     }
+    /**
+     * Method to know if the effects sounds is activeted.
+     * @return effectsOn a boolean
+     */
     public boolean getEffectState() {
         return this.effectsOn;
     }
