@@ -18,6 +18,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
+import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.model.utilities.ScoreHandler;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
@@ -44,6 +45,7 @@ public class EndView {
     private final ScreenTool st = new ScreenTool();
     private int score;
     private PlayerScore ps;
+    private final GameController gameController;
     private final EndGameState state;
     //    private static final String MESSAGE = "Your name is already present. "
     //                           + "If you are a new player click OK and change name, otherwise close";
@@ -51,11 +53,15 @@ public class EndView {
     //    private boolean isPresent = false;
     //    private int val;
     //    private PlayerScore ps;
+
     /**
-     * Create a GameOverView.
-     * @param ps 
+     * Create an EndView after hero dead or win.
+     * @param mainMenuView
+     * @param ps
+     * @param state
+     * @param gameController
      */
-    public EndView(final MainMenuView mainMenuView, PlayerScore ps, EndGameState state) {
+    public EndView(final MainMenuView mainMenuView, final PlayerScore ps, final EndGameState state, final GameController gameController) {
         mainView = mainMenuView;
         this.ps = ps;
         this.gui = new MyGUIFactory();
@@ -63,6 +69,7 @@ public class EndView {
         this.score = ps.getScore();
         this.totSecond = GameTimer.getTotSeconds();
         this.state = state;
+        this.gameController = gameController;
         loadEndView();
     }
 
@@ -180,11 +187,14 @@ public class EndView {
         //enterName.setOpaque(false);
         //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
-        if(this.state == EndGameState.WIN) {
+        if (this.state == EndGameState.WIN) {
             nextLevel = gui.createButton("Go to next level");
             nextLevel.setBorderPainted(true);
             nextLevel.setBackground(Color.darkGray);
             nextLevel.addActionListener(e -> {
+                gameController.getLevel().levelUp();
+                gameController.startGame();
+                this.getFrame().setVisible(false);
             });
             c.gridx = 2;
             c.gridy = 3;

@@ -22,4 +22,9 @@ public class BonusLife extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.addLife();
     }
+    @Override
+    public void removeEffect(Hero hero) {
+        // TODO Auto-generated method stub
+        
+    }
 }

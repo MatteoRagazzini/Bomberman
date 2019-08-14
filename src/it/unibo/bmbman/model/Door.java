@@ -24,4 +24,8 @@ public class Door extends AbstractPowerupEntity {
         return false;
     }
 
+    @Override
+    public void removeEffect(Hero hero) {   
+    }
+
 }

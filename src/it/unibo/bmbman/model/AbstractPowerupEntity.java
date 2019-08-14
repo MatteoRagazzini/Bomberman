@@ -10,7 +10,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
 
     private static final int DURATION = 5;
     private static final long MILLIS = 1000;
-    private static final int DIMENSION = 48;
+    private static final int DIMENSION = 45;
     private final boolean bonus;
     private Hero hero;
     private long startTime;
@@ -20,7 +20,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param isBonus if it's a bonus or a malus.
      */
     public AbstractPowerupEntity(final Position position, final boolean isBonus) {
-        super(position, EntityType.POWER_UP, new Dimension(DIMENSION, DIMENSION));
+        super(new Position(position.getX() + 2, position.getY() + 2), EntityType.POWER_UP, new Dimension(DIMENSION, DIMENSION));
         this.bonus = isBonus;
     }
     /**
@@ -46,6 +46,8 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param hero the target of the effect.
      */
     public abstract void powerupEffect(Hero hero);
+    
+    public abstract void removeEffect(Hero hero);
 
     /**
      * {@inheritDoc}
@@ -57,7 +59,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             if (now - startTime >= DURATION) {
                 startTime = 0;
                 System.out.println("effetto finito");
-                hero.setVelocityModifier(1.0);
+                removeEffect(hero);
             }
         }
     }

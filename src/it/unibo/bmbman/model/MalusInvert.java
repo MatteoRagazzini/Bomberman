@@ -22,4 +22,9 @@ public class MalusInvert extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.setVelocityModifier(-1.0);
     }
+    @Override
+    public void removeEffect(Hero hero) {
+        hero.setVelocityModifier(1.0);
+        
+    }
 }

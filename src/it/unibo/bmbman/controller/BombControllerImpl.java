@@ -27,6 +27,8 @@ public class BombControllerImpl implements BombController {
         super();
         this.amountBombs = new ArrayList<>();
         this.sc = soundsController;
+        Bomb.resetBombNumber();
+        Bomb.resetBonusRange();
     }
     /**
      * 
@@ -60,7 +62,7 @@ public class BombControllerImpl implements BombController {
      */
     @Override
     public Optional<Bomb> plantBomb(final Hero hero) {
-        if (hero.getBombNumber() - this.amountBombs.size() >= 1) {
+        if (Bomb.getBombsNumber() - this.amountBombs.size() >= 1) {
             final Position pos = new Position(Position.getCenteredPosition(hero.getPosition()));
             final Bomb b = new Bomb(pos);
             b.startTimer();

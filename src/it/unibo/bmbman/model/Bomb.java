@@ -15,17 +15,18 @@ public class Bomb extends AbstractEntity {
     private long timer = 0;
     private static final int MAX_TIMER = 3;
     private static final long MILLIS = 1000;
-    private static final int RANGE = 3;
+    private static int RANGE = 3;
+    private static int BOMBS_NUMBER = 1;
     private Pair<Rectangle, Rectangle> explosion; 
     /**
      * 
      * @param position 
      */
     public Bomb(final Position position) {
-        super(position, EntityType.BOMB, new Dimension(50, 50));
+        super(position, EntityType.BOMB, new Dimension(Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION));
         this.state = BombState.PLANTED;
-        this.explosion = new Pair<>(new Rectangle(position.getX()-50, position.getY(), 0, 0),
-                                    new Rectangle(position.getX(), position.getY()-50, 0, 0));
+        this.explosion = new Pair<>(new Rectangle(position.getX() - 50, position.getY(), 0, 0),
+                                    new Rectangle(position.getX(), position.getY() - 50, 0, 0));
     }
     /**
      * 
@@ -56,8 +57,8 @@ public class Bomb extends AbstractEntity {
                 this.timer = 0;
                 this.state = BombState.IN_EXPLOSION;
                 final Position pos = this.getPosition();
-                Rectangle horizontal = new Rectangle(pos.getX()-50, pos.getY(), 50*RANGE, 50);
-                Rectangle vertical = new Rectangle(pos.getX(), pos.getY()-50, 50, 50*RANGE);
+                Rectangle horizontal = new Rectangle(pos.getX()-getShift()*50, pos.getY(), 50*RANGE, 50);
+                Rectangle vertical = new Rectangle(pos.getX(), pos.getY()-getShift()*50, 50, 50*RANGE);
                 this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
             }
         }
@@ -70,7 +71,29 @@ public class Bomb extends AbstractEntity {
     }
     @Override
     public void onCollision(Collision c) {
-        // TODO Auto-generated method stub
-        
+
+    }
+    public static void resetBonusRange() {
+        RANGE = 3;
+    }
+    
+    public static void resetBombNumber() {
+        BOMBS_NUMBER = 1;
+    }
+    
+    public static void incrementRange() {
+        RANGE = 5;
+    }
+    
+    public static void incrementBombsNumber() {
+        BOMBS_NUMBER++;
+    }
+    
+    public static int getBombsNumber() {
+        return BOMBS_NUMBER;
+    }
+    
+    private int getShift() {
+        return RANGE == 3 ? 1: 2;
     }
 }

@@ -31,7 +31,6 @@ public class Terrain {
      * the cell dimension.
      */
     public static final int CELL_DIMENSION = 50;
-
     /**
      * the player start position.
      */
@@ -48,6 +47,15 @@ public class Terrain {
      * number of columns in terrain.
      */
     public static final int TERRAIN_COLUMNS = 19;
+    /**
+     * Terrain's width.
+     */
+    public static final int TERRAIN_WIDTH = TERRAIN_COLUMNS * CELL_DIMENSION;
+    /**
+     * Terrain's height.
+     */
+    public static final int TERRAIN_HEGHT = TERRAIN_ROWS * CELL_DIMENSION;
+
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION, 1 * CELL_DIMENSION);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION, 2 * CELL_DIMENSION);
     private int blockNumber;
@@ -76,7 +84,7 @@ public class Terrain {
     this.blockNumber = blocknumber;
     addBlock();
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
-    BlockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());;
+    BlockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());
     }
     /**
      * create wall in terrain.

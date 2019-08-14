@@ -21,5 +21,8 @@ public class MalusLife extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.removeLife();
     }
+    @Override
+    public void removeEffect(Hero hero) {  
+    }
 
 }

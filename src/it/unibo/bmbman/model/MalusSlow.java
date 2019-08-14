@@ -22,4 +22,8 @@ public class MalusSlow extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.setVelocityModifier(0.5);
     }
+    @Override
+    public void removeEffect(Hero hero) {
+        hero.setVelocityModifier(1.0);
+    }
 }

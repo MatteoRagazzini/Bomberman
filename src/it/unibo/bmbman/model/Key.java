@@ -21,4 +21,8 @@ public class Key extends AbstractPowerupEntity {
         hero.setKeyFind();
     }
 
+    @Override
+    public void removeEffect(Hero hero) {    
+    }
+
 }

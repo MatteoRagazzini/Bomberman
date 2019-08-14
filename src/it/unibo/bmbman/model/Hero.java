@@ -9,7 +9,6 @@ import it.unibo.bmbman.view.entities.BombState;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
-    private int bombNumber;
     private int lifeToRemove;
     private boolean gotKey;
     private boolean win;
@@ -22,7 +21,6 @@ public class Hero extends AbstractLivingEntity {
      */
     public Hero() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
-        this.bombNumber = 1;
     }
     /**
      * {@inheritDoc}
@@ -82,19 +80,6 @@ public class Hero extends AbstractLivingEntity {
      */
     public void setVelocityModifier(final Double modifier) {
         this.velocityModifier = modifier;
-    }
-    /**
-     * Used to know how many bombs the hero can plant.
-     * @return the number of bombs
-     */
-    public int getBombNumber() {
-        return this.bombNumber;
-    }
-    /**
-     * Used to add a bomb to hero stock.
-     */
-    public void incrementBombNumber() {
-        this.bombNumber++;
     }
     /**
      * Used to set if the hero has got the key.

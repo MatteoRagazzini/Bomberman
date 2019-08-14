@@ -1,6 +1,5 @@
 package it.unibo.bmbman.model;
 
-import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Model a bonus bomb range power-up.
@@ -19,6 +18,11 @@ public class BonusBombRange extends AbstractPowerupEntity {
      */
     @Override
     public void powerupEffect(final Hero hero) {
-        // TODO Auto-generated method stub
+        Bomb.incrementRange();
+    }
+    @Override
+    public void removeEffect(Hero hero) {
+       Bomb.resetBonusRange();
+        
     }
 }

@@ -19,6 +19,9 @@ public class BonusBombNum extends AbstractPowerupEntity {
      */
     @Override
     public void powerupEffect(final Hero hero) {
-        hero.incrementBombNumber();
+        Bomb.incrementBombsNumber();
+    }
+    @Override
+    public void removeEffect(Hero hero) {     
     }
 }

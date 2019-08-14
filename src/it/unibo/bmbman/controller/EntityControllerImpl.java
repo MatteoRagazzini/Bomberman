@@ -57,7 +57,7 @@ public class EntityControllerImpl implements EntityController {
         return this.entityCollisionManager;
     }
     private void updateView() {
-        this.ev.setDimension(en.getDimension());
+//        this.ev.setDimension(en.getDimension());
         this.ev.setPosition(en.getPosition());
         if (en instanceof AbstractLivingEntity) {
             this.ev.changeDirection(((AbstractLivingEntity) en).getDirection()); 
