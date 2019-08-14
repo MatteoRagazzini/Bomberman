@@ -29,33 +29,33 @@ public class TopBar extends JPanel {
     private JLabel score;
     private JLabel lives;
     private JLabel heart;
+    private JLabel key;
     private Hero hero;
+    private boolean keyloaded = false;
     private PlayerScore ps;
     private ImageLoader il = new ImageLoader();
+    private GridBagConstraints c = new GridBagConstraints();
     /**
      * 
      * @param gui 
-     * @param nPanel 
      * @param ps 
      * @param hero 
      */
-    public TopBar(GUIFactory gui, final PlayerScore ps, final Hero hero) {
+    public TopBar(final GUIFactory gui, final PlayerScore ps, final Hero hero) {
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.BLACK);
-        GridBagConstraints c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
         c.weightx = 0.5;
         gameTime = gui.createLabel("");
         score = gui.createLabel("");
         lives = gui.createLabel("");
         heart = new JLabel((new ImageIcon(il.loadImage("/powerups/+life.png"))));
-        c.anchor = GridBagConstraints.CENTER;
         this.add(heart, c);
         c.insets = new Insets(0, 0, 0, 0);
         this.add(lives, c);
         c.insets = new Insets(0, 100, 0, 0);
         this.add(score, c);
-        gameTime.setPreferredSize(new Dimension(100,50));
+        gameTime.setPreferredSize(new Dimension(30, 0));
         this.add(gameTime, c);
         this.hero = hero;
         this.ps = ps;
@@ -67,6 +67,11 @@ public class TopBar extends JPanel {
         this.gameTime.setText(GameTimer.getString());
         this.score.setText(String.valueOf(this.ps.getScore()));
         this.lives.setText(String.valueOf(hero.getLives()));
+        if (hero.hasKey() && !keyloaded) {
+            keyloaded = true;
+            key = new JLabel((new ImageIcon(il.loadImage("/powerups/key.png"))));
+            this.add(key, c);
+        }
     }
     /**
      * 
