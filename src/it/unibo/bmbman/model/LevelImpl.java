@@ -26,7 +26,7 @@ public class LevelImpl implements Level {
         this.setAll();
     }
     private void setAll() {
-        this.monstersNumber = level * MONSTER_FOR_LEVEL;
+        this.monstersNumber = level * MONSTER_FOR_LEVEL + MONSTER_FOR_LEVEL;
         this.blocksNumber = level * BLOCKS_FOR_LEVEL;
         this.malusFreezeNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
         this.malusInvertNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;

@@ -31,7 +31,7 @@ public class SoundsController {
      */
     public SoundsController() {
         try {
-            this.music = new SoundImpl("/placeBomb.wav");
+            this.music = new SoundImpl("/music.wav");
             this.explosion = new SoundImpl("/explosion.wav");
             this.placeBomb = new SoundImpl("/placeBomb.wav");
 

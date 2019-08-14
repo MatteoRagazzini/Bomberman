@@ -18,8 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
-import it.unibo.bmbman.model.utilities.PlayerScore;
-import it.unibo.bmbman.model.utilities.ScoreHandler;
+import it.unibo.bmbman.controller.game.GameController;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.ScoreHandler;
+import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 /**
@@ -42,13 +44,18 @@ public class EndView {
     private GridBagConstraints c;
     private int score;
     private PlayerScore ps;
+    private final GameController gameController;
     private final EndGameState state;
     private static final Insets INSETS = new Insets(50, 25, 50, 25);
+
     /**
-     * Create a GameOverView.
-     * @param ps 
+     * Create an EndView after hero dead or win.
+     * @param mainMenuView
+     * @param ps
+     * @param state
+     * @param gameController
      */
-    public EndView(final MainMenuView mainMenuView, PlayerScore ps, EndGameState state) {
+    public EndView(final MainMenuView mainMenuView, final PlayerScore ps, final EndGameState state, final GameController gameController) {
         mainView = mainMenuView;
         this.ps = ps;
         this.gui = new MyGUIFactory();
@@ -56,6 +63,7 @@ public class EndView {
         this.score = ps.getScore();
         this.totSecond = GameTimer.getTotSeconds();
         this.state = state;
+        this.gameController = gameController;
         loadEndView();
     }
 
@@ -178,6 +186,9 @@ public class EndView {
             nextLevel.setBorderPainted(true);
             nextLevel.setBackground(Color.darkGray);
             nextLevel.addActionListener(e -> {
+                gameController.getLevel().levelUp();
+                gameController.startGame();
+                this.getFrame().setVisible(false);
             });
             c.gridx = 2;
             c.gridy = 3;
@@ -215,35 +226,4 @@ public class EndView {
         }
         return image;
     }
-
-    //  this.t = new JTextField(20);
-    //  this.jb.addActionListener(i -> {
-    //          jd = new JDialog(this.frame, "Your name");
-    //          jd.add(t);
-    //          jd.add(jbOk);
-    //          jd.setSize(300, 150); 
-    //          jd.setLocationRelativeTo(this.frame);
-    //          jd.setLayout(new FlowLayout());
-    //          jd.setVisible(true);
-    //  });
-    //  this.jbOk.addActionListener(e -> {
-    //      PlayerScore ps = new PlayerScore(t.getText());
-    //      final String s = GameTimer.getString();
-    //      ps.setGameTime(s);
-    //      ps.setScore(100);
-    //      ScoreHandler.checkAndReadWrite(ps);
-    ////      ps = ScoreHandler.check(t.getText());
-    ////      this.isPresent = ScoreHandler.getData().stream().anyMatch(f -> f.getName().equals(t.getText()));
-    ////      if (this.isPresent) {
-    ////          val = JOptionPane.showConfirmDialog(this.frame, MESSAGE, null, 
-    ////                                            JOptionPane.DEFAULT_OPTION);
-    ////      }
-    ////      if (!this.isPresent || val == JOptionPane.CLOSED_OPTION) {
-    ////          System.out.println(ps.getName() + ps.getScore());
-    //         // ScoreHandler.checkAndWrite(ps);
-    //          this.frame.setVisible(false);
-    //          new MainMenuView().loadMainMenuView();
-    //      //}
-    //  });
-
 }

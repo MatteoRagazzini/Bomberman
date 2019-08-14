@@ -2,9 +2,9 @@ package it.unibo.bmbman.model.engine;
 
 
 
-import it.unibo.bmbman.controller.GameController;
 import it.unibo.bmbman.controller.SoundsController;
-import it.unibo.bmbman.view.GameTimer;
+import it.unibo.bmbman.controller.game.GameController;
+import it.unibo.bmbman.model.utilities.GameTimer;
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.

@@ -9,11 +9,12 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import it.unibo.bmbman.controller.KeyInput;
-import it.unibo.bmbman.controller.Scoring;
-import it.unibo.bmbman.model.EntityType;
-import it.unibo.bmbman.model.Hero;
-import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.controller.game.KeyInput;
+import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.Scoring;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.entities.BombView;
 import it.unibo.bmbman.view.entities.EntityView;
 
@@ -39,10 +40,10 @@ public class SinglePlayerView {
         nPanel = new TopBar(gui, ps, hero);
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
-        canvas.setSize(19*50, 15*50);
+        canvas.setSize(Terrain.TERRAIN_WIDTH,Terrain.TERRAIN_HEGHT);
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
-        frame.addKeyListener(ki);
+        canvas.addKeyListener(ki);
         bs = this.canvas.getBufferStrategy();
         if (bs == null) {
             canvas.createBufferStrategy(3);
@@ -63,12 +64,12 @@ public class SinglePlayerView {
     public Graphics getGraphics() {
         return this.bs.getDrawGraphics();
     }
-
     /**
-     * used to update the frame.
+     * Used to update the frame.
+     * @param entitiesView all the entities' view to update 
+     * @param bombs all the planted bombs' view to update
      */
     public void render(final Set<EntityView> entitiesView, final Set<BombView> bombs) {
-        
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.TILE).forEach(v -> v.render(getGraphics()));
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.POWER_UP).forEach(v -> v.render(getGraphics()));
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.BLOCK).forEach(v -> v.render(getGraphics()));
@@ -78,7 +79,7 @@ public class SinglePlayerView {
         this.bs.show();
         this.nPanel.render();
         this.frame.pack();
-        this.frame.requestFocus();
+        this.canvas.requestFocus();
     }
 
 }

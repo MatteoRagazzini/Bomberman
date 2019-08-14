@@ -3,9 +3,10 @@ package it.unibo.bmbman.view.entities;
 
 import java.awt.Graphics;
 import java.awt.Image;
-import it.unibo.bmbman.model.Direction;
-import it.unibo.bmbman.model.EntityType;
+
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.Direction;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
@@ -44,11 +45,10 @@ public interface EntityView {
      * @param g {@link Graphics} to update
      */
     void render(Graphics g);
-//    /**
-//     * Used to set the image of the entity.
-//     * @param image the sprite to set
-//     */
-//    void setSprite(Image image);
+    /**
+     * Used to remove the entity view.
+     */
+    void remove();
     /**
      * Used to get the image associated to the entity.
      * @return the sprite
