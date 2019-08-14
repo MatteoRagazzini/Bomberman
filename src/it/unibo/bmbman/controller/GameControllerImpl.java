@@ -1,14 +1,13 @@
 package it.unibo.bmbman.controller;
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.util.ArrayList;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
-import it.unibo.bmbman.model.AbstractLivingEntity;
 import it.unibo.bmbman.model.Bomb;
 import it.unibo.bmbman.model.Entity;
 import it.unibo.bmbman.model.EntityFeature;
@@ -21,20 +20,20 @@ import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.utilities.PlayerScore;
 import it.unibo.bmbman.view.EndView;
 import it.unibo.bmbman.view.MainMenuView;
-import it.unibo.bmbman.view.MyGUIFactory;
 import it.unibo.bmbman.view.SinglePlayerView;
 import it.unibo.bmbman.view.entities.EntityView;
 /**
  * An implementation of {@link GameController}.
  */
 public class GameControllerImpl implements GameController {
-    private final List<Entity> worldEntity;
-    private final Set<EntityController> setController;
+    private  List<Entity> worldEntity;
+    private  Set<EntityController> setController;
     private  SinglePlayerView spv;
-    private final BombControllerImpl bc;
-    private final PlayerScore ps;
+    private  BombControllerImpl bc;
+    private PlayerScore ps;
     private final MainMenuView mainView; 
-    private final GameEngine engine;
+    private final SoundsController soundsController;
+    private  GameEngine engine;
     private boolean inPause;
     private Level lv = new LevelImpl(); 
 
@@ -44,14 +43,10 @@ public class GameControllerImpl implements GameController {
      * @param menuView {@link MainMenuView}
      */
     public GameControllerImpl(final SoundsController soundsController, final MainMenuView menuView) {
-        this.worldEntity = new ArrayList<>();
+        this.worldEntity = new CopyOnWriteArrayList<>();
         this.setController = new HashSet<>();
-        this.bc = new BombControllerImpl(soundsController);
-        this.ps = new PlayerScore();
         this.mainView = menuView;
-        this.engine = new GameEngineImp(this, soundsController);
-        final LoadWorld lw = new LoadWorld(this);
-        lw.loadEntity();
+        this.soundsController = soundsController;
     }
     /**
      * {@inheritDoc}
@@ -66,6 +61,11 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void startGame() {
+        this.bc = new BombControllerImpl(soundsController);
+        this.ps = new PlayerScore();
+        this.engine = new GameEngineImp(this, soundsController);
+        final LoadWorld lw = new LoadWorld(this);
+        lw.loadEntity();
         this.spv = new SinglePlayerView(new KeyInput(this, this.bc), this.ps, this.getHero());
         this.spv.getFrame().setVisible(true);
         this.engine.startEngine();
@@ -91,9 +91,10 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endView() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, ps, EndGameState.LOSE);
+        EndView end = new EndView(mainView, ps, EndGameState.LOSE, this);
         if (hasWon()) {
-            end = new EndView(mainView, ps, EndGameState.WIN);
+            end = new EndView(mainView, ps, EndGameState.WIN, this);
+            reset();
         }
         end.getFrame().setVisible(true);
     }
@@ -120,8 +121,8 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public Set<Entity> getUnwalkableEntity() {
-        return worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNWALKABLE)
-                .collect(Collectors.toSet());
+        return new CopyOnWriteArraySet<>(worldEntity.stream().filter(x -> x.getType().getIsWalkable() == EntityFeature.UNWALKABLE)
+                .collect(Collectors.toSet()));
     }
     /**
      * {@inheritDoc}
@@ -136,8 +137,8 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public Set<Entity> getBreakableEntity() {
-        return worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.BREAKABLE)
-                .collect(Collectors.toSet());
+        return new CopyOnWriteArraySet<>(worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.BREAKABLE)
+                .collect(Collectors.toSet()));
     }
     /**
      * {@inheritDoc}
@@ -168,7 +169,6 @@ public class GameControllerImpl implements GameController {
     @Override
     public void update() {
         removeEntities();
-        final Graphics g = this.spv.getGraphics();
         collisionDetect();
         this.setController.forEach(ec -> ec.update());
         //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update());
@@ -195,5 +195,11 @@ public class GameControllerImpl implements GameController {
     @Override
     public boolean hasWon() {
         return getHero().hasWon();
+    }
+    
+    @Override
+    public void reset() {
+        this.worldEntity = new CopyOnWriteArrayList<>();
+        this.setController = new CopyOnWriteArraySet<>();
     }
 }

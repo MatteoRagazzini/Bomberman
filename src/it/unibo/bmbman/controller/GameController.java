@@ -83,5 +83,9 @@ public interface GameController {
      * @return an instance of level
      */
     Level getLevel();
+    /**
+     * Reset the gameController after the win.
+     */
+    void reset();
 }
 
