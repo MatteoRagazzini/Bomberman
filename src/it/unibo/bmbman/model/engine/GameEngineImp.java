@@ -21,19 +21,16 @@ public class GameEngineImp extends Thread implements GameEngine {
     private boolean isRunning;
     private final GameController game;
     private final GameTimer gameTimer;
-    private final SoundsController soundsController;
     /**
      * set variables.
      * @param gc {@link GameController}
-     * @param sc {@link SoundsController}
      */
-    public GameEngineImp(final GameController gc, final SoundsController sc) {
+    public GameEngineImp(final GameController gc) {
         super();
         this.update = true;
         this.isRunning = false;
         this.game = gc;
         this.gameTimer = new GameTimer();
-        this.soundsController = sc;
     }
     /**
      * start thread's execution.
@@ -42,14 +39,11 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void startEngine() {
         if (!this.isRunning) {
             this.isRunning = true;
+            SoundsController.getMusicSound().ifPresent(s -> s.playInLoop());
             /*
              * qui creo un nuovo campo da gioco e avvio un timer
              */
             this.gameTimer.start();
-            System.out.println(soundsController.getMusicState());
-            if (soundsController.getMusicState()) {
-                soundsController.getMusicSound().playInLoop();
-            }
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -62,9 +56,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void stopEngine() {
         if (this.isRunning) {
             this.isRunning = false;
-            if (soundsController.getMusicSound().isPlaying()) {
-                soundsController.getMusicSound().stop();
-            }
+                SoundsController.getMusicSound().ifPresent(s -> s.stop());
             this.game.endView();
             this.gameTimer.stop();
             try {
@@ -83,10 +75,10 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.update = !inPause;
         if (inPause) {
             this.gameTimer.stop();
-            this.soundsController.getMusicSound().stop();
+            SoundsController.getMusicSound().ifPresent(s -> s.stop());
         } else {
             this.gameTimer.start();
-            this.soundsController.getMusicSound().playInLoop();
+            SoundsController.getMusicSound().ifPresent(s -> s.playInLoop());
         }
     }
     /**

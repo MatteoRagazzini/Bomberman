@@ -35,7 +35,6 @@ public class GameControllerImpl implements GameController {
     private  BombControllerImpl bc;
     private PlayerScore ps;
     private final MainMenuView mainView; 
-    private final SoundsController soundsController;
     private  GameEngine engine;
     private boolean inPause;
     private Level lv = new LevelImpl(); 
@@ -45,11 +44,10 @@ public class GameControllerImpl implements GameController {
      * @param soundsController {@link SoundsController}
      * @param menuView {@link MainMenuView}
      */
-    public GameControllerImpl(final SoundsController soundsController, final MainMenuView menuView) {
+    public GameControllerImpl(final MainMenuView menuView) {
         this.worldEntity = new CopyOnWriteArrayList<>();
         this.setController = new HashSet<>();
         this.mainView = menuView;
-        this.soundsController = soundsController;
     }
     /**
      * {@inheritDoc}
@@ -64,9 +62,9 @@ public class GameControllerImpl implements GameController {
      */
     @Override
     public void startGame() {
-        this.bc = new BombControllerImpl(soundsController);
+        this.bc = new BombControllerImpl();
         this.ps = new PlayerScore();
-        this.engine = new GameEngineImp(this, soundsController);
+        this.engine = new GameEngineImp(this);
         final LoadWorld lw = new LoadWorld(this);
         lw.loadEntity();
         this.spv = new SinglePlayerView(new KeyInput(this, this.bc), this.ps, this.getHero());

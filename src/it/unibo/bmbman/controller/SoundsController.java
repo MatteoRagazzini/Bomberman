@@ -1,12 +1,10 @@
 package it.unibo.bmbman.controller;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-
 import it.unibo.bmbman.model.utilities.Sound;
 import it.unibo.bmbman.model.utilities.SoundImpl;
 
@@ -16,9 +14,10 @@ import it.unibo.bmbman.model.utilities.SoundImpl;
  */
 public class SoundsController {
 
-    private Sound music;
-    private Sound explosion;
-    private Sound placeBomb;
+    private static Optional<Sound> music;
+    private static Optional<Sound> explosion;
+    private static Optional<Sound> placeBomb;
+    private static Optional<Sound> key;
     private boolean musicOn = true;
     private boolean effectsOn = true;
 
@@ -31,10 +30,10 @@ public class SoundsController {
      */
     public SoundsController() {
         try {
-            this.music = new SoundImpl("/music.wav");
-            this.explosion = new SoundImpl("/explosion.wav");
-            this.placeBomb = new SoundImpl("/placeBomb.wav");
-
+            SoundsController.music = Optional.of(new SoundImpl("/music.wav"));
+            SoundsController.explosion = Optional.of(new SoundImpl("/explosion.wav"));
+            SoundsController.placeBomb = Optional.of(new SoundImpl("/placeBomb.wav"));
+            SoundsController.key = Optional.of(new SoundImpl("/key.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
@@ -45,8 +44,8 @@ public class SoundsController {
      *
      * @return music {@link Sound}
      */
-    public Sound getMusicSound() {
-        return this.music;
+    public static Optional<Sound> getMusicSound() {
+        return music;
     }
     /**
      * method to used to set the music game to be played.
@@ -60,13 +59,7 @@ public class SoundsController {
     public void setMusicOff() {
         this.musicOn = false;
     }
-    /**
-     * method to know if the music game has to start or not.
-     * @return a boolean
-     */
-    public boolean getMusicState() {
-        return this.musicOn;
-    }
+
     /**
      * Method to make the effects sounds active.
      */
@@ -80,24 +73,32 @@ public class SoundsController {
         this.effectsOn = false;
     }
     /**
-     * Method to know if the effects sounds is activeted.
-     * @return effectsOn a boolean
-     */
-    public boolean getEffectState() {
-        return this.effectsOn;
-    }
-    /**
      * Gets the explosion sound.
      * @return explosion {@link Sound}
      */
-    public Sound getExplosionSound() {
-        return this.explosion;
+    public static Optional<Sound> getExplosionSound() {
+        return explosion;
     }
     /**
      * Gets the placedBomb sound.
      * @return placeBomb {@link Sound}
      */
-    public Sound getPlaceBombSound() {
-        return this.placeBomb;
+    public static Optional<Sound> getPlaceBombSound() {
+        return placeBomb;
+    }
+    public static Optional<Sound> getKeySound() {
+        return key;
+    }
+
+    public void setSounds() {
+        if (!musicOn) {
+            SoundsController.music = Optional.empty();   
+        }
+        if (!effectsOn) {
+            SoundsController.explosion = Optional.empty();
+            SoundsController.placeBomb = Optional.empty();
+            SoundsController.key = Optional.empty();
+        }
     }
 }
+

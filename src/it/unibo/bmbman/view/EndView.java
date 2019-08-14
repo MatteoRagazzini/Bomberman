@@ -80,9 +80,7 @@ public class EndView {
                 break;
             default:
                 break;
-
         }
-
         f.setBackground(Color.black);
         saveGameOverImagePath();
         loadPanels();
@@ -105,7 +103,6 @@ public class EndView {
                 break;
             default:
                 break;
-
         }
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
@@ -161,8 +158,6 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            //ps.setGameTime(score);
-            //ps.setScore(totSecond);
             ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getString());
             enterName.setEnabled(false);
         });
@@ -178,8 +173,6 @@ public class EndView {
         });
         c.gridx = 1;
         c.gridy = 3;
-        //enterName.setOpaque(false);
-        //enterName.setForeground(Color.BLACK);
         centerP.add(enterName, c);
         if (this.state == EndGameState.WIN) {
             nextLevel = gui.createButton("Go to next level");

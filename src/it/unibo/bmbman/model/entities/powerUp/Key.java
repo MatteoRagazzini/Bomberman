@@ -1,5 +1,6 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
+import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
@@ -10,7 +11,6 @@ public class Key extends AbstractPowerupEntity {
     /**
      * Construct the key in the world.
      * @param position where to create it.
-     * @param dimension the dimension of the key.
      */
     public Key(final Position position) {
         super(position, true);
@@ -20,10 +20,11 @@ public class Key extends AbstractPowerupEntity {
     public final void powerupEffect(final Hero hero) {
         System.out.println("PRESO CHIAVE");
         hero.setKeyFind();
+        SoundsController.getKeySound().ifPresent(s -> s.play());
     }
 
     @Override
-    public void removeEffect(Hero hero) {    
+    public void removeEffect(final Hero hero) {
     }
 
 }

@@ -20,11 +20,11 @@ import it.unibo.bmbman.view.utilities.AnimationImpl;
  */
 public class BombView extends AbstractEntityView {
     private static final String PATH_BOMB_IMAGES = "/bombs/bomb.png";
-    private static final String PATH_EXPLOSION_IMAGES = "/bombs/explosion.png";
+    private static final String PATH_EXPLOSION_IMAGES = "/bombs/explosion1.png";
     private static final int DIMENSION = 50;
     private static final int DIMENSION_EXPLOSION = 150;
     private static final int FRAME_PER_ANIMATION_BOMB = 6;
-    private static final int FRAME_PER_ANIMATION_EXPLOSION = 5;
+    private static final int FRAME_PER_ANIMATION_EXPLOSION = 7;
     private final Animation spriteBomb = new AnimationImpl();
     private final Animation spriteExplosion = new AnimationImpl();
     private final Map<BombState, Animation> sprite = new HashMap<>();
