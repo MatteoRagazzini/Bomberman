@@ -42,7 +42,6 @@ public class Hero extends AbstractLivingEntity {
             break;
         default:
             this.setPosition(c.getPosition());
-            this.setDirection(Direction.IDLE);
             break;
 
         }

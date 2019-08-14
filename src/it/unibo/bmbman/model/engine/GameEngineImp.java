@@ -20,7 +20,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     private boolean update;
     private boolean isRunning;
     private final GameController game;
-    private final GameTimer gameTimer;
+    private GameTimer gameTimer;
     /**
      * set variables.
      * @param gc {@link GameController}
@@ -56,7 +56,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void stopEngine() {
         if (this.isRunning) {
             this.isRunning = false;
-                SoundsController.getMusicSound().ifPresent(s -> s.stop());
+            SoundsController.getMusicSound().ifPresent(s -> s.stop());
             this.game.endView();
             this.gameTimer.stop();
             try {

@@ -32,8 +32,7 @@ public class MainMenuControllerImpl implements MainMenuController {
     public void setOptionSelected(final MainMenuList optionSelected) {
         switch (optionSelected) {
         case SINGLE_PLAYER:
-            this.gc = new GameControllerImpl(mainMenuView);
-            gc.startGame();
+            new GameControllerImpl(mainMenuView).startGame();
             break;
             /* da implementare i prossimi casi*/
             //        case MULTIPLAYER:

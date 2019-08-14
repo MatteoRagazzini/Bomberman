@@ -20,7 +20,7 @@ public class PowerUpView extends AbstractEntityView {
      * @param path the path of the image to load.
      */
     public PowerUpView(final Position position,  final String path) {
-        super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.POWER_UP);
+        super(new Position(position.getX(), position.getY()), new Dimension(DIMENSION, DIMENSION), true, EntityType.POWER_UP);
         this.imagePath = path;
         this.ss = new SpriteSheet(imagePath);
         this.idleImage = ss.getSprite(1, 1, DIMENSION);
@@ -31,5 +31,8 @@ public class PowerUpView extends AbstractEntityView {
     @Override
     public Image getSprite() {
         return idleImage;
+    }
+    @Override
+    public void setPosition(Position position) {
     }
 }
