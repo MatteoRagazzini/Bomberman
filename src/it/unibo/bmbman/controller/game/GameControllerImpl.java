@@ -92,9 +92,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endView() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, ps, EndGameState.LOSE, this);
+        EndView end = new EndView(mainView,EndGameState.LOSE, this, ps);
         if (hasWon()) {
-            end = new EndView(mainView, ps, EndGameState.WIN, this);
+            end = new EndView(mainView, EndGameState.WIN, this, ps);
             reset();
         }
         end.getFrame().setVisible(true);

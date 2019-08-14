@@ -24,7 +24,7 @@ import it.unibo.bmbman.model.leaderboard.ScoreHandler;
 import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
-/**
+/** 
  * Frame for game over.
  */
 public class EndView {
@@ -38,32 +38,28 @@ public class EndView {
     private JButton enterName;
     private JButton nextLevel;
     private JTextField nameTextField;
-    private final int totSecond;
     private String gameOverImagePath;
     private Image image;
     private GridBagConstraints c;
     private int score;
-    private PlayerScore ps;
     private final GameController gameController;
     private final EndGameState state;
+    private final PlayerScore ps;
     private static final Insets INSETS = new Insets(50, 25, 50, 25);
-
     /**
-     * Create an EndView after hero dead or win.
-     * @param mainMenuView
-     * @param ps
-     * @param state
-     * @param gameController
+     * 
+     * @param mainMenuView 
+     * @param state 
+     * @param gameController 
      */
-    public EndView(final MainMenuView mainMenuView, final PlayerScore ps, final EndGameState state, final GameController gameController) {
+    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScore ps) {
         mainView = mainMenuView;
-        this.ps = ps;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
-        this.score = ps.getScore();
-        this.totSecond = GameTimer.getTotSeconds();
         this.state = state;
         this.gameController = gameController;
+        this.ps = ps;
+        this.score = ps.getScore();
         loadEndView();
     }
 
@@ -158,18 +154,8 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            ScoreHandler.checkAndReadWrite(ps, nameTextField.getText(), GameTimer.getString());
+            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), GameTimer.getString());
             enterName.setEnabled(false);
-        });
-        nameTextField.addKeyListener(new KeyAdapter() {
-            public void keyReleased(final KeyEvent event) {
-                String content = nameTextField.getText();
-                if (!content.equals("")) {
-                    enterName.setEnabled(true);
-                } else {
-                    enterName.setEnabled(false);
-                }
-            }
         });
         c.gridx = 1;
         c.gridy = 3;
@@ -196,6 +182,16 @@ public class EndView {
         c.gridx = 0;
         c.gridy = 3;
         centerP.add(nameTextField, c);
+        nameTextField.addKeyListener(new KeyAdapter() {
+        public void keyReleased(final KeyEvent event) {
+            String content = nameTextField.getText();
+                if (!content.equals("")) {
+                    enterName.setEnabled(true);
+                } else {
+                    enterName.setEnabled(false);
+                }
+            }
+        });
     }
     /**
      * Used to get the actual frame.
