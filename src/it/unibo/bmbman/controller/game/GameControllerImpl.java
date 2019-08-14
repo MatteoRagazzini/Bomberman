@@ -1,6 +1,4 @@
 package it.unibo.bmbman.controller.game;
-
-
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -10,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
 import it.unibo.bmbman.controller.EndGameState;
-import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
@@ -41,7 +38,6 @@ public class GameControllerImpl implements GameController {
 
     /**
      * Construct an implementation of {@link GameController}.
-     * @param soundsController {@link SoundsController}
      * @param menuView {@link MainMenuView}
      */
     public GameControllerImpl(final MainMenuView menuView) {
@@ -92,7 +88,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endView() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView,EndGameState.LOSE, this, ps);
+        EndView end = new EndView(mainView, EndGameState.LOSE, this, ps);
         if (hasWon()) {
             end = new EndView(mainView, EndGameState.WIN, this, ps);
             reset();
