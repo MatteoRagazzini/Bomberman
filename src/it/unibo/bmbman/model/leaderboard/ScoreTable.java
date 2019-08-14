@@ -35,7 +35,6 @@ public class ScoreTable extends AbstractTableModel {
             this.data[rowIndex][3] = ps.getGameTime();
             this.data[rowIndex][4] = ps.getLevel();
             rowIndex++;
-            // this.setValueAt(string, rowIndex, colIndex);
         }
     }
     /**

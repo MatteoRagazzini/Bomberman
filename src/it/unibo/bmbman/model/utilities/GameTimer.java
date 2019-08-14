@@ -36,13 +36,5 @@ public class GameTimer extends Timer {
     public static String getString() {
         return String.format("%02d:%02d", minutes, seconds);
     }
-    
-    public static int getSeconds() {
-        return seconds;
-    }
-    
-    public static int getMinutes() {
-        return minutes;
-    }
 }
 

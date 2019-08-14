@@ -73,7 +73,7 @@ public final class ScoreHandler {
         if (new File(FILE_NAME).exists()) {
             read();
             final Optional<PlayerScore> p = checkIfPresent(playerName);
-            if (p.isPresent()) {
+            if (p.isPresent() && p.get().getLevel() == level) {
                 check(p.get(), ps.getScore(), time);
             } else {
                  ps.setGameTime(time); 

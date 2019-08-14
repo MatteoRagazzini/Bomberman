@@ -92,6 +92,13 @@ public class Hero extends AbstractLivingEntity {
         this.gotKey = true;
     }
     /**
+     * Used to know if the hero has got the key.
+     * @return a boolean 
+     */
+    public boolean hasKey() {
+        return this.gotKey;
+    }
+    /**
      * Method called only when the hero reach the door.
      * If he already got the key, he win the match, otherwise do nothing.
      */
