@@ -21,13 +21,11 @@ import it.unibo.bmbman.view.entities.BombView;
  */
 public class BombControllerImpl implements BombController {
     private List<Pair<Bomb, BombView>> amountBombs;
-    private SoundsController sc;
     /**
      */
-    public BombControllerImpl(final SoundsController soundsController) {
+    public BombControllerImpl() {
         super();
         this.amountBombs = new ArrayList<>();
-        this.sc = soundsController;
         Bomb.resetBombNumber();
         Bomb.resetBonusRange();
     }
@@ -68,9 +66,8 @@ public class BombControllerImpl implements BombController {
             final Bomb b = new Bomb(pos);
             b.startTimer();
             this.amountBombs.add(new Pair<Bomb, BombView>(b, new BombView(pos)));
-            if (sc.getEffectState()) {
-                sc.getPlaceBombSound().play();
-            }
+            SoundsController.getPlaceBombSound().ifPresent(s -> s.play());
+
             return Optional.of(b);
         }
         return Optional.empty();
@@ -86,9 +83,7 @@ public class BombControllerImpl implements BombController {
             b.getY().setBombState(b.getX().getState());
 //            b.getY().render(g); 
             if (b.getX().getState() == BombState.IN_EXPLOSION) {
-                if (sc.getEffectState()) {
-                    sc.getExplosionSound().play();
-                }
+                    SoundsController.getExplosionSound().ifPresent(s -> s.play());
             }
         });
     }

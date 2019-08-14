@@ -38,7 +38,7 @@ public class MyGUIFactory implements GUIFactory {
     //    private static final Float FHD_SIZE = 32f;
     //    private static final Float HD_SIZE = 20f;
     private GameFont font  = new GameFont();
-    private static final double scale = ScreenTool.getInstance().getScreenScale();
+    private static final double SCALE = ScreenTool.getInstance().getScreenScale();
 
     @Override
     /**
@@ -92,10 +92,14 @@ public class MyGUIFactory implements GUIFactory {
         southPanel.add(back);
         return back;
     }
-
-    public Insets createScaledInsets(Insets insets) {
-        return new Insets((int)(insets.top*scale),(int)(insets.left*scale),
-                (int)(insets.bottom*scale), (int)(insets.bottom*scale));
+/**
+ * Method to scale the insets accorind to screen resolution.
+ * @param insets the right insets in FHD
+ * @return a new insets scaled according to screen resolution
+ */
+    public Insets createScaledInsets(final Insets insets) {
+        return new Insets((int) (insets.top * SCALE), (int) (insets.left * SCALE),
+                (int) (insets.bottom * SCALE), (int) (insets.bottom * SCALE));
     }
     //    public Insets createScaledInsets(int top, int left, int bottom, int right) {
     //        return new Insets((int)(top*scale),(int)(left*scale), (int)(bottom*scale), (int)(right*scale));

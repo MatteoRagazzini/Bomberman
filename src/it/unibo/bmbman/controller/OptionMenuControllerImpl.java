@@ -25,7 +25,7 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
             default:
                 break;
         }
-
+        this.sc.setSounds();
     }
 
     /**

@@ -12,7 +12,7 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public abstract class AbstractPowerupEntity extends AbstractEntity {
 
-    private static final int DURATION = 5;
+    private static final int DURATION = 8;
     private static final long MILLIS = 1000;
     private static final int DIMENSION = 30;
     private final boolean bonus;
