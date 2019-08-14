@@ -45,7 +45,7 @@ public class TopBar extends JPanel {
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.BLACK);
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.5;
+        c.weightx = 0.1;
         gameTime = gui.createLabel("");
         score = gui.createLabel("");
         lives = gui.createLabel("");
@@ -55,7 +55,7 @@ public class TopBar extends JPanel {
         this.add(lives, c);
         c.insets = new Insets(0, 100, 0, 0);
         this.add(score, c);
-        gameTime.setPreferredSize(new Dimension(30, 0));
+        gameTime.setPreferredSize(new Dimension(35, 0));
         this.add(gameTime, c);
         this.hero = hero;
         this.ps = ps;
