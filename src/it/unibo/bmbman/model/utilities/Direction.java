@@ -1,4 +1,4 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.utilities;
 /**
  * Define the direction in which an entity can move.
  *

@@ -1,4 +1,4 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 
 
@@ -6,23 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import it.unibo.bmbman.model.BonusBombNum;
-import it.unibo.bmbman.model.BonusBombRange;
-import it.unibo.bmbman.model.BonusLife;
-import it.unibo.bmbman.model.BonusVelocity;
-import it.unibo.bmbman.model.Door;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.Hero;
-import it.unibo.bmbman.model.Key;
 import it.unibo.bmbman.model.Level;
-import it.unibo.bmbman.model.MalusFreeze;
-import it.unibo.bmbman.model.MalusInvert;
-import it.unibo.bmbman.model.MalusLife;
-import it.unibo.bmbman.model.MalusSlow;
-import it.unibo.bmbman.model.Monster;
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.Monster;
+import it.unibo.bmbman.model.entities.powerUp.BonusBombNum;
+import it.unibo.bmbman.model.entities.powerUp.BonusBombRange;
+import it.unibo.bmbman.model.entities.powerUp.BonusLife;
+import it.unibo.bmbman.model.entities.powerUp.BonusVelocity;
+import it.unibo.bmbman.model.entities.powerUp.Door;
+import it.unibo.bmbman.model.entities.powerUp.Key;
+import it.unibo.bmbman.model.entities.powerUp.MalusFreeze;
+import it.unibo.bmbman.model.entities.powerUp.MalusInvert;
+import it.unibo.bmbman.model.entities.powerUp.MalusLife;
+import it.unibo.bmbman.model.entities.powerUp.MalusSlow;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.model.utilities.PowerUpType;
 import it.unibo.bmbman.view.entities.HeroView;
 import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.PowerUpView;

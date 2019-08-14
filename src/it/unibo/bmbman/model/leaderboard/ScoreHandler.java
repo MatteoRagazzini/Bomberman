@@ -1,4 +1,4 @@
-package it.unibo.bmbman.model.utilities;
+package it.unibo.bmbman.model.leaderboard;
 
 import java.io.File;
 import java.io.FileInputStream;

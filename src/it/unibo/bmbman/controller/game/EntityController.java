@@ -1,10 +1,8 @@
-package it.unibo.bmbman.controller;
-
-import java.awt.Graphics;
+package it.unibo.bmbman.controller.game;
 import java.util.Optional;
 
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.EntityCollisionManager;
+import it.unibo.bmbman.model.collision.EntityCollisionManager;
+import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.view.entities.EntityView;
 
 /**
@@ -28,7 +26,10 @@ public interface EntityController {
     Optional<EntityCollisionManager> getCollisionManager();
     /**
      * Used to update view and model.
-     * @param g {@link Graphics} compontent to update view
      */
-    void update(/*Graphics g*/);
+    void update();
+    /**
+     * Used to remove the entity.
+     */
+    void remove();
 }

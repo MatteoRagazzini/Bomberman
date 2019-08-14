@@ -1,5 +1,6 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities.powerUp;
 
+import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**

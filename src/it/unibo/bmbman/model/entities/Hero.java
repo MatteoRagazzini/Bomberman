@@ -1,9 +1,12 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities;
 
+import it.unibo.bmbman.model.collision.Collision;
+import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.Direction;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
-import it.unibo.bmbman.view.entities.BombState;
 /**
  * Representing a hero in our application.
  */
@@ -35,8 +38,7 @@ public class Hero extends AbstractLivingEntity {
             break;
         case MONSTER:
             this.setPosition(c.getPosition());
-            this.setDirection(Direction.IDLE);
-            lifeToRemove++;
+            lifeToRemove++; 
             break;
         default:
             this.setPosition(c.getPosition());
@@ -44,7 +46,7 @@ public class Hero extends AbstractLivingEntity {
             break;
 
         }
-        if ( lifeToRemove == 1) {
+        if (lifeToRemove == 1) {
             removeLife();
         }
     }

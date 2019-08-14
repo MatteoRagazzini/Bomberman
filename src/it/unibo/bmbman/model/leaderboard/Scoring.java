@@ -1,12 +1,12 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.model.leaderboard;
 
 import java.util.List;
 
 import com.sun.org.apache.bcel.internal.generic.ISUB;
 
-import it.unibo.bmbman.model.AbstractPowerupEntity;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.EntityType;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.powerUp.AbstractPowerupEntity;
+import it.unibo.bmbman.model.utilities.EntityType;
 
 /**
  *

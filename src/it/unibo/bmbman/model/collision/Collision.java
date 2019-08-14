@@ -1,5 +1,6 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.collision;
 
+import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * The interface for a Collision between two entities in our game.

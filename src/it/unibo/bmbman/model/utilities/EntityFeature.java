@@ -1,4 +1,4 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.utilities;
 /**
  * Possible feature of each entity.
  */

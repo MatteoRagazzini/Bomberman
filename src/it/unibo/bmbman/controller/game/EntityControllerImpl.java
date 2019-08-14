@@ -1,13 +1,12 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
-import java.awt.Graphics;
 import java.util.Optional;
 
-import it.unibo.bmbman.model.AbstractLivingEntity;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.EntityCollisionManager;
-import it.unibo.bmbman.model.EntityCollisionManagerImpl;
-import it.unibo.bmbman.model.EntityType;
+import it.unibo.bmbman.model.collision.EntityCollisionManager;
+import it.unibo.bmbman.model.collision.EntityCollisionManagerImpl;
+import it.unibo.bmbman.model.entities.AbstractLivingEntity;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.entities.EntityView;
 /**
  * An implementation of {@link EntityController}.
@@ -57,7 +56,6 @@ public class EntityControllerImpl implements EntityController {
         return this.entityCollisionManager;
     }
     private void updateView() {
-//        this.ev.setDimension(en.getDimension());
         this.ev.setPosition(en.getPosition());
         if (en instanceof AbstractLivingEntity) {
             this.ev.changeDirection(((AbstractLivingEntity) en).getDirection()); 
@@ -67,11 +65,14 @@ public class EntityControllerImpl implements EntityController {
      * {@inheritDoc}
      */
     @Override
-    public void update(/*final Graphics g*/) {
+    public void update() {
         updateView();
         this.en.update();
-//        this.ev.render(g);
+    }
 
+    @Override
+    public void remove() {
+        ev.remove();
     }
 
 }

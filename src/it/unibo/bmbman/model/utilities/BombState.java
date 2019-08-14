@@ -1,4 +1,4 @@
-package it.unibo.bmbman.view.entities;
+package it.unibo.bmbman.model.utilities;
 /**
  * enum to manage the different states of the bomb.
  */

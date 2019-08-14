@@ -1,4 +1,4 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 
 import java.util.HashSet;
@@ -8,16 +8,19 @@ import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
-import it.unibo.bmbman.model.Bomb;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.EntityFeature;
-import it.unibo.bmbman.model.EntityType;
-import it.unibo.bmbman.model.Hero;
+
+import it.unibo.bmbman.controller.EndGameState;
+import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
-import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.utilities.EntityFeature;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.EndView;
 import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.SinglePlayerView;
@@ -171,11 +174,6 @@ public class GameControllerImpl implements GameController {
         removeEntities();
         collisionDetect();
         this.setController.forEach(ec -> ec.update());
-        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.TILE).forEach(ec -> ec.update());
-        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.POWER_UP).forEach(ec -> ec.update());
-        //        this.setController.stream().filter(ec -> ec.getEntity().getType() == EntityType.BLOCK).forEach(ec -> ec.update());
-        //        this.setController.stream().filter(ec -> ec.getEntity() instanceof AbstractLivingEntity || ec.getEntity().getType() == EntityType.WALL)
-        //        .forEach(ec -> ec.update());
         this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
         this.bc.update();
     }
@@ -187,16 +185,24 @@ public class GameControllerImpl implements GameController {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
         this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
-        final Set<EntityController> controllerToRemoved = this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity()) && c.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
-        this.setController.stream().filter(c -> entityToRemoved.contains(c.getEntity())).forEach(c -> c.getEntityView().setVisible(false));
+        Set<EntityController> controllerToRemoved = this.setController.stream()
+                                                                            .filter(c -> entityToRemoved.contains(c.getEntity()))
+                                                                            .collect(Collectors.toSet());
+        controllerToRemoved.forEach(c -> c.remove());
+        controllerToRemoved = controllerToRemoved.stream().filter(ec -> ec.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.removeAll(controllerToRemoved);
         this.bc.removeBomb();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean hasWon() {
         return getHero().hasWon();
     }
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void reset() {
         this.worldEntity = new CopyOnWriteArrayList<>();

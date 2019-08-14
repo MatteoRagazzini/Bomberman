@@ -1,15 +1,15 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities;
 
 import java.awt.Rectangle;
 
 import it.unibo.bmbman.controller.SoundsController;
+import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.collision.Collision;
+import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
-/**
- * 
- */
-import it.unibo.bmbman.view.entities.BombState;
 public class Bomb extends AbstractEntity {
     private BombState state;
     private long timer = 0;

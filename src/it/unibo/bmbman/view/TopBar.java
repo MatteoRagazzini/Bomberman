@@ -12,9 +12,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.unibo.bmbman.controller.Scoring;
-import it.unibo.bmbman.model.Hero;
-import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.Scoring;
+import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 

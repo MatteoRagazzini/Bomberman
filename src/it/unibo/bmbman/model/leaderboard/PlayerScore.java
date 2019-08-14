@@ -1,11 +1,10 @@
-package it.unibo.bmbman.model.utilities;
+package it.unibo.bmbman.model.leaderboard;
 
 import java.io.Serializable;
 import java.util.List;
 
-import it.unibo.bmbman.controller.Scoring;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.view.GameTimer;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.utilities.GameTimer;
 
 /** 
  * It manages name, score and game time of a player.

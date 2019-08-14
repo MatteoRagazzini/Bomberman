@@ -18,9 +18,10 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import it.unibo.bmbman.controller.EndGameState;
-import it.unibo.bmbman.controller.GameController;
-import it.unibo.bmbman.model.utilities.PlayerScore;
-import it.unibo.bmbman.model.utilities.ScoreHandler;
+import it.unibo.bmbman.controller.game.GameController;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.ScoreHandler;
+import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenTool;
 /**

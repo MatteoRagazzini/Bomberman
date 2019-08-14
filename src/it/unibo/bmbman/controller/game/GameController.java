@@ -1,10 +1,11 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 import java.util.Set;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.Hero;
+
 import it.unibo.bmbman.view.entities.EntityView;
 import it.unibo.bmbman.model.Level;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Hero;
 /**
  * Interface to handler all the entity in game.
  */

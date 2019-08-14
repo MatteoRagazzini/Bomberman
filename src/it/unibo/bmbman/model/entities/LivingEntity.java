@@ -1,4 +1,5 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities;
+import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.Velocity;
 /**
  * Interface to model a living entity that is an entity with one or more lives and capable of moving.

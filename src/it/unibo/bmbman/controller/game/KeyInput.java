@@ -1,8 +1,9 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import it.unibo.bmbman.model.Direction;
+
+import it.unibo.bmbman.model.utilities.Direction;
 
 /**
  * Used to move the hero in his adventure.

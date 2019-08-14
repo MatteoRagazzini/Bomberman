@@ -1,7 +1,11 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities;
 
 
+import it.unibo.bmbman.model.collision.Collision;
+import it.unibo.bmbman.model.collision.CollisionComponent;
+import it.unibo.bmbman.model.collision.CollisionComponentImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.MyGUIFactory;
 /**

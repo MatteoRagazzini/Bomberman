@@ -9,12 +9,12 @@ import java.util.Set;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import it.unibo.bmbman.controller.KeyInput;
-import it.unibo.bmbman.controller.Scoring;
-import it.unibo.bmbman.model.EntityType;
-import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.controller.game.KeyInput;
 import it.unibo.bmbman.model.Terrain;
-import it.unibo.bmbman.model.utilities.PlayerScore;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.leaderboard.PlayerScore;
+import it.unibo.bmbman.model.leaderboard.Scoring;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.entities.BombView;
 import it.unibo.bmbman.view.entities.EntityView;
 

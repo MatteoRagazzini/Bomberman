@@ -1,6 +1,10 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities.powerUp;
 
+import it.unibo.bmbman.model.collision.Collision;
+import it.unibo.bmbman.model.entities.AbstractEntity;
+import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**

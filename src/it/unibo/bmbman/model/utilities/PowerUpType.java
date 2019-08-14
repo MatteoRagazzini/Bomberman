@@ -1,4 +1,4 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.model.utilities;
 /**
  * Possible power-up view choices.
  */

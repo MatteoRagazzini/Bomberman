@@ -1,4 +1,4 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 import java.awt.Rectangle;
 import java.util.ArrayList;
@@ -7,13 +7,14 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import it.unibo.bmbman.model.Bomb;
-import it.unibo.bmbman.model.CollisionImpl;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.controller.SoundsController;
+import it.unibo.bmbman.model.collision.CollisionImpl;
+import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.entities.BombState;
 import it.unibo.bmbman.view.entities.BombView;
 /**
  *

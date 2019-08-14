@@ -1,10 +1,13 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities;
 
 import java.util.Random;
 
+import it.unibo.bmbman.model.collision.Collision;
+import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.Direction;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.entities.BombState;
 
 /**
  * Model the creation and the beaviour of the monster.

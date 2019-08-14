@@ -11,8 +11,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
-import it.unibo.bmbman.model.utilities.ScoreHandler;
-import it.unibo.bmbman.model.utilities.ScoreTable;
+import it.unibo.bmbman.model.leaderboard.ScoreHandler;
+import it.unibo.bmbman.model.leaderboard.ScoreTable;
 import it.unibo.bmbman.view.utilities.GameFont;
 /**
  * 

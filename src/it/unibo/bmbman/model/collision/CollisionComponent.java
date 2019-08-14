@@ -1,6 +1,8 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.collision;
 
 import java.awt.Rectangle;
+
+import it.unibo.bmbman.model.entities.Entity;
 /**
  * Interface to CollisionComponent.
  */

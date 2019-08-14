@@ -1,5 +1,7 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.entities.powerUp;
 
+import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Model the door to reach to win the game.

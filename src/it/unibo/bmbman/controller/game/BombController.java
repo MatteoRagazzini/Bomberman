@@ -1,13 +1,13 @@
-package it.unibo.bmbman.controller;
+package it.unibo.bmbman.controller.game;
 
 import java.awt.Graphics;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.bmbman.model.Bomb;
-import it.unibo.bmbman.model.Entity;
-import it.unibo.bmbman.model.Hero;
+import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.view.entities.BombView;
 /**

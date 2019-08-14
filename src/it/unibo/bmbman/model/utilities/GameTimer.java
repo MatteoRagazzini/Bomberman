@@ -1,4 +1,4 @@
-package it.unibo.bmbman.view;
+package it.unibo.bmbman.model.utilities;
 
 import javax.swing.Timer;
 /**

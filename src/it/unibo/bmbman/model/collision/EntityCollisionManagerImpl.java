@@ -1,8 +1,9 @@
-package it.unibo.bmbman.model;
+package it.unibo.bmbman.model.collision;
 
 import java.awt.Rectangle;
 import java.util.Set;
 
+import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * An implementation of {@link CollisionController}.

@@ -13,9 +13,14 @@ import java.util.stream.Stream;
 import com.sun.org.apache.bcel.internal.generic.RETURN;
 import com.sun.org.apache.regexp.internal.recompile;
 
-import it.unibo.bmbman.controller.PowerUpType;
+import it.unibo.bmbman.model.entities.Block;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Tile;
+import it.unibo.bmbman.model.entities.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
+import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.model.utilities.PowerUpType;
 import it.unibo.bmbman.view.entities.BlockView;
 import it.unibo.bmbman.view.entities.EntityView;
 import it.unibo.bmbman.view.entities.PowerUpView;
