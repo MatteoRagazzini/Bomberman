@@ -3,7 +3,6 @@ package it.unibo.bmbman.model.entities;
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
-import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
@@ -12,7 +11,9 @@ import it.unibo.bmbman.model.utilities.Velocity;
  */
 public class Hero extends AbstractLivingEntity {
     private Double velocityModifier = 1.0;
-    private int lifeToRemove;
+    private static final int MILLIS = 1000;
+    private static final int IMMUNITY_DURATION = 1;
+    private long lastCollision;
     private boolean gotKey;
     private boolean win;
     private static final int START_POSITION = 50;
@@ -33,21 +34,24 @@ public class Hero extends AbstractLivingEntity {
         switch (c.getReceiver().getType()) {
         case BOMB:
             if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
-                lifeToRemove++;
+                if (lastCollision == 0 || System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
+                    removeLife();
+                    lastCollision = System.currentTimeMillis() / MILLIS;
+                }
             }
             break;
         case MONSTER:
+            if (lastCollision == 0 || System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
+                removeLife();
+                lastCollision = System.currentTimeMillis() / MILLIS;
+            }
             this.setPosition(c.getPosition());
-            lifeToRemove++; 
             break;
         default:
             this.setPosition(c.getPosition());
             break;
+        }
 
-        }
-        if (lifeToRemove == 1) {
-            removeLife();
-        }
     }
     /**
      * {@inheritDoc}
@@ -73,7 +77,6 @@ public class Hero extends AbstractLivingEntity {
         default:
             break;
         }
-        lifeToRemove = 0;
     }
     /**
      * Set the velocity modifier field.
