@@ -10,15 +10,12 @@ import it.unibo.bmbman.model.utilities.Direction;
  */
 public class KeyInput implements KeyListener {
     private final GameController gc;
-    private final BombController bc;
     /**
      * KeyInput.
      * @param gc {@link GameController}
-     * @param bc {@link BombController}
      */
-    public KeyInput(final GameController gc, final BombController bc) {
+    public KeyInput(final GameController gc) {
         this.gc = gc;
-        this.bc = bc;
     }
     /**
      * {@inheritDoc}
@@ -42,7 +39,6 @@ public class KeyInput implements KeyListener {
             gc.pause();
             break;
         case KeyEvent.VK_SPACE:
-//            bc.plantBomb(gc.getHero());
             gc.addBomb();
             break;
         default:

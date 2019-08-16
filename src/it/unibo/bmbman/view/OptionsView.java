@@ -20,7 +20,7 @@ import javax.swing.JRadioButton;
 import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
-import it.unibo.bmbman.view.utilities.ScreenTool;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 
 /**
@@ -149,6 +149,6 @@ public class OptionsView {
      * Used to change the image according to screen resolution.
      */
     private void saveOptionsImagePath() {
-        optionsImagePath = "/image/" + ScreenTool.getScreenRes() + "_OptionsImage.png";
+        optionsImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_OptionsImage.png";
     }
 }

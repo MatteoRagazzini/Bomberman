@@ -4,6 +4,12 @@ package it.unibo.bmbman.controller;
  *
  */
 public enum EndGameState {
+    /**
+     * The player has won.
+     */
     WIN,
+    /**
+     * The player is dead.
+     */
     LOSE;
 }

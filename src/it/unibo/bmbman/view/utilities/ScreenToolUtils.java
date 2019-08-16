@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 /**
  * Screen resolution utility class.
  */
-public final class ScreenTool {
+public final class ScreenToolUtils {
     private static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static final double WIDTH_REF_WQHD = 3500;
@@ -18,7 +18,7 @@ public final class ScreenTool {
     private static final double FHDSCALE = 1;
     private static final double HDSCALE = 0.71;
 
-    private ScreenTool() {
+    private ScreenToolUtils() {
     }
     /**
      * Method that returns the right scale for all components according to screen resolution.
