@@ -8,12 +8,12 @@ import java.util.Set;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
-import it.unibo.bmbman.model.leaderboard.Scoring;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.entities.BombView;
 import it.unibo.bmbman.view.entities.EntityView;
@@ -23,13 +23,16 @@ import it.unibo.bmbman.view.entities.EntityView;
  *
  */
 public class SinglePlayerView {
-
+    private static final int SECONDS_IN_MINUTE = 60;
     private final GUIFactory gui = new MyGUIFactory();
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
     private JPanel sPanel = new JPanel();
     private TopBar nPanel;
+    private Timer timer;
+    private int seconds = 0;
+    private int minutes = 0;
     /**
      * construct the frame.
      * @param ki {@link KeyInput}
@@ -38,6 +41,16 @@ public class SinglePlayerView {
      */
     public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final Hero hero) {
         nPanel = new TopBar(gui, ps, hero);
+        nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+        this.timer = new Timer(1000, a -> {
+            seconds++;
+            if (seconds == SECONDS_IN_MINUTE) {
+                minutes++;
+                seconds = 0;
+            }
+            nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+        });
+        this.startTime();
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
         canvas.setSize(Terrain.TERRAIN_WIDTH, Terrain.TERRAIN_HEGHT);
@@ -81,5 +94,23 @@ public class SinglePlayerView {
         this.frame.pack();
         this.canvas.requestFocus();
     }
-
+    /**
+     * stop time.
+     */
+    public void stopTimer() {
+        this.timer.stop();
+    }
+    /**
+     * start time.
+     */
+    public void startTime() {
+        this.timer.start();
+    }
+    /**
+     * 
+     * @return time 
+     */
+    public String getTime() {
+        return String.format("%02d:%02d", minutes, seconds);
+    }
 }

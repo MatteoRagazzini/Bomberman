@@ -4,7 +4,6 @@ package it.unibo.bmbman.model.engine;
 
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.GameController;
-import it.unibo.bmbman.model.utilities.GameTimer;
 /**
  * 
  * creates and manages the Game Loop. Implementing {@link GameEngine}.
@@ -20,7 +19,6 @@ public class GameEngineImp extends Thread implements GameEngine {
     private boolean update;
     private boolean isRunning;
     private final GameController game;
-    private GameTimer gameTimer;
     /**
      * set variables.
      * @param gc {@link GameController}
@@ -30,7 +28,6 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.update = true;
         this.isRunning = false;
         this.game = gc;
-        this.gameTimer = new GameTimer();
     }
     /**
      * start thread's execution.
@@ -43,7 +40,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             /*
              * qui creo un nuovo campo da gioco e avvio un timer
              */
-            this.gameTimer.start();
             /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
@@ -58,7 +54,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             this.isRunning = false;
             SoundsController.getMusicSound().ifPresent(s -> s.stop());
             this.game.endView();
-            this.gameTimer.stop();
             try {
                 /* manda in join il thread*/
                 this.join();
@@ -74,10 +69,8 @@ public class GameEngineImp extends Thread implements GameEngine {
     public void setPause(final boolean inPause) {
         this.update = !inPause;
         if (inPause) {
-            this.gameTimer.stop();
             SoundsController.getMusicSound().ifPresent(s -> s.stop());
         } else {
-            this.gameTimer.start();
             SoundsController.getMusicSound().ifPresent(s -> s.playInLoop());
         }
     }

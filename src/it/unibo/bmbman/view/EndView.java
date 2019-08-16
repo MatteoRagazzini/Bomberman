@@ -21,7 +21,7 @@ import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.controller.game.GameController;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.leaderboard.ScoreHandler;
-import it.unibo.bmbman.model.utilities.GameTimer;
+//import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /** 
@@ -42,6 +42,7 @@ public class EndView {
     private GridBagConstraints c;
     private final int score;
     private final GameController gameController;
+    private final SinglePlayerView spv;
     private final EndGameState state;
     private final PlayerScoreImpl ps;
     /**
@@ -49,13 +50,15 @@ public class EndView {
      * @param mainMenuView 
      * @param state 
      * @param gameController 
-     * @param ps playerScore
+     * @param spv 
+     * @param ps 
      */
-    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScoreImpl ps) {
+    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final SinglePlayerView spv, final PlayerScoreImpl ps) {
         mainView = mainMenuView;
         this.gui = new MyGUIFactory();
         this.f = gui.createFrame();
         this.state = state;
+        this.spv = spv;
         this.gameController = gameController;
         this.ps = ps;
         this.score = ps.getScore();
@@ -100,7 +103,7 @@ public class EndView {
                 break;
         }
         final JLabel timeLabel = gui.createLabel("Game Time");
-        final JLabel playerTimeLabel = gui.createLabel(GameTimer.getString());
+        final JLabel playerTimeLabel = gui.createLabel(this.spv.getTime());
         final JLabel scoreLabel = gui.createLabel("Score");
         final JLabel playerScoreLabel = gui.createLabel(String.valueOf(this.score));
         final JLabel enterYourName = gui.createLabel("Enter your name");
@@ -153,7 +156,7 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), GameTimer.getString());
+            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), this.spv.getTime());
             enterName.setEnabled(false);
         });
         c.gridx = 1;

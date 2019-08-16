@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
-import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 /**
  * 
@@ -64,7 +63,6 @@ public class TopBar extends JPanel {
      * 
      */
     public void render() {
-        this.gameTime.setText(GameTimer.getString());
         this.score.setText(String.valueOf(this.ps.getScore()));
         this.lives.setText(String.valueOf(hero.getLives()));
         if (hero.hasKey() && !keyloaded) {
@@ -79,5 +77,12 @@ public class TopBar extends JPanel {
      */
     public JPanel getPanel() {
         return this;
+    }
+    /**
+     * 
+     * @return label gameTime
+     */
+    public JLabel getLabel() {
+        return this.gameTime;
     }
 }

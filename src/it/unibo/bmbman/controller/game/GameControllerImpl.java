@@ -74,6 +74,11 @@ public class GameControllerImpl implements GameController {
     public void pause() {
         inPause = !inPause;
         this.engine.setPause(inPause);
+        if (inPause) {
+            this.spv.stopTimer();
+        } else {
+            this.spv.startTime();
+        }
     }
     /**
      * 
@@ -88,9 +93,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endView() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, EndGameState.LOSE, this, ps);
+        EndView end = new EndView(mainView, EndGameState.LOSE, this, spv, ps);
         if (hasWon()) {
-            end = new EndView(mainView, EndGameState.WIN, this, ps);
+            end = new EndView(mainView, EndGameState.WIN, this, spv, ps);
             reset();
         }
         end.getFrame().setVisible(true);
