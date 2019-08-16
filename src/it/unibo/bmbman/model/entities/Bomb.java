@@ -123,6 +123,6 @@ public class Bomb extends AbstractEntity {
      * @return
      */
     private int getShift() {
-        return bombsNumber == 3 ? 1 : 2;
+        return range == 3 ? 1 : 2;
     }
 }
