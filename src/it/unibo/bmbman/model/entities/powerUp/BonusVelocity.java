@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
 import it.unibo.bmbman.model.entities.Hero;
-import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
@@ -11,7 +10,6 @@ public class BonusVelocity extends AbstractPowerupEntity {
     /**
      * Construct a bonus velocity power-up in the world.
      * @param position where to create it.
-     * @param dimension the dimension of the power-up.
      */
     public BonusVelocity(final Position position) {
         super(position,  true);
@@ -23,9 +21,11 @@ public class BonusVelocity extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.setVelocityModifier(2.0);
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void removeEffect(Hero hero) {
+    public void removeEffect(final Hero hero) {
         hero.setVelocityModifier(1.0);
-        
     }
 }

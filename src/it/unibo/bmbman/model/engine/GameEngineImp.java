@@ -13,7 +13,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     /**
      * Constants for FPS(frames per second).
      */
-    public static final int FPS = 60;
+    public static final int FPS = 50;
     private static final int SECONDS = 1000;
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
@@ -55,7 +55,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             SoundsController.getMusicSound().ifPresent(s -> s.stop());
             this.game.endView();
             try {
-                /* manda in join il thread*/
                 this.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -96,7 +95,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     }
     private void sleepToNextFrame(final long deltaTime) {
         long sleepTime;
-        long remainingToSleepTime = LAPSE - deltaTime;
+        final long remainingToSleepTime = LAPSE - deltaTime;
         if (remainingToSleepTime < 0) {
             sleepTime = LAPSE;
         } else {

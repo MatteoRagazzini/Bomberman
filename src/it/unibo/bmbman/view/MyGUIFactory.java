@@ -37,7 +37,7 @@ public class MyGUIFactory implements GUIFactory {
     //    private static final Float QHD_SIZE = 36f;
     //    private static final Float FHD_SIZE = 32f;
     //    private static final Float HD_SIZE = 20f;
-    private GameFont font  = new GameFont();
+    private final GameFont font  = new GameFont();
     private static final double SCALE = ScreenToolUtils.getScreenScale();
 
     @Override

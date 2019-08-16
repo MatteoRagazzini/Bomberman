@@ -31,6 +31,9 @@ public class Block extends AbstractEntity {
     public boolean remove() {
         return isBroken;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void onCollision(final Collision c) {
         if (c.getReceiver().getType() == EntityType.BOMB) {

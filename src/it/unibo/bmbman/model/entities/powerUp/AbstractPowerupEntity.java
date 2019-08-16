@@ -22,11 +22,17 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * Constructor for a general power-up.
      * @param position the position where i want to locate the power-up
      * @param isBonus if it's a bonus or a malus.
+     * @param dimension the dimension of the power-up.
      */
     public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
         super(new Position(position.getX(), position.getY()), EntityType.POWER_UP, dimension);
         this.bonus = isBonus;
     }
+    /**
+     * Constructor for a general power-up that doesn't require dimension.
+     * @param position the position where i want to locate the power-up.
+     * @param isBonus if it's a bonus or a malus.
+     */
     public AbstractPowerupEntity(final Position position, final boolean isBonus) {
         this(new Position(position.getX() + 10, position.getY() + 10), new Dimension(DIMENSION, DIMENSION), isBonus);
     }
@@ -53,8 +59,11 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param hero the target of the effect.
      */
     public abstract void powerupEffect(Hero hero);
+    /**
+     * Remove the effect.
+     * @param hero the hero.
+     */
     public abstract void removeEffect(Hero hero);
-
     /**
      * {@inheritDoc}
      */
@@ -69,6 +78,9 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
             }
         }
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean remove() {
         return this.startTime > 0;

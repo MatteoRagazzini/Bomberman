@@ -15,6 +15,7 @@ public interface GameEngine {
     void stopEngine();
     /**
      * Used to put in pause the game loop.
+     * @param inPause 
      */
     void setPause(boolean inPause);
 }

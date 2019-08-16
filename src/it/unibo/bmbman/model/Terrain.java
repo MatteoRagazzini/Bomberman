@@ -1,18 +1,10 @@
 package it.unibo.bmbman.model;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
-
-import com.sun.org.apache.bcel.internal.generic.RETURN;
-import com.sun.org.apache.regexp.internal.recompile;
-
 import it.unibo.bmbman.model.entities.Block;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.Tile;
@@ -20,10 +12,8 @@ import it.unibo.bmbman.model.entities.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.model.utilities.PowerUpType;
 import it.unibo.bmbman.view.entities.BlockView;
 import it.unibo.bmbman.view.entities.EntityView;
-import it.unibo.bmbman.view.entities.PowerUpView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.entities.WallView;
 
@@ -67,7 +57,7 @@ public class Terrain {
     private final List<List<Entity>> terrain = new ArrayList<>();
     private final List<Entity> blockList = new ArrayList<>();
     private final List<Position> freePosition;
-    private final List<Position> BlockPowerUpPosition;
+    private final List<Position> blockPowerUpPosition;
 
 /**
  * 
@@ -89,7 +79,7 @@ public class Terrain {
     this.blockNumber = blocknumber;
     addBlock();
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
-    BlockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());
+    blockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());
     }
     /**
      * create wall in terrain.
@@ -210,27 +200,10 @@ public class Terrain {
         return pos;
     }
     public Position getRandomBlockPosition() {
-        final int randomIndex = new Random().nextInt(BlockPowerUpPosition.size()); 
-        Position pos = new Position(BlockPowerUpPosition.get(randomIndex));
-        BlockPowerUpPosition.remove(randomIndex);
+        final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
+        Position pos = new Position(blockPowerUpPosition.get(randomIndex));
+        blockPowerUpPosition.remove(randomIndex);
         return pos;
     }
-    /**
-     * used to associate model object to the relative view.
-     * @param entity the entity that you what know the sprite 
-     * @return the sprite of the entity in input
-     */
-    public EntityView getEntityView(final Entity entity) {
-        switch (entity.getType()) {
-        case TILE:
-         return new TileView(entity.getPosition());
-        case WALL:
-         return new WallView(entity.getPosition());
-        case BLOCK:
-            return new BlockView(entity.getPosition());
-        default:
-            return new TileView(entity.getPosition());
 
-        }
-    }
 }
