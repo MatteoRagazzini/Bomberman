@@ -58,10 +58,16 @@ public class CollisionComponentImpl implements CollisionComponent {
         return new Rectangle(entity.getPosition().getX() + entity.getDimension().getWidth() - HEIGHT_ADJUSTMENT, entity.getPosition().getY() + POSITION_ADJUSTMENT,
                 HEIGHT_ADJUSTMENT, entity.getDimension().getHeight() - WIDTH_ADJUSTMENT);
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void notifyCollision(Collision c) {
+    public void notifyCollision(final Collision c) {
         this.entity.onCollision(c);
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Entity getFollowedEntity() {
         return this.entity;

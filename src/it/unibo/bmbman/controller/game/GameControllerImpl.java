@@ -34,7 +34,7 @@ public class GameControllerImpl implements GameController {
     private final MainMenuView mainView; 
     private  GameEngine engine;
     private boolean inPause;
-    private Level lv = new LevelImpl(); 
+    private final Level lv = new LevelImpl(); 
 
     /**
      * Construct an implementation of {@link GameController}.
@@ -63,7 +63,7 @@ public class GameControllerImpl implements GameController {
         this.engine = new GameEngineImp(this);
         final LoadWorld lw = new LoadWorld(this);
         lw.loadEntity();
-        this.spv = new SinglePlayerView(new KeyInput(this, this.bc), this.ps, this.getHero());
+        this.spv = new SinglePlayerView(new KeyInput(this), this.ps, this.getHero());
         this.spv.getFrame().setVisible(true);
         this.engine.startEngine();
     }

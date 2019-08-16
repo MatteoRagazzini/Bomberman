@@ -7,7 +7,7 @@ import it.unibo.bmbman.model.entities.Entity;
  * Interface to CollisionComponent.
  */
 public interface CollisionComponent {
-    
+
     /**
      * Used to get the entity associated.
      * @return {@link Entity}
