@@ -28,8 +28,6 @@ public class MainMenuView {
     private final Map<JButton, MainMenuList> jbMap = new HashMap<>();
     private final MainMenuController mainMenuController;
     private final OptionsMenuController optMenuController;
-    private JPanel northP;
-    private JPanel eastP;
     private JPanel centerP;
     /**
      * Parameter added to manage GridBag layout.
@@ -90,13 +88,13 @@ public class MainMenuView {
         c.insets = gui.createScaledInsets(INSETS);
         centerP.setPreferredSize(new Dimension((int) (f.getWidth() * CENTER_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         // Create EAST Panel
-        eastP = new JPanel(new BorderLayout());
+        final JPanel eastP = new JPanel(new BorderLayout());
         eastP.setPreferredSize(new Dimension((int) (f.getWidth() * EAST_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         eastP.setBackground(Color.BLACK);
         final JLabel label = new JLabel(new ImageIcon(il.loadImage(mainImagePath)));
         eastP.add(label, BorderLayout.CENTER);
         // Create NORTH Panel
-        northP = new JPanel(new BorderLayout());
+        final JPanel northP = new JPanel(new BorderLayout());
         northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
         final JLabel title = new JLabel(new ImageIcon(il.loadImage(titleImagePath)));
         northP.setBackground(Color.BLACK);

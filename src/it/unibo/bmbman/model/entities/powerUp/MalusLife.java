@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
 import it.unibo.bmbman.model.entities.Hero;
-import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
@@ -22,8 +21,11 @@ public class MalusLife extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         hero.removeLife();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void removeEffect(Hero hero) {  
+    public void removeEffect(final Hero hero) {
     }
 
 }
