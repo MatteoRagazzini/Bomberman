@@ -23,7 +23,7 @@ public enum Scoring {
     }
     /**
      * 
-     * @param entity
+     * @param entity 
      * @return zero if the entity isn't a power up or monster, otherwise the {@link Scoring} value
      */
     public static int getPoint(final Entity entity) {

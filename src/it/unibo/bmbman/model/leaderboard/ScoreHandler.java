@@ -26,14 +26,14 @@ public final class ScoreHandler {
         super();
     }
     /**
-     * Write TreeSet on file score.txt.
-     * @param list of score, game time and name of the player
+     * Write list on file score.txt.
+     * @param list of score, level, game time and name of the player
      * @throws Exception 
      */
-    private static void save(final List<PlayerScoreImpl> t) {
+    private static void save(final List<PlayerScoreImpl> l) {
         System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
-            o.writeObject(t);
+            o.writeObject(l);
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
@@ -45,8 +45,16 @@ public final class ScoreHandler {
      */
     private static void read() {
         System.out.println("READ");
-        try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) {
-            data = (List<PlayerScoreImpl>) br.readObject();
+        data.clear();
+        try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
+                Object o = br.readObject();
+                if (o instanceof List<?>) {
+                    for (Object obj : (List<?>) o) {
+                        if (obj instanceof PlayerScoreImpl) {
+                            data.add((PlayerScoreImpl) obj);
+                        }
+                    }
+                }
         } catch (ClassNotFoundException | IOException e) {
             throw new IllegalArgumentException("File doesn't exist");
         }
@@ -57,7 +65,8 @@ public final class ScoreHandler {
      * @return data
      */
     public static List<PlayerScoreImpl> getData() {
-        if (new File(FILE_NAME).exists()) {
+        File file = new File(FILE_NAME);
+        if (file.exists()) {
             read();
         }
         return data;
@@ -69,12 +78,11 @@ public final class ScoreHandler {
      * @param time 
      */
     public static void checkAndReadWrite(final int level, final PlayerScoreImpl ps, final String playerName, final String time) {
-        System.out.println("CHECKRW");
         if (new File(FILE_NAME).exists()) {
             read();
             final Optional<PlayerScoreImpl> p = checkIfPresent(playerName);
             if (p.isPresent() && p.get().getLevel() == level) {
-                check(p.get(), ps.getScore(), time);
+                update(p.get(), ps.getScore(), time);
             } else {
                  ps.setGameTime(time); 
                  ps.setName(playerName);
@@ -91,11 +99,11 @@ public final class ScoreHandler {
     }
     private static Optional<PlayerScoreImpl> checkIfPresent(final String playerName) {
         return data.stream()
-                .filter(p -> p.getName().equals(playerName))
-                .findAny();
+                   .filter(p -> p.getName().equals(playerName))
+                   .findAny();
     }
 
-    private static void check(final PlayerScoreImpl p, final int score, final String time) {
+    private static void update(final PlayerScoreImpl p, final int score, final String time) {
         if (score > p.getScore()) {
             p.setScore(score);
             p.setGameTime(time);

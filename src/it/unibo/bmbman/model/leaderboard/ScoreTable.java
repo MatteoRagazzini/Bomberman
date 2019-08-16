@@ -29,24 +29,26 @@ public class ScoreTable extends AbstractTableModel {
         this.fill(list);
     }
     private void fill(final List<PlayerScoreImpl> list) {
-        Iterator<Entry<Integer, Long>> entry = list.stream()
-                                                 .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
-                                                 .entrySet().iterator();
-        int rowIndex = 0;
-        int rank = 0;
-        Long count = entry.next().getValue();
-        for (PlayerScoreImpl ps : list) {
-            if (rank == count) {
-                count = entry.next().getValue();
-                rank = 0;
+        if (!list.isEmpty()) {
+            Iterator<Entry<Integer, Long>> entry = list.stream()
+                                                       .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
+                                                       .entrySet().iterator();
+            int rowIndex = 0;
+            int rank = 0;
+            Long count = entry.next().getValue();
+            for (PlayerScoreImpl ps : list) {
+                if (rank == count) {
+                    count = entry.next().getValue();
+                    rank = 0;
+                }
+                this.data[rowIndex][0] = rank + 1;
+                this.data[rowIndex][1] = ps.getName();
+                this.data[rowIndex][2] = ps.getScore();
+                this.data[rowIndex][3] = ps.getGameTime();
+                this.data[rowIndex][4] = ps.getLevel();
+                rank++;
+                rowIndex++;
             }
-            this.data[rowIndex][0] = rank + 1;
-            this.data[rowIndex][1] = ps.getName();
-            this.data[rowIndex][2] = ps.getScore();
-            this.data[rowIndex][3] = ps.getGameTime();
-            this.data[rowIndex][4] = ps.getLevel();
-            rank++;
-            rowIndex++;
         }
     }
     /**
@@ -78,8 +80,3 @@ public class ScoreTable extends AbstractTableModel {
         return this.data[rowIndex][columnIndex];
     }
 }
-
-
-
-
-

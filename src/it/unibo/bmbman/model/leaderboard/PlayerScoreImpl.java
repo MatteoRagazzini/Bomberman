@@ -4,7 +4,6 @@ import java.io.Serializable;
 import java.util.List;
 
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.utilities.GameTimer;
 
 /** 
  * It manages name, score, game time and level of a player.
@@ -99,9 +98,7 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
     }
     @Override
     public int compareTo(final PlayerScoreImpl ps) {
-        return ps.getLevel() != this.getLevel() ?
-                this.getLevel() - ps.getLevel() :
-                    ps.getScore() - this.getScore();
+        return ps.getLevel() != this.getLevel() ? this.getLevel() - ps.getLevel() : ps.getScore() - this.getScore();
     }
     @Override
     public int hashCode() {
@@ -114,7 +111,7 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         return result;
     }
     @Override
-    public boolean equals(Object obj) {
+    public boolean equals(final Object obj) {
         if (this == obj) {
             return true;
         }
