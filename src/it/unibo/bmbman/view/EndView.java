@@ -28,29 +28,28 @@ import it.unibo.bmbman.view.utilities.ScreenTool;
  * Frame for game over.
  */
 public class EndView {
-
-    private MyGUIFactory gui;
+    private static final Insets INSETS = new Insets(50, 25, 50, 25);
+    private static final double WEIGHTX = 0.1;
+    private final MyGUIFactory gui;
     private final MainMenuView mainView;
-    private JFrame f;
+    private final JFrame f;
     private JPanel centerP; 
-    private JPanel backgroundP;
     private JPanel northP;
     private JButton enterName;
     private JButton nextLevel;
     private JTextField nameTextField;
     private String gameOverImagePath;
-    private Image image;
     private GridBagConstraints c;
-    private int score;
+    private final int score;
     private final GameController gameController;
     private final EndGameState state;
     private final PlayerScoreImpl ps;
-    private static final Insets INSETS = new Insets(50, 25, 50, 25);
     /**
      * 
      * @param mainMenuView 
      * @param state 
      * @param gameController 
+     * @param ps playerScore
      */
     public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final PlayerScoreImpl ps) {
         mainView = mainMenuView;
@@ -126,7 +125,7 @@ public class EndView {
      * Used to load Panels.
      */
     private void loadPanels() {
-        backgroundP = new BackgroundPanel(loadImage(gameOverImagePath));
+        final JPanel backgroundP = new BackgroundPanel(loadImage(gameOverImagePath));
         backgroundP.setBackground(Color.BLACK);
         centerP = new JPanel(new GridBagLayout());
         centerP.setOpaque(false);
@@ -134,7 +133,7 @@ public class EndView {
         northP.setBackground(Color.BLACK);
         c = new GridBagConstraints();
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.1;
+        c.weightx = WEIGHTX;
         c.weighty = 0;
         c.insets = gui.createScaledInsets(INSETS);
         backgroundP.setLayout(new BorderLayout());
@@ -184,7 +183,7 @@ public class EndView {
         centerP.add(nameTextField, c);
         nameTextField.addKeyListener(new KeyAdapter() {
         public void keyReleased(final KeyEvent event) {
-            String content = nameTextField.getText();
+            final String content = nameTextField.getText();
                 if (!content.equals("")) {
                     enterName.setEnabled(true);
                 } else {
@@ -209,10 +208,10 @@ public class EndView {
 
     private Image loadImage(final String text) {
         try {
-            image = ImageIO.read(getClass().getResource(text));
+            return ImageIO.read(getClass().getResource(text));
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return image;
+        return null;
     }
 }

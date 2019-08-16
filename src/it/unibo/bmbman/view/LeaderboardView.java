@@ -23,8 +23,6 @@ public class LeaderboardView extends JTable {
     private final transient MainMenuView mainMenuView;
     private static final long serialVersionUID = 1L;
     private final JFrame frame;
-    private JPanel northP;
-    private JPanel southP;
     private final transient GUIFactory gf;
     private static final int ROW_HEIGHT = 40;
     private static final int BORDER_THICKNESS = 5;
@@ -44,14 +42,14 @@ public class LeaderboardView extends JTable {
 
     private void loadLeaderboardView() {
         final GameFont font = new GameFont();
-        this.northP = new JPanel();
-        this.southP = new JPanel();
+        final JPanel northP = new JPanel();
+        final JPanel southP = new JPanel();
         this.frame.add(northP, BorderLayout.NORTH);
         this.frame.add(southP, BorderLayout.CENTER);
-        this.southP.setBackground(Color.BLACK);
-        this.northP.setBackground(Color.BLACK);
+        southP.setBackground(Color.BLACK);
+        northP.setBackground(Color.BLACK);
         final JLabel label = gf.createLabel("LEADERBOARD");
-        this.northP.add(label);
+        northP.add(label);
         final TableModel tm = new ScoreTable(ScoreHandler.getData());
         final JTable t = new JTable(tm);
         southP.add(t);

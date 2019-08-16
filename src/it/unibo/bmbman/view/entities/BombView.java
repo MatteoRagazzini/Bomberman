@@ -1,14 +1,12 @@
 package it.unibo.bmbman.view.entities;
 
-
 import java.awt.Image;
-import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
-import it.unibo.bmbman.model.utilities.Direction;
+
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;

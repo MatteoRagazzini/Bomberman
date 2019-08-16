@@ -47,9 +47,9 @@ public final class ScoreHandler {
         System.out.println("READ");
         data.clear();
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
-                Object o = br.readObject();
+                final Object o = br.readObject();
                 if (o instanceof List<?>) {
-                    for (Object obj : (List<?>) o) {
+                    for (final Object obj : (List<?>) o) {
                         if (obj instanceof PlayerScoreImpl) {
                             data.add((PlayerScoreImpl) obj);
                         }
@@ -65,7 +65,7 @@ public final class ScoreHandler {
      * @return data
      */
     public static List<PlayerScoreImpl> getData() {
-        File file = new File(FILE_NAME);
+        final File file = new File(FILE_NAME);
         if (file.exists()) {
             read();
         }

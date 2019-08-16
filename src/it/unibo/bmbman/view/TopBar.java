@@ -1,11 +1,9 @@
 package it.unibo.bmbman.view;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 
 import javax.swing.ImageIcon;
@@ -14,27 +12,26 @@ import javax.swing.JPanel;
 
 import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
-import it.unibo.bmbman.model.leaderboard.Scoring;
 import it.unibo.bmbman.model.utilities.GameTimer;
-import it.unibo.bmbman.view.utilities.GameFont;
 import it.unibo.bmbman.view.utilities.ImageLoader;
-
+/**
+ * 
+ * Create TopBar.
+ *
+ */
 public class TopBar extends JPanel {
-    /**
-     * 
-     */
     private static final long serialVersionUID = 1L;
-    //private JPanel panel;
-    private JLabel gameTime;
-    private JLabel score;
-    private JLabel lives;
-    private JLabel heart;
+    private static final int DIM = 35;
+    private static final double WEIGHTX = 0.1;
+    private final JLabel gameTime;
+    private final JLabel score;
+    private final JLabel lives;
     private JLabel key;
-    private Hero hero;
-    private boolean keyloaded = false;
-    private PlayerScoreImpl ps;
-    private ImageLoader il = new ImageLoader();
-    private GridBagConstraints c = new GridBagConstraints();
+    private final Hero hero;
+    private boolean keyloaded;
+    private final PlayerScoreImpl ps;
+    private final ImageLoader il = new ImageLoader();
+    private final GridBagConstraints c = new GridBagConstraints();
     /**
      * 
      * @param gui 
@@ -42,10 +39,12 @@ public class TopBar extends JPanel {
      * @param hero 
      */
     public TopBar(final GUIFactory gui, final PlayerScoreImpl ps, final Hero hero) {
+        super();
+        final JLabel heart;
         this.setLayout(new GridBagLayout());
         this.setBackground(Color.BLACK);
         c.fill = GridBagConstraints.BOTH;
-        c.weightx = 0.1;
+        c.weightx = WEIGHTX;
         gameTime = gui.createLabel("");
         score = gui.createLabel("");
         lives = gui.createLabel("");
@@ -55,10 +54,11 @@ public class TopBar extends JPanel {
         this.add(lives, c);
         c.insets = new Insets(0, 100, 0, 0);
         this.add(score, c);
-        gameTime.setPreferredSize(new Dimension(35, 0));
+        gameTime.setPreferredSize(new Dimension(DIM, 0));
         this.add(gameTime, c);
         this.hero = hero;
         this.ps = ps;
+        this.keyloaded = false;
     }
     /**
      * 
@@ -80,5 +80,4 @@ public class TopBar extends JPanel {
     public JPanel getPanel() {
         return this;
     }
-
 }

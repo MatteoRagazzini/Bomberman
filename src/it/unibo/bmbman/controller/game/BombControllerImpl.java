@@ -20,7 +20,7 @@ import it.unibo.bmbman.view.entities.BombView;
  *
  */
 public class BombControllerImpl implements BombController {
-    private List<Pair<Bomb, BombView>> amountBombs;
+    private final List<Pair<Bomb, BombView>> amountBombs;
     /**
      */
     public BombControllerImpl() {
@@ -79,11 +79,10 @@ public class BombControllerImpl implements BombController {
      * {@inheritDoc} 
      */
     @Override
-    public void update(/*final Graphics g*/) {
+    public void update() {
         this.amountBombs.forEach(b -> b.getX().update());
         this.amountBombs.forEach(b -> {
             b.getY().setBombState(b.getX().getState());
-//            b.getY().render(g); 
             if (b.getX().getState() == BombState.IN_EXPLOSION) {
                     SoundsController.getExplosionSound().ifPresent(s -> s.play());
             }
@@ -106,7 +105,7 @@ public class BombControllerImpl implements BombController {
         this.getBombsInExplosion().forEach(b -> {
             entities.forEach(e -> {
                 if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
-                    this.notifyCollision(e, b, e.getPosition());
+                    this.notifyCollision(e, b);
                 }
             });
         });
@@ -115,7 +114,7 @@ public class BombControllerImpl implements BombController {
     private boolean checkCollision(final Entity receiver, final Rectangle collider) {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);
     }
-    private void notifyCollision(final Entity receiver, final Bomb b, final Position position) {
+    private void notifyCollision(final Entity receiver, final Bomb b) {
         receiver.onCollision(new CollisionImpl(b, receiver.getPosition()));
     }
 }

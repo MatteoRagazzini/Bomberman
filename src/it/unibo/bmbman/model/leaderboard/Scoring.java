@@ -21,7 +21,7 @@ public enum Scoring {
          */
         MONSTER(100);
 
-    private final int value;
+    private int value;
     /**
      * 
      * @param value 
@@ -31,15 +31,22 @@ public enum Scoring {
     }
     /**
      * 
+     * @return value
+     */
+    public int getValue() {
+        return value;
+    }
+    /**
+     * 
      * @param entity 
      * @return zero if the entity isn't a power up or monster, otherwise the {@link Scoring} value
      */
     public static int getPoint(final Entity entity) {
         if (entity.getType() == EntityType.POWER_UP) {
             final AbstractPowerupEntity powerUp = (AbstractPowerupEntity) entity;
-            return powerUp.isBonus() ? BONUS.value : MALUS.value;
+            return powerUp.isBonus() ? BONUS.getValue() : MALUS.getValue();
         } else if (entity.getType().equals(EntityType.MONSTER)) {
-            return MONSTER.value;
+            return MONSTER.getValue();
         }
         return 0;
     }

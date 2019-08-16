@@ -14,29 +14,30 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ScoreTable extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
-    private String[] column = {"Rank", "Name", "Score", "Time", "Level"};
-    private int rowCount;
-    private int colCount;
+    private final String[] column = {"Rank", "Name", "Score", "Time", "Level"};
+    private final int rowCount;
+    private final int colCount;
     private Object[][] data;
 /**
  * 
  * @param list used to populate the table
  */
     public ScoreTable(final List<PlayerScoreImpl> list) {
+        super();
         this.rowCount = list.size();
         this.colCount = this.column.length;
-        this.data = new Object[list.size()][this.getColumnCount()];
+        this.data = new Object[list.size()][column.length];
         this.fill(list);
     }
     private void fill(final List<PlayerScoreImpl> list) {
         if (!list.isEmpty()) {
-            Iterator<Entry<Integer, Long>> entry = list.stream()
+            final Iterator<Entry<Integer, Long>> entry = list.stream()
                                                        .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
                                                        .entrySet().iterator();
             int rowIndex = 0;
             int rank = 0;
             Long count = entry.next().getValue();
-            for (PlayerScoreImpl ps : list) {
+            for (final PlayerScoreImpl ps : list) {
                 if (rank == count) {
                     count = entry.next().getValue();
                     rank = 0;

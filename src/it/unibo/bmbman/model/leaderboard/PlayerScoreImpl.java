@@ -130,7 +130,7 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         if (getClass() != obj.getClass()) {
             return false;
         }
-        PlayerScoreImpl other = (PlayerScoreImpl) obj;
+        final PlayerScoreImpl other = (PlayerScoreImpl) obj;
         if (gameTime == null) {
             if (other.gameTime != null) {
                 return false;
