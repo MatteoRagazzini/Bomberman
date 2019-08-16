@@ -1,6 +1,5 @@
 package it.unibo.bmbman.view.utilities;
 
-import java.awt.Dimension;
 import java.awt.Image;
 import java.util.Optional;
 
