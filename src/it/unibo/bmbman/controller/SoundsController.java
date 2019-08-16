@@ -31,7 +31,7 @@ public class SoundsController {
      */
     public SoundsController() {
         try {
-            SoundsController.music = Optional.of(new SoundImpl(folder + "/music.wav"));
+            SoundsController.music = Optional.of(new SoundImpl(folder + "/music1.wav"));
             SoundsController.explosion = Optional.of(new SoundImpl(folder + "/explosion.wav"));
             SoundsController.placeBomb = Optional.of(new SoundImpl(folder + "/placeBomb.wav"));
             SoundsController.key = Optional.of(new SoundImpl(folder + "/key.wav"));
