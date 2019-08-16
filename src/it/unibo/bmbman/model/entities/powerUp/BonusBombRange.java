@@ -10,7 +10,6 @@ public class BonusBombRange extends AbstractPowerupEntity {
     /**
      * Construct a bonus bomb range power-up in the world.
      * @param position where to create it.
-     * @param dimension the dimension of the power-up.
      */
     public BonusBombRange(final Position position) {
         super(position, true);
@@ -22,9 +21,11 @@ public class BonusBombRange extends AbstractPowerupEntity {
     public void powerupEffect(final Hero hero) {
         Bomb.incrementRange();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void removeEffect(Hero hero) {
+    public void removeEffect(final Hero hero) {
        Bomb.resetBonusRange();
-        
     }
 }

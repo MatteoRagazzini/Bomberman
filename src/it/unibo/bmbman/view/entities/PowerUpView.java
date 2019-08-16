@@ -10,8 +10,6 @@ import it.unibo.bmbman.view.utilities.SpriteSheet;
  * Create the power-up view.
  */
 public class PowerUpView extends AbstractEntityView {
-    private final String imagePath;
-    private final SpriteSheet ss;
     private final Image idleImage;
     private static final int DIMENSION = 48;
     /**
@@ -21,8 +19,8 @@ public class PowerUpView extends AbstractEntityView {
      */
     public PowerUpView(final Position position,  final String path) {
         super(new Position(position.getX(), position.getY()), new Dimension(DIMENSION, DIMENSION), true, EntityType.POWER_UP);
-        this.imagePath = path;
-        this.ss = new SpriteSheet(imagePath);
+        final String imagePath = path;
+        final SpriteSheet ss = new SpriteSheet(imagePath);
         this.idleImage = ss.getSprite(1, 1, DIMENSION);
     }
     /**
@@ -32,7 +30,10 @@ public class PowerUpView extends AbstractEntityView {
     public Image getSprite() {
         return idleImage;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
-    public void setPosition(Position position) {
+    public void setPosition(final Position position) {
     }
 }

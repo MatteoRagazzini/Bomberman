@@ -53,7 +53,7 @@ public interface GUIFactory {
      */
     JFrame createFrameWithCanvas();
     /**
-     * Method to scale the insets accorind to screen resolution.
+     * Method to scale the insets according to screen resolution.
      * @param insets the right insets in FHD
      * @return a new insets scaled according to screen resolution
      */
