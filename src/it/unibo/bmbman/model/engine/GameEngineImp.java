@@ -14,7 +14,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     /**
      * Constants for FPS(frames per second).
      */
-    public static final int FPS = 60;
+    public static final int FPS = 50;
     private static final int SECONDS = 1000;
     private static final int LAPSE = SECONDS / FPS;
     private boolean update;
@@ -40,11 +40,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         if (!this.isRunning) {
             this.isRunning = true;
             SoundsController.getMusicSound().ifPresent(s -> s.playInLoop());
-            /*
-             * qui creo un nuovo campo da gioco e avvio un timer
-             */
             this.gameTimer.start();
-            /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
         }
@@ -60,7 +56,6 @@ public class GameEngineImp extends Thread implements GameEngine {
             this.game.endView();
             this.gameTimer.stop();
             try {
-                /* manda in join il thread*/
                 this.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();

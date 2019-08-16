@@ -3,7 +3,7 @@ package it.unibo.bmbman.model;
  *
  */
 public class LevelImpl implements Level {
-    private static final int BLOCKS_FOR_LEVEL = 100;
+    private static final int BLOCKS_FOR_LEVEL = 60;
     private static final int MONSTER_FOR_LEVEL = 2;
     private static final int ONE_TYPE_BONUS_FOR_LEVEL = 2;
     private static final int ONE_TYPE_MALUS_FOR_LEVEL = 1;
@@ -26,7 +26,7 @@ public class LevelImpl implements Level {
         this.setAll();
     }
     private void setAll() {
-        this.monstersNumber = level * MONSTER_FOR_LEVEL + MONSTER_FOR_LEVEL;
+        this.monstersNumber = level * MONSTER_FOR_LEVEL;
         this.blocksNumber = level * BLOCKS_FOR_LEVEL;
         this.malusFreezeNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
         this.malusInvertNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
