@@ -1,12 +1,15 @@
 package it.unibo.bmbman.model.utilities;
+
+import it.unibo.bmbman.model.Terrain;
+
 /**
  * Class to manage the position.
  */
 public class Position {
     private int x;
     private int y;
-    private static final int TILEDIM = 50;
-    private static final int HALFTILEDIM = 25;
+    private static final int TILEDIM = Terrain.CELL_DIMENSION;
+    private static final int HALFTILEDIM = Terrain.CELL_DIMENSION / 2;
 
     /**
      * Create a new position in the specified coordinate.
@@ -94,11 +97,11 @@ public class Position {
         }
         return true;
     }
-/**
- * 
- * @param position
- * @return
- */
+    /**
+     * Method used to get the centered position in a cell.
+     * @param position actual position of an entity
+     * @return a new centered position
+     */
     public static  Position getCenteredPosition(final Position position) {
         Position newPosition = new Position(((position.getX() + HALFTILEDIM) / TILEDIM) * TILEDIM, 
                 ((position.getY() + HALFTILEDIM) / TILEDIM) * TILEDIM);

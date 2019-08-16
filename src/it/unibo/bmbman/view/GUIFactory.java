@@ -1,10 +1,11 @@
 package it.unibo.bmbman.view;
 
+import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
-import javax.swing.JRadioButtonMenuItem;
 import javax.swing.JTextField;
 
 /**
@@ -20,7 +21,6 @@ public interface GUIFactory {
     JButton createButton(String text);
     /**
      * Method to generate a Frame.
-     * 
      * @return a JFrame.
      */
     JFrame createFrame();
@@ -52,4 +52,10 @@ public interface GUIFactory {
      * @return {@link JFrame}
      */
     JFrame createFrameWithCanvas();
+    /**
+     * Method to scale the insets accorind to screen resolution.
+     * @param insets the right insets in FHD
+     * @return a new insets scaled according to screen resolution
+     */
+    Insets createScaledInsets(Insets insets);
 }

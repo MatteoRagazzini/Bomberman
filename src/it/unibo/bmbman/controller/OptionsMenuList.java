@@ -5,23 +5,24 @@ package it.unibo.bmbman.controller;
  */
 public enum OptionsMenuList {
     /**
-     * Activate game sound.
+     * Activate game music.
      */
     MUSICON("ON"),
     /**
-     * Disable game sound. 
+     * Disable game music. 
      */
     MUSICOFF("OFF"),
     /**
-     * Activate game sound.
+     * Activate game effects.
      */
     EFFECTON("ON"),
     /**
-     * Disable game sound. 
+     * Disable game effects. 
      */
     EFFECTOFF("OFF");
 
     private final String name;
+
     OptionsMenuList(final String name) {
         this.name = name;
     }

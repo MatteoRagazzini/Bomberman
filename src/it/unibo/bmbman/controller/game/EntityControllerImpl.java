@@ -28,7 +28,7 @@ public class EntityControllerImpl implements EntityController {
         this.ev = ev;
         updateView();
         if (en.getType() == EntityType.HERO || en.getType() == EntityType.MONSTER) {
-        this.entityCollisionManager = Optional.of(new EntityCollisionManagerImpl(en.getCollisionComponent()));
+            this.entityCollisionManager = Optional.of(new EntityCollisionManagerImpl(en.getCollisionComponent()));
         } else {
             this.entityCollisionManager = Optional.empty();
         }
@@ -69,7 +69,9 @@ public class EntityControllerImpl implements EntityController {
         updateView();
         this.en.update();
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove() {
         ev.remove();

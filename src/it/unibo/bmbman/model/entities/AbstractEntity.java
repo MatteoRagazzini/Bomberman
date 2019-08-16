@@ -7,7 +7,6 @@ import it.unibo.bmbman.model.collision.CollisionComponentImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.MyGUIFactory;
 /**
  * Models the general aspects of a lifeless entity.
  *
@@ -49,7 +48,7 @@ public abstract class AbstractEntity implements Entity {
      * @return 
      */
     @Override
-    abstract public boolean remove();
+    public abstract boolean remove();
     /**
      * {@inheritDoc}
      */
@@ -77,5 +76,5 @@ public abstract class AbstractEntity implements Entity {
     @Override
     public abstract void update();
     @Override
-    abstract public void onCollision(Collision c);
+    public abstract void onCollision(Collision c);
 }

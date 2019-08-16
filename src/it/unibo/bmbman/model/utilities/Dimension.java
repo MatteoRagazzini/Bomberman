@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model.utilities;
 /**
- * Class to manage the dimension of enities
+ * Class to manage the dimension of entities.
  *
  */
 public class Dimension {

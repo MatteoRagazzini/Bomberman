@@ -70,12 +70,12 @@ public class BackgroundPanel extends JPanel {
         setLayout(new BorderLayout());
     }
     /**
-    * Set image as the background with the specified style and alignment.
-    *  @param image the background picture.
-    *  @param style the way the image will be placed.
-    *  @param alignmentX the x coordinate.
-    *  @param alignmentY the y coordinate.
-    */
+     * Set image as the background with the specified style and alignment.
+     *  @param image the background picture.
+     *  @param style the way the image will be placed.
+     *  @param alignmentX the x coordinate.
+     *  @param alignmentY the y coordinate.
+     */
     public BackgroundPanel(final Image image, final int style, final float alignmentX, final float alignmentY) {
         super();
         setImage(image);
@@ -209,20 +209,20 @@ public class BackgroundPanel extends JPanel {
             return;
         }
         switch (style) {
-        case SCALED :
-            drawScaled(g);
-            break;
+            case SCALED :
+                drawScaled(g);
+                break;
 
-        case TILED  :
-            drawTiled(g);
-            break;
+            case TILED  :
+                drawTiled(g);
+                break;
 
-        case ACTUAL :
-            drawActual(g);
-            break;
+            case ACTUAL :
+                drawActual(g);
+                break;
 
-        default:
-            drawScaled(g);
+            default:
+                drawScaled(g);
         }
     }
     /**

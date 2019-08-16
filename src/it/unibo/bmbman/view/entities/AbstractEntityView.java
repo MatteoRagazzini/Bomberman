@@ -22,6 +22,7 @@ public abstract class AbstractEntityView implements EntityView {
      * @param position where is the entity in our terrien
      * @param dimension the dimension of entity
      * @param visible if the enity is visible or not
+     * @param entityType the type of the entity
      */
     public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible, final EntityType entityType) {
         this.position = position;
@@ -30,7 +31,9 @@ public abstract class AbstractEntityView implements EntityView {
         this.direction = Direction.IDLE;
         this.entityType = entityType;
     }
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public EntityType getType() {
         return entityType;
@@ -64,13 +67,13 @@ public abstract class AbstractEntityView implements EntityView {
     public Dimension getDimension() {
         return this.dimension;
     }
-//    /**
-//     * {@inheritDoc}
-//     */
-//    @Override
-//    public void setSprite(final Image image) {
-//        this.image = image;
-//    }
+    //    /**
+    //     * {@inheritDoc}
+    //     */
+    //    @Override
+    //    public void setSprite(final Image image) {
+    //        this.image = image;
+    //    }
     /**
      * {@inheritDoc}
      */
@@ -114,7 +117,9 @@ public abstract class AbstractEntityView implements EntityView {
             g.drawImage(getSprite(), getPosition().getX(), getPosition().getY(), getDimension().getWidth(), getDimension().getHeight(), null);
         }
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void remove() {
         this.visible = false;

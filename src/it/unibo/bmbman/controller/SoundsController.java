@@ -5,8 +5,6 @@ import java.util.Optional;
 
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
-import it.unibo.bmbman.model.entities.powerUp.Key;
 import it.unibo.bmbman.model.utilities.Sound;
 import it.unibo.bmbman.model.utilities.SoundImpl;
 
@@ -110,4 +108,3 @@ public class SoundsController {
         }
     }
 }
-

@@ -33,9 +33,6 @@ public class Monster extends AbstractLivingEntity {
      * Method used to generate a random direction.
      * @return a new direction
      */
-    // metto final perchè pmd si lamentava del fatto che non posso mettere un metodo ovverridabale dentro il 
-    // posso mettere un metodo ovverridabale dentro il costruttore
-    // risolto mettendo il metodo private
     private Direction randomDirection() {
         final int dir = rand.nextInt(4);
         Direction d = this.getDirection();
@@ -60,7 +57,7 @@ public class Monster extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).getState()==BombState.IN_EXPLOSION) {
+            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
                 removeLife();
             } else {
                 setDirection(randomDirection());

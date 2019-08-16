@@ -66,10 +66,10 @@ public class MyGUIFactory implements GUIFactory {
         return radioButton;
     }
 
-    @Override
     /**
      * Create a general frame.
      */
+    @Override
     public JFrame createFrame() {
         final JFrame frame = new JFrame();
         frame.setSize(FRAME_WIDTH, FRAME_HEIGHT);
@@ -78,6 +78,7 @@ public class MyGUIFactory implements GUIFactory {
         frame.setLocation(INITIAL_POSITION, INITIAL_POSITION);
         return frame;
     }
+
     /**
      * Create the "return to main menu button" that can be used in different view.
      * @return the button created
@@ -92,22 +93,20 @@ public class MyGUIFactory implements GUIFactory {
         southPanel.add(back);
         return back;
     }
-/**
- * Method to scale the insets accorind to screen resolution.
- * @param insets the right insets in FHD
- * @return a new insets scaled according to screen resolution
- */
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public Insets createScaledInsets(final Insets insets) {
         return new Insets((int) (insets.top * SCALE), (int) (insets.left * SCALE),
                 (int) (insets.bottom * SCALE), (int) (insets.bottom * SCALE));
     }
-    //    public Insets createScaledInsets(int top, int left, int bottom, int right) {
-    //        return new Insets((int)(top*scale),(int)(left*scale), (int)(bottom*scale), (int)(right*scale));
-    //    }
-    @Override
+
     /**
      * {@inheritDoc}
      */
+    @Override
     public JLabel createLabel(final String text) {
         final JLabel label = new JLabel(text);
         label.setFont(font.getFont());
@@ -116,9 +115,11 @@ public class MyGUIFactory implements GUIFactory {
         label.setForeground(Color.WHITE);
         return label;
     }
+
     /**
      * {@inheritDoc}
      */
+    @Override
     public JTextField createTextField() {
         final JTextField jTextField = new JTextField();
         jTextField.setFont(font.getFont());
@@ -128,6 +129,7 @@ public class MyGUIFactory implements GUIFactory {
         jTextField.setForeground(Color.WHITE);
         return jTextField;
     }
+
     /**
      * {@inheritDoc}
      */

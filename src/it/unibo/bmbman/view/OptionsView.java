@@ -32,7 +32,7 @@ public class OptionsView {
     private final OptionsMenuController optionsMenuCtrl;
     private final MainMenuView mainView;
     private static final Insets INSETS = new Insets(0, 60, 0, 0);
-//  private static final Insets INSETS = new Insets(25, 60, 35, 20);
+    //  private static final Insets INSETS = new Insets(25, 60, 35, 20);
     private String optionsImagePath;
     private JPanel centerP; 
     private JPanel eastP;

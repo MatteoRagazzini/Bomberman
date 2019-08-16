@@ -37,7 +37,6 @@ public class AnimationImpl implements Animation {
             frame = 0;
             return this.animation.get(frame);
         }
-
     }
     /**
      * {@inheritDoc}

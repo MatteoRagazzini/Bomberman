@@ -8,10 +8,8 @@ import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
-import sun.java2d.pipe.LoopBasedPipe;
-
 /**
- * Class that stores a sound, and it plays it.
+ * Class that stores a sound, and plays it.
  */
 public class SoundImpl implements Sound {
 
@@ -21,7 +19,7 @@ public class SoundImpl implements Sound {
     /**
      * Creates {@code SoundImpl}.
      *
-     * @param path to load the audio file
+     * @param path from where loads the sounds.
      * @throws UnsupportedAudioFileException wrong audio file format
      * @throws IOException problem during input/output
      * @throws LineUnavailableException audio line can't be opened because it's unavailable
@@ -57,9 +55,12 @@ public class SoundImpl implements Sound {
     public boolean isPlaying() {
         return this.clip.isRunning();
     }
-    
-   public void playInLoop() {
-       this.clip.loop(Clip.LOOP_CONTINUOUSLY);
-   }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void playInLoop() {
+        this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+    }
 
 }

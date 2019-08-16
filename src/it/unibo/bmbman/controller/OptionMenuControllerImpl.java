@@ -27,13 +27,4 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
         }
         this.sc.setSounds();
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public SoundsController getSoundController() {
-        return this.sc;
-    }
-
 }

@@ -21,7 +21,9 @@ public interface Sound {
      * @return true if sound is playing, otherwise false
      */
     boolean isPlaying();
-    
-    void playInLoop();
 
+    /**
+     * Play a sounds continously.
+     */
+    void playInLoop();
 }
