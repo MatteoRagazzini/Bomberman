@@ -8,10 +8,18 @@ import it.unibo.bmbman.model.utilities.EntityType;
  *
  */
 public enum Scoring {
+        /**
+         * bonus's score.
+         */
         BONUS(50),
+        /**
+         * malus's score.
+         */
         MALUS(-50),
-        MONSTER(100),
-        DOOR(200);
+        /**
+         * monster killed's score.
+         */
+        MONSTER(100);
 
     private final int value;
     /**

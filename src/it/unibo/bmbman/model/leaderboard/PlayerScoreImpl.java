@@ -96,10 +96,16 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
             }
         });
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int compareTo(final PlayerScoreImpl ps) {
         return ps.getLevel() != this.getLevel() ? this.getLevel() - ps.getLevel() : ps.getScore() - this.getScore();
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -110,6 +116,9 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         result = prime * result + score;
         return result;
     }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public boolean equals(final Object obj) {
         if (this == obj) {
