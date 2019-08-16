@@ -20,7 +20,7 @@ import it.unibo.bmbman.controller.MainMenuList;
 import it.unibo.bmbman.controller.OptionMenuControllerImpl;
 import it.unibo.bmbman.controller.OptionsMenuController;
 import it.unibo.bmbman.view.utilities.ImageLoader;
-import it.unibo.bmbman.view.utilities.ScreenTool;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * define the start menu of the game.
  */
@@ -130,12 +130,12 @@ public class MainMenuView {
      * Save the main image path based on the screen resolution.
      */
     private void saveMainImagePath() {
-        mainImagePath = "/image/" + ScreenTool.getScreenRes() + "_MainImage.png";
+        mainImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_MainImage.png";
     }
     /**
      * Save the title image path based on the screen resolution.
      */
     private void saveTitleImagePath() {
-        titleImagePath = "/image/" + ScreenTool.getScreenRes() + "_TitleImage.jpg";
+        titleImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_TitleImage.jpg";
     }
 }

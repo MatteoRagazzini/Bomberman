@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import it.unibo.bmbman.view.utilities.ImageLoader;
-import it.unibo.bmbman.view.utilities.ScreenTool;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Frame for help section of the main menu.
  */
@@ -59,6 +59,6 @@ public class HelpView {
      * Save the help image path based on the screen resolution.
      */
     private void saveHelpImagePath() {
-        helpImagePath = "/image/" + ScreenTool.getScreenRes() + "_HelpImage.png";
+        helpImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_HelpImage.png";
     }
 }

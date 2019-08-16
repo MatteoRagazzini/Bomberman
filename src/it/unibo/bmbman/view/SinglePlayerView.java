@@ -40,7 +40,7 @@ public class SinglePlayerView {
         nPanel = new TopBar(gui, ps, hero);
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
-        canvas.setSize(Terrain.TERRAIN_WIDTH,Terrain.TERRAIN_HEGHT);
+        canvas.setSize(Terrain.TERRAIN_WIDTH, Terrain.TERRAIN_HEGHT);
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         canvas.addKeyListener(ki);

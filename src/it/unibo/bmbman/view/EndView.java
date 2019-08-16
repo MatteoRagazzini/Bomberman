@@ -23,7 +23,7 @@ import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.leaderboard.ScoreHandler;
 import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
-import it.unibo.bmbman.view.utilities.ScreenTool;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /** 
  * Frame for game over.
  */
@@ -160,7 +160,7 @@ public class EndView {
         c.gridx = 1;
         c.gridy = 3;
         centerP.add(enterName, c);
-        if (this.state == EndGameState.WIN) {
+        if (this.state == EndGameState.WIN && this.gameController.getLevel().getLevel() < 3) {
             nextLevel = gui.createButton("Go to next level");
             nextLevel.setBorderPainted(true);
             nextLevel.setBackground(Color.darkGray);
@@ -204,7 +204,7 @@ public class EndView {
      * Used to save the appropriete image according to screen resolution.
      */
     private void saveGameOverImagePath() {
-        gameOverImagePath = "/image/" + ScreenTool.getScreenRes() + "_GameOverImage.png";
+        gameOverImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_GameOverImage.png";
     }
 
     private Image loadImage(final String text) {

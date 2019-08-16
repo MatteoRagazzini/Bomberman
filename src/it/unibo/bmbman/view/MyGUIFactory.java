@@ -14,7 +14,7 @@ import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import it.unibo.bmbman.view.utilities.GameFont;
-import it.unibo.bmbman.view.utilities.ScreenTool;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Class used to generate components.
@@ -38,7 +38,7 @@ public class MyGUIFactory implements GUIFactory {
     //    private static final Float FHD_SIZE = 32f;
     //    private static final Float HD_SIZE = 20f;
     private GameFont font  = new GameFont();
-    private static final double SCALE = ScreenTool.getScreenScale();
+    private static final double SCALE = ScreenToolUtils.getScreenScale();
 
     @Override
     /**
