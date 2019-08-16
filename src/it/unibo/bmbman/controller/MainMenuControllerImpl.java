@@ -1,4 +1,5 @@
 package it.unibo.bmbman.controller;
+
 import it.unibo.bmbman.controller.game.GameController;
 import it.unibo.bmbman.controller.game.GameControllerImpl;
 import it.unibo.bmbman.view.HelpView;
@@ -12,7 +13,6 @@ import it.unibo.bmbman.view.OptionsView;
  */
 public class MainMenuControllerImpl implements MainMenuController {
 
-    private GameController gc;
     private final OptionsMenuController opt;
     private final MainMenuView mainMenuView;
     /**
@@ -32,7 +32,8 @@ public class MainMenuControllerImpl implements MainMenuController {
     public void setOptionSelected(final MainMenuList optionSelected) {
         switch (optionSelected) {
         case SINGLE_PLAYER:
-            new GameControllerImpl(mainMenuView).startGame();
+            final GameController game = new GameControllerImpl(mainMenuView);
+            game.startGame();
             break;
             /* da implementare i prossimi casi*/
             //        case MULTIPLAYER:
