@@ -28,11 +28,11 @@ public class SinglePlayerView {
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
-    private JPanel sPanel = new JPanel();
-    private TopBar nPanel;
-    private Timer timer;
-    private int seconds = 0;
-    private int minutes = 0;
+    private final JPanel sPanel = new JPanel();
+    private final TopBar nPanel;
+    private final Timer timer;
+    private int seconds;
+    private int minutes;
     /**
      * construct the frame.
      * @param ki {@link KeyInput}
@@ -41,6 +41,8 @@ public class SinglePlayerView {
      */
     public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final Hero hero) {
         nPanel = new TopBar(gui, ps, hero);
+        seconds = 0;
+        minutes = 0;
         nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
         this.timer = new Timer(1000, a -> {
             seconds++;
@@ -50,7 +52,7 @@ public class SinglePlayerView {
             }
             nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
         });
-        this.startTime();
+        this.timer.start();
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
         canvas.setSize(Terrain.TERRAIN_WIDTH, Terrain.TERRAIN_HEGHT);
