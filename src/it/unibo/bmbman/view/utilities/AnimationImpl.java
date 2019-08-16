@@ -2,6 +2,7 @@ package it.unibo.bmbman.view.utilities;
 
 import java.awt.Image;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
 
@@ -11,7 +12,7 @@ import java.util.Optional;
 public class AnimationImpl implements Animation {
 
     private final List<Image> animation;
-    private int frame = 0;
+    private Iterator<Image> it;
     /**
      * Construct {@link Animation}.
      */
@@ -30,12 +31,11 @@ public class AnimationImpl implements Animation {
      */
     @Override
     public Image getNextImage() {
-        if (frame < this.animation.size()) {
-            frame++;
-            return this.animation.get(frame - 1);
+        if (it.hasNext()) {
+            return it.next();
         } else {
-            frame = 0;
-            return this.animation.get(frame);
+            it = this.animation.iterator();
+            return it.next();
         }
     }
     /**
@@ -44,6 +44,7 @@ public class AnimationImpl implements Animation {
     @Override
     public void addFrame(final Image frame) {
         this.animation.add(frame);
+        it = this.animation.iterator();
     }
     /**
      * {@inheritDoc}
@@ -54,5 +55,6 @@ public class AnimationImpl implements Animation {
         for (int i = 1; i <= frame; i++) {
             this.animation.add(new Sprite(ss, i, 1, dimension).getBufferedImage());
         }
+        it = this.animation.iterator();
     }
 }

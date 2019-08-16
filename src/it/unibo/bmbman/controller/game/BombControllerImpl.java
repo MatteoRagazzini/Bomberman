@@ -49,7 +49,9 @@ public class BombControllerImpl implements BombController {
                 .map(b -> b.getX())
                 .collect(Collectors.toList());
     }
-    
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Set<BombView> getBombView() {
         return this.amountBombs.stream().map(b -> b.getY()).collect(Collectors.toSet());
