@@ -2,7 +2,7 @@ package it.unibo.bmbman.model.entities;
 /**
  *Inteface to model the hero in our game.
  */
-public interface Hero {
+public interface Hero extends LivingEntity {
     /**
      * Used to set that Hero has pick up the key.
      */

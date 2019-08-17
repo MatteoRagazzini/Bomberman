@@ -5,7 +5,7 @@ import it.unibo.bmbman.model.utilities.Velocity;
  * Interface to model a living entity that is an entity with one or more lives and capable of moving.
  *
  */
-public interface LivingEntity {
+public interface LivingEntity extends Entity {
     /**
      * 
      * @return true if the entity still has one or more lives, false otherwise

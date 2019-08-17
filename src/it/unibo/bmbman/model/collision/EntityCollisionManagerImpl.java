@@ -35,7 +35,10 @@ public class EntityCollisionManagerImpl implements EntityCollisionManager {
             }
         });
     }
-    private boolean checkCollision(final Entity receiver, final Rectangle collider) {
+    /**
+     * {@inheritDoc}
+     */
+    public boolean checkCollision(final Entity receiver, final Rectangle collider) {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);
     }
     /**
