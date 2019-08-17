@@ -5,6 +5,8 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.concurrent.TimeUnit;
+
 import org.junit.jupiter.api.Test;
 
 import it.unibo.bmbman.model.Terrain;
@@ -55,7 +57,25 @@ public class TestCollision {
     @Test
     public void testMonsterCollision() {
         hero.setPosition(Terrain.PLAYER_POSITION);
-        //assertFalse(heroMng.checkCollision(monster, hero.getCollisionComponent().getHitbox()));
         assertEquals(HERO_LIVES, hero.getLives());
+        hero.setPosition(MONSTER_POSITION);
+        assertTrue(heroMng.checkCollision(monster, hero.getCollisionComponent().getHitbox()));
+        hero.onCollision(new CollisionImpl(monster, MONSTER_POSITION));
+        assertEquals(HERO_LIVES - 1, hero.getLives());
+    }
+    /**
+     * Used to test hero dead after three collision with Monster.
+     * @throws InterruptedException 
+     */
+    @Test
+    public void testHeroDead() throws InterruptedException {
+       assertEquals(HERO_LIVES, hero.getLives());
+       hero.onCollision(new CollisionImpl(monster, MONSTER_POSITION));
+       assertEquals(HERO_LIVES - 1, hero.getLives());
+       TimeUnit.SECONDS.sleep(2);
+       hero.onCollision(new CollisionImpl(monster, MONSTER_POSITION));
+       TimeUnit.SECONDS.sleep(2);
+       hero.onCollision(new CollisionImpl(monster, MONSTER_POSITION));
+       assertFalse(hero.isAlive());
     }
 }
