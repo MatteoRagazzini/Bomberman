@@ -30,6 +30,7 @@ public final class ScoreHandler {
         System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             o.writeObject(l);
+            o.close();
         } catch (IOException e) {
             throw new IllegalArgumentException("Cannot write on " + FILE_NAME);
         }
@@ -39,7 +40,7 @@ public final class ScoreHandler {
      * Read data from score.txt and sort them.
      */
     private static void read() {
-        data.clear();
+        //data.clear();
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
                 final Object o = br.readObject();
                 if (o instanceof List<?>) {
@@ -59,11 +60,16 @@ public final class ScoreHandler {
      * @return data
      */
     public static List<PlayerScoreImpl> getData() {
+        return data;
+    }
+    /**
+     * 
+     */
+    public static void checkAndRead() {
         final File file = new File(FILE_NAME);
         if (file.exists()) {
             read();
         }
-        return data;
     }
     /**
      * @param level 
@@ -71,9 +77,9 @@ public final class ScoreHandler {
      * @param playerName 
      * @param time 
      */
-    public static void checkAndReadWrite(final int level, final PlayerScoreImpl ps, final String playerName, final String time) {
+    public static void checkAndWrite(final int level, final PlayerScoreImpl ps, final String playerName, final String time) {
         if (new File(FILE_NAME).exists()) {
-            read();
+            //read();
             final Optional<PlayerScoreImpl> p = checkIfPresent(playerName);
             if (p.isPresent() && p.get().getLevel() == level) {
                 update(p.get(), ps.getScore(), time);

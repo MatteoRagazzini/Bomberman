@@ -156,7 +156,7 @@ public class EndView {
         enterName = gui.createButton("Save");
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
-            ScoreHandler.checkAndReadWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), this.spv.getTime());
+            ScoreHandler.checkAndWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), this.spv.getTime());
             enterName.setEnabled(false);
         });
         c.gridx = 1;
