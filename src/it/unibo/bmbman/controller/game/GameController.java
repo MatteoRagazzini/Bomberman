@@ -5,7 +5,7 @@ import java.util.Set;
 import it.unibo.bmbman.view.entities.EntityView;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 /**
  * Interface to handler all the entity in game.
  */
@@ -56,7 +56,7 @@ public interface GameController {
      * Used to get the hero.
      * @return {@link Entity} representing player. 
      */
-    Hero getHero();
+    HeroImpl getHero();
     /**
      * Used to know if game is over.
      * @return true if hero is dead

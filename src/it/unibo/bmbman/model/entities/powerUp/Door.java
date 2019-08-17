@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
 import it.unibo.bmbman.model.Terrain;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
 /**
  * Model the door to reach to win the game.
@@ -15,7 +15,7 @@ public class Door extends AbstractPowerupEntity {
     }
 
     @Override
-    public final void powerupEffect(final Hero hero) {
+    public final void powerupEffect(final HeroImpl hero) {
         hero.checkWin();
     }
     /**
@@ -29,7 +29,7 @@ public class Door extends AbstractPowerupEntity {
      * {@inheritDoc}
      */
     @Override
-    public void removeEffect(final Hero hero) {
+    public void removeEffect(final HeroImpl hero) {
     }
 
 }

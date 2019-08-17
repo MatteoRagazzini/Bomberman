@@ -6,7 +6,7 @@ import java.util.Set;
 
 import it.unibo.bmbman.model.entities.Bomb;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.view.entities.BombView;
 /**
@@ -33,7 +33,7 @@ public interface BombController {
      * @param hero 
      * @return bomb that hero can plant, otherwise an empty optional.
      */
-    Optional<Bomb> plantBomb(Hero hero);
+    Optional<Bomb> plantBomb(HeroImpl hero);
     /**
      * Update {@link Bomb} view and model.
      */

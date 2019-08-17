@@ -7,7 +7,7 @@ import java.util.stream.IntStream;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.entities.powerUp.BonusBombNum;
 import it.unibo.bmbman.model.entities.powerUp.BonusBombRange;
@@ -50,7 +50,7 @@ public class LoadWorld {
      * Loads all the entity.
      */
     public void loadEntity() {
-        final Hero hero = new Hero();
+        final HeroImpl hero = new HeroImpl();
         final HeroView heroView = new HeroView(hero.getPosition());
         final List<Entity> mosterList = new ArrayList<>();
         for (int i = 0; i < Terrain.TERRAIN_COLUMNS; i++) {

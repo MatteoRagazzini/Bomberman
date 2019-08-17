@@ -12,7 +12,7 @@ import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
 import it.unibo.bmbman.model.Terrain;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.view.entities.BombView;
@@ -39,7 +39,7 @@ public class SinglePlayerView {
      * @param hero 
      * @param ps 
      */
-    public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final Hero hero) {
+    public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final HeroImpl hero) {
         nPanel = new TopBar(gui, ps, hero);
         seconds = 0;
         minutes = 0;

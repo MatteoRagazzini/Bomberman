@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
 import it.unibo.bmbman.model.entities.Bomb;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Model a bonus bomb number power-up.
@@ -18,13 +18,13 @@ public class BonusBombNum extends AbstractPowerupEntity {
      * {@inheritDoc}}
      */
     @Override
-    public void powerupEffect(final Hero hero) {
+    public void powerupEffect(final HeroImpl hero) {
         Bomb.incrementBombsNumber();
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeEffect(final Hero hero) {
+    public void removeEffect(final HeroImpl hero) {
     }
 }

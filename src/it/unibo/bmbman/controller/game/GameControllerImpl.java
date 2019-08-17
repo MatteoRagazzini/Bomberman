@@ -14,7 +14,7 @@ import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
 import it.unibo.bmbman.model.entities.Bomb;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.utilities.EntityFeature;
 import it.unibo.bmbman.model.utilities.EntityType;
@@ -162,8 +162,8 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public Hero getHero() {
-        return (Hero) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
+    public HeroImpl getHero() {
+        return (HeroImpl) this.worldEntity.stream().filter(e -> e.getType() == EntityType.HERO).findFirst().get();
     }
     /**
      * {@inheritDoc}

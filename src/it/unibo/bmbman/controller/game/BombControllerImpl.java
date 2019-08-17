@@ -11,7 +11,7 @@ import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.collision.CollisionImpl;
 import it.unibo.bmbman.model.entities.Bomb;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
@@ -62,7 +62,7 @@ public class BombControllerImpl implements BombController {
      * 
      */
     @Override
-    public Optional<Bomb> plantBomb(final Hero hero) {
+    public Optional<Bomb> plantBomb(final HeroImpl hero) {
         if (Bomb.getBombsNumber() - this.amountBombs.size() >= 1) {
             final Position pos = new Position(Position.getCenteredPosition(hero.getPosition()));
             final Bomb b = new Bomb(pos);

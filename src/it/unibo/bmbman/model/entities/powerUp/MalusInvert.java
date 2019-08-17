@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model.entities.powerUp;
 
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * Model a malus invert power-up.
@@ -17,14 +17,14 @@ public class MalusInvert extends AbstractPowerupEntity {
      * {@inheritDoc}
      */
     @Override
-    public void powerupEffect(final Hero hero) {
+    public void powerupEffect(final HeroImpl hero) {
         hero.setVelocityModifier(-1.0);
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public void removeEffect(final Hero hero) {
+    public void removeEffect(final HeroImpl hero) {
         hero.setVelocityModifier(1.0);
     }
 }

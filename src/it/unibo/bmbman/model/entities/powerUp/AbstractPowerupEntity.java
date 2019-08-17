@@ -2,7 +2,7 @@ package it.unibo.bmbman.model.entities.powerUp;
 
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.entities.AbstractEntity;
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
@@ -16,7 +16,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
     private static final long MILLIS = 1000;
     private static final int DIMENSION = 30;
     private final boolean bonus;
-    private Hero hero;
+    private HeroImpl hero;
     private long startTime;
     /**
      * Constructor for a general power-up.
@@ -42,7 +42,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
     @Override
     public void onCollision(final Collision c) {
         if (c.getReceiver().getType() == EntityType.HERO) {
-            this.hero = (Hero) c.getReceiver();
+            this.hero = (HeroImpl) c.getReceiver();
             this.startTime = System.currentTimeMillis() / MILLIS;
             powerupEffect(hero);
         }
@@ -58,12 +58,12 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * Active the effect.
      * @param hero the target of the effect.
      */
-    public abstract void powerupEffect(Hero hero);
+    public abstract void powerupEffect(HeroImpl hero);
     /**
      * Remove the effect.
      * @param hero the hero.
      */
-    public abstract void removeEffect(Hero hero);
+    public abstract void removeEffect(HeroImpl hero);
     /**
      * {@inheritDoc}
      */

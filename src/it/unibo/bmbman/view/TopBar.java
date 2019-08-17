@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import it.unibo.bmbman.model.entities.Hero;
+import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 /**
@@ -26,7 +26,7 @@ public class TopBar extends JPanel {
     private final JLabel score;
     private final JLabel lives;
     private JLabel key;
-    private final Hero hero;
+    private final HeroImpl hero;
     private boolean keyloaded;
     private final PlayerScoreImpl ps;
     private final ImageLoader il = new ImageLoader();
@@ -37,7 +37,7 @@ public class TopBar extends JPanel {
      * @param ps 
      * @param hero 
      */
-    public TopBar(final GUIFactory gui, final PlayerScoreImpl ps, final Hero hero) {
+    public TopBar(final GUIFactory gui, final PlayerScoreImpl ps, final HeroImpl hero) {
         super();
         final JLabel heart;
         this.setLayout(new GridBagLayout());

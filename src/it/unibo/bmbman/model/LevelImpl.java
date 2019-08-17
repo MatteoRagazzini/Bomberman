@@ -7,6 +7,7 @@ public class LevelImpl implements Level {
     private static final int MONSTER_FOR_LEVEL = 2;
     private static final int ONE_TYPE_BONUS_FOR_LEVEL = 2;
     private static final int ONE_TYPE_MALUS_FOR_LEVEL = 1;
+    private static final int LEVEL_MAX = 3;
     private int level;
     private int monstersNumber;
     private int blocksNumber;
@@ -26,8 +27,8 @@ public class LevelImpl implements Level {
         this.setAll();
     }
     private void setAll() {
-        this.monstersNumber = level * MONSTER_FOR_LEVEL;
-        this.blocksNumber = level * BLOCKS_FOR_LEVEL;
+        this.monstersNumber = level * MONSTER_FOR_LEVEL + MONSTER_FOR_LEVEL;
+        this.blocksNumber = level * BLOCKS_FOR_LEVEL + (LEVEL_MAX - level) * BLOCKS_FOR_LEVEL;
         this.malusFreezeNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
         this.malusInvertNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
         this.malusLifeNumber = level * ONE_TYPE_MALUS_FOR_LEVEL;
