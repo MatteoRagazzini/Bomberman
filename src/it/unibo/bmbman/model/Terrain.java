@@ -112,8 +112,8 @@ public class Terrain {
      * @param li
      */
     private void addBlock() {
-//        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-//        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(), PLAYER_POSITION_DOWN.getY() + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(), PLAYER_POSITION_DOWN.getY() + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
                  .limit(blockNumber)
                  .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
@@ -222,7 +222,7 @@ public class Terrain {
     }
     public Position getRandomBlockPosition() {
         final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
-        Position pos = new Position(blockPowerUpPosition.get(randomIndex));
+        Position pos = new Position(blockPowerUpPosition.get(randomIndex).getX()/AbstractEntity.SCALE,blockPowerUpPosition.get(randomIndex).getY()/AbstractEntity.SCALE);
 
         blockPowerUpPosition.remove(randomIndex);
         return pos;
