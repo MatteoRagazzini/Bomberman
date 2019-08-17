@@ -12,11 +12,6 @@ import it.unibo.bmbman.model.entities.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.entities.BlockView;
-import it.unibo.bmbman.view.entities.EntityView;
-import it.unibo.bmbman.view.entities.TileView;
-import it.unibo.bmbman.view.entities.WallView;
-
 /**
      * This class defines the playing field.
      *
@@ -53,7 +48,7 @@ public class Terrain {
 
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION, 1 * CELL_DIMENSION);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION, 2 * CELL_DIMENSION);
-    private int blockNumber;
+    private final int blockNumber;
     private final List<List<Entity>> terrain = new ArrayList<>();
     private final List<Entity> blockList = new ArrayList<>();
     private final List<Position> freePosition;
@@ -61,7 +56,7 @@ public class Terrain {
 
 /**
  * 
- * @param blocknumber
+ * @param blocknumber .
  */
     public Terrain(final int blocknumber) {
 
@@ -120,7 +115,7 @@ public class Terrain {
                          || s.getPosition().equals(DOOR_POSITION))
                   .collect(Collectors.toList())
                   .forEach((e) -> blockList.remove(blockList.indexOf(e)));
-        List<Entity> li = blockList.stream().filter(i -> getWallsPosition().contains(i.getPosition())).collect(Collectors.toList());
+        final List<Entity> li = blockList.stream().filter(i -> getWallsPosition().contains(i.getPosition())).collect(Collectors.toList());
         getBlocks().removeAll(li);
     }
     /**
@@ -156,7 +151,7 @@ public class Terrain {
     }
     /**
      * 
-     * @return
+     * @return .
      */
     public List<Entity> getFreeTiles() { 
         return this.getTiles().stream().filter(i -> !i.getPosition().equals(PLAYER_POSITION) 
@@ -191,17 +186,21 @@ public class Terrain {
     }
     /**
      * 
-     * @return
+     * @return .
      */
     public Position getFreeRandomPosition() {
         final int randomIndex = new Random().nextInt(freePosition.size()); 
-        Position pos = new Position(freePosition.get(randomIndex));
+        final Position pos = new Position(freePosition.get(randomIndex));
         freePosition.remove(randomIndex);
         return pos;
     }
+    /**
+     * 
+     * @return .
+     */
     public Position getRandomBlockPosition() {
         final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
-        Position pos = new Position(blockPowerUpPosition.get(randomIndex));
+        final Position pos = new Position(blockPowerUpPosition.get(randomIndex));
         blockPowerUpPosition.remove(randomIndex);
         return pos;
     }

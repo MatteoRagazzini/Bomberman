@@ -21,7 +21,6 @@ import it.unibo.bmbman.model.entities.powerUp.MalusFreeze;
 import it.unibo.bmbman.model.entities.powerUp.MalusInvert;
 import it.unibo.bmbman.model.entities.powerUp.MalusLife;
 import it.unibo.bmbman.model.entities.powerUp.MalusSlow;
-import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.PowerUpType;
 import it.unibo.bmbman.view.entities.BlockView;

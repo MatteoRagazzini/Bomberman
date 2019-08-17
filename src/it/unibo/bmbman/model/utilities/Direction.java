@@ -24,10 +24,14 @@ public enum Direction {
      * no direction, the player is idle.
      */
     IDLE;
-    
-    public static Direction getOpposite(Direction d) {
+    /**
+     * Used to know the opposite direction.
+     * @param d the direction of which you would know the opposite
+     * @return a {@link Direction}
+     */
+    public static Direction getOpposite(final Direction d) {
          Direction opposite = d;
-        switch(d) {
+        switch (d) {
         case DOWN: opposite = UP;
             break;
         case LEFT: opposite = Direction.RIGHT;
@@ -38,7 +42,6 @@ public enum Direction {
             break;
         default:
             break;
-        
         }
         return opposite;
     }

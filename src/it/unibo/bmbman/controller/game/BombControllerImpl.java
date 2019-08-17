@@ -1,10 +1,10 @@
 package it.unibo.bmbman.controller.game;
 
 import java.awt.Rectangle;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 import it.unibo.bmbman.controller.SoundsController;
@@ -25,7 +25,7 @@ public class BombControllerImpl implements BombController {
      */
     public BombControllerImpl() {
         super();
-        this.amountBombs = new ArrayList<>();
+        this.amountBombs = new CopyOnWriteArrayList<>();
         Bomb.resetBombNumber();
         Bomb.resetBonusRange();
     }

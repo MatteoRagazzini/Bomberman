@@ -16,7 +16,7 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public class Monster extends AbstractLivingEntity {
 
-    private Random rand = new Random();
+    private final Random rand = new Random();
     private static final int DIMX = 48;
     private static final int DIMY = 48;
     private static final int NLIVES = 1;

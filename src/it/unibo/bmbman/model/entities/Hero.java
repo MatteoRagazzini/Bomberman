@@ -33,15 +33,14 @@ public class Hero extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
-                if (lastCollision == 0 || System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
+            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION 
+            && System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
                     removeLife();
                     lastCollision = System.currentTimeMillis() / MILLIS;
-                }
             }
             break;
         case MONSTER:
-            if (lastCollision == 0 || System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
+            if (System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
                 removeLife();
                 lastCollision = System.currentTimeMillis() / MILLIS;
             }
@@ -105,7 +104,10 @@ public class Hero extends AbstractLivingEntity {
     public void checkWin() {
         win = gotKey;
     }
-    
+    /**
+     * used to know if the hero has the key and he is in door position.
+     * @return true if he has won
+     */
     public boolean hasWon() {
         return win;
     }

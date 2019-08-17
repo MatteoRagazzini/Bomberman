@@ -1,6 +1,5 @@
 package it.unibo.bmbman.controller.game;
 
-import java.awt.Graphics;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -14,7 +13,10 @@ import it.unibo.bmbman.view.entities.BombView;
  *
  */
 public interface BombController {
-    
+    /**
+     * Used to get planted Bombs view.
+     * @return {@link Set} of Bombs
+     */
     Set<BombView> getBombView();
     /**
      * Get bombs that must be removed.
@@ -34,9 +36,8 @@ public interface BombController {
     Optional<Bomb> plantBomb(Hero hero);
     /**
      * Update {@link Bomb} view and model.
-     * @param g {@link Graphics} to update view
      */
-    void update(/*Graphics g*/);
+    void update();
     /**
      * Remove bombs that are exploded. 
      */
