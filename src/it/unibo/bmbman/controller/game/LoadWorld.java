@@ -61,10 +61,15 @@ public class LoadWorld {
                 this.gc.addEntity(terrain.getEntity(i, j), this.getEntityView(terrain.getEntity(i, j)));
             }
         }
+        terrain.getFreeTiles().forEach(i->System.out.println(i.getPosition()+"tiles"));
+        for(int i=0;i<20;i++) {
+        System.out.println(terrain.getFreeRandomPosition()+"randompos");
+        }
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, this.getEntityView(i)));
+        terrain.getBlocks().stream().forEach(i -> System.out.println(i.getPosition()));
         loadPowerUp();
-        System.out.println(level.getLevel());
         IntStream.iterate(0, i -> i + 1).limit(level.getMonsterNumber()).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
+        mosterList.forEach(i-> System.out.println(i.getPosition()));
         mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition())));
         this.gc.addEntity(hero, heroView);
     }
@@ -92,14 +97,17 @@ public class LoadWorld {
         System.out.println("Key: " + position);
         for (int i = 0; i < level.getBonusLifeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
+//            System.out.println(position+ "posi");
             this.gc.addEntity(new BonusLife(position), new PowerUpView(position, PowerUpType.BONUS_LIFE.toString()));
         }
         for (int i = 0; i < level.getBonusBombNumber(); i++) {
             position = terrain.getRandomBlockPosition();
+//            System.out.println(position+ "posi");
             this.gc.addEntity(new BonusBombNum(position), new PowerUpView(position, PowerUpType.BONUS_BOMB.toString()));
         }
         for (int i = 0; i < level.getBonusRangeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
+//            System.out.println(position+ "posi");
             this.gc.addEntity(new BonusBombRange(position), new PowerUpView(position, PowerUpType.BONUS_RANGE.toString()));
         }
         for (int i = 0; i < level.getBonusVelocityNumber(); i++) {

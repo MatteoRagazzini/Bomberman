@@ -4,6 +4,7 @@ import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Class used to model the behavior of a wall.
  */

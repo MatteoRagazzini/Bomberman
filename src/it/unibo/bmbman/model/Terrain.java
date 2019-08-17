@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import it.unibo.bmbman.model.entities.AbstractEntity;
 import it.unibo.bmbman.model.entities.Block;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.Tile;
@@ -12,10 +14,12 @@ import it.unibo.bmbman.model.entities.Wall;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.entities.AbstractEntityView;
 import it.unibo.bmbman.view.entities.BlockView;
 import it.unibo.bmbman.view.entities.EntityView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.entities.WallView;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
      * This class defines the playing field.
@@ -25,15 +29,7 @@ public class Terrain {
     /**
      * the cell dimension.
      */
-    public static final int CELL_DIMENSION = 50;
-    /**
-     * the player start position.
-     */
-    public static final Position PLAYER_POSITION = new Position(1 * CELL_DIMENSION, 1 * CELL_DIMENSION);
-    /**
-     * the door position.
-     */
-    public static final Position DOOR_POSITION = new Position(17 * CELL_DIMENSION, 13 * CELL_DIMENSION);
+    public static final int  CELL_DIMENSION = 50 ;
     /**
      * number of rows in terrain.
      */
@@ -43,19 +39,28 @@ public class Terrain {
      */
     public static final int TERRAIN_COLUMNS = 19;
     /**
+     * the player start position.
+     */
+    public static final Position PLAYER_POSITION = new Position(1 * CELL_DIMENSION*AbstractEntity.SCALE, 1 * CELL_DIMENSION*AbstractEntity.SCALE);
+    /**
+     * the door position.
+     */
+    public static final Position DOOR_POSITION = new Position((TERRAIN_COLUMNS - 2) * CELL_DIMENSION*AbstractEntity.SCALE, (TERRAIN_ROWS - 2) * CELL_DIMENSION*AbstractEntity.SCALE);
+
+    /**
      * Terrain's width.
      */
-    public static final int TERRAIN_WIDTH = TERRAIN_COLUMNS * CELL_DIMENSION;
+    public static final int TERRAIN_WIDTH = TERRAIN_COLUMNS * CELL_DIMENSION*AbstractEntity.SCALE;
     /**
      * Terrain's height.
      */
-    public static final int TERRAIN_HEGHT = TERRAIN_ROWS * CELL_DIMENSION;
+    public static final int TERRAIN_HEGHT = TERRAIN_ROWS * CELL_DIMENSION*AbstractEntity.SCALE;
 
-    private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION, 1 * CELL_DIMENSION);
-    private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION, 2 * CELL_DIMENSION);
+    private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION*AbstractEntity.SCALE, 1 * CELL_DIMENSION*AbstractEntity.SCALE);
+    private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION*AbstractEntity.SCALE, 2 * CELL_DIMENSION*AbstractEntity.SCALE);
     private int blockNumber;
     private final List<List<Entity>> terrain = new ArrayList<>();
-    private final List<Entity> blockList = new ArrayList<>();
+    private List<Entity> blockList = new ArrayList<>();
     private final List<Position> freePosition;
     private final List<Position> blockPowerUpPosition;
 
@@ -64,18 +69,17 @@ public class Terrain {
  * @param blocknumber
  */
     public Terrain(final int blocknumber) {
-
     for (int i = 0; i < TERRAIN_COLUMNS; i++) {
-        List<Entity> row = new ArrayList<>();
+        List<Entity> col = new ArrayList<>();
         for (int j = 0; j < TERRAIN_ROWS; j++) {
-            row.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-            row = addBorderWall(i, j, row);
+            col.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+            col = addBorderWall(i, j, col);
         }
-        if (i % 2 == 0) {
-            addWall(row);
-            }
-        this.terrain.add(row);
+        this.terrain.add(col);
        }
+    for(int i=0;i<TERRAIN_COLUMNS;i=i+2) {
+        addWall(terrain.get(i),i);
+    }
     this.blockNumber = blocknumber;
     addBlock();
     freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
@@ -84,9 +88,9 @@ public class Terrain {
     /**
      * create wall in terrain.
      */
-    private List<Entity> addBorderWall(final int row, final int column, final  List<Entity> entityList) {
-        if (row == 0 || column == 0 || row == TERRAIN_COLUMNS - 1 || column == TERRAIN_ROWS - 1) {
-            entityList.set(column, new Wall(new Position(row * CELL_DIMENSION, column * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+    private List<Entity> addBorderWall(final int column, final int row, final  List<Entity> entityList) {
+        if (row == 0 || column == 0 || column == TERRAIN_COLUMNS -1 || row == TERRAIN_ROWS -1 ) {
+            entityList.set(row, new Wall(new Position(column * CELL_DIMENSION, row * CELL_DIMENSION), new Dimension(CELL_DIMENSION,CELL_DIMENSION)));
             }
         return entityList;
         }
@@ -94,34 +98,50 @@ public class Terrain {
      * 
      * @param entityList
      */
-    private void addWall(final List<Entity> entityList) {
-         IntStream.iterate(0, i -> i + 2)
-                  .limit(entityList.size() / 2)
-                  .forEach((i) -> entityList.set(i, new Wall(entityList.get(i).getPosition(), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
+    private void addWall(final List<Entity> entityList,int col) {
+        for(int i=0;i<TERRAIN_ROWS;i=i+2) {
+            entityList.set(i, new Wall(new Position(col*CELL_DIMENSION,i*CELL_DIMENSION), new Dimension(CELL_DIMENSION,CELL_DIMENSION)));
+        }
+//         IntStream.iterate(0, i -> i + 2)
+//                  .limit(TERRAIN_COLUMNS/2)
+//                  .forEach((i) -> entityList.get().set(i, new Wall(entityList.get(i).getPosition(), new Dimension(CELL_DIMENSION,CELL_DIMENSION))));
+//         entityList.stream().filter(i->i.getType()== EntityType.WALL).forEach(k->System.out.println(k.getPosition()+"wall pos"));
     }
     /**
      * 
      * @param li
      */
     private void addBlock() {
-        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(), PLAYER_POSITION_DOWN.getY() + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+//        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+//        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX(), PLAYER_POSITION_DOWN.getY() + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
                  .limit(blockNumber)
                  .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
                          new Random().nextInt(TERRAIN_ROWS - 1) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
+//        System.out.println(blockList.size()+"STAMPO LA SIZEEEE");
+//blockList.forEach(i-> System.out.println(i.getPosition());
         checkBlock();
+//        System.out.println(blockList.size()+"STAMPO LA SIZEEEE");
     }
     private void checkBlock() {
-        this.blockList.stream()
-                 .filter(s -> s.getPosition().equals(PLAYER_POSITION)
-                         || s.getPosition().equals(PLAYER_POSITION_RIGHT)
-                         || s.getPosition().equals(PLAYER_POSITION_DOWN)
-                         || s.getPosition().equals(DOOR_POSITION))
-                  .collect(Collectors.toList())
-                  .forEach((e) -> blockList.remove(blockList.indexOf(e)));
-        List<Entity> li = blockList.stream().filter(i -> getWallsPosition().contains(i.getPosition())).collect(Collectors.toList());
-        getBlocks().removeAll(li);
+        this.blockList=this.blockList.stream()
+                .filter(s -> !s.getPosition().equals(PLAYER_POSITION)
+                        && !s.getPosition().equals(PLAYER_POSITION_RIGHT)
+                        && !s.getPosition().equals(PLAYER_POSITION_DOWN)
+                        && !s.getPosition().equals(DOOR_POSITION))
+                 .collect(Collectors.toList());
+//        System.out.println(blockList.size()+"STAMPO LA SIZEEEE in checkblock");
+        this.blockList=this.blockList.stream().filter(s-> !getWallsPosition().contains(s.getPosition())).collect(Collectors.toList());
+//        System.out.println();
+//                  .forEach((e) -> blockList.remove(blockList.indexOf(e)));
+        
+//        List<Entity> li = blockList.stream().filter(i -> getWallsPosition().contains(i.getPosition())).collect(Collectors.toList());
+//        System.out.println(blockList.get(6).getPosition()+"posblockli");
+//        blockList.forEach(i->System.out.println(i.getPosition()));
+//        System.out.println(li.size());
+//        this.blockList.removeAll(li);
+
+//        System.out.println(blockList.size()+"STAMPO LA SIZEEEEaaa");
     }
     /**
      * get the block position list.
@@ -149,9 +169,6 @@ public class Terrain {
                     .forEach(e -> e.stream()
                                    .filter(s -> s.getType() == EntityType.TILE)
                                    .forEach(k -> tiles.add(k)));
-//        System.out.println("tiles");
-//        tiles.forEach(i->System.out.println(i.getPosition()));
-
         return tiles;
     }
     /**
@@ -177,10 +194,14 @@ public class Terrain {
                     .forEach(e -> e.stream()
                                    .filter(s -> s.getType() == EntityType.WALL)
                                    .forEach(k -> walls.add(k)));
+//        System.out.println(walls.size()+"wall size");
         return walls;
+        
     }
     private List<Position> getWallsPosition() {
+//        getWalls().forEach(i->System.out.println(i.getPosition()+"posizioni muri"));
         return getWalls().stream().map(i -> i.getPosition()).collect(Collectors.toList());
+        
     }
     /**
      * 
@@ -195,13 +216,14 @@ public class Terrain {
      */
     public Position getFreeRandomPosition() {
         final int randomIndex = new Random().nextInt(freePosition.size()); 
-        Position pos = new Position(freePosition.get(randomIndex));
+        Position pos = new Position(freePosition.get(randomIndex).getX()/AbstractEntity.SCALE,freePosition.get(randomIndex).getY()/AbstractEntity.SCALE);
         freePosition.remove(randomIndex);
         return pos;
     }
     public Position getRandomBlockPosition() {
         final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
         Position pos = new Position(blockPowerUpPosition.get(randomIndex));
+
         blockPowerUpPosition.remove(randomIndex);
         return pos;
     }

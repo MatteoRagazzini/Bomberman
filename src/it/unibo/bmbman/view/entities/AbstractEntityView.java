@@ -7,6 +7,7 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Abstarct implementation of entityView.
  */
@@ -26,7 +27,7 @@ public abstract class AbstractEntityView implements EntityView {
      */
     public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible, final EntityType entityType) {
         this.position = position;
-        this.dimension = dimension;
+        this.dimension = new Dimension((int) (dimension.getHeight() * ScreenToolUtils.getScreenScale()), (int) (dimension.getWidth() * ScreenToolUtils.getScreenScale()));
         this.visible = visible;
         this.direction = Direction.IDLE;
         this.entityType = entityType;

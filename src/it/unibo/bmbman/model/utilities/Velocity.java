@@ -1,4 +1,7 @@
 package it.unibo.bmbman.model.utilities;
+
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
+
 /**
  * Models the concept of velocity of a living entity.
  * It's a vector with x e y component.
@@ -12,7 +15,7 @@ public class Velocity {
     /**
      * Constant value for velocity.
      */
-    public static final int SPEED = 2;
+    public static final int SPEED = (int)(5 * ScreenToolUtils.getScreenScale());
     private Pair<Integer, Integer> vel;
     /**
      * Construct the vector of velocity.

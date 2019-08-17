@@ -2,6 +2,7 @@ package it.unibo.bmbman.model.entities;
 
 import java.util.Random;
 
+import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;

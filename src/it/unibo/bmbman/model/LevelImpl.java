@@ -3,7 +3,7 @@ package it.unibo.bmbman.model;
  *
  */
 public class LevelImpl implements Level {
-    private static final int BLOCKS_FOR_LEVEL = 60;
+    private static final int BLOCKS_FOR_LEVEL = 80;
     private static final int MONSTER_FOR_LEVEL = 2;
     private static final int ONE_TYPE_BONUS_FOR_LEVEL = 2;
     private static final int ONE_TYPE_MALUS_FOR_LEVEL = 1;

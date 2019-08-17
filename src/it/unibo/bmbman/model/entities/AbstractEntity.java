@@ -7,12 +7,13 @@ import it.unibo.bmbman.model.collision.CollisionComponentImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Models the general aspects of a lifeless entity.
  *
  */
 public abstract class AbstractEntity implements Entity {
-
+    public static final int SCALE = (int)(ScreenToolUtils.getScreenScale());
     private  Position position;
     private final EntityType entityType;
     private final Dimension dimension;
@@ -24,10 +25,10 @@ public abstract class AbstractEntity implements Entity {
      * @param dimension width and height  of the entity
      */
     public AbstractEntity(final Position position, final EntityType entityType, final Dimension dimension) {
-        this.position = position;
+        this.position = new Position(position.getX() * SCALE, position.getY() * SCALE);
         this.entityType = entityType;
-        this.dimension = dimension;
         this.collisionComponent = new CollisionComponentImpl(this);
+        this.dimension = new Dimension(dimension.getHeight() * SCALE, dimension.getWidth() * SCALE);
     }
     /**
      * {@inheritDoc}

@@ -6,6 +6,7 @@ import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Models the general aspects of a living entity.
@@ -24,6 +25,7 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
      */
     public AbstractLivingEntity(final Position position, final EntityType entityType, final Dimension dimension, final int lives) {
         super(position, entityType, dimension);
+        System.out.println(position+"aaa");
         this.lives = lives;
         this.direction = Direction.IDLE;
         this.velocity = Velocity.ZERO;

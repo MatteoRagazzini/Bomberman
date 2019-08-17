@@ -6,6 +6,7 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.model.utilities.Velocity;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Representing a hero in our application.
  */
