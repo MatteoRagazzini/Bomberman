@@ -182,9 +182,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
-        if (entityToRemoved.stream().anyMatch(e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)) {
-            this.ps.updateScore(entityToRemoved);
-        }
+        this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
         Set<EntityController> controllerToRemoved = this.setController.stream()
                                                                             .filter(c -> entityToRemoved.contains(c.getEntity()))

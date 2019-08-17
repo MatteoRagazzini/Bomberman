@@ -83,7 +83,7 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
     @Override
     public void updateScore(final List<Entity> entityToRemoved) {
         entityToRemoved.stream().filter(e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)
-                                .forEach(e -> {
+                                .forEach(e -> { 
                                     if (!(Scoring.getPoint(e) < 0 && this.score == 0)) {
                                         this.score = this.score + Scoring.getPoint(e);
                                     }
