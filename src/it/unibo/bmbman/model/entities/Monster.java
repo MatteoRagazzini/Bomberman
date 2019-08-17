@@ -57,7 +57,7 @@ public class Monster extends AbstractLivingEntity {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
+            if (((BombImpl) c.getReceiver()).getState() == BombState.IN_EXPLOSION) {
                 removeLife();
             } else {
                 setDirection(randomDirection());

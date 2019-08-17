@@ -4,9 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.utilities.EntityType;
 
 /** 
- * It manages name, score, game time and level of a player.
+ * It manages name, score and game time of a player in a specific level.
  */
 public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>, Serializable {
     private static final long serialVersionUID = 1L;
@@ -15,13 +16,12 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
     private int score;
     private int level;
     /**
-     * 
+     * Create PlayerScore.
      */
     public PlayerScoreImpl() {
         this.score = 0;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -29,7 +29,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         return this.name;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -37,7 +36,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         return this.gameTime;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -45,7 +43,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         return this.score;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -53,7 +50,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         return this.level;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -61,7 +57,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         this.name = name;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -69,7 +64,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         this.level = level;
     }
     /**
-     * 
      * {@inheritDoc} 
      */
     @Override
@@ -77,7 +71,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         this.gameTime = time;
     }
     /**
-     * 
      * {@inheritDoc} 
      */
     @Override
@@ -85,16 +78,16 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         this.score = score;
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
     public void updateScore(final List<Entity> entityToRemoved) {
-        entityToRemoved.stream().forEach(e -> {
-            if (!(Scoring.getPoint(e) <= 0 && this.score == 0)) {
-                this.score = this.score + Scoring.getPoint(e);
-            }
-        });
+        entityToRemoved.stream().filter(e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)
+                                .forEach(e -> {
+                                    if (!(Scoring.getPoint(e) < 0 && this.score == 0)) {
+                                        this.score = this.score + Scoring.getPoint(e);
+                                    }
+                                });
     }
     /**
      * {@inheritDoc}

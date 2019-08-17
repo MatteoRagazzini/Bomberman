@@ -16,6 +16,8 @@ public class HeroImpl extends AbstractLivingEntity implements Hero {
     private long lastCollision;
     private boolean gotKey;
     private boolean win;
+    private int bombsNumber;
+    private int bombRange;
     private static final int START_POSITION = 50;
     private static final int DIMX = 48;
     private static final int DIMY = 48;
@@ -25,6 +27,8 @@ public class HeroImpl extends AbstractLivingEntity implements Hero {
      */
     public HeroImpl() {
         super(new Position(START_POSITION, START_POSITION), EntityType.HERO, new Dimension(DIMX, DIMY), NLIVES);
+        this.bombsNumber = 1;
+        this.bombRange = 3;
     }
     /**
      * {@inheritDoc}
@@ -33,7 +37,7 @@ public class HeroImpl extends AbstractLivingEntity implements Hero {
     public void onCollision(final Collision c) {
         switch (c.getReceiver().getType()) {
         case BOMB:
-            if (((Bomb) c.getReceiver()).getState() == BombState.IN_EXPLOSION 
+            if (((BombImpl) c.getReceiver()).getState() == BombState.IN_EXPLOSION 
             && System.currentTimeMillis() / MILLIS - lastCollision > IMMUNITY_DURATION) {
                     removeLife();
                     lastCollision = System.currentTimeMillis() / MILLIS;
@@ -111,6 +115,32 @@ public class HeroImpl extends AbstractLivingEntity implements Hero {
     public boolean hasWon() {
         return win;
     }
-
-
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void incrementBombsNumber() {
+       this.bombsNumber++;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setBombRange(final int range) {
+        this.bombRange = range;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getBombsNumber() {
+        return this.bombsNumber;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getBombRange() {
+        return this.bombRange;
+    }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Pair;
@@ -22,20 +22,20 @@ public interface BombController {
      * Get bombs that must be removed.
      * @return list of {@link Bomb, BombView}
      */
-    List<Pair<Bomb, BombView>> getBombsToRemove();
+    List<Pair<BombImpl, BombView>> getBombsToRemove();
     /**
      * Get bombs that must explode.
-     * @return list of {@link Bomb}
+     * @return list of {@link BombImpl}
      */
-    List<Bomb> getBombsInExplosion();
+    List<BombImpl> getBombsInExplosion();
     /**
-     * 
+     * It creates a new {@link BombImpl} to planted if {@link Hero} has enough bombs.
      * @param hero 
      * @return bomb that hero can plant, otherwise an empty optional.
      */
-    Optional<Bomb> plantBomb(HeroImpl hero);
+    Optional<BombImpl> plantBomb(HeroImpl hero);
     /**
-     * Update {@link Bomb} view and model.
+     * Update bomb view and model.
      */
     void update();
     /**
@@ -43,8 +43,8 @@ public interface BombController {
      */
     void removeBomb();
     /**
-     * 
-     * @param entities 
+     * Determines if bomb is in collision with one of the given entities.
+     * @param entities set of {@link Entity}
      */
     void collision(Set<Entity> entities);
 }

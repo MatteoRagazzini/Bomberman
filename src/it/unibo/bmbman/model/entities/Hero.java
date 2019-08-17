@@ -21,4 +21,22 @@ public interface Hero {
      * @return true if he has the key and he is in {@link Door} position
      */
     boolean hasWon();
+    /**
+     * Increment number of bombs that hero can plant.
+     */
+    void incrementBombsNumber();
+    /**
+     * 
+     * @return number of bombs
+     */
+    int getBombsNumber();
+    /**
+     * 
+     * @param range of {@link Bomb}
+     */
+    void setBombRange(int range);
+    /**
+     * @return range of {@link Bomb}
+     */
+    int getBombRange();
 }

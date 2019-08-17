@@ -18,9 +18,6 @@ public final class ScoreHandler {
     private static List<PlayerScoreImpl> data = new ArrayList<>();
     /**
      * 
-     * @param list 
-     * @param p
-     * @throws Exception
      */
     private ScoreHandler() {
         super();
@@ -28,7 +25,6 @@ public final class ScoreHandler {
     /**
      * Write list on file score.txt.
      * @param list of score, level, game time and name of the player
-     * @throws Exception 
      */
     private static void save(final List<PlayerScoreImpl> l) {
         System.out.println("SAVE");
@@ -40,11 +36,9 @@ public final class ScoreHandler {
 
     }
     /**
-     * Read data from score.txt.
-     * @throws Exception
+     * Read data from score.txt and sort them.
      */
     private static void read() {
-        System.out.println("READ");
         data.clear();
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
                 final Object o = br.readObject();
@@ -97,12 +91,23 @@ public final class ScoreHandler {
         }
         save(data);
     }
+    /**
+     * It checks if the given name is already present into the file.
+     * @param playerName
+     * @return {@link PlayerScoreImpl} if exists or an
+     */
     private static Optional<PlayerScoreImpl> checkIfPresent(final String playerName) {
         return data.stream()
                    .filter(p -> p.getName().equals(playerName))
                    .findAny();
     }
-
+    /**
+     * It updates score and gameTime for a player that already exists in a specific level into the file.
+     * If the given score is less than the existing score, it does nothing.
+     * @param p
+     * @param score
+     * @param time
+     */
     private static void update(final PlayerScoreImpl p, final int score, final String time) {
         if (score > p.getScore()) {
             p.setScore(score);

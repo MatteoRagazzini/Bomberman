@@ -9,7 +9,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  * 
- * Model a ScoreTable with rank, name, score and game time of a player.
+ * Model a ScoreTable with rank, level, name, score and game time of a player.
  *
  */
 public class ScoreTable extends AbstractTableModel {
@@ -19,8 +19,8 @@ public class ScoreTable extends AbstractTableModel {
     private final int colCount;
     private Object[][] data;
 /**
- * 
- * @param list used to populate the table
+ *
+ * @param list used to populate the table.
  */
     public ScoreTable(final List<PlayerScoreImpl> list) {
         super();
@@ -29,11 +29,16 @@ public class ScoreTable extends AbstractTableModel {
         this.data = new Object[list.size()][column.length];
         this.fill(list);
     }
+    /**
+     * It populates table. 
+     * It counts how many players are for each level and assigns a rank for everyone into each level.
+     * @param list
+     */
     private void fill(final List<PlayerScoreImpl> list) {
         if (!list.isEmpty()) {
             final Iterator<Entry<Integer, Long>> entry = list.stream()
-                                                       .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
-                                                       .entrySet().iterator();
+                    .collect(Collectors.groupingBy(PlayerScoreImpl::getLevel, Collectors.counting()))
+                    .entrySet().iterator();
             int rowIndex = 0;
             int rank = 0;
             Long count = entry.next().getValue();

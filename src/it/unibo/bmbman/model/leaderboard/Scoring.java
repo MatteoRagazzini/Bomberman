@@ -39,7 +39,7 @@ public enum Scoring {
     /**
      * 
      * @param entity 
-     * @return zero if the entity isn't a power up or monster, otherwise the {@link Scoring} value
+     * @return scoring 
      */
     public static int getPoint(final Entity entity) {
         if (entity.getType() == EntityType.POWER_UP) {

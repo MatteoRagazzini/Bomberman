@@ -29,7 +29,7 @@ public interface GameController {
      */
     void addEntity(Entity entity, EntityView enitityView);
     /**
-     * Used to add a {@link Bomb}.
+     * Used to add a {@link BombImpl}.
      */
     void addBomb();
     /**

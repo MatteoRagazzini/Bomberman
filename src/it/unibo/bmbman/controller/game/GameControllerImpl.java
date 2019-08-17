@@ -12,7 +12,7 @@ import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
 import it.unibo.bmbman.model.engine.GameEngineImp;
-import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
@@ -113,7 +113,7 @@ public class GameControllerImpl implements GameController {
      */
     public void addBomb() {
 
-        final Optional<Bomb> plantedBomb = this.bc.plantBomb(getHero());
+        final Optional<BombImpl> plantedBomb = this.bc.plantBomb(getHero());
         if (plantedBomb.isPresent()) {
             this.worldEntity.add(plantedBomb.get());
         }
@@ -182,7 +182,9 @@ public class GameControllerImpl implements GameController {
     @Override
     public void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
-        this.ps.updateScore(entityToRemoved);
+        if (entityToRemoved.stream().anyMatch(e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)) {
+            this.ps.updateScore(entityToRemoved);
+        }
         this.worldEntity.removeAll(entityToRemoved);
         Set<EntityController> controllerToRemoved = this.setController.stream()
                                                                             .filter(c -> entityToRemoved.contains(c.getEntity()))

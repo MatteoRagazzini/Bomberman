@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.model.collision.CollisionImpl;
-import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.BombState;
@@ -20,30 +20,27 @@ import it.unibo.bmbman.view.entities.BombView;
  *
  */
 public class BombControllerImpl implements BombController {
-    private final List<Pair<Bomb, BombView>> amountBombs;
+    private final List<Pair<BombImpl, BombView>> amountBombs;
     /**
+     * Create BombControllerImpl.
      */
     public BombControllerImpl() {
         super();
         this.amountBombs = new CopyOnWriteArrayList<>();
-        Bomb.resetBombNumber();
-        Bomb.resetBonusRange();
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public List<Pair<Bomb, BombView>> getBombsToRemove() {
+    public List<Pair<BombImpl, BombView>> getBombsToRemove() {
         return this.amountBombs.stream().filter(b -> b.getX().remove())
                 .collect(Collectors.toList());
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
-    public List<Bomb> getBombsInExplosion() {
+    public List<BombImpl> getBombsInExplosion() {
         return this.amountBombs.stream()
                 .filter(b -> b.getX().getState() == BombState.IN_EXPLOSION)
                 .map(b -> b.getX())
@@ -57,25 +54,21 @@ public class BombControllerImpl implements BombController {
         return this.amountBombs.stream().map(b -> b.getY()).collect(Collectors.toSet());
     }
     /**
-     * 
      * {@inheritDoc} 
-     * 
      */
     @Override
-    public Optional<Bomb> plantBomb(final HeroImpl hero) {
-        if (Bomb.getBombsNumber() - this.amountBombs.size() >= 1) {
+    public Optional<BombImpl> plantBomb(final HeroImpl hero) {
+        if (hero.getBombsNumber() - this.amountBombs.size() >= 1) {
             final Position pos = new Position(Position.getCenteredPosition(hero.getPosition()));
-            final Bomb b = new Bomb(pos);
+            final BombImpl b = new BombImpl(pos, hero.getBombRange());
             b.startTimer();
-            this.amountBombs.add(new Pair<Bomb, BombView>(b, new BombView(pos)));
+            this.amountBombs.add(new Pair<BombImpl, BombView>(b, new BombView(pos)));
             SoundsController.getPlaceBombSound().ifPresent(s -> s.play());
-
             return Optional.of(b);
         }
         return Optional.empty();
     }
     /**
-     * 
      * {@inheritDoc} 
      */
     @Override
@@ -89,7 +82,6 @@ public class BombControllerImpl implements BombController {
         });
     }
     /**
-     * 
      * {@inheritDoc}
      */
     @Override
@@ -97,7 +89,6 @@ public class BombControllerImpl implements BombController {
         this.amountBombs.removeAll(getBombsToRemove());
     }
     /**
-     * 
      * {@inheritDoc} 
      */
     @Override
@@ -114,7 +105,7 @@ public class BombControllerImpl implements BombController {
     private boolean checkCollision(final Entity receiver, final Rectangle collider) {
         return receiver.getCollisionComponent().getHitbox().intersects(collider);
     }
-    private void notifyCollision(final Entity receiver, final Bomb b) {
+    private void notifyCollision(final Entity receiver, final BombImpl b) {
         receiver.onCollision(new CollisionImpl(b, receiver.getPosition()));
     }
 }
