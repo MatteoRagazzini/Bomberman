@@ -52,28 +52,24 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setName(final String name) {
         this.name = name;
     }
     /**
      * {@inheritDoc}
      */
-    @Override
     public void setLevel(final int level) {
         this.level = level;
     }
     /**
      * {@inheritDoc} 
      */
-    @Override
     public void setGameTime(final String time) {
         this.gameTime = time;
     }
     /**
      * {@inheritDoc} 
      */
-    @Override
     public void setScore(final int score) {
         this.score = score;
     }

@@ -25,22 +25,6 @@ public interface PlayerScore {
      */
     int getLevel();
     /**
-     * @param name 
-     */
-    void setName(String name);
-    /**
-     * @param level 
-     */
-    void setLevel(int level);
-    /**
-     * @param time 
-     */
-    void setGameTime(String time);
-    /**
-     * @param score 
-     */
-    void setScore(int score);
-    /**
      * It updates score according to {@link Scoring}. 
      * If score is zero and hero has collected malus, it does nothing.
      * @param entityToRemoved 
