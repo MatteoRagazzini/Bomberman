@@ -1,16 +1,30 @@
 package it.unibo.bmbman.test;
 
+import static org.junit.Assert.assertTrue;
+
+import java.awt.Rectangle;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.BombControllerImpl;
-import it.unibo.bmbman.model.entities.Bomb;
+import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.entities.BombImpl;
+import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.HeroImpl;
+import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.utilities.BombState;
+import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * JUnit Test for Bomb and BombController.
@@ -18,37 +32,67 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public class TestBomb {
     private BombControllerImpl bc;
-    private final List<Bomb> amountBombs = new ArrayList<>();
     private BombImpl bomb;
-    private Position pos;
-    private int range;
-    private BombState state;
+    private HeroImpl hero;
+    private SoundsController sc;
+    private static final Position HERO_POS = new Position(50, 100);
+    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() + Terrain.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() + 5 * Terrain.CELL_DIMENSION, HERO_POS.getY());
+    private Monster monster1;
+    private Monster monster2;
     /**
      * 
      */
     @Before
     public void init() {
-        this.range = 3;
-        this.pos = new Position(50, 100);
-        this.bomb = new BombImpl(this.pos, this.range);
+        this.hero = new HeroImpl();
+        this.hero.setPosition(HERO_POS);
         this.bc = new BombControllerImpl();
+        this.sc = new SoundsController();
     }
     /**
-     * 
+     * Test bomb planted.
+     */
+    @Test
+    public void testBombsplanted() {
+        this.bomb = this.bc.plantBomb(this.hero).get();
+        Assert.assertEquals(this.bomb.getPosition(), this.hero.getPosition());
+        Assert.assertEquals(this.bomb.getState(), BombState.PLANTED);
+        this.hero.incrementBombsNumber();
+        Assert.assertEquals(this.hero.getBombsNumber(), 2);
+        Assert.assertTrue(this.bc.plantBomb(hero).isPresent());
+        Assert.assertTrue(!this.bc.plantBomb(hero).isPresent());
+        Assert.assertEquals(this.bc.getBombView().size(), 2);
+    }
+    /**
+     * Test explosion with range 3 and collisions.
      */
     @Test 
-    public void testBombsPlanted() {
-        Assert.assertEquals(this.bomb.getPosition().getX(), 50);
-        Assert.assertEquals(this.bomb.getPosition().getY(), 100);
-        Assert.assertEquals(this.bomb.getState(), BombState.PLANTED);
-        this.bomb.startTimer();
-        this.amountBombs.add(this.bomb);
-        Assert.assertEquals(this.amountBombs.size(), 1);
-        Assert.assertTrue(this.bomb.getState() == BombState.PLANTED);
-    }
-    /**
-     * 
-     */
     public void testExplosion() {
+        this.bomb = this.bc.plantBomb(this.hero).get();
+        Assert.assertTrue(this.bc.getBombsInExplosion().isEmpty());
+        while (this.bomb.getState() == BombState.PLANTED) {
+            this.bomb.update();
+        }
+        Assert.assertTrue(this.bomb.getState() == BombState.IN_EXPLOSION);
+        Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
+        Assert.assertFalse(this.bomb.remove());
+        Assert.assertEquals(this.hero.getBombsNumber(), 1);
+        Assert.assertTrue(!this.bc.plantBomb(hero).isPresent());
+        this.monster1 = new Monster(MONSTER1_POS);
+        this.monster2 = new Monster(MONSTER2_POS);
+        Set<Entity> set = new HashSet<>();
+        set.add(monster1);
+        set.add(monster2);
+        set.add(hero);
+        Pair<Rectangle, Rectangle> ex = this.bomb.getExplosion();
+        Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
+        Assert.assertTrue(this.bc.getBombsToRemove().isEmpty());
+        this.bc.collision(set);
+        Assert.assertTrue(this.bomb.getState() == BombState.EXPLODED);
+        Assert.assertEquals(this.bc.getBombsToRemove().size(), 1);
+        Assert.assertFalse(this.monster1.isAlive());
+        Assert.assertTrue(this.monster2.isAlive());
+        Assert.assertEquals(this.hero.getLives(), 2);
     }
 }
