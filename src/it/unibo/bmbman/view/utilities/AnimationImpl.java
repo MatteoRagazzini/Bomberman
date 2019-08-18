@@ -21,7 +21,6 @@ public final class AnimationImpl implements Animation {
      */
     @Override
     public Optional<Image> getImageAt(final int index) {
-        System.out.println("animation imlp size " + this.animation.size() + "index : " + index);
         return index < this.animation.size() ? Optional.of(this.animation.get(index)) : Optional.empty();
     }
 

@@ -44,7 +44,6 @@ public class HeroView extends AbstractEntityView {
      */
     @Override
     public Image getSprite() {
-        System.out.println("HERO view" + getDirection());
         return this.sprites.get(this.getDirection()).getNextImage();
     }
 
