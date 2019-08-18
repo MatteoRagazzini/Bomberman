@@ -9,8 +9,8 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
+import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
  * Class to manage the view of monsters.
  *
@@ -20,7 +20,7 @@ public class MonsterView extends AbstractEntityView {
     private static final String PATH_MONSTER_IMAGES = "/Monster/Monster";
     private static final int DIMENSION = 48;
     private static final int FRAME_PER_ANIMATION = 6;
-    private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
+    private final Map<Direction, AnimationIterator> sprites = new EnumMap<>(Direction.class);
 
     /**
      * Create a monster view.
@@ -38,8 +38,7 @@ public class MonsterView extends AbstractEntityView {
     }
 
     private void setDirectionAnimation(final String path, final Direction d, final int dimension, final int frame) {
-        this.sprites.put(d, new AnimationImpl());
-        this.sprites.get(d).createAnimation(path, frame, dimension);
+        this.sprites.put(d, AnimationImpl.createAnimation(path, frame, dimension).createInfiniteIterator());
     }
     /**
      * {@inheritDoc}

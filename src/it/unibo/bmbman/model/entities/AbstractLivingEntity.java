@@ -48,7 +48,6 @@ public abstract class AbstractLivingEntity extends AbstractEntity implements Liv
     @Override
     public void removeLife() {
         this.lives = this.lives - 1 > 0 ? this.lives - 1 : 0; 
-        System.out.println("ti sono rimaste: " + this.lives + "vite");
     }
     /**
      * {@inheritDoc}

@@ -12,6 +12,7 @@ import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
+import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
  * Class to manage the view of monsters.
  *
@@ -24,9 +25,9 @@ public class BombView extends AbstractEntityView {
     private static final int DIMENSION_EXPLOSION = 150;
     private static final int FRAME_PER_ANIMATION_BOMB = 6;
     private static final int FRAME_PER_ANIMATION_EXPLOSION = 7;
-    private final Animation spriteBomb = new AnimationImpl();
-    private final Animation spriteExplosion = new AnimationImpl();
-    private final Map<BombState, Animation> sprite = new HashMap<>();
+    private final Animation spriteBomb;
+    private final Animation spriteExplosion;
+    private final Map<BombState, AnimationIterator> sprite = new HashMap<>();
     private BombState state; 
     /**
      * Create a monster view.
@@ -34,8 +35,8 @@ public class BombView extends AbstractEntityView {
      */
     public BombView(final Position position) {
         super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.BOMB); 
-        this.spriteBomb.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION_BOMB, DIMENSION);
-        this.spriteExplosion.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION_EXPLOSION, DIMENSION_EXPLOSION);
+        this.spriteBomb = AnimationImpl.createAnimation(PATH_BOMB_IMAGES, FRAME_PER_ANIMATION_BOMB, DIMENSION);
+        this.spriteExplosion = AnimationImpl.createAnimation(PATH_EXPLOSION_IMAGES, FRAME_PER_ANIMATION_EXPLOSION, DIMENSION_EXPLOSION);
         this.state = BombState.PLANTED; 
         fillMap();
     }
@@ -54,16 +55,16 @@ public class BombView extends AbstractEntityView {
      * Method to fill the map <state, animation>.
      */
     private void fillMap() {
-        sprite.put(BombState.PLANTED, spriteBomb);
-        sprite.put(BombState.IN_EXPLOSION, spriteExplosion);
-        sprite.put(BombState.EXPLODED, spriteExplosion);
+        sprite.put(BombState.PLANTED, spriteBomb.createInfiniteIterator());
+        sprite.put(BombState.IN_EXPLOSION, spriteExplosion.createInfiniteIterator());
+        sprite.put(BombState.EXPLODED, spriteExplosion.createInfiniteIterator());
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Image getSprite() {
-        return this.sprite.get(this.state).getNextImage();
+        return this.sprite.get(state).getNextImage();
     }
 }
 

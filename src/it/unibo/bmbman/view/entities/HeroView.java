@@ -8,9 +8,8 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
-import it.unibo.bmbman.view.utilities.SpriteSheet;
+import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
  * Class to create Hero view.
  */
@@ -19,7 +18,7 @@ public class HeroView extends AbstractEntityView {
     private static final String PATH_HERO_IMAGES = "/Hero/hero";
     private static final int DIMENSION = 48;
     private static final int FRAME_PER_ANIMATION = 6;
-    private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
+    private final Map<Direction, AnimationIterator> sprites = new EnumMap<>(Direction.class);
     /**
      * Construct an {@link HeroView}.
      * @param position position of enitity
@@ -30,9 +29,7 @@ public class HeroView extends AbstractEntityView {
     }
 
     private void setMapDirection() {
-        final SpriteSheet ss = new SpriteSheet(PATH_HERO_IMAGES + "I.png");
-        this.sprites.put(Direction.IDLE, new AnimationImpl());
-        this.sprites.get(Direction.IDLE).addFrame(ss.getSprite(1, 1, DIMENSION));
+        this.sprites.put(Direction.IDLE, AnimationImpl.createAnimation(PATH_HERO_IMAGES + "I.png", 1, DIMENSION).createInfiniteIterator());
         for (int i = 0; i < Direction.values().length - 1; i++) {
             setDirectionAnimation(PATH_HERO_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
                     Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
@@ -40,14 +37,14 @@ public class HeroView extends AbstractEntityView {
     }
 
     private void setDirectionAnimation(final String path, final Direction d, final int dimension, final int frame) {
-        this.sprites.put(d, new AnimationImpl());
-        this.sprites.get(d).createAnimation(path, frame, dimension);
+        this.sprites.put(d, AnimationImpl.createAnimation(path, frame, dimension).createInfiniteIterator());
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public Image getSprite() {
+        System.out.println("HERO view" + getDirection());
         return this.sprites.get(this.getDirection()).getNextImage();
     }
 
