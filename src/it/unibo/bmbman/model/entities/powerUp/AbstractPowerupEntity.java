@@ -34,7 +34,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param isBonus if it's a bonus or a malus.
      */
     public AbstractPowerupEntity(final Position position, final boolean isBonus) {
-        this(new Position(position.getX() + 10, position.getY() + 10), new Dimension(DIMENSION, DIMENSION), isBonus);
+        this(new Position(position.getX() + (10 * SCALE), position.getY() + (10 * SCALE)), new Dimension(DIMENSION, DIMENSION), isBonus);
     }
     /**
      * After a collision with the hero, activate the power-up effect.
