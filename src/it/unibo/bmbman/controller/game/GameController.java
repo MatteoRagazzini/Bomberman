@@ -17,7 +17,7 @@ public interface GameController {
     /**
      * Used to notify GameOver.
      */
-    void endView();
+    void endGame();
     /**
      * Used to set in pause the game.
      */

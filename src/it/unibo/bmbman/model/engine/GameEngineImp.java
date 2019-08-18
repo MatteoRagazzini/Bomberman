@@ -53,7 +53,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         if (this.isRunning) {
             this.isRunning = false;
             SoundsController.getMusicSound().ifPresent(s -> s.stop());
-            this.game.endView();
+            this.game.endGame();
             try {
                 this.join();
             } catch (InterruptedException e) {

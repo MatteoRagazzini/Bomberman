@@ -91,7 +91,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void endView() {
+    public void endGame() {
         this.spv.getFrame().setVisible(false);
         EndView end = new EndView(mainView, EndGameState.LOSE, this, spv, ps);
         if (hasWon()) {
