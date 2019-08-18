@@ -1,4 +1,4 @@
-package it.unibo.bmbman.model.entities.powerUp;
+package it.unibo.bmbman.model.entities.powerups;
 
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Position;

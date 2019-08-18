@@ -1,17 +1,16 @@
-package it.unibo.bmbman.model.entities.powerUp;
+package it.unibo.bmbman.model.entities.powerups;
 
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Position;
-
 /**
- * Model a malus life power-up.
+ * Model a malus invert power-up.
  */
-public class MalusLife extends AbstractPowerupEntity {
+public class MalusInvert extends AbstractPowerupEntity {
     /**
-     * Construct a malus life power-up in the world.
+     * Construct a malus invert power-up in the world.
      * @param position where to create it.
      */
-    public MalusLife(final Position position) {
+    public MalusInvert(final Position position) {
         super(position,  false);
     }
     /**
@@ -19,13 +18,13 @@ public class MalusLife extends AbstractPowerupEntity {
      */
     @Override
     public void powerupEffect(final HeroImpl hero) {
-        hero.removeLife();
+        hero.setVelocityModifier(-1.0);
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public void removeEffect(final HeroImpl hero) {
+        hero.setVelocityModifier(1.0);
     }
-
 }

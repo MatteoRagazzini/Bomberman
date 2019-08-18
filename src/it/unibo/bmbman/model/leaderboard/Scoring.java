@@ -1,7 +1,7 @@
 package it.unibo.bmbman.model.leaderboard;
 
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.powerUp.AbstractPowerupEntity;
+import it.unibo.bmbman.model.entities.powerups.AbstractPowerupEntity;
 import it.unibo.bmbman.model.utilities.EntityType;
 
 /**
