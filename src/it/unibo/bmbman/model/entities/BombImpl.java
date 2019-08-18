@@ -1,12 +1,12 @@
 package it.unibo.bmbman.model.entities;
 
-import java.awt.Rectangle;
+import java.util.Optional;
+
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
-import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * It models a bomb.
@@ -16,8 +16,9 @@ public class BombImpl extends AbstractEntity implements Bomb {
     private long timer;
     private static final int MAX_TIMER = 3;
     private static final long MILLIS = 1000;
+    private Optional<Explosion> ex;
     private final int range;
-    private Pair<Rectangle, Rectangle> explosion; 
+    //private Pair<Rectangle, Rectangle> explosion; 
     /**
      * Create a bomb. 
      * @param position 
@@ -27,16 +28,17 @@ public class BombImpl extends AbstractEntity implements Bomb {
         super(position, EntityType.BOMB, new Dimension(Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION));
         this.state = BombState.PLANTED;
         this.timer = 0;
+        this.ex = Optional.empty();
         this.range = range;
-        this.explosion = new Pair<>(new Rectangle(position.getX() - Terrain.CELL_DIMENSION, position.getY(), 0, 0),
-                                    new Rectangle(position.getX(), position.getY() - Terrain.CELL_DIMENSION, 0, 0));
+//        this.explosion = new Pair<>(new Rectangle(position.getX() - Terrain.CELL_DIMENSION, position.getY(), 0, 0),
+//                                    new Rectangle(position.getX(), position.getY() - Terrain.CELL_DIMENSION, 0, 0));
     }
     /**
      * {@inheritDoc}
      */
-    public Pair<Rectangle, Rectangle> getExplosion() {
-        return explosion;
-    }
+//    public Pair<Rectangle, Rectangle> getExplosion() {
+//        return explosion;
+//    }
     /**
      * {@inheritDoc}
      */
@@ -44,6 +46,14 @@ public class BombImpl extends AbstractEntity implements Bomb {
     public boolean remove() {
         return getState() == BombState.EXPLODED;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Optional<Explosion> getExplosion() {
+        return ex;
+    }
+
     /**
      * {@inheritDoc}
      */
@@ -68,12 +78,13 @@ public class BombImpl extends AbstractEntity implements Bomb {
             if (now - this.timer >= MAX_TIMER) {
                 this.timer = 0;
                 this.state = BombState.IN_EXPLOSION;
-                final Position pos = this.getPosition();
-                final Rectangle horizontal = new Rectangle(pos.getX() - getShift() * Terrain.CELL_DIMENSION, pos.getY(), 
-                                                                Terrain.CELL_DIMENSION * range, Terrain.CELL_DIMENSION);
-                final Rectangle vertical = new Rectangle(pos.getX(), pos.getY() - getShift() * Terrain.CELL_DIMENSION, 
-                                                                Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION * range);
-                this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
+                //final Position pos = this.getPosition();
+                this.ex = Optional.of(new Explosion(this.getPosition(), range));
+//                final Rectangle horizontal = new Rectangle(pos.getX() - getShift() * Terrain.CELL_DIMENSION, pos.getY(), 
+//                                                                Terrain.CELL_DIMENSION * range, Terrain.CELL_DIMENSION);
+//                final Rectangle vertical = new Rectangle(pos.getX(), pos.getY() - getShift() * Terrain.CELL_DIMENSION, 
+//                                                                Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION * range);
+//                this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
             }
         }
     }
@@ -90,11 +101,11 @@ public class BombImpl extends AbstractEntity implements Bomb {
     @Override
     public void onCollision(final Collision c) {
     }
-    /**
-     * Get how many cells have to be considerated around the center of explosion. 
-     * @return number of cells
-     */
-    private int getShift() {
-        return range == 3 ? 1 : 2;
-    }
+//    /**
+//     * Get how many cells have to be considerated around the center of explosion. 
+//     * @return number of cells
+//     */
+//    private int getShift() {
+//        return range == 3 ? 1 : 2;
+//    }
 }

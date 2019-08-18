@@ -1,16 +1,7 @@
 package it.unibo.bmbman.test;
 
-import static org.junit.Assert.assertTrue;
-
-import java.awt.Rectangle;
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -21,10 +12,10 @@ import it.unibo.bmbman.controller.game.BombControllerImpl;
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.entities.Explosion;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.utilities.BombState;
-import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * JUnit Test for Bomb and BombController.
@@ -85,7 +76,7 @@ public class TestBomb {
         set.add(monster1);
         set.add(monster2);
         set.add(hero);
-        Pair<Rectangle, Rectangle> ex = this.bomb.getExplosion();
+        Explosion ex = new Explosion(HERO_POS, hero.getBombRange());
         Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
         Assert.assertTrue(this.bc.getBombsToRemove().isEmpty());
         this.bc.collision(set);

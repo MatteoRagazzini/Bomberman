@@ -95,7 +95,7 @@ public class BombControllerImpl implements BombController {
     public void collision(final Set<Entity> entities) {
         this.getBombsInExplosion().forEach(b -> {
             entities.forEach(e -> {
-                if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
+                if (checkCollision(e, b.getExplosion().get().getX()) || checkCollision(e, b.getExplosion().get().getY())) {
                     this.notifyCollision(e, b);
                 }
             });
