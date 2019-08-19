@@ -6,6 +6,7 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
+import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -16,6 +17,9 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.event.ChangeListener;
+import javax.swing.text.Caret;
+import javax.swing.text.JTextComponent;
 
 import it.unibo.bmbman.controller.game.GameController;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
@@ -27,6 +31,7 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
  */
 public class EndView {
     private static final Insets INSETS = new Insets(50, 25, 50, 25);
+    private static final Insets TEXTINSET = new Insets(0, 10, 0, 0);
     private static final double WEIGHTX = 0.1;
     private final GUIFactoryImpl gui;
     private final MainMenuView mainView;
@@ -140,10 +145,10 @@ public class EndView {
             mainView.getFrame().setVisible(true);
         });
         enterName = gui.createButton("Save");
+        enterName.setEnabled(false);
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
             ScoreHandler.checkAndWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), this.spv.getTime());
-            enterName.setEnabled(false);
         });
         c.gridx = 1;
         c.gridy = 3;
@@ -169,6 +174,8 @@ public class EndView {
         this.nameTextField = gui.createTextField();
         c.gridx = 0;
         c.gridy = 3;
+        nameTextField.setMargin(gui.createScaledInsets(TEXTINSET));
+        nameTextField.setCaretColor(Color.WHITE);
         centerP.add(nameTextField, c);
         nameTextField.addKeyListener(new KeyAdapter() {
             public void keyReleased(final KeyEvent event) {
