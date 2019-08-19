@@ -9,6 +9,7 @@ import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * It models a bomb.
  */
@@ -26,7 +27,7 @@ public class BombImpl extends AbstractEntity implements Bomb {
      * @param range 
      */
     public BombImpl(final Position position, final int range) {
-        super(position, EntityType.BOMB, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
+        super(new Position(position.getX()/ScreenToolUtils.SCALE, position.getY()/ScreenToolUtils.SCALE), EntityType.BOMB, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
         this.state = BombState.PLANTED;
         this.timer = 0;
         this.ex = Optional.empty();

@@ -27,7 +27,6 @@ public final class ScoreHandler {
      * @param list of score, level, game time and name of the player
      */
     private static void save(final List<PlayerScoreImpl> l) {
-        System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             o.writeObject(l);
             o.close();
@@ -78,22 +77,21 @@ public final class ScoreHandler {
      * @param time 
      */
     public static void checkAndWrite(final int level, final PlayerScoreImpl ps, final String playerName, final String time) {
-        if (new File(FILE_NAME).exists()) {
+        Optional<PlayerScoreImpl> p = Optional.empty();
+        final File file = new File(FILE_NAME);
+        if (file.exists()) {
             //read();
-            final Optional<PlayerScoreImpl> p = checkIfPresent(playerName);
+            p = checkIfPresent(playerName);
             if (p.isPresent() && p.get().getLevel() == level) {
                 update(p.get(), ps.getScore(), time);
-            } else {
-                 ps.setGameTime(time); 
-                 ps.setName(playerName);
-                 ps.setLevel(level);
-                 data.add(ps);
             }
-        } else {
+        }
+        if (!(p.isPresent() && p.get().getLevel() == level) || !file.exists()) {
             ps.setGameTime(time);
             ps.setName(playerName);
             ps.setLevel(level);
             data.add(ps);
+            data.sort((p1, p2) -> p1.compareTo(p2)); 
         }
         save(data);
     }

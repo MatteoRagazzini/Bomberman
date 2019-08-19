@@ -2,6 +2,7 @@ package it.unibo.bmbman.model.utilities;
 
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Class to manage the position.
@@ -9,8 +10,8 @@ import it.unibo.bmbman.model.TerrainFactoryImpl;
 public class Position {
     private int x;
     private int y;
-    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION;
-    private static final int HALFTILEDIM = TerrainFactoryImpl.CELL_DIMENSION / 2;
+    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION*ScreenToolUtils.SCALE;
+    private static final int HALFTILEDIM = TILEDIM/ 2;
 
     /**
      * Create a new position in the specified coordinate.

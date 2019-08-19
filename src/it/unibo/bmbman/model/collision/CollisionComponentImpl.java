@@ -3,13 +3,15 @@ package it.unibo.bmbman.model.collision;
 import java.awt.Rectangle;
 
 import it.unibo.bmbman.model.entities.Entity;
+import it.unibo.bmbman.model.utilities.EntityType;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Implementation of {@link CollisionComponent}.
  */
 public class CollisionComponentImpl implements CollisionComponent {
-    private static final int POSITION_ADJUSTMENT = 10;
-    private static final int HEIGHT_ADJUSTMENT = 5;
-    private static final int WIDTH_ADJUSTMENT = 20;
+    private static final int POSITION_ADJUSTMENT = 10 * ScreenToolUtils.SCALE;
+    private static final int HEIGHT_ADJUSTMENT = 5*ScreenToolUtils.SCALE;
+    private static final int WIDTH_ADJUSTMENT = 20*ScreenToolUtils.SCALE;
     private final Entity entity;
     /**
      * Construct a {@code CollisionComponentImpl}.
