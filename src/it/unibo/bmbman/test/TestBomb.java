@@ -10,6 +10,7 @@ import org.junit.Test;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.BombControllerImpl;
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.Explosion;
@@ -27,8 +28,8 @@ public class TestBomb {
     private HeroImpl hero;
     private SoundsController sc;
     private static final Position HERO_POS = new Position(50, 100);
-    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() + Terrain.CELL_DIMENSION, HERO_POS.getY());
-    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() + 5 * Terrain.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
     private Monster monster1;
     private Monster monster2;
     /**

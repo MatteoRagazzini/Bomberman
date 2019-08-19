@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.collision.CollisionImpl;
 import it.unibo.bmbman.model.collision.EntityCollisionManager;
 import it.unibo.bmbman.model.collision.EntityCollisionManagerImpl;
@@ -28,11 +29,11 @@ public class TestCollision {
     private static final int HERO_LIVES = 3;
     private static final Position MONSTER_POSITION = new Position(60, 70);
     private static final Position WALL_POSITION = new Position(100, 50);
-    private static final Position NEAR_WALL_POSITION = new Position(WALL_POSITION.getX() - Terrain.CELL_DIMENSION / 2,
-                                                                    WALL_POSITION.getY() - Terrain.CELL_DIMENSION / 2);
+    private static final Position NEAR_WALL_POSITION = new Position(WALL_POSITION.getX() - TerrainFactoryImpl.CELL_DIMENSION / 2,
+                                                                    WALL_POSITION.getY() - TerrainFactoryImpl.CELL_DIMENSION / 2);
     private final Hero hero = new HeroImpl();
     private final Monster monster = new Monster(MONSTER_POSITION);
-    private final Wall wall = new Wall(WALL_POSITION, new Dimension(Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION));
+    private final Wall wall = new Wall(WALL_POSITION, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
     private final EntityCollisionManager heroMng = new EntityCollisionManagerImpl(hero.getCollisionComponent());
     /**
      * Used to test wall Collision.
@@ -56,7 +57,7 @@ public class TestCollision {
      */
     @Test
     public void testMonsterCollision() {
-        hero.setPosition(Terrain.PLAYER_POSITION);
+        hero.setPosition(TerrainFactoryImpl.PLAYER_POSITION);
         assertEquals(HERO_LIVES, hero.getLives());
         hero.setPosition(MONSTER_POSITION);
         assertTrue(heroMng.checkCollision(monster, hero.getCollisionComponent().getHitbox()));

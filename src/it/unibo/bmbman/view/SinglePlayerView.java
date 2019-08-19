@@ -12,6 +12,7 @@ import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.utilities.EntityType;
@@ -55,7 +56,7 @@ public class SinglePlayerView {
         this.timer.start();
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
-        canvas.setSize(Terrain.TERRAIN_WIDTH, Terrain.TERRAIN_HEGHT);
+        canvas.setSize(TerrainFactoryImpl.TERRAIN_WIDTH, TerrainFactoryImpl.TERRAIN_HEGHT);
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         canvas.addKeyListener(ki);

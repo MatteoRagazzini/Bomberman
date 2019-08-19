@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
 
@@ -48,7 +49,7 @@ public class BombView extends AbstractEntityView {
         this.state = state;
         if (state == BombState.IN_EXPLOSION) {
             setDimension(new Dimension(DIMENSION_EXPLOSION, DIMENSION_EXPLOSION));
-            setPosition(new Position(this.getPosition().getX() - Terrain.CELL_DIMENSION, this.getPosition().getY() - Terrain.CELL_DIMENSION));
+            setPosition(new Position(this.getPosition().getX() - TerrainFactoryImpl.CELL_DIMENSION, this.getPosition().getY() - TerrainFactoryImpl.CELL_DIMENSION));
         }
     }
     /** 

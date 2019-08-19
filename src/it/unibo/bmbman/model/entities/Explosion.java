@@ -3,6 +3,7 @@ package it.unibo.bmbman.model.entities;
 import java.awt.Rectangle;
 
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 /**
@@ -16,10 +17,10 @@ public class Explosion extends Pair<Rectangle, Rectangle> {
      * @param range 
      */
     public Explosion(final Position pos, final int range) {
-        super(new Rectangle(pos.getX() - getShift(range) * Terrain.CELL_DIMENSION, pos.getY(), 
-                Terrain.CELL_DIMENSION * range, Terrain.CELL_DIMENSION),
-                new Rectangle(pos.getX(), pos.getY() - getShift(range) * Terrain.CELL_DIMENSION, 
-                        Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION * range));
+        super(new Rectangle(pos.getX() - getShift(range) * TerrainFactoryImpl.CELL_DIMENSION, pos.getY(), 
+                TerrainFactoryImpl.CELL_DIMENSION * range, TerrainFactoryImpl.CELL_DIMENSION),
+                new Rectangle(pos.getX(), pos.getY() - getShift(range) * TerrainFactoryImpl.CELL_DIMENSION, 
+                        TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION * range));
     }
     /**
      * Get how many cells have to be considerated around the center of explosion. 
