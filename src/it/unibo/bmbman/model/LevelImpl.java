@@ -1,6 +1,6 @@
 package it.unibo.bmbman.model;
 /**
- *
+ *model all the level features.
  */
 public class LevelImpl implements Level {
     private static final int BLOCKS_FOR_LEVEL = 30;
@@ -20,7 +20,7 @@ public class LevelImpl implements Level {
     private int bonusLifeNumber;
     private int bonusVelocityNumber;
     /**
-     * 
+     * create the level and set all features.
      */
     public LevelImpl() {
         this.level = 1;
@@ -37,7 +37,6 @@ public class LevelImpl implements Level {
         this.bonusLifeNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
         this.bonusRangeNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
         this.bonusVelocityNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
-        System.out.println("aaa");
     }
     /**
      * {@inheritDoc}

@@ -30,5 +30,4 @@ public class WallView extends AbstractEntityView {
     public Image getSprite() {
         return idleImage;
     }
-
 }

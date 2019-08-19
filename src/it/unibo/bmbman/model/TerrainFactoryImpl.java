@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-
-import it.unibo.bmbman.model.entities.AbstractEntity;
 import it.unibo.bmbman.model.entities.Block;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.Tile;
@@ -15,7 +13,10 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
-
+/**
+ * implements the {@link TerrainFactory}.
+ *
+ */
 public class TerrainFactoryImpl implements TerrainFactory {
     /**
      * the cell dimension.
@@ -36,8 +37,8 @@ public class TerrainFactoryImpl implements TerrainFactory {
     /**
      * the door position.
      */
-    public static final Position DOOR_POSITION = new Position((TERRAIN_COLUMNS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE, (TERRAIN_ROWS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE);
-
+    public static final Position DOOR_POSITION = new Position((TERRAIN_COLUMNS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE,
+            (TERRAIN_ROWS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE);
     /**
      * Terrain's width.
      */
@@ -46,12 +47,14 @@ public class TerrainFactoryImpl implements TerrainFactory {
      * Terrain's height.
      */
     public static final int TERRAIN_HEGHT = TERRAIN_ROWS * CELL_DIMENSION * ScreenToolUtils.SCALE;
-
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION * ScreenToolUtils.SCALE, 1 * CELL_DIMENSION * ScreenToolUtils.SCALE);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION * ScreenToolUtils.SCALE, 2 * CELL_DIMENSION * ScreenToolUtils.SCALE);
     private int blocksNumber;
     private List<List<Entity>> terrain;
     private List<Entity> blockList;
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Terrain create(final int blocksnumber) {
         this.blocksNumber = blocksnumber;
@@ -61,10 +64,8 @@ public class TerrainFactoryImpl implements TerrainFactory {
         addWalls();
         addBlocks();
         return new Terrain() {
-
             private final List<Position> freePosition = getFreeTiles().stream().map(t -> t.getPosition()).collect(Collectors.toList());
             private final List<Position> blockPowerUpPosition = getBlockPosition().stream().distinct().collect(Collectors.toList());
-
             @Override
             public List<Entity> getTiles() {
                 final List<Entity> tiles = new ArrayList<>();
@@ -74,15 +75,14 @@ public class TerrainFactoryImpl implements TerrainFactory {
                                            .forEach(k -> tiles.add(k)));
                 return tiles;
             }
-            
             @Override
             public Position getRandomBlockPosition() {
                 final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
-                Position pos = new Position(blockPowerUpPosition.get(randomIndex).getX() /ScreenToolUtils.SCALE, blockPowerUpPosition.get(randomIndex).getY() / ScreenToolUtils.SCALE);
+                Position pos = new Position(blockPowerUpPosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
+                        blockPowerUpPosition.get(randomIndex).getY() / ScreenToolUtils.SCALE);
                 blockPowerUpPosition.remove(randomIndex);
                 return pos;
             }
-            
             @Override
             public List<Entity> getFreeTiles() {
                 return this.getTiles().stream().filter(i -> !i.getPosition().equals(PLAYER_POSITION) 
@@ -98,12 +98,13 @@ public class TerrainFactoryImpl implements TerrainFactory {
             @Override
             public Position getFreeRandomPosition() {
                 final int randomIndex = new Random().nextInt(freePosition.size()); 
-                Position pos = new Position(freePosition.get(randomIndex).getX()/ScreenToolUtils.SCALE,freePosition.get(randomIndex).getY()/ScreenToolUtils.SCALE);
+                Position pos = new Position(freePosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
+                        freePosition.get(randomIndex).getY() / ScreenToolUtils.SCALE);
                 freePosition.remove(randomIndex);
                 return pos;
             }
             @Override
-            public Entity getEntity(int x, int y) {
+            public Entity getEntity(final int x, final int y) {
                 return terrain.get(x).get(y);
             }
             @Override
@@ -144,8 +145,10 @@ public class TerrainFactoryImpl implements TerrainFactory {
     }
 
     private void addBlocks() {
-        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX()/ScreenToolUtils.SCALE + CELL_DIMENSION, PLAYER_POSITION_RIGHT.getY()/ScreenToolUtils.SCALE), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX()/ScreenToolUtils.SCALE, PLAYER_POSITION_DOWN.getY()/ScreenToolUtils.SCALE + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_RIGHT.getX() / ScreenToolUtils.SCALE + CELL_DIMENSION,
+                PLAYER_POSITION_RIGHT.getY() / ScreenToolUtils.SCALE), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
+        blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX() / ScreenToolUtils.SCALE,
+                PLAYER_POSITION_DOWN.getY() / ScreenToolUtils.SCALE + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
                  .limit(blocksNumber)
                  .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
