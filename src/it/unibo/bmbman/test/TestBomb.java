@@ -2,6 +2,7 @@ package it.unibo.bmbman.test;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.TimeUnit;
 
 import org.junit.Assert;
 import org.junit.Before;
@@ -43,9 +44,6 @@ public class TestBomb {
      */
     @Before
     public void init() {
-        System.out.println(HERO_POS.getX() + " " + HERO_POS.getY());
-        System.out.println(MONSTER1_POS.getX() + " " + MONSTER1_POS.getY());
-        System.out.println(MONSTER2_POS.getX() + " " + MONSTER2_POS.getY());
         this.hero = new HeroImpl();
         this.hero.setPosition(HERO_POS);
         this.bc = new BombControllerImpl();
@@ -67,18 +65,18 @@ public class TestBomb {
     }
     /**
      * Test explosion with range 3 and collisions with hero, monster and block.
+     * @throws InterruptedException 
      */
     @Test 
-    public void testExplosion() {
+    public void testExplosion() throws InterruptedException {
         this.monster1 = new Monster(MONSTER1_POS);
         this.monster2 = new Monster(MONSTER2_POS);
         this.block = new Block(BLOCK_POS, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, 
                 TerrainFactoryImpl.CELL_DIMENSION));
         this.bomb = this.bc.plantBomb(this.hero).get();
         Assert.assertTrue(this.bc.getBombsInExplosion().isEmpty());
-        while (this.bomb.getState() == BombState.PLANTED) {
-            this.bomb.update();
-        }
+        TimeUnit.SECONDS.sleep(3);
+        this.bomb.update();
         Assert.assertTrue(this.bomb.getState() == BombState.IN_EXPLOSION);
         Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
         Assert.assertFalse(this.bomb.remove());
