@@ -2,7 +2,6 @@ package it.unibo.bmbman.model.entities;
 
 import java.util.Optional;
 
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.BombState;
@@ -27,7 +26,8 @@ public class BombImpl extends AbstractEntity implements Bomb {
      * @param range 
      */
     public BombImpl(final Position position, final int range) {
-        super(new Position(position.getX()/ScreenToolUtils.SCALE, position.getY()/ScreenToolUtils.SCALE), EntityType.BOMB, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
+        super(new Position(position.getX() / ScreenToolUtils.SCALE, position.getY() / ScreenToolUtils.SCALE), EntityType.BOMB, 
+                new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
         this.state = BombState.PLANTED;
         this.timer = 0;
         this.ex = Optional.empty();
