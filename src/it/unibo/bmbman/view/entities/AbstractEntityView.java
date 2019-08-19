@@ -67,13 +67,6 @@ public abstract class AbstractEntityView implements EntityView {
     public Dimension getDimension() {
         return this.dimension;
     }
-    //    /**
-    //     * {@inheritDoc}
-    //     */
-    //    @Override
-    //    public void setSprite(final Image image) {
-    //        this.image = image;
-    //    }
     /**
      * {@inheritDoc}
      */

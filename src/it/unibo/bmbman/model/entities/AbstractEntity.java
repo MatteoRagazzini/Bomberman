@@ -70,11 +70,6 @@ public abstract class AbstractEntity implements Entity {
     public CollisionComponent getCollisionComponent() {
         return this.collisionComponent;
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public abstract void update();
     @Override
     public abstract void onCollision(Collision c);
 }
