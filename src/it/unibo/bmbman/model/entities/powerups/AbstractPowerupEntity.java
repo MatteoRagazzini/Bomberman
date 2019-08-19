@@ -6,7 +6,6 @@ import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Models the general aspects of a power-up entity.

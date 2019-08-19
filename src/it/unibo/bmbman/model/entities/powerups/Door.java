@@ -16,7 +16,9 @@ public class Door extends AbstractPowerupEntity {
     public Door() {
         super(new Position(TerrainFactoryImpl.DOOR_POSITION.getX()/ScreenToolUtils.SCALE,TerrainFactoryImpl.DOOR_POSITION.getY()/ScreenToolUtils.SCALE), new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION), true);
     }
-
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void powerupEffect(final HeroImpl hero) {
         hero.checkWin();
