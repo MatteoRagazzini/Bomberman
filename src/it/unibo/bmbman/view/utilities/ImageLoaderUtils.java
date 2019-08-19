@@ -5,7 +5,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- *  class to load an image from res folder.
+ * Class to load an image from res folder.
  */
 public final class ImageLoaderUtils {
     private static BufferedImage image;

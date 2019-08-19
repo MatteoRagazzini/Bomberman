@@ -15,11 +15,11 @@ public enum OptionsMenuList {
     /**
      * Activate game effects.
      */
-    EFFECTON("ON"),
+    EFFECTSON("ON"),
     /**
      * Disable game effects. 
      */
-    EFFECTOFF("OFF");
+    EFFECTSOFF("OFF");
 
     private final String name;
 

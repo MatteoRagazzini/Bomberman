@@ -16,10 +16,10 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
             case MUSICOFF:
                 sc.setMusicOff();
                 break;
-            case EFFECTON:
+            case EFFECTSON:
                 sc.setEffectsOn();
                 break;
-            case EFFECTOFF:
+            case EFFECTSOFF:
                 sc.setEffectsOff();
                 break;
             default:
