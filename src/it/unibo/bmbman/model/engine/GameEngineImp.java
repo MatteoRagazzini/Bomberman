@@ -1,12 +1,10 @@
 package it.unibo.bmbman.model.engine;
 
-
-
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.GameController;
 /**
  * 
- * creates and manages the Game Loop. Implementing {@link GameEngine}.
+ * Creates and manages the Game Loop. Implementing {@link GameEngine}.
  */
 public class GameEngineImp extends Thread implements GameEngine {
     /**
@@ -19,7 +17,7 @@ public class GameEngineImp extends Thread implements GameEngine {
     private boolean isRunning;
     private final GameController game;
     /**
-     * set variables.
+     * Set variables.
      * @param gc {@link GameController}
      */
     public GameEngineImp(final GameController gc) {
@@ -29,7 +27,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         this.game = gc;
     }
     /**
-     * start thread's execution.
+     * Start thread's execution.
      */
     @Override
     public void startEngine() {
@@ -41,7 +39,7 @@ public class GameEngineImp extends Thread implements GameEngine {
         }
     }
     /**
-     * stop thread's execution.
+     * Stop thread's execution.
      */
     @Override
     public void stopEngine() {

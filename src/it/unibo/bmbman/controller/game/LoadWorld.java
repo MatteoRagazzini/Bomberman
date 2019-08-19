@@ -67,7 +67,7 @@ public class LoadWorld {
 
     }
     /**
-     * used to associate model object to the relative view.
+     * Used to associate model object to the relative view.
      * @param entity the entity that you what know the sprite 
      * @return the sprite of the entity in input
      */

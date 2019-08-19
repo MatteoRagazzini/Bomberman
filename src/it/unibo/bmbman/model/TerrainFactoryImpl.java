@@ -14,28 +14,28 @@ import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
- * implements the {@link TerrainFactory}.
+ * Implements the {@link TerrainFactory}.
  *
  */
 public class TerrainFactoryImpl implements TerrainFactory {
     /**
-     * the cell dimension.
+     * The cell dimension.
      */
     public static final int  CELL_DIMENSION = 50;
     /**
-     * number of rows in terrain.
+     * Number of rows in terrain.
      */
     public static final int TERRAIN_ROWS = 15;
     /**
-     * number of columns in terrain.
+     * Number of columns in terrain.
      */
     public static final int TERRAIN_COLUMNS = 19;
     /**
-     * the player start position.
+     * The player start position.
      */
     public static final Position PLAYER_POSITION = new Position(1 * CELL_DIMENSION * ScreenToolUtils.SCALE, 1 * CELL_DIMENSION * ScreenToolUtils.SCALE);
     /**
-     * the door position.
+     * The door position.
      */
     public static final Position DOOR_POSITION = new Position((TERRAIN_COLUMNS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE,
             (TERRAIN_ROWS - 2) * CELL_DIMENSION * ScreenToolUtils.SCALE);
@@ -70,9 +70,9 @@ public class TerrainFactoryImpl implements TerrainFactory {
             public List<Entity> getTiles() {
                 final List<Entity> tiles = new ArrayList<>();
                 terrain.stream()
-                            .forEach(e -> e.stream()
-                                           .filter(s -> s.getType() == EntityType.TILE)
-                                           .forEach(k -> tiles.add(k)));
+                .forEach(e -> e.stream()
+                        .filter(s -> s.getType() == EntityType.TILE)
+                        .forEach(k -> tiles.add(k)));
                 return tiles;
             }
             @Override
@@ -90,7 +90,7 @@ public class TerrainFactoryImpl implements TerrainFactory {
                         && !i.getPosition().equals(PLAYER_POSITION_DOWN)
                         && !i.getPosition().equals(DOOR_POSITION)
                         && !getBlockPosition().contains(i.getPosition()))
-              .collect(Collectors.toList());
+                        .collect(Collectors.toList());
             }
             private List<Position> getBlockPosition() {
                 return getBlocks().stream().map(b -> b.getPosition()).collect(Collectors.toList());
@@ -120,7 +120,7 @@ public class TerrainFactoryImpl implements TerrainFactory {
                 col.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
             }
             this.terrain.add(col);
-           }
+        }
     }
     private void addWalls() {
         for (int i = 0; i < TERRAIN_COLUMNS; i++) {
@@ -135,9 +135,9 @@ public class TerrainFactoryImpl implements TerrainFactory {
     private List<Entity> addBorderWall(final int column, final int row, final  List<Entity> entityList) {
         if (row == 0 || column == 0 || column == TERRAIN_COLUMNS - 1 || row == TERRAIN_ROWS - 1) {
             entityList.set(row, new Wall(new Position(column * CELL_DIMENSION, row * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
-            }
-        return entityList;
         }
+        return entityList;
+    }
     private void addWall(final List<Entity> entityList, final int col) {
         for (int i = 0; i < TERRAIN_ROWS; i = i + 2) {
             entityList.set(i, new Wall(new Position(col * CELL_DIMENSION, i * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
@@ -150,9 +150,9 @@ public class TerrainFactoryImpl implements TerrainFactory {
         blockList.add(new Block(new Position(PLAYER_POSITION_DOWN.getX() / ScreenToolUtils.SCALE,
                 PLAYER_POSITION_DOWN.getY() / ScreenToolUtils.SCALE + CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
         IntStream.iterate(0, i -> i + 1)
-                 .limit(blocksNumber)
-                 .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
-                         new Random().nextInt(TERRAIN_ROWS - 1) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
+        .limit(blocksNumber)
+        .forEach((i) -> blockList.add(new Block(new Position(new Random().nextInt(TERRAIN_COLUMNS - 1) * CELL_DIMENSION,
+                new Random().nextInt(TERRAIN_ROWS - 1) * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION))));
         checksBlock();
     }
     private void checksBlock() {
@@ -161,15 +161,15 @@ public class TerrainFactoryImpl implements TerrainFactory {
                         && !s.getPosition().equals(PLAYER_POSITION_RIGHT)
                         && !s.getPosition().equals(PLAYER_POSITION_DOWN)
                         && !s.getPosition().equals(DOOR_POSITION))
-                 .collect(Collectors.toList());
+                .collect(Collectors.toList());
         this.blockList = this.blockList.stream().filter(s -> !getWallsPosition().contains(s.getPosition())).collect(Collectors.toList());
     }
     private List<Entity> getWalls() {
         final List<Entity> walls = new ArrayList<>();
         this.terrain.stream()
-                    .forEach(e -> e.stream()
-                                   .filter(s -> s.getType() == EntityType.WALL)
-                                   .forEach(k -> walls.add(k)));
+        .forEach(e -> e.stream()
+                .filter(s -> s.getType() == EntityType.WALL)
+                .forEach(k -> walls.add(k)));
         return walls;
     }
     private List<Position> getWallsPosition() {
