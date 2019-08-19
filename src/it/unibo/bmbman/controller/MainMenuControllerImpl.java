@@ -7,7 +7,6 @@ import it.unibo.bmbman.view.HelpView;
 import it.unibo.bmbman.view.LeaderboardView;
 import it.unibo.bmbman.view.MainMenuView;
 import it.unibo.bmbman.view.OptionsView;
-
 /**
  *the implementation of MainMenuController interface.
  *
@@ -18,7 +17,7 @@ public class MainMenuControllerImpl implements MainMenuController {
     private final MainMenuView mainMenuView;
     /**
      * Construct a {@link MainMenuController}.
-     * @param mainMenuView the view of main manu
+     * @param mainMenuView the view of main manù
      * @param opt {@link OptionMenuController}
      */
     public MainMenuControllerImpl(final MainMenuView mainMenuView, final OptionsMenuController opt) {
@@ -37,9 +36,6 @@ public class MainMenuControllerImpl implements MainMenuController {
             final GameController game = new GameControllerImpl(mainMenuView);
             game.startGame();
             break;
-            /* da implementare i prossimi casi*/
-            //        case MULTIPLAYER:
-            //            break;
         case LEADERBOARD:
             final LeaderboardView lv = new LeaderboardView(mainMenuView);
             lv.getFrame().setVisible(true);

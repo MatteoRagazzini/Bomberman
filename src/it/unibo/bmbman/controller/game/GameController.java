@@ -7,7 +7,7 @@ import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 /**
- * Interface to handler all the entity in game.
+ * Interface to game controller, it manages starup and update game.
  */
 public interface GameController {
     /**
@@ -15,7 +15,7 @@ public interface GameController {
      */
     void startGame();
     /**
-     * Used to notify GameOver.
+     * Used to notify the end of game.
      */
     void endGame();
     /**
@@ -72,20 +72,20 @@ public interface GameController {
      */
     void update();
     /**
-     * this method notify a collision to {@link collisionController}.
+     * Used to say to {@link EntityCollisionManager} to detected collision.
      */
-    void collisionDetect();
+    void detectCollision();
     /**
      * Remove entities from the world.
      */
     void removeEntities();
     /**
-     * provides level information. 
+     * Provides level information. 
      * @return an instance of level
      */
     Level getLevel();
     /**
-     * Reset the gameController after the win.
+     * Reset the gameController after the end of the game.
      */
     void reset();
 }

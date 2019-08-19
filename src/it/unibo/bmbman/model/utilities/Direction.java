@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model.utilities;
 /**
  * Define the direction in which an entity can move.
- *
  */
 public enum Direction {
     /**
@@ -26,12 +25,12 @@ public enum Direction {
     IDLE;
     /**
      * Used to know the opposite direction.
-     * @param d the direction of which you would know the opposite
+     * @param direction the direction of which you want to know the opposite
      * @return a {@link Direction}
      */
-    public static Direction getOpposite(final Direction d) {
-         Direction opposite = d;
-        switch (d) {
+    public static Direction getOpposite(final Direction direction) {
+         Direction opposite = direction;
+        switch (direction) {
         case DOWN: opposite = UP;
             break;
         case LEFT: opposite = Direction.RIGHT;

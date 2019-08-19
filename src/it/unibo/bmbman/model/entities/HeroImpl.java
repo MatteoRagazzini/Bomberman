@@ -102,15 +102,13 @@ public class HeroImpl extends AbstractLivingEntity implements Hero {
         return this.gotKey;
     }
     /**
-     * Method called only when the hero reach the door.
-     * If he already got the key, he win the match, otherwise do nothing.
+     * {@inheritDoc}
      */
     public void checkWin() {
         win = gotKey;
     }
     /**
-     * used to know if the hero has the key and he is in door position.
-     * @return true if he has won
+     * {@inheritDoc}
      */
     public boolean hasWon() {
         return win;

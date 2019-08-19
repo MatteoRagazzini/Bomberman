@@ -39,7 +39,7 @@ public class OptionsView {
     private JPanel centerP; 
     private JPanel eastP;
     private JPanel northP;
-    private JFrame f;
+    private final JFrame f;
     /**
      * Create options menu view.
      * @param mainMenuView the {@link MainMenuView} with which is related

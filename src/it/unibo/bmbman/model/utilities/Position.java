@@ -1,6 +1,5 @@
 package it.unibo.bmbman.model.utilities;
 
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
@@ -10,8 +9,8 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 public class Position {
     private int x;
     private int y;
-    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION*ScreenToolUtils.SCALE;
-    private static final int HALFTILEDIM = TILEDIM/ 2;
+    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION *  ScreenToolUtils.SCALE;
+    private static final int HALFTILEDIM = TILEDIM / 2;
 
     /**
      * Create a new position in the specified coordinate.
@@ -39,7 +38,7 @@ public class Position {
     }
     /**
      * Method to set the x coordinate of the position.
-     * @param new x coordinate
+     * @param x new x coordinate
      */
     public void setX(final int x) {
         this.x = x;
@@ -53,7 +52,7 @@ public class Position {
     }
     /**
      * Method to set the y coordinate of the position.
-     * @param new y coordinate
+     * @param y new y coordinate
      */
     public void setY(final int y) {
         this.y = y;
@@ -90,7 +89,7 @@ public class Position {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Position other = (Position) obj;
+        final Position other = (Position) obj;
         if (x != other.x) {
             return false;
         }

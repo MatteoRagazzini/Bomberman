@@ -7,7 +7,7 @@ import it.unibo.bmbman.model.utilities.Velocity;
  */
 public interface LivingEntity extends Entity {
     /**
-     * 
+     * Used to know if the enitity is alive.
      * @return true if the entity still has one or more lives, false otherwise
      */
     boolean isAlive();
@@ -20,7 +20,7 @@ public interface LivingEntity extends Entity {
      */
     void removeLife();
     /**
-     * 
+     * Used to get how many lives the entity has.
      * @return the number of lives of the entity
      */
     int getLives();
@@ -39,12 +39,12 @@ public interface LivingEntity extends Entity {
      */
     void setVelocity(Velocity velocity);
     /**
-     * set direction in which the entity must move.
+     * Set the direction in which the entity must move.
      * @param direction 
      */
     void setDirection(Direction direction);
     /**
-     * 
+     * Getter for entity's direction.
      * @return the direction in which the entity is moving
      */
     Direction getDirection();

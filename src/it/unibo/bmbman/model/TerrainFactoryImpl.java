@@ -78,7 +78,7 @@ public class TerrainFactoryImpl implements TerrainFactory {
             @Override
             public Position getRandomBlockPosition() {
                 final int randomIndex = new Random().nextInt(blockPowerUpPosition.size()); 
-                Position pos = new Position(blockPowerUpPosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
+                final Position pos = new Position(blockPowerUpPosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
                         blockPowerUpPosition.get(randomIndex).getY() / ScreenToolUtils.SCALE);
                 blockPowerUpPosition.remove(randomIndex);
                 return pos;
@@ -98,7 +98,7 @@ public class TerrainFactoryImpl implements TerrainFactory {
             @Override
             public Position getFreeRandomPosition() {
                 final int randomIndex = new Random().nextInt(freePosition.size()); 
-                Position pos = new Position(freePosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
+                final Position pos = new Position(freePosition.get(randomIndex).getX() / ScreenToolUtils.SCALE,
                         freePosition.get(randomIndex).getY() / ScreenToolUtils.SCALE);
                 freePosition.remove(randomIndex);
                 return pos;
@@ -115,7 +115,7 @@ public class TerrainFactoryImpl implements TerrainFactory {
     }
     private void addTiles() {
         for (int i = 0; i < TERRAIN_COLUMNS; i++) {
-            List<Entity> col = new ArrayList<>();
+            final List<Entity> col = new ArrayList<>();
             for (int j = 0; j < TERRAIN_ROWS; j++) {
                 col.add(new Tile(new Position(i * CELL_DIMENSION, j * CELL_DIMENSION), new Dimension(CELL_DIMENSION, CELL_DIMENSION)));
             }

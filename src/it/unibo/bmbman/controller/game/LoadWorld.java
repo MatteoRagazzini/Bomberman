@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.stream.IntStream;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.Terrain;
-import it.unibo.bmbman.model.TerrainFactory;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
@@ -36,7 +35,6 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
  */
 public class LoadWorld {
     private final GameController gc;
-    private final TerrainFactory terrainFactory;
     private final Terrain terrain;
     private final Level level;
     /**
@@ -46,8 +44,7 @@ public class LoadWorld {
     public LoadWorld(final GameController gc) {
         this.gc = gc;
         this.level = gc.getLevel();
-        this.terrainFactory = new TerrainFactoryImpl();
-        this.terrain = terrainFactory.create(level.getBlocksNumber());
+        this.terrain =  new TerrainFactoryImpl().create(level.getBlocksNumber());
     }
     /**
      * Loads all the entity.

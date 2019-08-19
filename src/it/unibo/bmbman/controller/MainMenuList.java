@@ -1,7 +1,7 @@
 package it.unibo.bmbman.controller;
 
 /**
- * Main menu possible choices, when the application start.
+ * Main menu option, when the application start.
  * 
  */
 public enum MainMenuList {
@@ -10,7 +10,7 @@ public enum MainMenuList {
     */
     SINGLE_PLAYER("Single player"),
     /**
-     * Score board based on time to complete each level.
+     * Score board based on points to complete each level.
      */
     LEADERBOARD("Leaderboard"),
     /**
@@ -18,18 +18,11 @@ public enum MainMenuList {
      */
     SETTINGS("Settings"),
     /**
-     * tips and more.
+     * Helps.
      */
     HELP("Helps");
-//    /**
-//     * Game mode: player VS player.
-//     */
-//    MULTIPLAYER;
     private final String name;
-    /**
-     * Construct a {@code MainMenuOption}.
-     * @param name of main menu option
-     */
+
     MainMenuList(final String name) {
         this.name = name;
     }

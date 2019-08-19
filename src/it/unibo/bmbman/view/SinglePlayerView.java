@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;

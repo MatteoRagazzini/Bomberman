@@ -62,7 +62,7 @@ public interface EntityView {
      * Used to know if the entity is visible or not.
      * @return true if entity is visible, false otherwise
      */
-    boolean getVisible();
+    boolean isVisible();
     /**
      * Used to change sprites according to direction.
      * @param direction the direction in which the entity is moving

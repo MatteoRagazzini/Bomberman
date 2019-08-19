@@ -84,7 +84,7 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public boolean getVisible() {
+    public boolean isVisible() {
         return this.visible;
     }
     /**

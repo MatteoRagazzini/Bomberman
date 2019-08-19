@@ -76,7 +76,7 @@ public class Dimension {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Dimension other = (Dimension) obj;
+        final Dimension other = (Dimension) obj;
         if (height != other.height) {
             return false;
         }

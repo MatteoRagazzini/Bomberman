@@ -4,7 +4,7 @@ import java.awt.Rectangle;
 
 import it.unibo.bmbman.model.entities.Entity;
 /**
- * Interface to CollisionComponent.
+ * Interface for collision component.
  */
 public interface CollisionComponent {
 
@@ -14,28 +14,31 @@ public interface CollisionComponent {
      */
     Entity getFollowedEntity();
     /**
-     * used to determine the area occupied by the entity.
+     * Used to determine the area occupied by the entity.
      * @return a {@link Rectangle}
      */
     Rectangle getHitbox();
     /**
-     * used to determine the area occupied by the entity 
+     * Used to determine the area occupied by the entity 
      * while it is moving up.
      * @return a {@link Rectangle}
      */
     Rectangle getTopHitbox();
     /**
-     * used to determine the area occupied by the entity.
+     * Used to determine the area occupied by the entity
+     * while it is moving down.
      * @return a {@link Rectangle}
      */
     Rectangle getBottomHitbox();
     /**
-     * used to determine the area occupied by the entity.
+     * Used to determine the area occupied by the entity
+     * while it is moving left.
      * @return a {@link Rectangle}
      */
     Rectangle getLeftHitbox();
     /**
-     * used to determine the area occupied by the entity.
+     * Used to determine the area occupied by the entity
+     * while it is moving right.
      * @return a {@link Rectangle}
      */
     Rectangle getRightHitbox();

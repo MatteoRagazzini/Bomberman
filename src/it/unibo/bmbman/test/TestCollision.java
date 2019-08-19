@@ -9,7 +9,6 @@ import java.util.concurrent.TimeUnit;
 
 import org.junit.jupiter.api.Test;
 
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.collision.CollisionImpl;
 import it.unibo.bmbman.model.collision.EntityCollisionManager;
