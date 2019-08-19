@@ -30,6 +30,7 @@ import it.unibo.bmbman.view.entities.MonsterView;
 import it.unibo.bmbman.view.entities.PowerUpView;
 import it.unibo.bmbman.view.entities.TileView;
 import it.unibo.bmbman.view.entities.WallView;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Used to load a level.
@@ -87,7 +88,7 @@ public class LoadWorld {
         }
     }
     private void loadPowerUp() {
-        this.gc.addEntity(new Door(), new PowerUpView(TerrainFactoryImpl.DOOR_POSITION, PowerUpType.DOOR.toString()));
+        this.gc.addEntity(new Door(), new PowerUpView(new Position(TerrainFactoryImpl.DOOR_POSITION.getX()/ScreenToolUtils.SCALE,TerrainFactoryImpl.DOOR_POSITION.getY()/ScreenToolUtils.SCALE), PowerUpType.DOOR.toString()));
         Position position = terrain.getRandomBlockPosition();
         this.gc.addEntity(new Key(position), new PowerUpView(position, PowerUpType.KEY.toString()));
         System.out.println("Key: " + position);
