@@ -107,7 +107,7 @@ public class SoundsController {
      */
     private void loadMusic() {
         try {
-            SoundsController.music = Optional.of(new SoundImpl(folder + "/music1.wav"));
+            SoundsController.music = Optional.of(new SoundImpl(folder + "/music2.wav"));
         } catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
             e.printStackTrace();
         }
