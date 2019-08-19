@@ -1,7 +1,6 @@
 package it.unibo.bmbman.model.utilities;
 /**
  * Class to manage the dimension of entities.
- *
  */
 public class Dimension {
     private int height;
@@ -9,8 +8,8 @@ public class Dimension {
 
     /**
      * Create a new dimension.
-     * @param height the height of the entity
-     * @param width the width of the entity
+     * @param height of the entity
+     * @param width of the entity
      */
     public Dimension(final int height, final int width) {
         super();
@@ -19,7 +18,7 @@ public class Dimension {
     }
     /**
      * Method to get the height.
-     * @return the height
+     * @return height
      */
     public int getHeight() {
         return height;
@@ -33,7 +32,7 @@ public class Dimension {
     }
     /**
      * Method to get the width.
-     * @return the width
+     * @return width
      */
     public int getWidth() {
         return width;
@@ -77,7 +76,7 @@ public class Dimension {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Dimension other = (Dimension) obj;
+        final Dimension other = (Dimension) obj;
         if (height != other.height) {
             return false;
         }

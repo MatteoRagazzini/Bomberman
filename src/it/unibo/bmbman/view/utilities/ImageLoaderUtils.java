@@ -5,18 +5,21 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 /**
- * Utility class to load an image from res folder.
+ *  class to load an image from res folder.
  */
-public class ImageLoader {
-    private BufferedImage image;
+public final class ImageLoaderUtils {
+    private static BufferedImage image;
+
+    private ImageLoaderUtils() {
+    }
     /**
      * Load an image and return it.
      * @param text the image path
      * @return the buffered image
      */
-    public BufferedImage loadImage(final String text) {
+    public static BufferedImage loadImage(final String text) {
         try {
-            image = ImageIO.read(getClass().getResource(text));
+            image = ImageIO.read(Object.class.getResource(text));
         } catch (IOException e) {
             e.printStackTrace();
         }

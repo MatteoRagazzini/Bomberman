@@ -24,6 +24,8 @@ public class GUIFactoryImpl implements GUIFactory {
     private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static final double WINDOW_SCALE_WIDTH = 0.5;
     private static final double WINDOW_SCALE_HEIGHT = 0.66;
+    private static final double SCALE = ScreenToolUtils.getScreenScale();
+    private static final int INITIAL_POSITION = 100;
     /**
      * width value of frame.
      */
@@ -32,18 +34,11 @@ public class GUIFactoryImpl implements GUIFactory {
      * height value of frame.
      */
     public static final int FRAME_HEIGHT = (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT);
-    private static final int INITIAL_POSITION = 100;
-    //    private static final Float WQHD_SIZE = 64f;
-    //    private static final Float QHD_SIZE = 36f;
-    //    private static final Float FHD_SIZE = 32f;
-    //    private static final Float HD_SIZE = 20f;
     private final GameFont font  = new GameFont();
-    private static final double SCALE = ScreenToolUtils.getScreenScale();
-
-    @Override
     /**
-     * Create a general button.
+     * {@inheritDoc}
      */
+    @Override
     public JButton createButton(final String text) {
         final JButton button = new JButton(text);
         button.setFont(font.getFont());
@@ -56,6 +51,7 @@ public class GUIFactoryImpl implements GUIFactory {
     /**
      * {@inheritDoc}
      */
+    @Override
     public JRadioButton createRadioButton(final String text) {
         final JRadioButton radioButton = new JRadioButton(text);
         radioButton.setFont(font.getFont());
@@ -65,9 +61,8 @@ public class GUIFactoryImpl implements GUIFactory {
         radioButton.setForeground(Color.WHITE);
         return radioButton;
     }
-
     /**
-     * Create a general frame.
+     * {@inheritDoc}
      */
     @Override
     public JFrame createFrame() {
@@ -78,10 +73,8 @@ public class GUIFactoryImpl implements GUIFactory {
         frame.setLocation(INITIAL_POSITION, INITIAL_POSITION);
         return frame;
     }
-
     /**
-     * Create the "return to main menu button" that can be used in different view.
-     * @return the button created
+     * {@inheritDoc}
      */
     @Override
     public JButton createReturnButton(final JFrame frame) {
@@ -93,7 +86,6 @@ public class GUIFactoryImpl implements GUIFactory {
         southPanel.add(back);
         return back;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -102,7 +94,6 @@ public class GUIFactoryImpl implements GUIFactory {
         return new Insets((int) (insets.top * SCALE), (int) (insets.left * SCALE),
                 (int) (insets.bottom * SCALE), (int) (insets.bottom * SCALE));
     }
-
     /**
      * {@inheritDoc}
      */
@@ -115,7 +106,6 @@ public class GUIFactoryImpl implements GUIFactory {
         label.setForeground(Color.WHITE);
         return label;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -124,12 +114,9 @@ public class GUIFactoryImpl implements GUIFactory {
         final JTextField jTextField = new JTextField();
         jTextField.setFont(font.getFont());
         jTextField.setBackground(Color.BLACK);
-        // jTextField.setBorderPainted(true);
-        // label.setFocusPainted(false);
         jTextField.setForeground(Color.WHITE);
         return jTextField;
     }
-
     /**
      * {@inheritDoc}
      */
@@ -142,4 +129,3 @@ public class GUIFactoryImpl implements GUIFactory {
         return frameWCanvas;
     }
 }
-

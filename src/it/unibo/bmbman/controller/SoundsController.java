@@ -10,7 +10,7 @@ import it.unibo.bmbman.model.utilities.SoundImpl;
 
 
 /**
- * This class stores and gets any {@link Sound}.
+ * Class that stores and load all the {@link Sound}.
  */
 public class SoundsController {
 
@@ -38,25 +38,25 @@ public class SoundsController {
         return music;
     }
     /**
-     * method to used to set the music game to be played.
+     * method used to enable music sound.
      */
     public void setMusicdOn() {
         this.musicOn = true;
     }
     /**
-     * method to used to set the music game not to be played.
+     * method used to disable music sounds.
      */
     public void setMusicOff() {
         this.musicOn = false;
     }
     /**
-     * Method to make the effects sounds active.
+     * Method used to enable effects sounds.
      */
     public void setEffectsOn() {
         this.effectsOn = true;
     }
     /**
-     * Method to disactivate effects sounds.
+     * Method to disable effects sounds.
      */
     public void setEffectsOff() {
         this.effectsOn = false;
@@ -83,7 +83,7 @@ public class SoundsController {
         return key;
     }
     /**
-     * Method used to add or remove sounds if we don't want to hear them during the game.
+     * Method used to adjust changes according to the options selected during a game session.
      */
     public void setSounds() {
         if (!musicOn) {
@@ -100,7 +100,7 @@ public class SoundsController {
         }
     }
     /**
-     * Load the music.
+     * Loads the music.
      * @throws UnsupportedAudioFileException : wrong audio file format
      * @throws IOException : problem during input/output
      * @throws LineUnavailableException : audio line can't be opened because it is unavailable
@@ -113,7 +113,7 @@ public class SoundsController {
         }
     }
     /**
-     *Load the effects.
+     *Loads the effects.
      * @throws UnsupportedAudioFileException : wrong audio file format
      * @throws IOException : problem during input/output
      * @throws LineUnavailableException : audio line can't be opened because it is unavailable

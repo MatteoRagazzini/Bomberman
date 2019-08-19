@@ -1,4 +1,5 @@
 package it.unibo.bmbman.controller.game;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -150,7 +151,7 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void collisionDetect() {
+    public void detectCollision() {
         this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
@@ -167,7 +168,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void update() {
         removeEntities();
-        collisionDetect();
+        detectCollision();
         this.setController.forEach(ec -> ec.update());
         this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
         this.bc.update();
@@ -181,8 +182,8 @@ public class GameControllerImpl implements GameController {
         this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
         Set<EntityController> controllerToRemoved = this.setController.stream()
-                                                                            .filter(c -> entityToRemoved.contains(c.getEntity()))
-                                                                            .collect(Collectors.toSet());
+                .filter(c -> entityToRemoved.contains(c.getEntity()))
+                .collect(Collectors.toSet());
         controllerToRemoved.forEach(c -> c.remove());
         controllerToRemoved = controllerToRemoved.stream().filter(ec -> ec.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.removeAll(controllerToRemoved);

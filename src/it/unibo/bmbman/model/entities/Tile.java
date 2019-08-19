@@ -10,7 +10,7 @@ import it.unibo.bmbman.model.utilities.Position;
  */
 public class Tile extends AbstractEntity {
     /**
-     * crate a tile.
+     * Crate a tile.
      * @param position position of the tile
      * @param dimension dimension of the tile
      */
@@ -36,7 +36,5 @@ public class Tile extends AbstractEntity {
     public boolean remove() {
         return false;
     }
-
-
 }
 

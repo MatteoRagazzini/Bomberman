@@ -7,8 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Frame for help section of the main menu.
@@ -17,7 +16,6 @@ public class HelpView {
     private final GUIFactory gui;
     private final JFrame frame;
     private final MainMenuView mainView;
-    private final ImageLoader il;
     private String helpImagePath;
     /**
      * Generate a base frame.
@@ -25,7 +23,6 @@ public class HelpView {
      */
     public HelpView(final MainMenuView mainMenuView) {
         this.mainView = mainMenuView;
-        this.il = new ImageLoader();
         this.gui = new GUIFactoryImpl();
         this.frame = this.gui.createFrame();
         saveHelpImagePath();
@@ -39,7 +36,7 @@ public class HelpView {
         this.frame.add(panel);
         this.frame.setTitle("BOMBERMAN - Help Menu");
         panel.setBackground(Color.BLACK);
-        final JLabel label = new JLabel(new ImageIcon(il.loadImage(helpImagePath)));
+        final JLabel label = new JLabel(new ImageIcon(ImageLoaderUtils.loadImage(helpImagePath)));
         panel.add(label, BorderLayout.CENTER);
         this.frame.setVisible(true);
         final JButton b = gui.createReturnButton(this.frame);

@@ -8,8 +8,8 @@ package it.unibo.bmbman.model.utilities;
  */
 public class Pair<X, Y> {
 
-    private X x;
-    private Y y;
+    private final X x;
+    private final Y y;
     /**
      * Construct the pair.
      * @param x the first element
@@ -62,7 +62,7 @@ public class Pair<X, Y> {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Pair other = (Pair) obj;
+        final Pair other = (Pair) obj;
         if (x == null) {
             if (other.x != null) {
                 return false;

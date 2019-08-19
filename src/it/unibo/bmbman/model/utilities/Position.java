@@ -1,22 +1,21 @@
 package it.unibo.bmbman.model.utilities;
 
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
- * Class to manage the position.
+ * Class to manage the position of entities.
  */
 public class Position {
     private int x;
     private int y;
-    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION*ScreenToolUtils.SCALE;
-    private static final int HALFTILEDIM = TILEDIM/ 2;
+    private static final int TILEDIM = TerrainFactoryImpl.CELL_DIMENSION *  ScreenToolUtils.SCALE;
+    private static final int HALFTILEDIM = TILEDIM / 2;
 
     /**
      * Create a new position in the specified coordinate.
-     * @param x the x coordinate
-     * @param y the y coordinate
+     * @param x coordinate
+     * @param y coordinate
      */
     public Position(final int x, final int y) {
         this.x = x;
@@ -32,28 +31,28 @@ public class Position {
     }
     /**
      * Method to get the x coordinate.
-     * @return the x coordinate
+     * @return x coordinate
      */
     public int getX() {
         return x;
     }
     /**
      * Method to set the x coordinate of the position.
-     * @param x the new x coordinate
+     * @param x new x coordinate
      */
     public void setX(final int x) {
         this.x = x;
     }
     /**
      * Method to get the y coordinate.
-     * @return the y coordinate
+     * @return y coordinate
      */
     public int getY() {
         return y;
     }
     /**
      * Method to set the y coordinate of the position.
-     * @param y the new y coordinate
+     * @param y new y coordinate
      */
     public void setY(final int y) {
         this.y = y;
@@ -90,7 +89,7 @@ public class Position {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        Position other = (Position) obj;
+        final Position other = (Position) obj;
         if (x != other.x) {
             return false;
         }
@@ -100,7 +99,7 @@ public class Position {
         return true;
     }
     /**
-     * Method used to get the centered position in a cell.
+     * Method used to get the centered position of a cell.
      * @param position actual position of an entity
      * @return a new centered position
      */

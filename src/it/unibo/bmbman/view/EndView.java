@@ -175,6 +175,7 @@ public class EndView {
         nameTextField.setCaretColor(Color.WHITE);
         centerP.add(nameTextField, c);
         nameTextField.addKeyListener(new KeyAdapter() {
+            @Override
             public void keyReleased(final KeyEvent event) {
                 final String content = nameTextField.getText();
                 if (!content.equals("")) {

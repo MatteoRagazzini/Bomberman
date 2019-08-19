@@ -28,7 +28,8 @@ public class InfiniteAnimationIterator implements AnimationIterator {
      */
     @Override
     public Image getNextImage() {
-        if (++frame >= this.animation.size()) {
+        frame++;
+        if (frame >= this.animation.size()) {
             frame = 0;
         }
         return this.animation.getImageAt(frame).get();

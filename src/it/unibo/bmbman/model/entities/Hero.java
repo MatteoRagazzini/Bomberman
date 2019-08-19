@@ -13,7 +13,8 @@ public interface Hero extends LivingEntity {
      */
     boolean hasKey();
     /**
-     * Used to check if hero has the key and he is in door position.
+     * Method called only when the hero reach the door.
+     * If he already got the key, he win the match, otherwise do nothing.
      */
     void checkWin();
     /**
@@ -26,16 +27,17 @@ public interface Hero extends LivingEntity {
      */
     void incrementBombsNumber();
     /**
-     * 
+     * Used to know how many bomb the hero can plant.
      * @return number of bombs
      */
     int getBombsNumber();
     /**
-     * 
+     * Used to set the range of bombs.
      * @param range of {@link Bomb}
      */
     void setBombRange(int range);
     /**
+     * Used to know the dimension of bombs range.
      * @return range of {@link Bomb}
      */
     int getBombRange();

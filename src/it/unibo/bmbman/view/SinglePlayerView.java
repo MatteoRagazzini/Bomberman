@@ -21,7 +21,7 @@ import it.unibo.bmbman.view.entities.EntityView;
 /**
  * Frame for single player game mode.
  */
-public class SinglePlayerView {
+public class SinglePlayerView implements GameView {
     private static final int SECONDS_IN_MINUTE = 60;
     private final GUIFactory gui = new GUIFactoryImpl();
     private final Canvas canvas = new Canvas(); 
@@ -91,10 +91,9 @@ public class SinglePlayerView {
         return this.bs.getDrawGraphics();
     }
     /**
-     * Used to update the frame.
-     * @param entitiesView all the entities' view to update 
-     * @param bombs all the planted bombs' view to update
+     * {@inheritDoc}
      */
+    @Override
     public void render(final Set<EntityView> entitiesView, final Set<BombView> bombs) {
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.TILE).forEach(v -> v.render(getGraphics()));
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.POWER_UP).forEach(v -> v.render(getGraphics()));

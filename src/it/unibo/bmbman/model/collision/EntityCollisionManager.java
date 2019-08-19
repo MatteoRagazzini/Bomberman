@@ -22,7 +22,7 @@ public interface EntityCollisionManager {
      */
     void notifyCollision(Entity receiver, Position newPosition);
     /**
-     * Used to know if the entity(receiver) is touched by other entity collider. 
+     * Used to know if the entity(receiver) is touched by other entity (collider). 
      * @param receiver the entity that is touched
      * @param collider Entity collision component
      * @return true if receiver and collider intersect
