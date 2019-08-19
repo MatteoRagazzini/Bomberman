@@ -1,5 +1,6 @@
 package it.unibo.bmbman.test;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
@@ -65,13 +66,27 @@ public class TestPowerups {
     }
     /**
      * Test if the malus freeze effect is activated on collision.
+     * Set the hero direction to left. That means the velocity on the X axe should be -2.
+     * In this case we took a Malus that invert the direction (velocity), so we check if the velocity is equals to 2.
      */
     @Test
     public void testMalusInvertEffect() {
         hero.setPosition(HERO_POSITION);
         malusInvert.onCollision(new CollisionImpl(this.hero, POWERUP_POSITION));
+        hero.setDirection(Direction.LEFT);
+        hero.update();
+        assertEquals(2, hero.getVelocity().getXcomponent());
+    }
+    /**
+     * Test if the malus slow effect is activated on collision.
+     * @throws InterruptedException 
+     */
+    @Test
+    public void testMalusSlowEffect() throws InterruptedException {
+        hero.setPosition(POWERUP_POSITION);
+        malusSlow.onCollision(new CollisionImpl(this.hero, POWERUP_POSITION));
         hero.setDirection(Direction.RIGHT);
         hero.update();
-        assertEquals(hero.getPosition().getX(), POWERUP_POSITION.getX());
+        assertTrue(1 == hero.getVelocity().getXcomponent());
     }
 }
