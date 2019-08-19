@@ -37,6 +37,7 @@ public class LevelImpl implements Level {
         this.bonusLifeNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
         this.bonusRangeNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
         this.bonusVelocityNumber = level * ONE_TYPE_BONUS_FOR_LEVEL;
+        System.out.println("aaa");
     }
     /**
      * {@inheritDoc}

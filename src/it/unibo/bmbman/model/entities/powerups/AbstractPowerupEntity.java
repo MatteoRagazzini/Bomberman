@@ -26,7 +26,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param dimension the dimension of the power-up.
      */
     public AbstractPowerupEntity(final Position position, final Dimension dimension, final boolean isBonus) {
-        super(new Position(position.getX() * ScreenToolUtils.SCALE, position.getY() * ScreenToolUtils.SCALE), EntityType.POWER_UP, dimension);
+        super(new Position(position.getX(), position.getY()), EntityType.POWER_UP, dimension);
         this.bonus = isBonus;
     }
     /**
@@ -35,7 +35,7 @@ public abstract class AbstractPowerupEntity extends AbstractEntity {
      * @param isBonus if it's a bonus or a malus.
      */
     public AbstractPowerupEntity(final Position position, final boolean isBonus) {
-        this(new Position(position.getX() + (10 * ScreenToolUtils.SCALE), position.getY() + (10 * ScreenToolUtils.SCALE)), new Dimension(DIMENSION * ScreenToolUtils.SCALE, DIMENSION * ScreenToolUtils.SCALE), isBonus);
+        this(new Position(position.getX() + 10, position.getY() + 10), new Dimension(DIMENSION, DIMENSION), isBonus);
     }
     /**
      * After a collision with the hero, activate the power-up effect.
