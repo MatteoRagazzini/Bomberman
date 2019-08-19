@@ -15,19 +15,18 @@ public class BlockView extends AbstractEntityView {
     private static final int BLOCK_SPRITE_DIMENSION = 50;
     private final SpriteSheet ss = new SpriteSheet(BLOCK_PATH);
     private final Image idleImage = ss.getSprite(1, 1, BLOCK_SPRITE_DIMENSION);
-/**
- * used to create a block view image.
- * @param position the block position
- */
+    /**
+     * used to create a block view image.
+     * @param position the block position
+     */
     public BlockView(final Position position) {
         super(position, new Dimension(BLOCK_SPRITE_DIMENSION, BLOCK_SPRITE_DIMENSION), true, EntityType.BLOCK);
     }
-/**
- * {@inheritDoc}
- */
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Image getSprite() {
         return idleImage;
     }
-
 }

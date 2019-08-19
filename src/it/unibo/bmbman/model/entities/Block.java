@@ -40,5 +40,4 @@ public class Block extends AbstractEntity {
             isBroken = true;
         }
     }
-
 }

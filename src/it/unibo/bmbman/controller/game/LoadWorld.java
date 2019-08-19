@@ -3,7 +3,6 @@ package it.unibo.bmbman.controller.game;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.IntStream;
-
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactory;
@@ -49,14 +48,11 @@ public class LoadWorld {
         this.level = gc.getLevel();
         this.terrainFactory = new TerrainFactoryImpl();
         this.terrain = terrainFactory.create(level.getBlocksNumber());
-
     }
     /**
      * Loads all the entity.
      */
     public void loadEntity() {
-        final HeroImpl hero = new HeroImpl();
-        final HeroView heroView = new HeroView(hero.getPosition());
         final List<Entity> mosterList = new ArrayList<>();
         for (int i = 0; i < TerrainFactoryImpl.TERRAIN_COLUMNS; i++) {
             for (int j = 0; j < TerrainFactoryImpl.TERRAIN_ROWS; j++) {
@@ -64,11 +60,11 @@ public class LoadWorld {
             }
         }
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, this.getEntityView(i)));
+        this.gc.addEntity(new HeroImpl(), new  HeroView(TerrainFactoryImpl.PLAYER_POSITION));
         loadPowerUp();
-        System.out.println(level.getLevel());
         IntStream.iterate(0, i -> i + 1).limit(level.getMonsterNumber()).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
         mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition())));
-        this.gc.addEntity(hero, heroView);
+
     }
     /**
      * used to associate model object to the relative view.
@@ -78,9 +74,9 @@ public class LoadWorld {
     private EntityView getEntityView(final Entity entity) {
         switch (entity.getType()) {
         case TILE:
-         return new TileView(entity.getPosition());
+            return new TileView(entity.getPosition());
         case WALL:
-         return new WallView(entity.getPosition());
+            return new WallView(entity.getPosition());
         case BLOCK:
             return new BlockView(entity.getPosition());
         default:
@@ -88,10 +84,10 @@ public class LoadWorld {
         }
     }
     private void loadPowerUp() {
-        this.gc.addEntity(new Door(), new PowerUpView(new Position(TerrainFactoryImpl.DOOR_POSITION.getX()/ScreenToolUtils.SCALE,TerrainFactoryImpl.DOOR_POSITION.getY()/ScreenToolUtils.SCALE), PowerUpType.DOOR.toString()));
+        this.gc.addEntity(new Door(), new PowerUpView(new Position(TerrainFactoryImpl.DOOR_POSITION.getX() / ScreenToolUtils.SCALE,
+                TerrainFactoryImpl.DOOR_POSITION.getY() / ScreenToolUtils.SCALE), PowerUpType.DOOR.toString()));
         Position position = terrain.getRandomBlockPosition();
         this.gc.addEntity(new Key(position), new PowerUpView(position, PowerUpType.KEY.toString()));
-        System.out.println("Key: " + position);
         for (int i = 0; i < level.getBonusLifeNumber(); i++) {
             position = terrain.getRandomBlockPosition();
             this.gc.addEntity(new BonusLife(position), new PowerUpView(position, PowerUpType.BONUS_LIFE.toString()));

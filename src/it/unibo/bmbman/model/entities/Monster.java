@@ -10,7 +10,7 @@ import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
- * Model the creation and the beaviour of the monster.
+ * Model the creation and the behavior of the monster.
  * 
  *
  */

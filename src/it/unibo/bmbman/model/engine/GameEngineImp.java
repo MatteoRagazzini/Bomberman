@@ -9,7 +9,6 @@ import it.unibo.bmbman.controller.game.GameController;
  * creates and manages the Game Loop. Implementing {@link GameEngine}.
  */
 public class GameEngineImp extends Thread implements GameEngine {
-
     /**
      * Constants for FPS(frames per second).
      */
@@ -37,10 +36,6 @@ public class GameEngineImp extends Thread implements GameEngine {
         if (!this.isRunning) {
             this.isRunning = true;
             SoundsController.getMusicSound().ifPresent(s -> s.playInLoop());
-            /*
-             * qui creo un nuovo campo da gioco e avvio un timer
-             */
-            /*manda in start il thread e cambia il nome*/
             this.setName("gameLoop");
             this.start();
         }

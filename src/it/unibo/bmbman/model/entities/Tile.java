@@ -36,7 +36,5 @@ public class Tile extends AbstractEntity {
     public boolean remove() {
         return false;
     }
-
-
 }
 

@@ -35,6 +35,5 @@ public class Wall extends AbstractEntity {
     public boolean remove() {
         return false;
     }
-
 }
 

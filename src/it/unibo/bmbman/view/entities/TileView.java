@@ -30,5 +30,4 @@ public class TileView extends AbstractEntityView {
     public Image getSprite() {
         return idleImage;
     }
-
 }

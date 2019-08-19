@@ -17,7 +17,6 @@ import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
  * Class to manage the view of monsters.
  *
- *
  */
 public class BombView extends AbstractEntityView {
     private static final String PATH_BOMB_IMAGES = "/bombs/bomb.png";
