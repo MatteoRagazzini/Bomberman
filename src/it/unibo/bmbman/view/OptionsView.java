@@ -21,31 +21,29 @@ import javax.swing.JRadioButton;
 
 import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.controller.OptionsMenuController;
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 
 /**
- * View of the options menu.
+ * View class for the options menu.
  */
 public class OptionsView {
-
+    private static final Insets INSETS = new Insets(0, 60, 0, 0);
     private final Map<JRadioButton, OptionsMenuList> jbMap = new HashMap<>();
     private final OptionsMenuController optionsMenuCtrl;
+    private GridBagConstraints c;
+    private final GUIFactoryImpl gui;
     private final MainMenuView mainView;
-    private static final Insets INSETS = new Insets(0, 60, 0, 0);
     private String optionsImagePath;
     private JPanel centerP; 
     private JPanel eastP;
     private JPanel northP;
-    private GridBagConstraints c;
     private JFrame f;
-    private final GUIFactoryImpl gui;
-    private final ImageLoader il = new ImageLoader();
     /**
      * Create options menu view.
      * @param mainMenuView the {@link MainMenuView} with which is related
-     * @param optionsMenuController the {@link OptionsMenuController} that manage all the choises
+     * @param optionsMenuController the {@link OptionsMenuController} that manage all choises
      */
     public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController optionsMenuController) {
         this.gui = new GUIFactoryImpl();
@@ -89,7 +87,7 @@ public class OptionsView {
      */
     private void loadLabels() {
         final JLabel titleLabel = gui.createLabel("Options Menù");
-        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
+        final JLabel iconLabel = new JLabel(new ImageIcon(ImageLoaderUtils.loadImage(optionsImagePath)));
         northP.add(titleLabel, BorderLayout.CENTER);
         eastP.add(iconLabel, BorderLayout.CENTER);
         final JLabel musicLabel = gui.createLabel("Music");

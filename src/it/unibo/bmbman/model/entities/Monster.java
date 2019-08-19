@@ -10,15 +10,12 @@ import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 
 /**
- * Model the creation and the beaviour of the monster.
- * 
- *
+ * Class that model a monster.
  */
 public class Monster extends AbstractLivingEntity {
 
     private final Random rand = new Random();
-    private static final int DIMX = 48;
-    private static final int DIMY = 48;
+    private static final int DIM = 48;
     private static final int NLIVES = 1;
 
     /**
@@ -26,7 +23,7 @@ public class Monster extends AbstractLivingEntity {
      * @param position start position of the monster
      */
     public Monster(final Position position) {
-        super(position, EntityType.MONSTER, new Dimension(DIMX, DIMY), NLIVES);
+        super(position, EntityType.MONSTER, new Dimension(DIM, DIM), NLIVES);
         this.setDirection(randomDirection());
     }
     /**

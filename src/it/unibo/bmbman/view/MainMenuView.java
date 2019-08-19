@@ -19,7 +19,7 @@ import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuList;
 import it.unibo.bmbman.controller.OptionMenuControllerImpl;
 import it.unibo.bmbman.controller.OptionsMenuController;
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * define the start menu of the game.
@@ -35,7 +35,6 @@ public class MainMenuView {
     private GridBagConstraints c;
     private JFrame f;
     private final GUIFactoryImpl gui;
-    private final ImageLoader il;
     private String titleImagePath;
     private String mainImagePath;
     private static final double CENTER_SCALE_WIDTH = 0.4;
@@ -51,7 +50,6 @@ public class MainMenuView {
         this.gui = new GUIFactoryImpl();
         this.optMenuController = new OptionMenuControllerImpl();
         this.mainMenuController = new MainMenuControllerImpl(this, optMenuController);
-        il = new ImageLoader();
         saveMainImagePath();
         saveTitleImagePath();
     }
@@ -91,12 +89,12 @@ public class MainMenuView {
         final JPanel eastP = new JPanel(new BorderLayout());
         eastP.setPreferredSize(new Dimension((int) (f.getWidth() * EAST_SCALE_WIDTH), (int) (f.getHeight() * PANEL_SCALE_HEIGHT)));
         eastP.setBackground(Color.BLACK);
-        final JLabel label = new JLabel(new ImageIcon(il.loadImage(mainImagePath)));
+        final JLabel label = new JLabel(new ImageIcon(ImageLoaderUtils.loadImage(mainImagePath)));
         eastP.add(label, BorderLayout.CENTER);
         // Create NORTH Panel
         final JPanel northP = new JPanel(new BorderLayout());
         northP.setPreferredSize(new Dimension(f.getWidth(), (int) (f.getHeight() * NORTH_SCALE_HEIGHT)));
-        final JLabel title = new JLabel(new ImageIcon(il.loadImage(titleImagePath)));
+        final JLabel title = new JLabel(new ImageIcon(ImageLoaderUtils.loadImage(titleImagePath)));
         northP.setBackground(Color.BLACK);
         northP.add(title, BorderLayout.SOUTH);
         // Add Panels to the Frame

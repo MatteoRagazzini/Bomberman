@@ -12,7 +12,7 @@ import javax.swing.JPanel;
 
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 /**
  * 
  * Create TopBar.
@@ -29,7 +29,6 @@ public class TopBar extends JPanel {
     private final HeroImpl hero;
     private boolean keyloaded;
     private final PlayerScoreImpl ps;
-    private final ImageLoader il = new ImageLoader();
     private final GridBagConstraints c = new GridBagConstraints();
     /**
      * 
@@ -47,7 +46,7 @@ public class TopBar extends JPanel {
         gameTime = gui.createLabel("");
         score = gui.createLabel("");
         lives = gui.createLabel("");
-        heart = new JLabel((new ImageIcon(il.loadImage("/powerups/+life.png"))));
+        heart = new JLabel((new ImageIcon(ImageLoaderUtils.loadImage("/powerups/+life.png"))));
         this.add(heart, c);
         c.insets = new Insets(0, 0, 0, 0);
         this.add(lives, c);
@@ -67,7 +66,7 @@ public class TopBar extends JPanel {
         this.lives.setText(String.valueOf(hero.getLives()));
         if (hero.hasKey() && !keyloaded) {
             keyloaded = true;
-            key = new JLabel((new ImageIcon(il.loadImage("/powerups/key.png"))));
+            key = new JLabel((new ImageIcon(ImageLoaderUtils.loadImage("/powerups/key.png"))));
             this.add(key, c);
         }
     }
