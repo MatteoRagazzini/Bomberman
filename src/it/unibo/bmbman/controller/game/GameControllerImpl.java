@@ -147,11 +147,8 @@ public class GameControllerImpl implements GameController {
         return worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.UNBREAKABLE)
                 .collect(Collectors.toSet());
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void detectCollision() {
+
+    private void detectCollision() {
         this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
