@@ -6,6 +6,8 @@ import java.util.stream.IntStream;
 
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactory;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.entities.Monster;
@@ -34,6 +36,7 @@ import it.unibo.bmbman.view.entities.WallView;
  */
 public class LoadWorld {
     private final GameController gc;
+    private final TerrainFactory terrainFactory;
     private final Terrain terrain;
     private final Level level;
     /**
@@ -43,7 +46,8 @@ public class LoadWorld {
     public LoadWorld(final GameController gc) {
         this.gc = gc;
         this.level = gc.getLevel();
-        this.terrain = new Terrain(level.getBlocksNumber());
+        this.terrainFactory = new TerrainFactoryImpl();
+        this.terrain = terrainFactory.create(level.getBlocksNumber());
 
     }
     /**
@@ -53,8 +57,8 @@ public class LoadWorld {
         final HeroImpl hero = new HeroImpl();
         final HeroView heroView = new HeroView(hero.getPosition());
         final List<Entity> mosterList = new ArrayList<>();
-        for (int i = 0; i < Terrain.TERRAIN_COLUMNS; i++) {
-            for (int j = 0; j < Terrain.TERRAIN_ROWS; j++) {
+        for (int i = 0; i < TerrainFactoryImpl.TERRAIN_COLUMNS; i++) {
+            for (int j = 0; j < TerrainFactoryImpl.TERRAIN_ROWS; j++) {
                 this.gc.addEntity(terrain.getEntity(i, j), this.getEntityView(terrain.getEntity(i, j)));
             }
         }
@@ -83,7 +87,7 @@ public class LoadWorld {
         }
     }
     private void loadPowerUp() {
-        this.gc.addEntity(new Door(), new PowerUpView(Terrain.DOOR_POSITION, PowerUpType.DOOR.toString()));
+        this.gc.addEntity(new Door(), new PowerUpView(TerrainFactoryImpl.DOOR_POSITION, PowerUpType.DOOR.toString()));
         Position position = terrain.getRandomBlockPosition();
         this.gc.addEntity(new Key(position), new PowerUpView(position, PowerUpType.KEY.toString()));
         System.out.println("Key: " + position);

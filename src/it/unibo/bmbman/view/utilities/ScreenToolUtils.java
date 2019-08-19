@@ -14,9 +14,10 @@ public final class ScreenToolUtils {
     private static final double WIDTH_REF_QHD = 2200;
     private static final double HEIGHT_REF_QHD = 1200;
     private static final double WQHDSCALE = 2;
-    private static final double QHDSCALE = 1.33;
+    private static final double QHDSCALE = 1;
     private static final double FHDSCALE = 1;
-    private static final double HDSCALE = 0.71;
+    private static final double HDSCALE = 1;
+    public static final int SCALE = (int) getScreenScale();
 
     private ScreenToolUtils() {
     }
