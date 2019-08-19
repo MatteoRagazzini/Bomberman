@@ -4,7 +4,6 @@ import java.awt.Image;
 import java.util.HashMap;
 import java.util.Map;
 
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
@@ -15,9 +14,7 @@ import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
 import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
- * Class to manage the view of monsters.
- *
- *
+ * Class to manage the view of Bomb.
  */
 public class BombView extends AbstractEntityView {
     private static final String PATH_BOMB_IMAGES = "/bombs/bomb.png";
@@ -31,8 +28,8 @@ public class BombView extends AbstractEntityView {
     private final Map<BombState, AnimationIterator> sprite = new HashMap<>();
     private BombState state; 
     /**
-     * Create a monster view.
-     * @param position where the monster is located
+     * Create a bomb view.
+     * @param position in which bomb is located
      */
     public BombView(final Position position) {
         super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.BOMB); 
@@ -49,7 +46,8 @@ public class BombView extends AbstractEntityView {
         this.state = state;
         if (state == BombState.IN_EXPLOSION) {
             setDimension(new Dimension(DIMENSION_EXPLOSION, DIMENSION_EXPLOSION));
-            setPosition(new Position(this.getPosition().getX() - TerrainFactoryImpl.CELL_DIMENSION, this.getPosition().getY() - TerrainFactoryImpl.CELL_DIMENSION));
+            setPosition(new Position(this.getPosition().getX() - TerrainFactoryImpl.CELL_DIMENSION, 
+                    this.getPosition().getY() - TerrainFactoryImpl.CELL_DIMENSION));
         }
     }
     /** 

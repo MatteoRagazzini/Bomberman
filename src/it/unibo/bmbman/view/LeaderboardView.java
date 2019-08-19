@@ -24,7 +24,7 @@ public class LeaderboardView extends JTable {
     private static final long serialVersionUID = 1L;
     private final JFrame frame;
     private final transient GUIFactory gf;
-    private static final int ROW_HEIGHT = 40;
+    private static final int ROW_HEIGHT = 50;
     private static final int BORDER_THICKNESS = 5;
     private static final int HEIGHT_DISTANCE = 230;
     private static final int WIDTH_DISTANCE = 100;
@@ -75,7 +75,7 @@ public class LeaderboardView extends JTable {
         });
     }
     /**
-     * 
+     * Get frame.
      * @return frame
      */
      public JFrame getFrame() {

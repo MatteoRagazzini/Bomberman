@@ -10,7 +10,6 @@ import javax.swing.table.AbstractTableModel;
 /**
  * 
  * Model a ScoreTable with rank, level, name, score and game time of a player.
- *
  */
 public class ScoreTable extends AbstractTableModel {
     private static final long serialVersionUID = 1L;
@@ -19,7 +18,7 @@ public class ScoreTable extends AbstractTableModel {
     private final int colCount;
     private Object[][] data;
 /**
- *
+ * Create ScoreTable.
  * @param list used to populate the table.
  */
     public ScoreTable(final List<PlayerScoreImpl> list) {

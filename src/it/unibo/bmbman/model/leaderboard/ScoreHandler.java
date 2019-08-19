@@ -16,9 +16,7 @@ import java.util.Optional;
 public final class ScoreHandler {
     private static final String FILE_NAME = "score.txt";
     private static List<PlayerScoreImpl> data = new ArrayList<>();
-    /**
-     * 
-     */
+
     private ScoreHandler() {
         super();
     }
@@ -39,7 +37,6 @@ public final class ScoreHandler {
      * Read data from score.txt and sort them.
      */
     private static void read() {
-        //data.clear();
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
                 final Object o = br.readObject();
                 if (o instanceof List<?>) {
@@ -62,15 +59,15 @@ public final class ScoreHandler {
         return data;
     }
     /**
-     * 
+     * Check if file exists and in this case it invokes read method.
      */
     public static void checkAndRead() {
-        final File file = new File(FILE_NAME);
-        if (file.exists()) {
+        if (new File(FILE_NAME).exists()) {
             read();
         }
     }
     /**
+     * Check if file exists and write or update the playerScore into file.
      * @param level 
      * @param ps 
      * @param playerName 
@@ -80,7 +77,6 @@ public final class ScoreHandler {
         Optional<PlayerScoreImpl> p = Optional.empty();
         final File file = new File(FILE_NAME);
         if (file.exists()) {
-            //read();
             p = checkIfPresent(playerName);
             if (p.isPresent() && p.get().getLevel() == level) {
                 update(p.get(), ps.getScore(), time);
@@ -98,7 +94,7 @@ public final class ScoreHandler {
     /**
      * It checks if the given name is already present into the file.
      * @param playerName
-     * @return {@link PlayerScoreImpl} if exists or an
+     * @return an Optional of {@link PlayerScoreImpl}
      */
     private static Optional<PlayerScoreImpl> checkIfPresent(final String playerName) {
         return data.stream()

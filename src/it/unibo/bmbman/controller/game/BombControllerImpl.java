@@ -17,7 +17,7 @@ import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.entities.BombView;
 /**
- *
+ *  Implementation of {@link BombController}.
  */
 public class BombControllerImpl implements BombController {
     private final List<Pair<BombImpl, BombView>> amountBombs;

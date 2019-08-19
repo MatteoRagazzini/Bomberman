@@ -56,12 +56,6 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
         this.name = name;
     }
     /**
-     * {@inheritDoc}
-     */
-    public void setLevel(final int level) {
-        this.level = level;
-    }
-    /**
      * {@inheritDoc} 
      */
     public void setGameTime(final String time) {
@@ -76,21 +70,29 @@ public class PlayerScoreImpl implements PlayerScore, Comparable<PlayerScoreImpl>
     /**
      * {@inheritDoc}
      */
+    public void setLevel(final int level) {
+        this.level = level;
+    }
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateScore(final List<Entity> entityToRemoved) {
-        entityToRemoved.stream().filter(e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)
-                                .forEach(e -> { 
-                                    if (!(Scoring.getPoint(e) < 0 && this.score == 0)) {
-                                        this.score = this.score + Scoring.getPoint(e);
-                                    }
-                                });
+        entityToRemoved.stream().filter(
+                e -> e.getType() == EntityType.MONSTER || e.getType() == EntityType.POWER_UP)
+        .forEach(e -> { 
+            if (!(Scoring.getScoring(e) < 0 && this.score == 0)) {
+                this.score = this.score + Scoring.getScoring(e);
+            }
+        });
     }
     /**
      * {@inheritDoc}
      */
     @Override
     public int compareTo(final PlayerScoreImpl ps) {
-        return ps.getLevel() != this.getLevel() ? this.getLevel() - ps.getLevel() : ps.getScore() - this.getScore();
+        return ps.getLevel() != this.getLevel() ? this.getLevel() - ps.getLevel() 
+                : ps.getScore() - this.getScore();
     }
     /**
      * {@inheritDoc}

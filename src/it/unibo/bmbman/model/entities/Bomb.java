@@ -7,12 +7,12 @@ import it.unibo.bmbman.model.utilities.BombState;
  */
 public interface Bomb {
     /**
-     * Get explosion.
-     * @return {@link Pair} of {@link Rectangle}
+     * Get {@link Explosion}.
+     * @return explosion
      */
-  //  Pair<Rectangle, Rectangle> getExplosion();
+    Optional<Explosion> getExplosion();
     /**
-     * 
+     * Get state of bomb.
      * @return {@link BombState}
      */
     BombState getState();
@@ -24,9 +24,4 @@ public interface Bomb {
      * Start timer for bomb planted. At the end of it, explosion occurs. 
      */
     void startTimer();
-    /**
-     * 
-     * @return explosion
-     */
-    Optional<Explosion> getExplosion();
 }

@@ -6,7 +6,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Image;
 import java.awt.Insets;
-import java.awt.Point;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.io.IOException;
@@ -17,9 +16,6 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.event.ChangeListener;
-import javax.swing.text.Caret;
-import javax.swing.text.JTextComponent;
 
 import it.unibo.bmbman.controller.game.GameController;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;

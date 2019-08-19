@@ -10,14 +10,9 @@ import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.view.entities.BombView;
 /**
- *
+ * Interface of BombController.
  */
 public interface BombController {
-    /**
-     * Used to get planted Bombs view.
-     * @return {@link Set} of Bombs
-     */
-    Set<BombView> getBombView();
     /**
      * Get bombs that must be removed.
      * @return list of {@link Bomb, BombView}
@@ -28,6 +23,11 @@ public interface BombController {
      * @return list of {@link BombImpl}
      */
     List<BombImpl> getBombsInExplosion();
+    /**
+     * Used to get planted Bombs view.
+     * @return set of Bombs
+     */
+    Set<BombView> getBombView();
     /**
      * It creates a new {@link BombImpl} to planted if {@link Hero} has enough bombs.
      * @param hero 

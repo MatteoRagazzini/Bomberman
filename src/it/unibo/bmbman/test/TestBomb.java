@@ -10,11 +10,13 @@ import org.junit.Test;
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.BombControllerImpl;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
+import it.unibo.bmbman.model.entities.Block;
 import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.utilities.BombState;
+import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
 /**
  * JUnit Test for Bomb and BombController.
@@ -25,16 +27,25 @@ public class TestBomb {
     private BombImpl bomb;
     private HeroImpl hero;
     private SoundsController sc = new SoundsController();
-    private static final Position HERO_POS = new Position(50, 100);
-    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
-    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position HERO_POS = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), 
+            TerrainFactoryImpl.PLAYER_POSITION.getY());
+    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() 
+            + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() 
+            + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+    private static final Position BLOCK_POS = new Position(HERO_POS.getX(), 
+            HERO_POS.getY() + TerrainFactoryImpl.CELL_DIMENSION);
+    private Block block;
     private Monster monster1;
     private Monster monster2;
     /**
-     * 
+     * {@inheritDoc}
      */
     @Before
     public void init() {
+        System.out.println(HERO_POS.getX() + " " + HERO_POS.getY());
+        System.out.println(MONSTER1_POS.getX() + " " + MONSTER1_POS.getY());
+        System.out.println(MONSTER2_POS.getX() + " " + MONSTER2_POS.getY());
         this.hero = new HeroImpl();
         this.hero.setPosition(HERO_POS);
         this.bc = new BombControllerImpl();
@@ -55,10 +66,14 @@ public class TestBomb {
         Assert.assertEquals(this.bc.getBombView().size(), 2);
     }
     /**
-     * Test explosion with range 3 and collisions.
+     * Test explosion with range 3 and collisions with hero, monster and block.
      */
     @Test 
     public void testExplosion() {
+        this.monster1 = new Monster(MONSTER1_POS);
+        this.monster2 = new Monster(MONSTER2_POS);
+        this.block = new Block(BLOCK_POS, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, 
+                TerrainFactoryImpl.CELL_DIMENSION));
         this.bomb = this.bc.plantBomb(this.hero).get();
         Assert.assertTrue(this.bc.getBombsInExplosion().isEmpty());
         while (this.bomb.getState() == BombState.PLANTED) {
@@ -69,19 +84,20 @@ public class TestBomb {
         Assert.assertFalse(this.bomb.remove());
         Assert.assertEquals(this.hero.getBombsNumber(), 1);
         Assert.assertTrue(!this.bc.plantBomb(hero).isPresent());
-        this.monster1 = new Monster(MONSTER1_POS);
-        this.monster2 = new Monster(MONSTER2_POS);
+        Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
+        Assert.assertTrue(this.bc.getBombsToRemove().isEmpty());
         Set<Entity> set = new HashSet<>();
         set.add(monster1);
         set.add(monster2);
         set.add(hero);
-        Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
-        Assert.assertTrue(this.bc.getBombsToRemove().isEmpty());
+        set.add(block);
         this.bc.collision(set);
         Assert.assertTrue(this.bomb.getState() == BombState.EXPLODED);
+        Assert.assertTrue(this.bc.getBombsInExplosion().isEmpty());
         Assert.assertEquals(this.bc.getBombsToRemove().size(), 1);
         Assert.assertFalse(this.monster1.isAlive());
         Assert.assertTrue(this.monster2.isAlive());
         Assert.assertEquals(this.hero.getLives(), 2);
+        Assert.assertTrue(this.block.remove());
     }
 }

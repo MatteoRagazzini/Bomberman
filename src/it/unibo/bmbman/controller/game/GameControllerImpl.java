@@ -76,7 +76,7 @@ public class GameControllerImpl implements GameController {
         if (inPause) {
             this.spv.stopTimer();
         } else {
-            this.spv.startTime();
+            this.spv.startTimer();
         }
     }
     /**

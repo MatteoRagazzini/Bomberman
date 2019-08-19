@@ -14,13 +14,11 @@ import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.view.utilities.ImageLoader;
 /**
- * 
- * Create TopBar.
- *
+ * Create TopBar inside {@link SinglePlayerView}.
  */
 public class TopBar extends JPanel {
     private static final long serialVersionUID = 1L;
-    private static final int DIM = 35;
+    private static final int DIM = 40;
     private static final double WEIGHTX = 0.1;
     private final JLabel gameTime;
     private final JLabel score;
@@ -32,7 +30,7 @@ public class TopBar extends JPanel {
     private final ImageLoader il = new ImageLoader();
     private final GridBagConstraints c = new GridBagConstraints();
     /**
-     * 
+     * Construct TopBar.
      * @param gui 
      * @param ps 
      * @param hero 
@@ -60,7 +58,7 @@ public class TopBar extends JPanel {
         this.keyloaded = false;
     }
     /**
-     * 
+     * Used to update the graphic.
      */
     public void render() {
         this.score.setText(String.valueOf(this.ps.getScore()));
@@ -72,14 +70,14 @@ public class TopBar extends JPanel {
         }
     }
     /**
-     * 
+     * Get panel.
      * @return panel
      */
     public JPanel getPanel() {
         return this;
     }
     /**
-     * 
+     * Get label of gameTime.
      * @return label gameTime
      */
     public JLabel getLabel() {

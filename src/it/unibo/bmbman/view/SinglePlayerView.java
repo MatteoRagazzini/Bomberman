@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
@@ -21,7 +20,6 @@ import it.unibo.bmbman.view.entities.EntityView;
 
 /**
  * Frame for single player game mode.
- *
  */
 public class SinglePlayerView {
     private static final int SECONDS_IN_MINUTE = 60;
@@ -35,10 +33,10 @@ public class SinglePlayerView {
     private int seconds;
     private int minutes;
     /**
-     * construct the frame.
+     * Construct the frame.
      * @param ki {@link KeyInput}
-     * @param hero 
-     * @param ps 
+     * @param hero {@link HeroImpl}
+     * @param ps {@link PlayerScoreImpl}
      */
     public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final HeroImpl hero) {
         nPanel = new TopBar(gui, ps, hero);
@@ -67,11 +65,23 @@ public class SinglePlayerView {
         }
     }
     /**
-     * get the frame.
-     * @return the current frame
+     * Stop time.
      */
-    public JFrame getFrame() {
-        return this.frame;
+    public void stopTimer() {
+        this.timer.stop();
+    }
+    /**
+     * Start time.
+     */
+    public void startTimer() {
+        this.timer.start();
+    }
+    /**
+     * Get timer in string format.
+     * @return time 
+     */
+    public String getTime() {
+        return String.format("%02d:%02d", minutes, seconds);
     }
     /**
      * Used to get {@link Graphics} component to update.
@@ -98,22 +108,10 @@ public class SinglePlayerView {
         this.canvas.requestFocus();
     }
     /**
-     * stop time.
+     * Get the frame.
+     * @return the current frame
      */
-    public void stopTimer() {
-        this.timer.stop();
-    }
-    /**
-     * start time.
-     */
-    public void startTime() {
-        this.timer.start();
-    }
-    /**
-     * 
-     * @return time 
-     */
-    public String getTime() {
-        return String.format("%02d:%02d", minutes, seconds);
+    public JFrame getFrame() {
+        return this.frame;
     }
 }
