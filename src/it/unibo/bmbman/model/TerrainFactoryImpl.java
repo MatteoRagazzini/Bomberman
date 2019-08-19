@@ -50,11 +50,13 @@ public class TerrainFactoryImpl implements TerrainFactory {
     private static final Position PLAYER_POSITION_RIGHT = new Position(2 * CELL_DIMENSION * ScreenToolUtils.SCALE, 1 * CELL_DIMENSION * ScreenToolUtils.SCALE);
     private static final Position PLAYER_POSITION_DOWN = new Position(1 * CELL_DIMENSION * ScreenToolUtils.SCALE, 2 * CELL_DIMENSION * ScreenToolUtils.SCALE);
     private int blocksNumber;
-    private List<List<Entity>> terrain = new ArrayList<>();
-    private List<Entity> blockList = new ArrayList<>();
+    private List<List<Entity>> terrain;
+    private List<Entity> blockList;
     @Override
     public Terrain create(final int blocksnumber) {
         this.blocksNumber = blocksnumber;
+        terrain = new ArrayList<>();
+        blockList = new ArrayList<>();
         addTiles();
         addWalls();
         addBlocks();
