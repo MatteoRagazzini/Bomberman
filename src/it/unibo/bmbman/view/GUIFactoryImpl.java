@@ -24,6 +24,8 @@ public class GUIFactoryImpl implements GUIFactory {
     private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static final double WINDOW_SCALE_WIDTH = 0.5;
     private static final double WINDOW_SCALE_HEIGHT = 0.66;
+    private static final double SCALE = ScreenToolUtils.getScreenScale();
+    private static final int INITIAL_POSITION = 100;
     /**
      * width value of frame.
      */
@@ -32,10 +34,7 @@ public class GUIFactoryImpl implements GUIFactory {
      * height value of frame.
      */
     public static final int FRAME_HEIGHT = (int) (SCREEN_HEIGHT * WINDOW_SCALE_HEIGHT);
-    private static final int INITIAL_POSITION = 100;
     private final GameFont font  = new GameFont();
-    private static final double SCALE = ScreenToolUtils.getScreenScale();
-
     /**
      * {@inheritDoc}
      */
@@ -115,8 +114,6 @@ public class GUIFactoryImpl implements GUIFactory {
         final JTextField jTextField = new JTextField();
         jTextField.setFont(font.getFont());
         jTextField.setBackground(Color.BLACK);
-        // jTextField.setBorderPainted(true);
-        // label.setFocusPainted(false);
         jTextField.setForeground(Color.WHITE);
         return jTextField;
     }

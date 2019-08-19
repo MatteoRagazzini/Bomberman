@@ -25,22 +25,22 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
  * define the start menu of the game.
  */
 public class MainMenuView {
-    private final Map<JButton, MainMenuList> jbMap = new HashMap<>();
-    private final MainMenuController mainMenuController;
-    private JPanel centerP;
-    /**
-     * Parameter added to manage GridBag layout.
-     */
-    private GridBagConstraints c;
-    private JFrame f;
-    private final GUIFactoryImpl gui;
-    private String titleImagePath;
-    private String mainImagePath;
     private static final double CENTER_SCALE_WIDTH = 0.4;
     private static final double EAST_SCALE_WIDTH = 0.6;
     private static final double PANEL_SCALE_HEIGHT = 0.8;
     private static final double NORTH_SCALE_HEIGHT = 0.2;
     private static final Insets INSETS = new Insets(25, 60, 35, 20);
+    private final Map<JButton, MainMenuList> jbMap = new HashMap<>();
+    private final MainMenuController mainMenuController;
+    private final GUIFactoryImpl gui;
+    /**
+     * Parameter added to manage GridBag layout.
+     */
+    private GridBagConstraints c;
+    private JPanel centerP;
+    private JFrame f;
+    private String titleImagePath;
+    private String mainImagePath;
 
     /**
      * Create the main menu view.
