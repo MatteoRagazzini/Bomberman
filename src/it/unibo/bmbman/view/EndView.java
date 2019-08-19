@@ -17,11 +17,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.controller.game.GameController;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.leaderboard.ScoreHandler;
-//import it.unibo.bmbman.model.utilities.GameTimer;
 import it.unibo.bmbman.view.utilities.BackgroundPanel;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /** 
@@ -43,21 +41,18 @@ public class EndView {
     private final int score;
     private final GameController gameController;
     private final SinglePlayerView spv;
-    private final EndGameState state;
     private final PlayerScoreImpl ps;
     /**
      * 
      * @param mainMenuView 
-     * @param state 
      * @param gameController 
      * @param spv 
      * @param ps 
      */
-    public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final SinglePlayerView spv, final PlayerScoreImpl ps) {
+    public EndView(final MainMenuView mainMenuView, final GameController gameController, final SinglePlayerView spv, final PlayerScoreImpl ps) {
         mainView = mainMenuView;
         this.gui = new GUIFactoryImpl();
         this.f = gui.createFrame();
-        this.state = state;
         this.spv = spv;
         this.gameController = gameController;
         this.ps = ps;
@@ -69,16 +64,12 @@ public class EndView {
      * Customize the GameOverView view frame.
      */
     private void loadEndView() {
-        switch (state) {
-            case LOSE:
-                f.setTitle("BOMBERMAN - GameOver");
-                break;
-            case WIN:
-                f.setTitle("BOMBERMAN - You WIN!");
-                break;
-            default:
-                break;
+        if (this.gameController.hasWon()) { 
+            f.setTitle("BOMBERMAN - You WIN!");
+        } else {
+            f.setTitle("BOMBERMAN - GameOver");
         }
+
         f.setBackground(Color.black);
         saveGameOverImagePath();
         loadPanels();
@@ -92,15 +83,10 @@ public class EndView {
      */
     private void loadLabels() {
         JLabel titleLabel = gui.createLabel("");
-        switch (state) {
-            case LOSE:
-                titleLabel = gui.createLabel("Game Over");
-                break;
-            case WIN:
-                titleLabel = gui.createLabel("YOU WIN!");
-                break;
-            default:
-                break;
+        if (this.gameController.isGameOver()) {
+            titleLabel = gui.createLabel("Game Over");
+        } else {
+            titleLabel = gui.createLabel("YOU WIN!");
         }
         final JLabel timeLabel = gui.createLabel("Game Time");
         final JLabel playerTimeLabel = gui.createLabel(this.spv.getTime());
@@ -162,7 +148,7 @@ public class EndView {
         c.gridx = 1;
         c.gridy = 3;
         centerP.add(enterName, c);
-        if (this.state == EndGameState.WIN && this.gameController.getLevel().getLevel() < 3) {
+        if (this.gameController.hasWon() && this.gameController.getLevel().getLevel() < 3) {
             nextLevel = gui.createButton("Go to next level");
             nextLevel.setBorderPainted(true);
             nextLevel.setBackground(Color.darkGray);
@@ -185,8 +171,8 @@ public class EndView {
         c.gridy = 3;
         centerP.add(nameTextField, c);
         nameTextField.addKeyListener(new KeyAdapter() {
-        public void keyReleased(final KeyEvent event) {
-            final String content = nameTextField.getText();
+            public void keyReleased(final KeyEvent event) {
+                final String content = nameTextField.getText();
                 if (!content.equals("")) {
                     enterName.setEnabled(true);
                 } else {

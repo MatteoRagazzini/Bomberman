@@ -7,7 +7,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
-import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
@@ -93,11 +92,8 @@ public class GameControllerImpl implements GameController {
     @Override
     public void endGame() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, EndGameState.LOSE, this, spv, ps);
-        if (hasWon()) {
-            end = new EndView(mainView, EndGameState.WIN, this, spv, ps);
-            reset();
-        }
+        final EndView end = new EndView(mainView, this, spv, ps);
+        reset();
         end.getFrame().setVisible(true);
     }
     /**
