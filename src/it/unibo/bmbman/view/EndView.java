@@ -149,6 +149,7 @@ public class EndView {
         enterName.setBorderPainted(true);
         enterName.addActionListener(e -> {
             ScoreHandler.checkAndWrite(this.gameController.getLevel().getLevel(), ps, nameTextField.getText(), this.spv.getTime());
+            enterName.setEnabled(false);
         });
         c.gridx = 1;
         c.gridy = 3;
