@@ -35,7 +35,7 @@ public class LeaderboardView extends JTable {
     public LeaderboardView(final MainMenuView mainMenuView) {
         super();
         this.mainMenuView = mainMenuView;
-        this.gf = new MyGUIFactory(); 
+        this.gf = new GUIFactoryImpl(); 
         this.frame = this.gf.createFrame();
         this.loadLeaderboardView();
     }

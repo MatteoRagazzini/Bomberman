@@ -34,7 +34,7 @@ public class MainMenuView {
      */
     private GridBagConstraints c;
     private JFrame f;
-    private final MyGUIFactory gui;
+    private final GUIFactoryImpl gui;
     private final ImageLoader il;
     private String titleImagePath;
     private String mainImagePath;
@@ -48,7 +48,7 @@ public class MainMenuView {
      * Create the main menu view.
      */
     public MainMenuView() {
-        this.gui = new MyGUIFactory();
+        this.gui = new GUIFactoryImpl();
         this.optMenuController = new OptionMenuControllerImpl();
         this.mainMenuController = new MainMenuControllerImpl(this, optMenuController);
         il = new ImageLoader();

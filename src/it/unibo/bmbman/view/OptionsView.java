@@ -39,7 +39,7 @@ public class OptionsView {
     private JPanel northP;
     private GridBagConstraints c;
     private JFrame f;
-    private final MyGUIFactory gui;
+    private final GUIFactoryImpl gui;
     private final ImageLoader il = new ImageLoader();
 
     /**
@@ -48,7 +48,7 @@ public class OptionsView {
      * @param optionsMenuController the {@link OptionsMenuController} that manage all the choises
      */
     public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController optionsMenuController) {
-        this.gui = new MyGUIFactory();
+        this.gui = new GUIFactoryImpl();
         this.f = gui.createFrame();
         loadOptionsView();
         mainView = mainMenuView;

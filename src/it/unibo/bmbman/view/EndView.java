@@ -30,7 +30,7 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 public class EndView {
     private static final Insets INSETS = new Insets(50, 25, 50, 25);
     private static final double WEIGHTX = 0.1;
-    private final MyGUIFactory gui;
+    private final GUIFactoryImpl gui;
     private final MainMenuView mainView;
     private final JFrame f;
     private JPanel centerP; 
@@ -55,7 +55,7 @@ public class EndView {
      */
     public EndView(final MainMenuView mainMenuView, final EndGameState state, final GameController gameController, final SinglePlayerView spv, final PlayerScoreImpl ps) {
         mainView = mainMenuView;
-        this.gui = new MyGUIFactory();
+        this.gui = new GUIFactoryImpl();
         this.f = gui.createFrame();
         this.state = state;
         this.spv = spv;

@@ -26,7 +26,7 @@ public class HelpView {
     public HelpView(final MainMenuView mainMenuView) {
         this.mainView = mainMenuView;
         this.il = new ImageLoader();
-        this.gui = new MyGUIFactory();
+        this.gui = new GUIFactoryImpl();
         this.frame = this.gui.createFrame();
         saveHelpImagePath();
         this.loadHelpView();

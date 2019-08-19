@@ -19,7 +19,7 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * Class used to generate components.
  */
-public class MyGUIFactory implements GUIFactory {
+public class GUIFactoryImpl implements GUIFactory {
     private static final double SCREEN_WIDTH = Toolkit.getDefaultToolkit().getScreenSize().getWidth();
     private static final double SCREEN_HEIGHT = Toolkit.getDefaultToolkit().getScreenSize().getHeight();
     private static final double WINDOW_SCALE_WIDTH = 0.5;

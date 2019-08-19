@@ -24,7 +24,7 @@ import it.unibo.bmbman.view.entities.EntityView;
  */
 public class SinglePlayerView {
     private static final int SECONDS_IN_MINUTE = 60;
-    private final GUIFactory gui = new MyGUIFactory();
+    private final GUIFactory gui = new GUIFactoryImpl();
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
