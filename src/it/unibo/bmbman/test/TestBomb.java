@@ -9,11 +9,9 @@ import org.junit.Test;
 
 import it.unibo.bmbman.controller.SoundsController;
 import it.unibo.bmbman.controller.game.BombControllerImpl;
-import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.BombImpl;
 import it.unibo.bmbman.model.entities.Entity;
-import it.unibo.bmbman.model.entities.Explosion;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.utilities.BombState;
@@ -26,7 +24,7 @@ public class TestBomb {
     private BombControllerImpl bc;
     private BombImpl bomb;
     private HeroImpl hero;
-    private SoundsController sc;
+    private SoundsController sc = new SoundsController();
     private static final Position HERO_POS = new Position(50, 100);
     private static final Position MONSTER1_POS = new Position(HERO_POS.getX() + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
     private static final Position MONSTER2_POS = new Position(HERO_POS.getX() + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
@@ -40,7 +38,7 @@ public class TestBomb {
         this.hero = new HeroImpl();
         this.hero.setPosition(HERO_POS);
         this.bc = new BombControllerImpl();
-        this.sc = new SoundsController();
+        this.sc.setEffectsOff();
     }
     /**
      * Test bomb planted.
@@ -77,7 +75,6 @@ public class TestBomb {
         set.add(monster1);
         set.add(monster2);
         set.add(hero);
-        Explosion ex = new Explosion(HERO_POS, hero.getBombRange());
         Assert.assertTrue(this.bc.getBombsInExplosion().size() == 1);
         Assert.assertTrue(this.bc.getBombsToRemove().isEmpty());
         this.bc.collision(set);
