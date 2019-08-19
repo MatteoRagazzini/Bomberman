@@ -27,7 +27,7 @@ public abstract class AbstractEntityView implements EntityView {
      */
     public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible, final EntityType entityType) {
         this.position = position;
-        this.dimension = new Dimension((int) (dimension.getHeight() * ScreenToolUtils.getScreenScale()), (int) (dimension.getWidth() * ScreenToolUtils.getScreenScale()));
+        this.dimension = new Dimension(dimension.getHeight() * ScreenToolUtils.SCALE, dimension.getWidth() * ScreenToolUtils.SCALE);
         this.visible = visible;
         this.direction = Direction.IDLE;
         this.entityType = entityType;
