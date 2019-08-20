@@ -1,13 +1,16 @@
 package it.unibo.bmbman.model;
 /**
- *
+ *Model all the level features.
  */
 public class LevelImpl implements Level {
-    private static final int BLOCKS_FOR_LEVEL = 60;
+    /**
+     * Says the maximum level.
+     */
+    public static final int LEVEL_MAX = 3;
+    private static final int BLOCKS_FOR_LEVEL = 30;
     private static final int MONSTER_FOR_LEVEL = 2;
     private static final int ONE_TYPE_BONUS_FOR_LEVEL = 2;
     private static final int ONE_TYPE_MALUS_FOR_LEVEL = 1;
-    private static final int LEVEL_MAX = 3;
     private int level;
     private int monstersNumber;
     private int blocksNumber;
@@ -20,7 +23,7 @@ public class LevelImpl implements Level {
     private int bonusLifeNumber;
     private int bonusVelocityNumber;
     /**
-     * 
+     * Create the level and set all features.
      */
     public LevelImpl() {
         this.level = 1;
@@ -131,5 +134,4 @@ public class LevelImpl implements Level {
     public int getBonusVelocityNumber() {
         return this.bonusVelocityNumber;
     }
-
 }

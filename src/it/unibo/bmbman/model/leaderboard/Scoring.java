@@ -5,7 +5,7 @@ import it.unibo.bmbman.model.entities.powerups.AbstractPowerupEntity;
 import it.unibo.bmbman.model.utilities.EntityType;
 
 /**
- *
+ * Class enum to return the score of a particular entity.
  */
 public enum Scoring {
         /**
@@ -23,25 +23,24 @@ public enum Scoring {
 
     private int value;
     /**
-     * 
      * @param value 
      */
     Scoring(final int value) {
         this.value = value;
     }
     /**
-     * 
+     * Get value of entity.
      * @return value
      */
-    public int getValue() {
+    private int getValue() {
         return value;
     }
     /**
-     * 
+     * Get the scoring of the given entity.
      * @param entity 
      * @return scoring 
      */
-    public static int getPoint(final Entity entity) {
+    public static int getScoring(final Entity entity) {
         if (entity.getType() == EntityType.POWER_UP) {
             final AbstractPowerupEntity powerUp = (AbstractPowerupEntity) entity;
             return powerUp.isBonus() ? BONUS.getValue() : MALUS.getValue();

@@ -14,6 +14,7 @@ import javax.swing.table.TableModel;
 import it.unibo.bmbman.model.leaderboard.ScoreHandler;
 import it.unibo.bmbman.model.leaderboard.ScoreTable;
 import it.unibo.bmbman.view.utilities.GameFont;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * 
  * Class used to display Leaderboard.
@@ -24,10 +25,10 @@ public class LeaderboardView extends JTable {
     private static final long serialVersionUID = 1L;
     private final JFrame frame;
     private final transient GUIFactory gf;
-    private static final int ROW_HEIGHT = 40;
+    private static final int ROW_HEIGHT = 40 * ScreenToolUtils.SCALE;
     private static final int BORDER_THICKNESS = 5;
-    private static final int HEIGHT_DISTANCE = 230;
-    private static final int WIDTH_DISTANCE = 100;
+    private static final int HEIGHT_DISTANCE = 230 * ScreenToolUtils.SCALE;
+    private static final int WIDTH_DISTANCE = 100 * ScreenToolUtils.SCALE;
     /**
      * Create LeaderboardView.
      * @param mainMenuView the actual {@link MainMenuView}
@@ -35,7 +36,7 @@ public class LeaderboardView extends JTable {
     public LeaderboardView(final MainMenuView mainMenuView) {
         super();
         this.mainMenuView = mainMenuView;
-        this.gf = new MyGUIFactory(); 
+        this.gf = new GUIFactoryImpl(); 
         this.frame = this.gf.createFrame();
         this.loadLeaderboardView();
     }
@@ -75,7 +76,7 @@ public class LeaderboardView extends JTable {
         });
     }
     /**
-     * 
+     * Get frame.
      * @return frame
      */
      public JFrame getFrame() {

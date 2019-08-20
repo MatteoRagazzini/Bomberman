@@ -27,12 +27,12 @@ public interface Entity {
      */
     boolean remove();
     /**
-     * 
+     * Getter for {@link Dimension}.
      * @return entity's dimension
      */
     Dimension getDimension();
     /**
-     * 
+     * Getter for {@link EntityType}.
      * @return entity's type
      */
     EntityType getType();

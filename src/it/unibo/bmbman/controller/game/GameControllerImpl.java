@@ -1,4 +1,5 @@
 package it.unibo.bmbman.controller.game;
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -7,7 +8,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.stream.Collectors;
 
-import it.unibo.bmbman.controller.EndGameState;
 import it.unibo.bmbman.model.Level;
 import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.engine.GameEngine;
@@ -77,7 +77,7 @@ public class GameControllerImpl implements GameController {
         if (inPause) {
             this.spv.stopTimer();
         } else {
-            this.spv.startTime();
+            this.spv.startTimer();
         }
     }
     /**
@@ -91,13 +91,10 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void endView() {
+    public void endGame() {
         this.spv.getFrame().setVisible(false);
-        EndView end = new EndView(mainView, EndGameState.LOSE, this, spv, ps);
-        if (hasWon()) {
-            end = new EndView(mainView, EndGameState.WIN, this, spv, ps);
-            reset();
-        }
+        final EndView end = new EndView(mainView, this, spv, ps);
+        reset();
         end.getFrame().setVisible(true);
     }
     /**
@@ -150,11 +147,8 @@ public class GameControllerImpl implements GameController {
         return worldEntity.stream().filter(x -> x.getType().getIsBreakable() == EntityFeature.UNBREAKABLE)
                 .collect(Collectors.toSet());
     }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void collisionDetect() {
+
+    private void detectCollision() {
         this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
@@ -171,7 +165,7 @@ public class GameControllerImpl implements GameController {
     @Override
     public void update() {
         removeEntities();
-        collisionDetect();
+        detectCollision();
         this.setController.forEach(ec -> ec.update());
         this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
         this.bc.update();
@@ -185,8 +179,8 @@ public class GameControllerImpl implements GameController {
         this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
         Set<EntityController> controllerToRemoved = this.setController.stream()
-                                                                            .filter(c -> entityToRemoved.contains(c.getEntity()))
-                                                                            .collect(Collectors.toSet());
+                .filter(c -> entityToRemoved.contains(c.getEntity()))
+                .collect(Collectors.toSet());
         controllerToRemoved.forEach(c -> c.remove());
         controllerToRemoved = controllerToRemoved.stream().filter(ec -> ec.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.removeAll(controllerToRemoved);

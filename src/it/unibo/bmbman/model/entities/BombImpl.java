@@ -1,49 +1,46 @@
 package it.unibo.bmbman.model.entities;
 
-import java.awt.Rectangle;
-import it.unibo.bmbman.model.Terrain;
+import java.util.Optional;
+
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.collision.Collision;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.EntityType;
-import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
- * It models a bomb.
+ * Implementation of {@link Bomb}.
  */
 public class BombImpl extends AbstractEntity implements Bomb {
-    private BombState state;
-    private long timer;
     private static final int MAX_TIMER = 3;
     private static final long MILLIS = 1000;
+    private BombState state;
+    private long timer;
+    private Optional<Explosion> explosion;
     private final int range;
-    private Pair<Rectangle, Rectangle> explosion; 
     /**
      * Create a bomb. 
      * @param position 
      * @param range 
      */
     public BombImpl(final Position position, final int range) {
-        super(position, EntityType.BOMB, new Dimension(Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION));
+        super(new Position(position.getX() / ScreenToolUtils.SCALE, 
+                position.getY() / ScreenToolUtils.SCALE), EntityType.BOMB, 
+                new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
         this.state = BombState.PLANTED;
         this.timer = 0;
+        this.explosion = Optional.empty();
         this.range = range;
-        this.explosion = new Pair<>(new Rectangle(position.getX() - Terrain.CELL_DIMENSION, position.getY(), 0, 0),
-                                    new Rectangle(position.getX(), position.getY() - Terrain.CELL_DIMENSION, 0, 0));
-    }
-    /**
-     * {@inheritDoc}
-     */
-    public Pair<Rectangle, Rectangle> getExplosion() {
-        return explosion;
     }
     /**
      * {@inheritDoc}
      */
     @Override
-    public boolean remove() {
-        return getState() == BombState.EXPLODED;
+    public Optional<Explosion> getExplosion() {
+        return this.explosion;
     }
+
     /**
      * {@inheritDoc}
      */
@@ -62,25 +59,6 @@ public class BombImpl extends AbstractEntity implements Bomb {
      * {@inheritDoc}
      */
     @Override
-    public void update() {
-        if (this.timer > 0) {
-            final long now = System.currentTimeMillis() / MILLIS;
-            if (now - this.timer >= MAX_TIMER) {
-                this.timer = 0;
-                this.state = BombState.IN_EXPLOSION;
-                final Position pos = this.getPosition();
-                final Rectangle horizontal = new Rectangle(pos.getX() - getShift() * Terrain.CELL_DIMENSION, pos.getY(), 
-                                                                Terrain.CELL_DIMENSION * range, Terrain.CELL_DIMENSION);
-                final Rectangle vertical = new Rectangle(pos.getX(), pos.getY() - getShift() * Terrain.CELL_DIMENSION, 
-                                                                Terrain.CELL_DIMENSION, Terrain.CELL_DIMENSION * range);
-                this.explosion = new Pair<Rectangle, Rectangle>(horizontal, vertical);
-            }
-        }
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void startTimer() {
         this.timer = System.currentTimeMillis() / MILLIS;
     }
@@ -88,13 +66,27 @@ public class BombImpl extends AbstractEntity implements Bomb {
      * {@inheritDoc}
      */
     @Override
-    public void onCollision(final Collision c) {
+    public void update() {
+        if (this.timer > 0) {
+            final long now = System.currentTimeMillis() / MILLIS;
+            if (now - this.timer >= MAX_TIMER) {
+                this.timer = 0;
+                this.state = BombState.IN_EXPLOSION;
+                this.explosion = Optional.of(new Explosion(this.getPosition(), range));
+            }
+        }
     }
     /**
-     * Get how many cells have to be considerated around the center of explosion. 
-     * @return number of cells
+     * {@inheritDoc}
      */
-    private int getShift() {
-        return range == 3 ? 1 : 2;
+    @Override
+    public boolean remove() {
+        return getState() == BombState.EXPLODED;
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void onCollision(final Collision c) {
     }
 }

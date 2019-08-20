@@ -6,6 +6,8 @@ import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,42 +21,37 @@ import javax.swing.JRadioButton;
 
 import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.controller.OptionsMenuController;
-import it.unibo.bmbman.view.utilities.ImageLoader;
+import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 
 /**
- * View of the options menu.
+ * View class for the options menu.
  */
 public class OptionsView {
-
+    private static final Insets INSETS = new Insets(0, 60, 0, 0);
     private final Map<JRadioButton, OptionsMenuList> jbMap = new HashMap<>();
     private final OptionsMenuController optionsMenuCtrl;
+    private GridBagConstraints c;
+    private final GUIFactoryImpl gui;
     private final MainMenuView mainView;
-    private static final Insets INSETS = new Insets(0, 60, 0, 0);
-    //  private static final Insets INSETS = new Insets(25, 60, 35, 20);
     private String optionsImagePath;
     private JPanel centerP; 
     private JPanel eastP;
     private JPanel northP;
-    private GridBagConstraints c;
-    private JFrame f;
-    private final MyGUIFactory gui;
-    private final ImageLoader il = new ImageLoader();
-
+    private final JFrame f;
     /**
      * Create options menu view.
      * @param mainMenuView the {@link MainMenuView} with which is related
-     * @param optionsMenuController the {@link OptionsMenuController} that manage all the choises
+     * @param optionsMenuController the {@link OptionsMenuController} that manage all choises
      */
     public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController optionsMenuController) {
-        this.gui = new MyGUIFactory();
+        this.gui = new GUIFactoryImpl();
         this.f = gui.createFrame();
         loadOptionsView();
         mainView = mainMenuView;
         this.optionsMenuCtrl = optionsMenuController;
     }
-
     /**
      * Customize the options view frame.
      */
@@ -66,8 +63,6 @@ public class OptionsView {
         loadLabels();
         loadButtons();
     }
-
-
     /**
      * Used to load panels.
      */
@@ -87,13 +82,12 @@ public class OptionsView {
         f.add(eastP, BorderLayout.EAST);
         f.add(northP, BorderLayout.NORTH);
     }
-
     /**
      * Used to loadLabels.
      */
     private void loadLabels() {
         final JLabel titleLabel = gui.createLabel("Options Menù");
-        final JLabel iconLabel = new JLabel(new ImageIcon(il.loadImage(optionsImagePath)));
+        final JLabel iconLabel = new JLabel(new ImageIcon(ImageLoaderUtils.loadImage(optionsImagePath)));
         northP.add(titleLabel, BorderLayout.CENTER);
         eastP.add(iconLabel, BorderLayout.CENTER);
         final JLabel musicLabel = gui.createLabel("Music");
@@ -105,7 +99,6 @@ public class OptionsView {
         c.gridy = 1;
         centerP.add(effectsLabel, c);
     }
-
     /**
      * Used to load buttons.
      */
@@ -119,14 +112,11 @@ public class OptionsView {
         final ButtonGroup effects = new ButtonGroup();
         for (int i = 0; i < OptionsMenuList.values().length; i++) {
             final JRadioButton b = gui.createRadioButton(OptionsMenuList.values()[i].toString());
-            b.addActionListener(e -> {
-                final JRadioButton jb = (JRadioButton) e.getSource();
-                optionsMenuCtrl.setOptionSelected((jbMap.get(jb)));
-            });
+            b.addActionListener(new HandlerAdapter());
             if (b.getText().equals("ON")) {
                 b.setSelected(true);
             }
-            c.weightx = 0; //mi serve per spostare i tasti on e off in fondo
+            c.weightx = 0;
             c.gridx = (i % 2) + 1; 
             c.gridy = i / 2; 
             if (i < 2) {
@@ -150,5 +140,12 @@ public class OptionsView {
      */
     private void saveOptionsImagePath() {
         optionsImagePath = "/image/" + ScreenToolUtils.getScreenRes() + "_OptionsImage.png";
+    }
+    private class HandlerAdapter implements ActionListener {
+        @Override
+        public void actionPerformed(final ActionEvent e) {
+            final JRadioButton jb = (JRadioButton) e.getSource();
+            optionsMenuCtrl.setOptionSelected((jbMap.get(jb)));
+        }
     }
 }

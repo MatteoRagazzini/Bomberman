@@ -1,7 +1,5 @@
 package it.unibo.bmbman.controller;
-
 import it.unibo.bmbman.view.MainMenuView;
-
 /**
  * start the application.
  *
@@ -9,8 +7,8 @@ import it.unibo.bmbman.view.MainMenuView;
 public final class Launcher {
     private Launcher() { };
     /**
-     * 
-     * @param args .
+     * Main method of application.
+     * @param args parameters
      */
     public static void main(final String[] args) {
          new MainMenuView().loadMainMenuView();

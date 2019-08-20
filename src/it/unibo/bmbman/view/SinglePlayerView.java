@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import it.unibo.bmbman.controller.game.KeyInput;
-import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.entities.HeroImpl;
 import it.unibo.bmbman.model.leaderboard.PlayerScoreImpl;
 import it.unibo.bmbman.model.utilities.EntityType;
@@ -20,11 +20,10 @@ import it.unibo.bmbman.view.entities.EntityView;
 
 /**
  * Frame for single player game mode.
- *
  */
-public class SinglePlayerView {
+public class SinglePlayerView implements GameView {
     private static final int SECONDS_IN_MINUTE = 60;
-    private final GUIFactory gui = new MyGUIFactory();
+    private final GUIFactory gui = new GUIFactoryImpl();
     private final Canvas canvas = new Canvas(); 
     private final JFrame frame = gui.createFrame();
     private BufferStrategy bs;
@@ -34,28 +33,28 @@ public class SinglePlayerView {
     private int seconds;
     private int minutes;
     /**
-     * construct the frame.
+     * Construct the frame.
      * @param ki {@link KeyInput}
-     * @param hero 
-     * @param ps 
+     * @param hero {@link HeroImpl}
+     * @param ps {@link PlayerScoreImpl}
      */
     public SinglePlayerView(final KeyInput ki, final PlayerScoreImpl ps, final HeroImpl hero) {
         nPanel = new TopBar(gui, ps, hero);
         seconds = 0;
         minutes = 0;
-        nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+        nPanel.getLabelTime().setText(this.getTime());
         this.timer = new Timer(1000, a -> {
             seconds++;
             if (seconds == SECONDS_IN_MINUTE) {
                 minutes++;
                 seconds = 0;
             }
-            nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+            nPanel.getLabelTime().setText(this.getTime());
         });
         this.timer.start();
         frame.add(sPanel);
         frame.add(nPanel, BorderLayout.NORTH);
-        canvas.setSize(Terrain.TERRAIN_WIDTH, Terrain.TERRAIN_HEGHT);
+        canvas.setSize(TerrainFactoryImpl.TERRAIN_WIDTH, TerrainFactoryImpl.TERRAIN_HEGHT);
         sPanel.add(canvas, BorderLayout.SOUTH);
         frame.pack();
         canvas.addKeyListener(ki);
@@ -66,11 +65,23 @@ public class SinglePlayerView {
         }
     }
     /**
-     * get the frame.
-     * @return the current frame
+     * Stop time.
      */
-    public JFrame getFrame() {
-        return this.frame;
+    public void stopTimer() {
+        this.timer.stop();
+    }
+    /**
+     * Start time.
+     */
+    public void startTimer() {
+        this.timer.start();
+    }
+    /**
+     * Get timer in string format.
+     * @return time 
+     */
+    public String getTime() {
+        return String.format("%02d:%02d", minutes, seconds);
     }
     /**
      * Used to get {@link Graphics} component to update.
@@ -80,10 +91,9 @@ public class SinglePlayerView {
         return this.bs.getDrawGraphics();
     }
     /**
-     * Used to update the frame.
-     * @param entitiesView all the entities' view to update 
-     * @param bombs all the planted bombs' view to update
+     * {@inheritDoc}
      */
+    @Override
     public void render(final Set<EntityView> entitiesView, final Set<BombView> bombs) {
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.TILE).forEach(v -> v.render(getGraphics()));
         entitiesView.stream().filter(ev -> ev.getType() == EntityType.POWER_UP).forEach(v -> v.render(getGraphics()));
@@ -97,22 +107,10 @@ public class SinglePlayerView {
         this.canvas.requestFocus();
     }
     /**
-     * stop time.
+     * Get the frame.
+     * @return the current frame
      */
-    public void stopTimer() {
-        this.timer.stop();
-    }
-    /**
-     * start time.
-     */
-    public void startTime() {
-        this.timer.start();
-    }
-    /**
-     * 
-     * @return time 
-     */
-    public String getTime() {
-        return String.format("%02d:%02d", minutes, seconds);
+    public JFrame getFrame() {
+        return this.frame;
     }
 }

@@ -16,9 +16,7 @@ import java.util.Optional;
 public final class ScoreHandler {
     private static final String FILE_NAME = "score.txt";
     private static List<PlayerScoreImpl> data = new ArrayList<>();
-    /**
-     * 
-     */
+
     private ScoreHandler() {
         super();
     }
@@ -27,7 +25,6 @@ public final class ScoreHandler {
      * @param list of score, level, game time and name of the player
      */
     private static void save(final List<PlayerScoreImpl> l) {
-        System.out.println("SAVE");
         try (ObjectOutputStream o = new ObjectOutputStream(new FileOutputStream(FILE_NAME))) {
             o.writeObject(l);
             o.close();
@@ -40,7 +37,6 @@ public final class ScoreHandler {
      * Read data from score.txt and sort them.
      */
     private static void read() {
-        //data.clear();
         try (ObjectInputStream br = new ObjectInputStream((new FileInputStream(FILE_NAME)))) { 
                 final Object o = br.readObject();
                 if (o instanceof List<?>) {
@@ -63,44 +59,42 @@ public final class ScoreHandler {
         return data;
     }
     /**
-     * 
+     * Check if file exists and in this case it invokes read method.
      */
     public static void checkAndRead() {
-        final File file = new File(FILE_NAME);
-        if (file.exists()) {
+        if (new File(FILE_NAME).exists()) {
             read();
         }
     }
     /**
+     * Check if file exists and write or update the playerScore into file.
      * @param level 
      * @param ps 
      * @param playerName 
      * @param time 
      */
     public static void checkAndWrite(final int level, final PlayerScoreImpl ps, final String playerName, final String time) {
-        if (new File(FILE_NAME).exists()) {
-            //read();
-            final Optional<PlayerScoreImpl> p = checkIfPresent(playerName);
+        Optional<PlayerScoreImpl> p = Optional.empty();
+        final File file = new File(FILE_NAME);
+        if (file.exists()) {
+            p = checkIfPresent(playerName);
             if (p.isPresent() && p.get().getLevel() == level) {
                 update(p.get(), ps.getScore(), time);
-            } else {
-                 ps.setGameTime(time); 
-                 ps.setName(playerName);
-                 ps.setLevel(level);
-                 data.add(ps);
             }
-        } else {
+        }
+        if (!(p.isPresent() && p.get().getLevel() == level) || !file.exists()) {
             ps.setGameTime(time);
             ps.setName(playerName);
             ps.setLevel(level);
             data.add(ps);
+            data.sort((p1, p2) -> p1.compareTo(p2)); 
         }
         save(data);
     }
     /**
      * It checks if the given name is already present into the file.
      * @param playerName
-     * @return {@link PlayerScoreImpl} if exists or an
+     * @return an Optional of {@link PlayerScoreImpl}
      */
     private static Optional<PlayerScoreImpl> checkIfPresent(final String playerName) {
         return data.stream()

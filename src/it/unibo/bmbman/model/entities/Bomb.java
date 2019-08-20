@@ -1,18 +1,18 @@
 package it.unibo.bmbman.model.entities;
-import java.awt.Rectangle;
+import java.util.Optional;
+
 import it.unibo.bmbman.model.utilities.BombState;
-import it.unibo.bmbman.model.utilities.Pair;
 /**
  * Interface of bomb. 
  */
 public interface Bomb {
     /**
-     * Get explosion.
-     * @return {@link Pair} of {@link Rectangle}
+     * Get {@link Explosion}.
+     * @return explosion
      */
-    Pair<Rectangle, Rectangle> getExplosion();
+    Optional<Explosion> getExplosion();
     /**
-     * 
+     * Get state of bomb.
      * @return {@link BombState}
      */
     BombState getState();

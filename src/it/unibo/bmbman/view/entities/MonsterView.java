@@ -9,18 +9,16 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
-import it.unibo.bmbman.view.utilities.Animation;
 import it.unibo.bmbman.view.utilities.AnimationImpl;
+import it.unibo.bmbman.view.utilities.AnimationIterator;
 /**
- * Class to manage the view of monsters.
- *
- *
+ * View class for monsters.
  */
 public class MonsterView extends AbstractEntityView {
     private static final String PATH_MONSTER_IMAGES = "/Monster/Monster";
     private static final int DIMENSION = 48;
     private static final int FRAME_PER_ANIMATION = 6;
-    private final Map<Direction, Animation> sprites = new EnumMap<>(Direction.class);
+    private final Map<Direction, AnimationIterator> sprites = new EnumMap<>(Direction.class);
 
     /**
      * Create a monster view.
@@ -30,16 +28,24 @@ public class MonsterView extends AbstractEntityView {
         super(position, new Dimension(DIMENSION, DIMENSION), true, EntityType.MONSTER); 
         setMapDirection();
     }
+    /**
+     * Load the spritesheet according to the directions.
+     */
     private void setMapDirection() {
         for (int i = 0; i < Direction.values().length - 1; i++) {
             setDirectionAnimation(PATH_MONSTER_IMAGES + Direction.values()[i].toString().charAt(0) + ".png", 
                     Direction.values()[i], DIMENSION, FRAME_PER_ANIMATION);
         }
     }
-
-    private void setDirectionAnimation(final String path, final Direction d, final int dimension, final int frame) {
-        this.sprites.put(d, new AnimationImpl());
-        this.sprites.get(d).createAnimation(path, frame, dimension);
+    /**
+     * Create the animation according to the direction.
+     * @param path of the spritesheet
+     * @param direction
+     * @param dimension dimension of the sprite
+     * @param frame per animation
+     */
+    private void setDirectionAnimation(final String path, final Direction direction, final int dimension, final int frame) {
+        this.sprites.put(direction, AnimationImpl.createAnimation(path, frame, dimension).createInfiniteIterator());
     }
     /**
      * {@inheritDoc}

@@ -7,8 +7,9 @@ import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
- * Abstarct implementation of entityView.
+ * Abstract implementation of entityView.
  */
 public abstract class AbstractEntityView implements EntityView {
 
@@ -19,14 +20,14 @@ public abstract class AbstractEntityView implements EntityView {
     private final EntityType entityType;
     /**
      * Constructor for an EntityView.
-     * @param position where is the entity in our terrien
+     * @param position where is the entity in our terrain
      * @param dimension the dimension of entity
-     * @param visible if the enity is visible or not
+     * @param visible if the entity is visible or not
      * @param entityType the type of the entity
      */
     public AbstractEntityView(final Position position, final Dimension dimension, final boolean visible, final EntityType entityType) {
         this.position = position;
-        this.dimension = dimension;
+        this.dimension = new Dimension(dimension.getHeight() * ScreenToolUtils.SCALE, dimension.getWidth() * ScreenToolUtils.SCALE);
         this.visible = visible;
         this.direction = Direction.IDLE;
         this.entityType = entityType;
@@ -67,13 +68,6 @@ public abstract class AbstractEntityView implements EntityView {
     public Dimension getDimension() {
         return this.dimension;
     }
-    //    /**
-    //     * {@inheritDoc}
-    //     */
-    //    @Override
-    //    public void setSprite(final Image image) {
-    //        this.image = image;
-    //    }
     /**
      * {@inheritDoc}
      */
@@ -90,7 +84,7 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public boolean getVisible() {
+    public boolean isVisible() {
         return this.visible;
     }
     /**

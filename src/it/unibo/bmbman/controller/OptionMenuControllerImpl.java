@@ -1,6 +1,6 @@
 package it.unibo.bmbman.controller;
 /**
- * implementation of OptionMenuController interface.
+ * Class that manage the behaviour of the options menù.
  */
 public class OptionMenuControllerImpl implements OptionsMenuController {
     private final SoundsController sc = new SoundsController();
@@ -16,10 +16,10 @@ public class OptionMenuControllerImpl implements OptionsMenuController {
             case MUSICOFF:
                 sc.setMusicOff();
                 break;
-            case EFFECTON:
+            case EFFECTSON:
                 sc.setEffectsOn();
                 break;
-            case EFFECTOFF:
+            case EFFECTSOFF:
                 sc.setEffectsOff();
                 break;
             default:

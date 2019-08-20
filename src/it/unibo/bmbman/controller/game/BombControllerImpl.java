@@ -17,7 +17,7 @@ import it.unibo.bmbman.model.utilities.Pair;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.entities.BombView;
 /**
- *
+ *  Implementation of {@link BombController}.
  */
 public class BombControllerImpl implements BombController {
     private final List<Pair<BombImpl, BombView>> amountBombs;
@@ -95,7 +95,7 @@ public class BombControllerImpl implements BombController {
     public void collision(final Set<Entity> entities) {
         this.getBombsInExplosion().forEach(b -> {
             entities.forEach(e -> {
-                if (checkCollision(e, b.getExplosion().getX()) || checkCollision(e, b.getExplosion().getY())) {
+                if (checkCollision(e, b.getExplosion().get().getX()) || checkCollision(e, b.getExplosion().get().getY())) {
                     this.notifyCollision(e, b);
                 }
             });

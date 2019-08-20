@@ -9,18 +9,22 @@ import it.unibo.bmbman.model.entities.Entity;
  */
 public interface PlayerScore {
     /**
+     * Get name.
      * @return name
      */
     String getName();
     /** 
+     * Get gameTime.
      * @return gameTime
      */
     String getGameTime();
     /**
+     * Get score.
      * @return score
      */
     int getScore();
     /**
+     * Get level.
      * @return level's number
      */
     int getLevel();

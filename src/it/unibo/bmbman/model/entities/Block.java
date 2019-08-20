@@ -11,7 +11,7 @@ import it.unibo.bmbman.model.utilities.Position;
 public class Block extends AbstractEntity {
     private boolean isBroken;
     /**
-     * crate a breakable wall.
+     * Crate a breakable wall.
      * @param position the block position
      * @param dimension the block dimension
      */
@@ -40,5 +40,4 @@ public class Block extends AbstractEntity {
             isBroken = true;
         }
     }
-
 }

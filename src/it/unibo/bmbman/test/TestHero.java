@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.Test;
 
 import it.unibo.bmbman.controller.SoundsController;
-import it.unibo.bmbman.model.Terrain;
+import it.unibo.bmbman.model.TerrainFactoryImpl;
 import it.unibo.bmbman.model.collision.CollisionImpl;
 import it.unibo.bmbman.model.entities.Hero;
 import it.unibo.bmbman.model.entities.HeroImpl;
@@ -21,8 +21,8 @@ import it.unibo.bmbman.model.utilities.Velocity;
  * Class to test Hero.
  */
 public class TestHero {
-    private static final Position POSITION = new Position(Terrain.PLAYER_POSITION.getX() + Velocity.SPEED * 3, 
-            Terrain.PLAYER_POSITION.getY() + Velocity.SPEED * 2);
+    private static final Position POSITION = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX() + Velocity.SPEED * 3, 
+            TerrainFactoryImpl.PLAYER_POSITION.getY() + Velocity.SPEED * 2);
     private final Hero hero = new HeroImpl();
     /**
      * Test hero's position.
@@ -32,7 +32,7 @@ public class TestHero {
         /*
          * Test initial hero's position.
          */
-        assertEquals(Terrain.PLAYER_POSITION, hero.getPosition());
+        assertEquals(TerrainFactoryImpl.PLAYER_POSITION, hero.getPosition());
         /*
          * Test initial hero state.
          */
@@ -40,39 +40,39 @@ public class TestHero {
         /*
          * Test of right movement of hero 
          */
-        final Position newRightPosition = new Position(Terrain.PLAYER_POSITION.getX() + Velocity.SPEED, Terrain.PLAYER_POSITION.getY());
+        final Position newRightPosition = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX() + Velocity.SPEED, TerrainFactoryImpl.PLAYER_POSITION.getY());
         hero.setDirection(Direction.RIGHT);
         hero.update();
         assertEquals(newRightPosition, hero.getPosition());
         //Move hero in his initial position
-        hero.setPosition(Terrain.PLAYER_POSITION);
+        hero.setPosition(TerrainFactoryImpl.PLAYER_POSITION);
         /*
          * Test of down movement
          */
-        final Position newDownPosition = new Position(Terrain.PLAYER_POSITION.getX(), Terrain.PLAYER_POSITION.getY() + Velocity.SPEED);
+        final Position newDownPosition = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), TerrainFactoryImpl.PLAYER_POSITION.getY() + Velocity.SPEED);
         hero.setDirection(Direction.DOWN);
         hero.update();
         assertEquals(newDownPosition, hero.getPosition());
         /*
          * Test of left movement
          */
-        hero.setPosition(Terrain.PLAYER_POSITION);
-        final Position newLeftPosition = new Position(Terrain.PLAYER_POSITION.getX() - Velocity.SPEED, Terrain.PLAYER_POSITION.getY());
+        hero.setPosition(TerrainFactoryImpl.PLAYER_POSITION);
+        final Position newLeftPosition = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX() - Velocity.SPEED, TerrainFactoryImpl.PLAYER_POSITION.getY());
         hero.setDirection(Direction.LEFT);
         hero.update();
         assertEquals(newLeftPosition, hero.getPosition());
         /*
          * Test of up movement
          */
-        hero.setPosition(Terrain.PLAYER_POSITION);
-        final Position newUpPosition = new Position(Terrain.PLAYER_POSITION.getX(), Terrain.PLAYER_POSITION.getY() - Velocity.SPEED);
+        hero.setPosition(TerrainFactoryImpl.PLAYER_POSITION);
+        final Position newUpPosition = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), TerrainFactoryImpl.PLAYER_POSITION.getY() - Velocity.SPEED);
         hero.setDirection(Direction.UP);
         hero.update();
         assertEquals(newUpPosition, hero.getPosition());
         /*
          * Test multiple movement
          */
-        hero.setPosition(Terrain.PLAYER_POSITION);
+        hero.setPosition(TerrainFactoryImpl.PLAYER_POSITION);
         final Position newPosition = POSITION;
         hero.setDirection(Direction.RIGHT);
         hero.update();
@@ -98,7 +98,7 @@ public class TestHero {
         assertTrue(hero.hasKey());
         assertFalse(hero.hasWon());
         final Door door = new Door();
-        door.onCollision(new CollisionImpl(hero, Terrain.DOOR_POSITION));
+        door.onCollision(new CollisionImpl(hero, TerrainFactoryImpl.DOOR_POSITION));
         assertTrue(hero.hasWon());
     }
 }
