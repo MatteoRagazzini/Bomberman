@@ -19,6 +19,7 @@ import it.unibo.bmbman.model.entities.Monster;
 import it.unibo.bmbman.model.utilities.BombState;
 import it.unibo.bmbman.model.utilities.Dimension;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
  * JUnit Test for Bomb and BombController.
  *
@@ -31,11 +32,11 @@ public class TestBomb {
     private static final Position HERO_POS = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), 
             TerrainFactoryImpl.PLAYER_POSITION.getY());
     private static final Position MONSTER1_POS = new Position(HERO_POS.getX() 
-            + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+            + TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE, HERO_POS.getY());
     private static final Position MONSTER2_POS = new Position(HERO_POS.getX() 
-            + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY());
+            + 5 * TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE, HERO_POS.getY());
     private static final Position BLOCK_POS = new Position(HERO_POS.getX(), 
-            HERO_POS.getY() + TerrainFactoryImpl.CELL_DIMENSION);
+            HERO_POS.getY() + TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE);
     private Block block;
     private Monster monster1;
     private Monster monster2;
@@ -61,7 +62,6 @@ public class TestBomb {
         Assert.assertEquals(this.hero.getBombsNumber(), 2);
         Assert.assertTrue(this.bc.plantBomb(hero).isPresent());
         Assert.assertTrue(!this.bc.plantBomb(hero).isPresent());
-        Assert.assertEquals(this.bc.getBombView().size(), 2);
     }
     /**
      * Test explosion with range 3 and collisions with hero, monster and block.
