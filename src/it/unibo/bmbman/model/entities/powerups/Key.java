@@ -19,7 +19,6 @@ public class Key extends AbstractPowerupEntity {
      */
     @Override
     public final void powerupEffect(final HeroImpl hero) {
-        System.out.println("PRESO CHIAVE");
         hero.setKey();
         SoundsController.getKeySound().ifPresent(s -> s.play());
     }
