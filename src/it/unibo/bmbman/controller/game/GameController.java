@@ -23,6 +23,11 @@ public interface GameController {
      */
     void pause();
     /**
+     * Provides level information. 
+     * @return an instance of level
+     */
+    Level getLevel();
+    /**
      * Used to store all the entities in game.
      * @param entity the {@link Entity} to add
      * @param enitityView the {@link EntityView} of entity to add
@@ -71,15 +76,6 @@ public interface GameController {
      * Used to update any entity in the world.
      */
     void update();
-    /**
-     * Remove entities from the world.
-     */
-    void removeEntities();
-    /**
-     * Provides level information. 
-     * @return an instance of level
-     */
-    Level getLevel();
     /**
      * Reset the gameController after the end of the game.
      */

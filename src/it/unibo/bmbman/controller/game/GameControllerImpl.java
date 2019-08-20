@@ -26,16 +26,15 @@ import it.unibo.bmbman.view.entities.EntityView;
  * An implementation of {@link GameController}.
  */
 public class GameControllerImpl implements GameController {
-    private  List<Entity> worldEntity;
-    private  Set<EntityController> setController;
-    private  SinglePlayerView spv;
-    private  BombControllerImpl bc;
+    private List<Entity> worldEntity;
+    private Set<EntityController> setController;
+    private SinglePlayerView spv;
+    private BombControllerImpl bc;
     private PlayerScoreImpl ps;
     private final MainMenuView mainView; 
-    private  GameEngine engine;
+    private GameEngine engine;
     private boolean inPause;
     private final Level lv = new LevelImpl(); 
-
     /**
      * Construct an implementation of {@link GameController}.
      * @param menuView {@link MainMenuView}
@@ -44,14 +43,6 @@ public class GameControllerImpl implements GameController {
         this.worldEntity = new CopyOnWriteArrayList<>();
         this.setController = new HashSet<>();
         this.mainView = menuView;
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Level getLevel() {
-
-        return lv; 
     }
     /**
      * {@inheritDoc}
@@ -81,6 +72,16 @@ public class GameControllerImpl implements GameController {
         }
     }
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void endGame() {
+        this.spv.getFrame().setVisible(false);
+        final EndView end = new EndView(mainView, this, spv, ps);
+        reset();
+        end.getFrame().setVisible(true);
+    }
+    /**
      * 
      * @return true if the hero is dead
      */
@@ -91,11 +92,15 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void endGame() {
-        this.spv.getFrame().setVisible(false);
-        final EndView end = new EndView(mainView, this, spv, ps);
-        reset();
-        end.getFrame().setVisible(true);
+    public boolean hasWon() {
+        return getHero().hasWon();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Level getLevel() {
+        return lv; 
     }
     /**
      * {@inheritDoc}
@@ -149,7 +154,7 @@ public class GameControllerImpl implements GameController {
     }
 
     private void detectCollision() {
-        this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
+        this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.detectCollision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
     /**
@@ -170,11 +175,7 @@ public class GameControllerImpl implements GameController {
         this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
         this.bc.update();
     }
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void removeEntities() {
+    private void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
         this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
@@ -185,13 +186,6 @@ public class GameControllerImpl implements GameController {
         controllerToRemoved = controllerToRemoved.stream().filter(ec -> ec.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.removeAll(controllerToRemoved);
         this.bc.removeBomb();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean hasWon() {
-        return getHero().hasWon();
     }
     /**
      * {@inheritDoc}

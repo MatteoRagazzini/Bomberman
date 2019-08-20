@@ -36,7 +36,6 @@ public interface Entity {
      * @return entity's type
      */
     EntityType getType();
-
     /**
      * Used to get {@link CollisionComponent}.
      * @return the {@link CollisionComponent} associated with this entity

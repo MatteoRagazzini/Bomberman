@@ -21,7 +21,7 @@ public class EntityCollisionManagerImpl implements EntityCollisionManager {
      * {@inheritDoc}
      */
     @Override
-    public void collision(final Set<Entity> entities) {
+    public void detectCollision(final Set<Entity> entities) {
         entities.stream().filter(e -> !e.equals(followedEntity.getFollowedEntity()))
         .forEach(e -> {
             if (checkCollision(e, followedEntity.getTopHitbox())) {

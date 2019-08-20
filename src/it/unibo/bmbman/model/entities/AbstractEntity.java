@@ -45,12 +45,6 @@ public abstract class AbstractEntity implements Entity {
     }
     /**
      * {@inheritDoc}
-     * @return 
-     */
-    @Override
-    public abstract boolean remove();
-    /**
-     * {@inheritDoc}
      */
     @Override
     public Dimension getDimension() {
@@ -72,4 +66,6 @@ public abstract class AbstractEntity implements Entity {
     }
     @Override
     public abstract void onCollision(Collision c);
+    @Override
+    public abstract boolean remove();
 }

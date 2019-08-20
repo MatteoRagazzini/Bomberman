@@ -52,14 +52,11 @@ public class KeyInput implements KeyListener {
      */
     @Override
     public void keyReleased(final KeyEvent e) {
-//        System.out.println("FUNZIONE REALES");
         gc.getHero().setDirection(Direction.IDLE);
     }
 
     @Override
     public void keyTyped(final KeyEvent arg0) {
-        // TODO Auto-generated method stub
-
     }
 
 }

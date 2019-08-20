@@ -26,7 +26,7 @@ public interface Level {
      * Says how many monster are in this level.
      * @return the number of monsters
      */
-    int getMonsterNumber();
+    int getMonstersNumber();
     /**
      * Says how many malus freeze are in this level.
      * @return the number of malus freeze

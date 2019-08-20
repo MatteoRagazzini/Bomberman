@@ -91,7 +91,7 @@ public abstract class AbstractEntityView implements EntityView {
      * {@inheritDoc}
      */
     @Override
-    public void changeDirection(final Direction direction) {
+    public void setDirection(final Direction direction) {
         this.direction = direction;
     }
     /**

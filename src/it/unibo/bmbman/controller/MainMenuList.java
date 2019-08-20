@@ -8,7 +8,7 @@ public enum MainMenuList {
     /**
      * Classic game mode with one player VS CPU.
     */
-    SINGLE_PLAYER("Single player"),
+    SINGLE_PLAYER("Start Game"),
     /**
      * Score board based on points to complete each level.
      */
@@ -18,9 +18,9 @@ public enum MainMenuList {
      */
     SETTINGS("Settings"),
     /**
-     * Helps.
+     * Help.
      */
-    HELP("Helps");
+    HELP("Help");
     private final String name;
 
     MainMenuList(final String name) {

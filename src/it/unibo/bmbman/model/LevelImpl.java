@@ -75,7 +75,7 @@ public class LevelImpl implements Level {
      * {@inheritDoc}
      */
     @Override
-    public int getMonsterNumber() {
+    public int getMonstersNumber() {
         return this.monstersNumber;
     }
     /**
