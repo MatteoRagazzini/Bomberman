@@ -67,7 +67,7 @@ public interface EntityView {
      * Used to change sprites according to direction.
      * @param direction the direction in which the entity is moving
      */
-    void changeDirection(Direction direction);
+    void setDirection(Direction direction);
     /**
      * Used to know in which direction the entity is moving.
      * @return {@link Direction}

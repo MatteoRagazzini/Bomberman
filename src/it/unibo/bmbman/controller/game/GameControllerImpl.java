@@ -26,16 +26,15 @@ import it.unibo.bmbman.view.entities.EntityView;
  * An implementation of {@link GameController}.
  */
 public class GameControllerImpl implements GameController {
-    private  List<Entity> worldEntity;
-    private  Set<EntityController> setController;
-    private  SinglePlayerView spv;
-    private  BombControllerImpl bc;
+    private List<Entity> worldEntity;
+    private Set<EntityController> setController;
+    private SinglePlayerView spv;
+    private BombControllerImpl bc;
     private PlayerScoreImpl ps;
     private final MainMenuView mainView; 
-    private  GameEngine engine;
+    private GameEngine engine;
     private boolean inPause;
     private final Level lv = new LevelImpl(); 
-
     /**
      * Construct an implementation of {@link GameController}.
      * @param menuView {@link MainMenuView}
@@ -149,7 +148,7 @@ public class GameControllerImpl implements GameController {
     }
 
     private void detectCollision() {
-        this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.collision(getUnwalkableEntity())));
+        this.setController.stream().map(c -> c.getCollisionManager()).forEach(c -> c.ifPresent(cc -> cc.detectCollision(getUnwalkableEntity())));
         this.bc.collision(getBreakableEntity());
     }
     /**

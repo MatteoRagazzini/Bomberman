@@ -58,7 +58,7 @@ public class EntityControllerImpl implements EntityController {
     private void updateView() {
         this.ev.setPosition(en.getPosition());
         if (en instanceof AbstractLivingEntity) {
-            this.ev.changeDirection(((AbstractLivingEntity) en).getDirection()); 
+            this.ev.setDirection(((AbstractLivingEntity) en).getDirection()); 
         }
     }
     /**
@@ -76,5 +76,4 @@ public class EntityControllerImpl implements EntityController {
     public void remove() {
         ev.remove();
     }
-
 }
