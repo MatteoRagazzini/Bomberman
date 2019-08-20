@@ -23,7 +23,6 @@ public class EntityControllerImpl implements EntityController {
      * @param ev the {@link EntityView} of entity
      */
     public EntityControllerImpl(final Entity en, final EntityView ev) {
-        super();
         this.en = en;
         this.ev = ev;
         updateView();

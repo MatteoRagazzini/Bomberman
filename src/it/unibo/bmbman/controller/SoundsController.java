@@ -30,6 +30,27 @@ public class SoundsController {
             loadEffects();
     }
     /**
+     * Gets the explosion sound.
+     * @return explosion {@link Sound}
+     */
+    public static Optional<Sound> getExplosionSound() {
+        return explosion;
+    }
+    /**
+     * Gets the placedBomb sound.
+     * @return placeBomb {@link Sound}
+     */
+    public static Optional<Sound> getPlaceBombSound() {
+        return placeBomb;
+    }
+    /**
+     * Gets the {@link Key} sounds. 
+     * @return key {@link Sound}
+     */
+    public static Optional<Sound> getKeySound() {
+        return key;
+    }
+    /**
      * Gets the music in game.
      *
      * @return music {@link Sound}
@@ -60,27 +81,6 @@ public class SoundsController {
      */
     public void setEffectsOff() {
         this.effectsOn = false;
-    }
-    /**
-     * Gets the explosion sound.
-     * @return explosion {@link Sound}
-     */
-    public static Optional<Sound> getExplosionSound() {
-        return explosion;
-    }
-    /**
-     * Gets the placedBomb sound.
-     * @return placeBomb {@link Sound}
-     */
-    public static Optional<Sound> getPlaceBombSound() {
-        return placeBomb;
-    }
-    /**
-     * Gets the {@link Key} sounds. 
-     * @return key {@link Sound}
-     */
-    public static Optional<Sound> getKeySound() {
-        return key;
     }
     /**
      * Method used to adjust changes according to the options selected during a game session.

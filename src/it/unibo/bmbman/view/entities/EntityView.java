@@ -40,6 +40,16 @@ public interface EntityView {
      */
     Dimension getDimension();
     /**
+     * Used to change sprites according to direction.
+     * @param direction the direction in which the entity is moving
+     */
+    void setDirection(Direction direction);
+    /**
+     * Used to know in which direction the entity is moving.
+     * @return {@link Direction}
+     */
+    Direction getDirection();
+    /**
      * the method to update the graphics of entity.
      * @param g {@link Graphics} to update
      */
@@ -63,14 +73,4 @@ public interface EntityView {
      * @return true if entity is visible, false otherwise
      */
     boolean isVisible();
-    /**
-     * Used to change sprites according to direction.
-     * @param direction the direction in which the entity is moving
-     */
-    void setDirection(Direction direction);
-    /**
-     * Used to know in which direction the entity is moving.
-     * @return {@link Direction}
-     */
-    Direction getDirection();
 }

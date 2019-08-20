@@ -48,14 +48,6 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public Level getLevel() {
-
-        return lv; 
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void startGame() {
         this.bc = new BombControllerImpl();
         this.ps = new PlayerScoreImpl();
@@ -80,6 +72,16 @@ public class GameControllerImpl implements GameController {
         }
     }
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void endGame() {
+        this.spv.getFrame().setVisible(false);
+        final EndView end = new EndView(mainView, this, spv, ps);
+        reset();
+        end.getFrame().setVisible(true);
+    }
+    /**
      * 
      * @return true if the hero is dead
      */
@@ -90,11 +92,15 @@ public class GameControllerImpl implements GameController {
      * {@inheritDoc}
      */
     @Override
-    public void endGame() {
-        this.spv.getFrame().setVisible(false);
-        final EndView end = new EndView(mainView, this, spv, ps);
-        reset();
-        end.getFrame().setVisible(true);
+    public boolean hasWon() {
+        return getHero().hasWon();
+    }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Level getLevel() {
+        return lv; 
     }
     /**
      * {@inheritDoc}
@@ -169,11 +175,7 @@ public class GameControllerImpl implements GameController {
         this.spv.render(this.setController.stream().map(ec -> ec.getEntityView()).collect(Collectors.toSet()), this.bc.getBombView());
         this.bc.update();
     }
-    /**
-     * {@inheritDoc}}
-     */
-    @Override
-    public void removeEntities() {
+    private void removeEntities() {
         final List<Entity> entityToRemoved = this.worldEntity.stream().filter(e -> e.remove()).collect(Collectors.toList());
         this.ps.updateScore(entityToRemoved);
         this.worldEntity.removeAll(entityToRemoved);
@@ -184,13 +186,6 @@ public class GameControllerImpl implements GameController {
         controllerToRemoved = controllerToRemoved.stream().filter(ec -> ec.getEntity().getType() != EntityType.POWER_UP).collect(Collectors.toSet());
         this.setController.removeAll(controllerToRemoved);
         this.bc.removeBomb();
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public boolean hasWon() {
-        return getHero().hasWon();
     }
     /**
      * {@inheritDoc}

@@ -28,7 +28,7 @@ public class TestBomb {
     private BombControllerImpl bc;
     private BombImpl bomb;
     private HeroImpl hero;
-    private SoundsController sc = new SoundsController();
+    private final SoundsController sc = new SoundsController();
     private static final Position HERO_POS = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), 
             TerrainFactoryImpl.PLAYER_POSITION.getY());
     private static final Position MONSTER1_POS = new Position(HERO_POS.getX() / ScreenToolUtils.SCALE 

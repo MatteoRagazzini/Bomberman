@@ -19,6 +19,13 @@ public class CollisionComponentImpl implements CollisionComponent {
     public CollisionComponentImpl(final Entity  entity) {
         this.entity = entity;
     }
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Entity getFollowedEntity() {
+        return this.entity;
+    }
     /** 
      * {@inheritDoc}
      */
@@ -65,13 +72,6 @@ public class CollisionComponentImpl implements CollisionComponent {
     @Override
     public void notifyCollision(final Collision c) {
         this.entity.onCollision(c);
-    }
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Entity getFollowedEntity() {
-        return this.entity;
     }
 
 }
