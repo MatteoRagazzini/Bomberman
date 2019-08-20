@@ -42,14 +42,14 @@ public class SinglePlayerView implements GameView {
         nPanel = new TopBar(gui, ps, hero);
         seconds = 0;
         minutes = 0;
-        nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+        nPanel.getLabelTime().setText(this.getTime());
         this.timer = new Timer(1000, a -> {
             seconds++;
             if (seconds == SECONDS_IN_MINUTE) {
                 minutes++;
                 seconds = 0;
             }
-            nPanel.getLabel().setText(String.format("%02d:%02d", minutes, seconds));
+            nPanel.getLabelTime().setText(this.getTime());
         });
         this.timer.start();
         frame.add(sPanel);

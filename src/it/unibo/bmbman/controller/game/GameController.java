@@ -72,10 +72,6 @@ public interface GameController {
      */
     void update();
     /**
-     * Used to say to {@link EntityCollisionManager} to detected collision.
-     */
-    void detectCollision();
-    /**
      * Remove entities from the world.
      */
     void removeEntities();
