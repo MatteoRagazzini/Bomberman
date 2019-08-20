@@ -59,7 +59,7 @@ public class LoadWorld {
         terrain.getBlocks().stream().forEach((i) -> gc.addEntity(i, this.getEntityView(i)));
         this.gc.addEntity(new HeroImpl(), new  HeroView(TerrainFactoryImpl.PLAYER_POSITION));
         loadPowerUp();
-        IntStream.iterate(0, i -> i + 1).limit(level.getMonsterNumber()).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
+        IntStream.iterate(0, i -> i + 1).limit(level.getMonstersNumber()).forEach(i -> mosterList.add(new Monster(terrain.getFreeRandomPosition())));
         mosterList.forEach(i -> gc.addEntity(i, new MonsterView(i.getPosition())));
 
     }
