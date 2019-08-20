@@ -79,7 +79,7 @@ public class TopBar extends JPanel {
      * Get label of gameTime.
      * @return label gameTime
      */
-    public JLabel getLabel() {
+    public JLabel getLabelTime() {
         return this.gameTime;
     }
 }

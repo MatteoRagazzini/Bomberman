@@ -38,7 +38,7 @@ public class BombImpl extends AbstractEntity implements Bomb {
      */
     @Override
     public Optional<Explosion> getExplosion() {
-        return explosion;
+        return this.explosion;
     }
 
     /**
