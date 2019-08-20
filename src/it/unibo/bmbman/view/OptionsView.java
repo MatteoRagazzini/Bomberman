@@ -20,7 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
 import it.unibo.bmbman.controller.OptionsMenuList;
-import it.unibo.bmbman.controller.OptionsMenuController;
+import it.unibo.bmbman.controller.MenuController;
 import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
@@ -31,7 +31,7 @@ import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 public class OptionsView {
     private static final Insets INSETS = new Insets(0, 60, 0, 0);
     private final Map<JRadioButton, OptionsMenuList> jbMap = new HashMap<>();
-    private final OptionsMenuController optionsMenuCtrl;
+    private final MenuController<OptionsMenuList> optionsMenuCtrl;
     private GridBagConstraints c;
     private final GUIFactoryImpl gui;
     private final MainMenuView mainView;
@@ -45,7 +45,7 @@ public class OptionsView {
      * @param mainMenuView the {@link MainMenuView} with which is related
      * @param optionsMenuController the {@link OptionsMenuController} that manage all choises
      */
-    public OptionsView(final MainMenuView mainMenuView, final OptionsMenuController optionsMenuController) {
+    public OptionsView(final MainMenuView mainMenuView, final MenuController<OptionsMenuList> optionsMenuController) {
         this.gui = new GUIFactoryImpl();
         this.f = gui.createFrame();
         loadOptionsView();

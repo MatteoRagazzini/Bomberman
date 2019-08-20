@@ -2,7 +2,7 @@ package it.unibo.bmbman.controller;
 /**
  * Class that manage the behaviour of the options menù.
  */
-public class OptionMenuControllerImpl implements OptionsMenuController {
+public class OptionMenuController implements MenuController<OptionsMenuList> {
     private final SoundsController sc = new SoundsController();
     /**
      * {@inheritDoc}

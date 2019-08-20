@@ -15,10 +15,10 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import it.unibo.bmbman.controller.MainMenuController;
-import it.unibo.bmbman.controller.MainMenuControllerImpl;
 import it.unibo.bmbman.controller.MainMenuList;
-import it.unibo.bmbman.controller.OptionMenuControllerImpl;
-import it.unibo.bmbman.controller.OptionsMenuController;
+import it.unibo.bmbman.controller.MenuController;
+import it.unibo.bmbman.controller.OptionMenuController;
+import it.unibo.bmbman.controller.OptionsMenuList;
 import it.unibo.bmbman.view.utilities.ImageLoaderUtils;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
@@ -31,7 +31,7 @@ public class MainMenuView {
     private static final double NORTH_SCALE_HEIGHT = 0.2;
     private static final Insets INSETS = new Insets(25, 60, 35, 20);
     private final Map<JButton, MainMenuList> jbMap = new HashMap<>();
-    private final MainMenuController mainMenuController;
+    private final MenuController<MainMenuList> mainMenuController;
     private final GUIFactoryImpl gui;
     /**
      * Parameter added to manage GridBag layout.
@@ -47,8 +47,8 @@ public class MainMenuView {
      */
     public MainMenuView() {
         this.gui = new GUIFactoryImpl();
-        final OptionsMenuController optMenuController = new OptionMenuControllerImpl();
-        this.mainMenuController = new MainMenuControllerImpl(this, optMenuController);
+        final MenuController<OptionsMenuList> optMenuController = new OptionMenuController();
+        this.mainMenuController = new MainMenuController(this, optMenuController);
         saveMainImagePath();
         saveTitleImagePath();
     }
