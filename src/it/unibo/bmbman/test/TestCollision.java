@@ -33,7 +33,7 @@ public class TestCollision {
                                                                     WALL_POSITION.getY() - TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE / 2);
     private final Hero hero = new HeroImpl();
     private final Monster monster = new Monster(MONSTER_POSITION);
-    private final Wall wall = new Wall(WALL_POSITION, new Dimension(TerrainFactoryImpl.CELL_DIMENSION, TerrainFactoryImpl.CELL_DIMENSION));
+    private final Wall wall = new Wall(WALL_POSITION, new Dimension(TerrainFactoryImpl.CELL_DIMENSION*ScreenToolUtils.SCALE, TerrainFactoryImpl.CELL_DIMENSION*ScreenToolUtils.SCALE));
     private final EntityCollisionManager heroMng = new EntityCollisionManagerImpl(hero.getCollisionComponent());
     /**
      * Used to test wall Collision.
