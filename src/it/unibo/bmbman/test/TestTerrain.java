@@ -13,7 +13,6 @@ import it.unibo.bmbman.model.LevelImpl;
 import it.unibo.bmbman.model.Terrain;
 import it.unibo.bmbman.model.TerrainFactory;
 import it.unibo.bmbman.model.TerrainFactoryImpl;
-import it.unibo.bmbman.model.utilities.EntityType;
 import it.unibo.bmbman.model.utilities.Position;
 import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 /**
@@ -42,7 +41,7 @@ public class TestTerrain {
     public void testAroundPlayerPositions() {
         IntStream.iterate(0, i -> i + 1).limit(LevelImpl.LEVEL_MAX).forEach(k -> {
             terrain = terrainFactory.create(level.getBlocksNumber());
-            List<Position> safePosition = new ArrayList<>();
+            final List<Position> safePosition = new ArrayList<>();
             safePosition.add(TerrainFactoryImpl.PLAYER_POSITION);
             safePosition.add(new Position(TerrainFactoryImpl.PLAYER_POSITION.getX() + TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE,
                     TerrainFactoryImpl.PLAYER_POSITION.getY()));
