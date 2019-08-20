@@ -16,6 +16,7 @@ import it.unibo.bmbman.model.entities.powerups.MalusLife;
 import it.unibo.bmbman.model.entities.powerups.MalusSlow;
 import it.unibo.bmbman.model.utilities.Direction;
 import it.unibo.bmbman.model.utilities.Position;
+import it.unibo.bmbman.view.utilities.ScreenToolUtils;
 
 /**
  * Class to test power-ups behavior.
@@ -75,7 +76,7 @@ public class TestPowerups {
         malusInvert.onCollision(new CollisionImpl(this.hero, POWERUP_POSITION));
         hero.setDirection(Direction.LEFT);
         hero.update();
-        assertEquals(2, hero.getVelocity().getXcomponent());
+        assertEquals((int) 2 * ScreenToolUtils.SCALE, hero.getVelocity().getXcomponent());
     }
     /**
      * Test if the malus slow effect is activated on collision.
@@ -87,6 +88,6 @@ public class TestPowerups {
         malusSlow.onCollision(new CollisionImpl(this.hero, POWERUP_POSITION));
         hero.setDirection(Direction.RIGHT);
         hero.update();
-        assertTrue(1 == hero.getVelocity().getXcomponent());
+        assertTrue(1 * ScreenToolUtils.SCALE == hero.getVelocity().getXcomponent());
     }
 }
