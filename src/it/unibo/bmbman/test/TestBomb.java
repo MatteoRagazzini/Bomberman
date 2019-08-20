@@ -31,12 +31,12 @@ public class TestBomb {
     private SoundsController sc = new SoundsController();
     private static final Position HERO_POS = new Position(TerrainFactoryImpl.PLAYER_POSITION.getX(), 
             TerrainFactoryImpl.PLAYER_POSITION.getY());
-    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() 
-            + TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE, HERO_POS.getY());
-    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() 
-            + 5 * TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE, HERO_POS.getY());
-    private static final Position BLOCK_POS = new Position(HERO_POS.getX(), 
-            HERO_POS.getY() + TerrainFactoryImpl.CELL_DIMENSION * ScreenToolUtils.SCALE);
+    private static final Position MONSTER1_POS = new Position(HERO_POS.getX() / ScreenToolUtils.SCALE 
+            + TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY() / ScreenToolUtils.SCALE);
+    private static final Position MONSTER2_POS = new Position(HERO_POS.getX() / ScreenToolUtils.SCALE 
+            + 5 * TerrainFactoryImpl.CELL_DIMENSION, HERO_POS.getY() / ScreenToolUtils.SCALE);
+    private static final Position BLOCK_POS = new Position(HERO_POS.getX() / ScreenToolUtils.SCALE, 
+            HERO_POS.getY() / ScreenToolUtils.SCALE + TerrainFactoryImpl.CELL_DIMENSION);
     private Block block;
     private Monster monster1;
     private Monster monster2;
